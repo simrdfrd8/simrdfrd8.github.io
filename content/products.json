@@ -1,0 +1,186 @@
+[
+  {
+    "id": "support-flavorful",
+    "title": "Support the workshop",
+    "type": "support",
+    "artist": null,
+    "price": 0,
+    "payWhatYouWant": true,
+    "priceApproved": false,
+    "status": "available",
+    "checkoutProvider": "kofi",
+    "checkoutUrl": null,
+    "summary": "Chip in any amount. It goes straight to new music, videos and studio time.",
+    "includes": [
+      "Pay what you want",
+      "One-off or monthly"
+    ],
+    "featured": true,
+    "order": 0,
+    "colorways": [],
+    "galleryAssetIds": [],
+    "lifestyleAssetIds": []
+  },
+  {
+    "id": "support-ricky",
+    "title": "Support Ricky",
+    "type": "support",
+    "artist": "ricky",
+    "price": 0,
+    "payWhatYouWant": true,
+    "priceApproved": false,
+    "status": "available",
+    "checkoutProvider": "kofi",
+    "checkoutUrl": null,
+    "summary": "Tip Ricky directly for the songs, the vocals and the mixes.",
+    "includes": [
+      "Pay what you want"
+    ],
+    "order": 5,
+    "colorways": [],
+    "galleryAssetIds": [],
+    "lifestyleAssetIds": []
+  },
+  {
+    "id": "getdownix-download",
+    "title": "getdownix",
+    "artist": "flavorful-croissants",
+    "type": "download",
+    "price": 5,
+    "priceApproved": false,
+    "status": "available",
+    "checkoutProvider": "payhip",
+    "checkoutUrl": null,
+    "artworkUrl": "/media/streaming/sp-getdownix.webp",
+    "licenseTerms": "Personal listening license. No redistribution or commercial use.",
+    "summary": "The 2025 single, as a high-quality download.",
+    "includes": [
+      "24-bit WAV",
+      "320 kbps MP3"
+    ],
+    "featured": true,
+    "order": 2,
+    "colorways": [],
+    "galleryAssetIds": [],
+    "lifestyleAssetIds": []
+  },
+  {
+    "id": "getdownix-stems",
+    "title": "getdownix: stem bundle",
+    "artist": "flavorful-croissants",
+    "type": "stems",
+    "price": 25,
+    "priceApproved": false,
+    "status": "upcoming",
+    "checkoutProvider": "payhip",
+    "checkoutUrl": null,
+    "artworkUrl": "/media/streaming/sp-getdownix.webp",
+    "licenseTerms": "Stems for remixing and study. Non-commercial unless licensed separately.",
+    "summary": "Drums, bass, keys and vocal stems for remixes and study.",
+    "includes": [
+      "Individual WAV stems",
+      "BPM + key sheet"
+    ],
+    "order": 3,
+    "colorways": [],
+    "galleryAssetIds": [],
+    "lifestyleAssetIds": []
+  },
+  {
+    "id": "feelings-beat-tape",
+    "title": "Feelings that Collected Dust Vol. I",
+    "artist": "flavorful-croissants",
+    "type": "download",
+    "price": 12,
+    "priceApproved": false,
+    "status": "available",
+    "checkoutProvider": "payhip",
+    "checkoutUrl": null,
+    "artworkUrl": "/media/streaming/sp-feelings-that-collected-dust-vol-i.webp",
+    "licenseTerms": "Personal listening license.",
+    "summary": "The instrumental beat tape, part tribute to 2020 and part to DJ Premier.",
+    "includes": [
+      "10 tracks",
+      "WAV + MP3"
+    ],
+    "featured": true,
+    "order": 4,
+    "colorways": [],
+    "galleryAssetIds": [],
+    "lifestyleAssetIds": []
+  },
+  {
+    "id": "beat-license",
+    "title": "License a track",
+    "artist": "flavorful-croissants",
+    "type": "license",
+    "price": null,
+    "priceApproved": false,
+    "status": "available",
+    "checkoutProvider": "none",
+    "checkoutUrl": null,
+    "licenseTerms": "See /licensing for tiers. Every license is confirmed in writing.",
+    "summary": "Sync, artist and commercial licenses for any track in the catalogue.",
+    "includes": [
+      "Basic · Premium · Exclusive · Sync"
+    ],
+    "order": 6,
+    "colorways": [],
+    "galleryAssetIds": [],
+    "lifestyleAssetIds": []
+  },
+  {
+    "id": "mix-master-single",
+    "title": "Mix + master a single",
+    "artist": "ricky",
+    "type": "service",
+    "price": null,
+    "priceApproved": false,
+    "status": "available",
+    "checkoutProvider": "none",
+    "checkoutUrl": null,
+    "summary": "Send your session, get back a release-ready mix and master.",
+    "includes": [
+      "2 revisions",
+      "WAV + MP3 masters"
+    ],
+    "order": 11,
+    "colorways": [],
+    "galleryAssetIds": [],
+    "lifestyleAssetIds": []
+  },
+  {
+    "id": "merch-hotdog-tee-white",
+    "title": "HOTDO G Tee",
+    "assetId": "merch-hotdo-g-tee-white-taco-red",
+    "artist": null,
+    "brand": null,
+    "type": "merch",
+    "price": null,
+    "currency": "USD",
+    "payWhatYouWant": false,
+    "priceApproved": false,
+    "status": "upcoming",
+    "checkoutProvider": "none",
+    "checkoutUrl": null,
+    "licenseTerms": null,
+    "summary": "Is it a Hotdo? Is it a g? Yes. One bold box, one awkward space. A term we can all agree on.",
+    "includes": [],
+    "inquireOnly": true,
+    "galleryAssetIds": [],
+    "featured": false,
+    "order": 70,
+    "listed": true,
+    "colorways": [
+      {
+        "name": "White / Taco Red",
+        "slug": "white-taco-red",
+        "swatch": "#F7F6F2",
+        "ink": "#C83A22",
+        "assetId": "merch-hotdo-g-tee-white-taco-red"
+      }
+    ],
+    "lifestyleAssetIds": [],
+    "heroColorway": "white-taco-red"
+  }
+]

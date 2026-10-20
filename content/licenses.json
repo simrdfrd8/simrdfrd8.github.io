@@ -1,0 +1,118 @@
+[
+  {
+    "id": "dj",
+    "name": "DJ use",
+    "price": "Included with WAV ($5) / DJ pack ($25), illustrative",
+    "bestFor": "DJs: sets, mixes, livestreams",
+    "rights": [
+      "Play in sets, mixes and streams",
+      "Edits for your own sets",
+      "WAV + MP3"
+    ],
+    "limits": [
+      "No re-uploading or resale of the file",
+      "Releasing a remix needs a license"
+    ]
+  },
+  {
+    "id": "mp3-lease",
+    "name": "MP3 Lease",
+    "price": "$10",
+    "bestFor": "Recording and testing a song",
+    "rights": [
+      "320 kbps MP3 (untagged)",
+      "2-year term",
+      "50,000 audio streams",
+      "2,000 downloads / sales",
+      "1 music video (50K views, not monetized)",
+      "Non-profit live shows only",
+      "Basic edits only"
+    ],
+    "limits": [
+      "Non-exclusive",
+      "No radio",
+      "Sync: ask us",
+      "No Content ID"
+    ],
+    "agreement": "mp3-lease"
+  },
+  {
+    "id": "wav-lease",
+    "name": "WAV Lease",
+    "price": "$25",
+    "bestFor": "Commercial releases",
+    "rights": [
+      "Untagged WAV",
+      "5-year term",
+      "500,000 audio streams",
+      "10,000 downloads / sales",
+      "1 music video (500K views, monetized)",
+      "2 radio stations",
+      "Unlimited live shows",
+      "Remix and rearrange the beat"
+    ],
+    "limits": [
+      "Non-exclusive",
+      "Sync: ask us",
+      "No Content ID"
+    ],
+    "highlighted": true,
+    "agreement": "wav-lease"
+  },
+  {
+    "id": "trackout-lease",
+    "name": "Stems Lease",
+    "price": "$50",
+    "bestFor": "Mixing with your engineer",
+    "rights": [
+      "Untagged WAV + stems",
+      "10-year term",
+      "2,000,000 audio streams",
+      "50,000 downloads / sales",
+      "2 music videos (2M views each, monetized)",
+      "Unlimited radio",
+      "Unlimited live shows",
+      "Remix stem by stem"
+    ],
+    "limits": [
+      "Non-exclusive",
+      "Sync: ask us",
+      "No Content ID"
+    ],
+    "agreement": "stems-lease"
+  },
+  {
+    "id": "exclusive",
+    "name": "Exclusive Rights",
+    "price": "$500",
+    "bestFor": "Owning the sound",
+    "rights": [
+      "Untagged WAV + stems",
+      "Forever",
+      "Unlimited streams, sales, videos, radio and live shows",
+      "Sync (film/TV/ads/games) included",
+      "Remix stem by stem",
+      "Content ID for your new song only",
+      "Beat removed from the store within 3 business days"
+    ],
+    "limits": [
+      "Earlier leases stay valid",
+      "Exclusive license, not a copyright transfer"
+    ],
+    "agreement": "exclusive-rights"
+  },
+  {
+    "id": "sync",
+    "name": "Sync",
+    "price": "By inquiry",
+    "bestFor": "Film, TV, games, ads",
+    "rights": [
+      "Picture sync",
+      "Custom term & territory",
+      "Edits / cutdowns"
+    ],
+    "limits": [
+      "Quoted per placement"
+    ]
+  }
+]

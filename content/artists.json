@@ -1,0 +1,341 @@
+[
+  {
+    "slug": "720m",
+    "name": "720M",
+    "role": "Rapper",
+    "tagline": "Laughter and grief, in rhythm and rhyme.",
+    "bio": [
+      "720M explores themes of laughter and grief in rhythm and rhyme. An avid freestyle nut, 720M taps into the eternal wave and shares what he finds on record. He writes poetry as a form of therapy and lives in sunny San Diego where he makes art, surfs, and walks his furry friend Swami."
+    ],
+    "bioStatus": "approved",
+    "accent": "#FF7A59",
+    "accentInk": "#17121C",
+    "genres": [
+      "Hip-Hop"
+    ],
+    "disciplines": [
+      "Rap",
+      "Vocals",
+      "Songwriting"
+    ],
+    "links": [
+      {
+        "platform": "soundcloud",
+        "url": "https://soundcloud.com/user-536995429/sets/rickayyy",
+        "label": "720M playlist on SoundCloud",
+        "verified": true
+      }
+    ],
+    "featured": true,
+    "order": 1,
+    "bookable": true,
+    "bookingNote": "Features, shows and collaborations.",
+    "serviceSlugs": [],
+    "layout": "rich",
+    "shortName": "720M",
+    "highlights": [
+      {
+        "label": "with Flavorful Croissants",
+        "value": "\"FANNYPACK\" · \"Levis\""
+      },
+      {
+        "label": "with James Eagle",
+        "value": "\"Ambient Night\""
+      },
+      {
+        "label": "Shade",
+        "value": "Hip-Hop"
+      }
+    ],
+    "category": "hip-hop",
+    "cardRole": "Rapper",
+    "madeWith": "Made with friends: \"FANNYPACK\" and \"Levis\" with Flavorful Croissants, \"Ambient Night\" with James Eagle.",
+    "cardBlurb": "720M explores themes of laughter and grief in rhythm and rhyme.",
+    "aka": "aka 720Mission · San Diego"
+  },
+  {
+    "slug": "dan-perales",
+    "name": "Dan Perales",
+    "role": "Rapper",
+    "tagline": "Hip-hop from \"Cayo\" to \"Bajo La Pluma\".",
+    "bio": [
+      "Dan Perales raps on the Hip-Hop side of the crew. Start with \"Cayo\" (feat. Ant Del$ol), \"Gentéfication\", and \"Bajo La Pluma\"."
+    ],
+    "bioStatus": "draft",
+    "accent": "#FF7A59",
+    "accentInk": "#17121C",
+    "genres": [
+      "Hip-Hop"
+    ],
+    "disciplines": [
+      "Rap"
+    ],
+    "links": [
+      {
+        "platform": "spotify",
+        "url": "https://open.spotify.com/artist/7d0UBhFGUmCcg19sesZtEx",
+        "label": "Dan Perales on Spotify",
+        "verified": true
+      }
+    ],
+    "heroAssetId": "photo-dan-poncho",
+    "order": 2,
+    "bookable": true,
+    "bookingNote": "Features, shows and collaborations.",
+    "serviceSlugs": [],
+    "layout": "standard",
+    "portraitAssetId": "photo-dan-poncho",
+    "category": "hip-hop",
+    "cardRole": "Rapper",
+    "cardBlurb": "Dan Perales raps on the Hip-Hop side of the crew. Start with \"Cayo\" (feat. Ant Del$ol), \"Gentéfication\", and \"Bajo La Pluma\"."
+  },
+  {
+    "slug": "andrew-bigs",
+    "name": "Andrew Bigs",
+    "role": "Rapper",
+    "category": "hip-hop",
+    "cardRole": "Rapper",
+    "tagline": "Raw social commentary with a light-hearted bounce.",
+    "bio": [
+      "Born and raised on San Jose's East Side, Andrew Bigs pairs raw social commentary with a light-hearted bounce. Start with \"Feel Good Bigs\" and \"Hold Up\"."
+    ],
+    "cardBlurb": "Born and raised on San Jose's East Side, Andrew Bigs pairs raw social commentary with a light-hearted bounce. Start with \"Feel Good Bigs\" and \"Hold Up\".",
+    "bioStatus": "draft",
+    "accent": "#FF7A59",
+    "accentInk": "#17121C",
+    "genres": [
+      "Hip-Hop"
+    ],
+    "disciplines": [
+      "Rap"
+    ],
+    "links": [
+      {
+        "platform": "spotify",
+        "url": "https://open.spotify.com/artist/53hggKXepZN14WR83U8g2T",
+        "verified": true
+      },
+      {
+        "platform": "soundcloud",
+        "url": "https://soundcloud.com/heisandrewbigs",
+        "verified": true
+      },
+      {
+        "platform": "website",
+        "url": "https://www.andrewbigs.com/bigs",
+        "verified": true
+      },
+      {
+        "platform": "instagram",
+        "url": "https://www.instagram.com/heisandrewbigs/",
+        "label": "@heisandrewbigs",
+        "verified": true
+      }
+    ],
+    "featured": true,
+    "order": 3,
+    "bookable": false,
+    "serviceSlugs": [],
+    "layout": "standard"
+  },
+  {
+    "slug": "not-daf",
+    "name": "Not Däf",
+    "role": "DJ · EDM · animated videos",
+    "tagline": "A new DJ project from the workshop. The triangle crew is in charge of the visuals.",
+    "bio": [
+      "Not Däf is a new DJ project from the Flavorful Music workshop: EDM sets with a producer's ear. Sets, mixes and dates are on the way.",
+      "The colourful triangle-headed crew is Not Däf's visual signature. They dance through the Grey Palace and Effortless System videos, from a sunset beach to a neon club and a comic-book city.",
+      "Booking club nights, private events and livestreams now."
+    ],
+    "bioStatus": "draft",
+    "accent": "#B6FF3B",
+    "accentInk": "#17121C",
+    "genres": [
+      "EDM"
+    ],
+    "disciplines": [
+      "DJ sets",
+      "Animated videos"
+    ],
+    "links": [
+      {
+        "platform": "instagram",
+        "url": "https://www.instagram.com/flavorful_croissants/",
+        "label": "Follow on Instagram",
+        "verified": true
+      }
+    ],
+    "featured": true,
+    "order": 4,
+    "bookable": true,
+    "bookingNote": "Club nights, private events, livestreams, guest mixes.",
+    "events": [],
+    "highlights": [
+      {
+        "label": "Status",
+        "value": "New DJ project"
+      },
+      {
+        "label": "Visual signature",
+        "value": "The triangle crew"
+      },
+      {
+        "label": "Videos",
+        "value": "Grey Palace · Effortless System"
+      }
+    ],
+    "serviceSlugs": [
+      "dj-booking"
+    ],
+    "layout": "rich",
+    "packages": [
+      {
+        "title": "Club set",
+        "detail": "2–4 hour set, house through techno, reading the room."
+      },
+      {
+        "title": "Private event",
+        "detail": "Weddings, parties and brand events, with sound-system advice included."
+      },
+      {
+        "title": "Livestream & guest mix",
+        "detail": "Recorded or live-streamed mixes for radio, podcasts and platforms."
+      }
+    ],
+    "motif": "triangles",
+    "category": "edm",
+    "cardRole": "DJ",
+    "cardBlurb": "The crew's DJ. Not Däf's videos \"Grey Palace\" and \"Effortless System\" introduce a world of triangle-headed characters."
+  },
+  {
+    "slug": "flavorful-croissants",
+    "name": "Flavorful Croissants",
+    "role": "Production · EDM & hip-hop",
+    "tagline": "Welcome to the workshop.",
+    "bio": [
+      "Flavorful Croissants is the producer at the centre of Flavorful Music: beat tapes, hip-hop, EDM sketches and songs made with friends out of a San Diego workshop.",
+      "The catalogue runs from the 2019 album Introduction to Not Being a Jackass and the DJ Premier-tipped beat tape Feelings that Collected Dust Vol. I to solo techno sketches and a long run of collaborations with 720M, including the single getdownix.",
+      "Singer, rapper, songwriter, producer and audio-engineering student, drawn to foley, storytelling and psychoacoustics. Make art with friends till I die."
+    ],
+    "bioStatus": "draft",
+    "accent": "#8C7CFF",
+    "accentInk": "#17121C",
+    "genres": [
+      "Hip-hop",
+      "EDM",
+      "Instrumental",
+      "Singer-songwriter"
+    ],
+    "disciplines": [
+      "Production",
+      "Beat tapes",
+      "Songwriting",
+      "Sound design"
+    ],
+    "links": [
+      {
+        "platform": "spotify",
+        "url": "https://open.spotify.com/artist/7HVJPuRrvPJmyt0s5Rnvb0",
+        "verified": true
+      },
+      {
+        "platform": "soundcloud",
+        "url": "https://soundcloud.com/user-536995429",
+        "verified": true
+      },
+      {
+        "platform": "apple-music",
+        "url": "https://music.apple.com/us/artist/flavorful-croissants/1602660873",
+        "verified": true
+      },
+      {
+        "platform": "instagram",
+        "url": "https://www.instagram.com/flavorful_croissants/",
+        "label": "@flavorful_croissants",
+        "verified": true
+      }
+    ],
+    "featured": true,
+    "order": 5,
+    "bookable": true,
+    "bookingNote": "Production, beats and collaborations.",
+    "highlights": [
+      {
+        "label": "Based in",
+        "value": "San Diego"
+      },
+      {
+        "label": "Releases on Spotify",
+        "value": "4"
+      },
+      {
+        "label": "SoundCloud uploads",
+        "value": "160+"
+      },
+      {
+        "label": "Since",
+        "value": "2019"
+      }
+    ],
+    "serviceSlugs": [
+      "production",
+      "sound-design",
+      "mixing"
+    ],
+    "layout": "rich",
+    "packages": [
+      {
+        "title": "Custom beat",
+        "detail": "Built around your voice and references, with stems included."
+      },
+      {
+        "title": "Full production",
+        "detail": "Beat, arrangement, vocal production and a mix-ready session."
+      },
+      {
+        "title": "Collab",
+        "detail": "Got a song idea? Make art with friends."
+      }
+    ],
+    "category": "production",
+    "cardRole": "Producer",
+    "cardBlurb": "Beats for DJs and rappers, including \"FANNYPACK\" and \"Levis\" with 720M. Sample packs are on the way."
+  },
+  {
+    "slug": "baylingual-entertainment",
+    "name": "Baylingual Entertainment",
+    "role": "Video · animation · design · production",
+    "tagline": "Our sister studio for music videos, animation and design.",
+    "bio": [
+      "Baylingual Entertainment is Flavorful Music's multimedia partner, handling music videos, animation, design and creative production for the label and for outside clients.",
+      "Need a music video, animated visualiser, cover art or a full campaign? Start an inquiry."
+    ],
+    "bioStatus": "draft",
+    "accent": "#F8E8D2",
+    "accentInk": "#17121C",
+    "genres": [],
+    "disciplines": [
+      "Music video",
+      "Animation",
+      "Design",
+      "Creative direction"
+    ],
+    "links": [],
+    "heroAssetId": "bay-neon-lit",
+    "order": 22,
+    "bookable": true,
+    "bookingNote": "Videos, animation, design and campaigns.",
+    "serviceSlugs": [
+      "video",
+      "animation",
+      "design",
+      "commissions"
+    ],
+    "layout": "standard",
+    "parentArtist": "dan-perales",
+    "markAssetId": "bay-logo-mark",
+    "portraitAssetId": "bay-neon-lit",
+    "listed": false
+  }
+]

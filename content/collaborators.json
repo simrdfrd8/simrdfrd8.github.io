@@ -1,0 +1,44 @@
+[
+  {
+    "id": "james-eagle",
+    "name": "James Eagle",
+    "note": "External collaborator (not a label identity). Credited on Ambient Night with 720M.",
+    "links": [
+      {
+        "platform": "spotify",
+        "url": "https://open.spotify.com/artist/3wwS8vlx9xmeH9fRrVjAgc",
+        "label": "James Eagle on Spotify",
+        "verified": true
+      }
+    ],
+    "rights": "collaborator-rights-unconfirmed"
+  },
+  {
+    "id": "ali-huaskatley",
+    "name": "ALi Huaskatley",
+    "note": "Producer credit on Dan Perales' Cayo, Gentéfication and Bajo La Pluma (as printed on the owner-supplied covers). Credit only.",
+    "links": [],
+    "rights": "collaborator-rights-unconfirmed"
+  },
+  {
+    "id": "ant-delsol",
+    "name": "Ant Del$ol",
+    "note": "Featured on Dan Perales' Cayo (as printed on the cover; Spotify lists the feature as 'Anthony Del Sol'). Credit only.",
+    "links": [],
+    "rights": "collaborator-rights-unconfirmed"
+  },
+  {
+    "id": "tondo",
+    "name": "tondo",
+    "note": "Featured on 'Love and Tears' (Flavorful Croissants SoundCloud). Credit only.",
+    "links": [],
+    "rights": "collaborator-rights-unconfirmed"
+  },
+  {
+    "id": "azazaka",
+    "name": "azazaka",
+    "note": "Featured on 'Love and Tears' (Flavorful Croissants SoundCloud). Credit only.",
+    "links": [],
+    "rights": "collaborator-rights-unconfirmed"
+  }
+]

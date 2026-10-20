@@ -1,0 +1,76 @@
+name: Build and deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  no-masters:
+    name: No lossless masters in the repo
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fail on .wav / .aif / .aiff / .flac anywhere in the tree
+        run: |
+          found=$(git ls-files | grep -iE '\.(wav|aif|aiff|flac)$' || true)
+          if [ -n "$found" ]; then echo "::error::Lossless masters must never be committed:"; echo "$found"; exit 1; fi
+          echo "No masters found."
+      - name: Fail on beat audio committed to the repo (it lives on R2)
+        run: |
+          found=$(git ls-files | grep -iE '\.mp3$|^public/media/beat-' || true)
+          if [ -n "$found" ]; then echo "::error::Beat audio/peaks belong on R2, not in git:"; echo "$found"; exit 1; fi
+
+  build:
+    needs: no-masters
+    runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_MEDIA_BASE: ${{ vars.NEXT_PUBLIC_MEDIA_BASE }}
+      NEXT_PUBLIC_SITE_URL: https://flavorfulmusic.com
+      # Checkout switch: unset or 0 = every buy button reads "Coming soon". See README before setting it to 1.
+      NEXT_PUBLIC_CHECKOUT_LIVE: ${{ vars.NEXT_PUBLIC_CHECKOUT_LIVE }}
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Require the R2 media base
+        run: |
+          if [ -z "$NEXT_PUBLIC_MEDIA_BASE" ]; then echo "::error::Set the repo variable NEXT_PUBLIC_MEDIA_BASE (Settings → Variables → Actions)"; exit 1; fi
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build # prebuild runs scripts/check-no-wav.mjs
+      - name: Fail if the export contains masters or beat audio
+        run: |
+          found=$(find out -type f \( -iname '*.wav' -o -iname '*.aif' -o -iname '*.aiff' -o -iname '*.flac' -o -iname '*.mp3' \) || true)
+          if [ -n "$found" ]; then echo "::error::Export contains audio files:"; echo "$found"; exit 1; fi
+      - uses: actions/upload-pages-artifact@v3
+        if: github.event_name != 'pull_request'
+        with:
+          path: out
+
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

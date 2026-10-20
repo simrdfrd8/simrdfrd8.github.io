@@ -1,0 +1,100 @@
+{
+  "lanes": {
+    "dj": {
+      "label": "For DJs",
+      "blurb": "Club-ready EDM cuts. Grab the WAV for your sets, or the parts to make it yours.",
+      "primary": "dj-wav",
+      "offers": [
+        {
+          "id": "dj-wav",
+          "title": "WAV download",
+          "type": "download",
+          "price": 5,
+          "status": "available",
+          "summary": "Full-quality WAV + MP3 for your crate.",
+          "terms": "Play it in DJ sets, mixes and streams (credit appreciated). No re-uploading or resale of the file.",
+          "licenseTierId": "dj"
+        },
+        {
+          "id": "dj-pack",
+          "title": "Stems / DJ pack",
+          "type": "stems",
+          "price": 25,
+          "status": "available",
+          "summary": "Stems, intro/outro tools and acapella-free loops.",
+          "terms": "Use in sets, edits and remixes you perform. Releasing a remix needs a license.",
+          "licenseTierId": "dj"
+        },
+        {
+          "id": "dj-club-edit",
+          "title": "Extended / club edit",
+          "type": "download",
+          "price": 7,
+          "status": "upcoming",
+          "summary": "Longer intro and outro, mixed for the club.",
+          "terms": "Same as the WAV download.",
+          "licenseTierId": "dj"
+        }
+      ]
+    },
+    "rapper": {
+      "label": "For Rappers",
+      "blurb": "Beats built for bars. Lease from $10, or buy exclusive rights for $500.",
+      "primary": "mp3-lease",
+      "offers": [
+        {
+          "id": "mp3-lease",
+          "title": "MP3 lease",
+          "type": "license",
+          "price": 10,
+          "priceApproved": true,
+          "status": "available",
+          "summary": "320 kbps MP3 (untagged) to record one new song on.",
+          "terms": "Non-exclusive · 2 years · 50,000 streams · 2,000 downloads/sales · 1 music video (50K views, not monetized) · no radio · non-profit live shows only · sync: ask us · basic edits only. Credit \"Prod. Flavorful Croissants\"; producer keeps 50% of the writer's share.",
+          "licenseTierId": "mp3-lease",
+          "agreement": "mp3-lease"
+        },
+        {
+          "id": "wav-lease",
+          "title": "WAV lease",
+          "type": "license",
+          "price": 25,
+          "priceApproved": true,
+          "status": "available",
+          "summary": "Untagged WAV for a cleaner mix.",
+          "terms": "Non-exclusive · 5 years · 500,000 streams · 10,000 downloads/sales · 1 music video (500K views, monetized) · 2 radio stations · unlimited live shows · sync: ask us · remix and rearrange the beat. Credit \"Prod. Flavorful Croissants\"; producer keeps 50% of the writer's share.",
+          "licenseTierId": "wav-lease",
+          "agreement": "wav-lease"
+        },
+        {
+          "id": "trackout-lease",
+          "title": "Stems lease",
+          "type": "stems",
+          "price": 50,
+          "priceApproved": true,
+          "status": "available",
+          "summary": "Untagged WAV plus every stem, so your engineer can mix it properly.",
+          "terms": "Non-exclusive · 10 years · 2,000,000 streams · 50,000 downloads/sales · 2 music videos (2M views each, monetized) · unlimited radio · unlimited live shows · sync: ask us · remix stem by stem. Credit \"Prod. Flavorful Croissants\"; producer keeps 50% of the writer's share.",
+          "licenseTierId": "trackout-lease",
+          "agreement": "stems-lease"
+        },
+        {
+          "id": "exclusive",
+          "title": "Exclusive rights",
+          "type": "license",
+          "price": 500,
+          "priceApproved": true,
+          "status": "available",
+          "summary": "Exclusive use of the beat, forever. It comes off the store after the sale.",
+          "terms": "Exclusive · forever · unlimited streams, sales, videos, radio and live shows · sync included · remix stem by stem · Content ID for your new song only. Off the store within 3 business days; earlier leases stay valid. An exclusive license, not a copyright transfer. Credit \"Prod. Flavorful Croissants\"; producer keeps 50% of the writer's share.",
+          "licenseTierId": "exclusive",
+          "agreement": "exclusive-rights"
+        }
+      ]
+    },
+    "producer": {
+      "label": "For Producers",
+      "blurb": "Royalty-free sample packs from the workshop: drums, loops, foley and textures. Drop them in your sessions and release what you make."
+    }
+  }
+}

@@ -1,0 +1,51 @@
+/* Flavorful Music: Color tokens v3, palette #8 "Bruise" (final structure, Oct 20, 2026).
+   Three shades, in order: Hip-Hop · EDM · Production. Cream #F8E8D2 is the neutral logo color only (not a shade).
+   Ratios are WCAG 2.x contrast. "base" = --fm-base #17121C. The retired Ink & Voltage tokens are in flavorful-palette-ink-voltage-retired.css */
+:root {
+  /* ---- Neutral base (plum-black) ---- */
+  --fm-base:     #17121C; /* page background */
+  --fm-surface:  #201B25; /* alt section bands; text 14.50:1 */
+  --fm-raised:   #28232D; /* cards, panels; text 13.19:1 */
+  --fm-line:     #3C3741; /* borders, dividers */
+  --fm-muted:    #9E99A3; /* secondary text: 6.61 base, 6.06 surface, 5.51 raised */
+  --fm-text:     #F1ECF5; /* primary text: 15.84 base */
+  --fm-logo:     #F8E8D2; /* logo cream (neutral): 15.32 base. Never on --fm-text (1.03) */
+  --fm-ink: var(--fm-base); --fm-bone: var(--fm-text); --fm-ash: var(--fm-muted);
+
+  /* ---- 1 · Hip-Hop: Coral Heat ---- */
+  --fm-hiphop:       #FF7A59; /* 7.18 base · 6.57 surface · 5.98 raised · 5.82 tint */
+  --fm-hiphop-text:  #FF9B82; /* small text: 7.50 raised, 4.75 deep */
+  --fm-hiphop-hover: #FF9B82; /* 9.00 base */
+  --fm-hiphop-press: #CC6247; /* 4.74 base */
+  --fm-hiphop-tint:  #372125; /* wash; text 12.84 */
+  --fm-hiphop-deep:  #683631; /* strong bg; text 8.36. Raw accent is only 3.79 on it, so use -text */
+  --fm-hiphop-on:    #17121C; /* text on accent fill: 7.18 */
+
+  /* ---- 2 · EDM: Acid Bloom ---- */
+  --fm-edm:          #B6FF3B; /* 15.23 base · 13.94 surface · 12.68 raised · 10.81 tint */
+  --fm-edm-text:     #B6FF3B; /* passes everywhere; 5.38 on deep */
+  --fm-edm-hover:    #C8FF6C; /* 15.77 base */
+  --fm-edm-press:    #92CC2F; /* 9.56 base */
+  --fm-edm-tint:     #2D3320; /* wash; text 11.24 */
+  --fm-edm-deep:     #4F6527; /* strong bg; text 5.60 */
+  --fm-edm-on:       #17121C; /* text on accent fill: 15.23 */
+
+  /* ---- 3 · Production: Bruise Violet ---- */
+  --fm-prod:         #8C7CFF; /* 5.65 base · 5.17 surface · 4.71 raised · 4.71 tint (AA, thin margin) */
+  --fm-prod-text:    #A99DFF; /* preferred for small text: 7.86 base · 6.54 raised · 6.54 tint · 4.53 deep */
+  --fm-prod-hover:   #A99DFF;
+  --fm-prod-press:   #7063CC; /* 3.81: UI states only */
+  --fm-prod-tint:    #27213C; /* wash; text 13.19 */
+  --fm-prod-deep:    #40376B; /* strong bg; text 9.13. Raw accent is only 3.26 on it, so use -text */
+  --fm-prod-on:      #17121C; /* text on accent fill: 5.65 (light text only 2.80) */
+
+  /* Back-compat aliases: the old "alt" / "song" / "blues" names point at Production */
+  --fm-alt: var(--fm-prod); --fm-alt-text: var(--fm-prod-text); --fm-alt-hover: var(--fm-prod-hover); --fm-alt-press: var(--fm-prod-press); --fm-alt-tint: var(--fm-prod-tint); --fm-alt-deep: var(--fm-prod-deep); --fm-alt-on: var(--fm-prod-on);
+  --fm-song: var(--fm-prod); --fm-song-text: var(--fm-prod-text); --fm-song-hover: var(--fm-prod-hover); --fm-song-press: var(--fm-prod-press); --fm-song-tint: var(--fm-prod-tint); --fm-song-deep: var(--fm-prod-deep); --fm-song-on: var(--fm-prod-on);
+  --fm-blues: var(--fm-prod); --fm-blues-text: var(--fm-prod-text); --fm-blues-tint: var(--fm-prod-tint); --fm-blues-deep: var(--fm-prod-deep);
+}
+.shade-hiphop { --shade: var(--fm-hiphop); --shade-text: var(--fm-hiphop-text); --shade-tint: var(--fm-hiphop-tint); --shade-deep: var(--fm-hiphop-deep); --shade-on: var(--fm-hiphop-on); --shade-hover: var(--fm-hiphop-hover); }
+.shade-edm    { --shade: var(--fm-edm);    --shade-text: var(--fm-edm-text);    --shade-tint: var(--fm-edm-tint);    --shade-deep: var(--fm-edm-deep);    --shade-on: var(--fm-edm-on);    --shade-hover: var(--fm-edm-hover); }
+.shade-prod,
+.shade-alt, .shade-song, .shade-blues
+              { --shade: var(--fm-prod);   --shade-text: var(--fm-prod-text);   --shade-tint: var(--fm-prod-tint);   --shade-deep: var(--fm-prod-deep);   --shade-on: var(--fm-prod-on);   --shade-hover: var(--fm-prod-hover); }

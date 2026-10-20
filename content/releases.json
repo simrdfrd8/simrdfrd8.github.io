@@ -1,0 +1,207 @@
+[
+  {
+    "id": "feelings-that-collected-dust-vol-i",
+    "title": "Feelings that Collected Dust Vol. I",
+    "artist": "flavorful-croissants",
+    "type": "album",
+    "year": 2022,
+    "spotify": {
+      "kind": "album",
+      "id": "0t3fdtY0tBkZ50ovGrMKSg"
+    },
+    "featured": true,
+    "order": -2022,
+    "verified": true,
+    "productIds": [
+      "feelings-beat-tape",
+      "beat-license"
+    ],
+    "artworkUrl": "/media/streaming/sp-feelings-that-collected-dust-vol-i.webp",
+    "explicit": false,
+    "trackCount": 10,
+    "externalUrls": [
+      {
+        "platform": "spotify",
+        "url": "https://open.spotify.com/album/0t3fdtY0tBkZ50ovGrMKSg"
+      }
+    ],
+    "credits": []
+  },
+  {
+    "id": "introduction-to-not-being-a-jackass",
+    "title": "Introduction to Not Being a Jackass",
+    "artist": "flavorful-croissants",
+    "type": "album",
+    "year": 2019,
+    "spotify": {
+      "kind": "album",
+      "id": "1yqzqbTt35dMC1USwlw9wo"
+    },
+    "featured": true,
+    "order": -2019,
+    "verified": true,
+    "productIds": [
+      "beat-license"
+    ],
+    "artworkUrl": "/media/streaming/sp-introduction-to-not-being-a-jackass.webp",
+    "explicit": false,
+    "trackCount": 8,
+    "externalUrls": [
+      {
+        "platform": "spotify",
+        "url": "https://open.spotify.com/album/1yqzqbTt35dMC1USwlw9wo"
+      }
+    ],
+    "credits": []
+  },
+  {
+    "id": "catt-muffin",
+    "title": "Catt Muffin",
+    "artist": "flavorful-croissants",
+    "type": "single",
+    "year": 2022,
+    "spotify": {
+      "kind": "album",
+      "id": "4JuyZm2QYCp56i2mzFqLzi"
+    },
+    "featured": true,
+    "order": -2022,
+    "verified": true,
+    "productIds": [
+      "beat-license"
+    ],
+    "artworkUrl": "/media/streaming/sp-catt-muffin.webp",
+    "explicit": false,
+    "trackCount": 1,
+    "externalUrls": [
+      {
+        "platform": "spotify",
+        "url": "https://open.spotify.com/album/4JuyZm2QYCp56i2mzFqLzi"
+      }
+    ],
+    "credits": []
+  },
+  {
+    "id": "getdownix",
+    "title": "getdownix",
+    "artist": "flavorful-croissants",
+    "type": "single",
+    "year": 2025,
+    "spotify": {
+      "kind": "album",
+      "id": "7AR2FYlGLBnaFoe6PneL7x"
+    },
+    "featured": true,
+    "order": -2025,
+    "verified": true,
+    "productIds": [
+      "getdownix-download",
+      "getdownix-stems",
+      "beat-license"
+    ],
+    "artworkUrl": "/media/streaming/sp-getdownix.webp",
+    "explicit": true,
+    "trackCount": 1,
+    "externalUrls": [
+      {
+        "platform": "spotify",
+        "url": "https://open.spotify.com/album/7AR2FYlGLBnaFoe6PneL7x"
+      }
+    ],
+    "credits": []
+  },
+  {
+    "id": "dp-cayo",
+    "title": "Cayo",
+    "artist": "dan-perales",
+    "type": "single",
+    "spotify": {
+      "kind": "track",
+      "id": "2jtGVVHtFTve2L9Yq2e0hV"
+    },
+    "artworkAssetId": "cover-cayo",
+    "featured": false,
+    "order": 10,
+    "verified": true,
+    "productIds": [],
+    "description": "Track found on Dan Perales' verified Spotify artist page (oEmbed title match, checked 2026-10-20). Cover and credits supplied by the owner.",
+    "explicit": false,
+    "externalUrls": [
+      {
+        "platform": "spotify",
+        "url": "https://open.spotify.com/track/2jtGVVHtFTve2L9Yq2e0hV"
+      }
+    ],
+    "series": "The Psychadelic Shorty",
+    "credits": [
+      {
+        "id": "ali-huaskatley",
+        "role": "producer"
+      },
+      {
+        "id": "ant-delsol",
+        "role": "featuring"
+      }
+    ]
+  },
+  {
+    "id": "dp-gentefication",
+    "title": "Gentéfication",
+    "artist": "dan-perales",
+    "type": "single",
+    "spotify": {
+      "kind": "track",
+      "id": "5roQeaChoQqmvmlws2nRuL"
+    },
+    "artworkAssetId": "cover-gentefication",
+    "featured": false,
+    "order": 11,
+    "verified": true,
+    "productIds": [],
+    "description": "Track found on Dan Perales' verified Spotify artist page (oEmbed title match, checked 2026-10-20). Cover and credits supplied by the owner.",
+    "explicit": false,
+    "externalUrls": [
+      {
+        "platform": "spotify",
+        "url": "https://open.spotify.com/track/5roQeaChoQqmvmlws2nRuL"
+      }
+    ],
+    "series": "The Psychadelic Shorty",
+    "credits": [
+      {
+        "id": "ali-huaskatley",
+        "role": "producer"
+      }
+    ]
+  },
+  {
+    "id": "dp-bajo-la-pluma",
+    "title": "Bajo La Pluma",
+    "artist": "dan-perales",
+    "type": "single",
+    "spotify": {
+      "kind": "track",
+      "id": "0ttCxhs7XA9ds49sOViVjb"
+    },
+    "artworkAssetId": "cover-bajo-la-pluma",
+    "featured": false,
+    "order": 12,
+    "verified": true,
+    "productIds": [],
+    "description": "Track found on Dan Perales' verified Spotify artist page (oEmbed title match, checked 2026-10-20). Cover and credits supplied by the owner.",
+    "explicit": false,
+    "externalUrls": [
+      {
+        "platform": "spotify",
+        "url": "https://open.spotify.com/track/0ttCxhs7XA9ds49sOViVjb"
+      }
+    ],
+    "series": "The Psychadelic Shorty",
+    "credits": [
+      {
+        "id": "ali-huaskatley",
+        "role": "producer"
+      }
+    ]
+  }
+]

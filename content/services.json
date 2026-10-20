@@ -1,0 +1,127 @@
+[
+  {
+    "slug": "mixing",
+    "title": "Mixing",
+    "provider": "ricky",
+    "summary": "Balanced, punchy, translation-checked mixes for rap, alt rock and singer-songwriter records.",
+    "deliverables": [
+      "Stereo mix",
+      "Instrumental + a cappella",
+      "2 revisions"
+    ],
+    "startingAt": "Quoted per song"
+  },
+  {
+    "slug": "mastering",
+    "title": "Mastering",
+    "provider": "ricky",
+    "summary": "Loud where it should be, open where it counts. Streaming-ready masters.",
+    "deliverables": [
+      "Streaming + CD masters",
+      "Loudness report"
+    ],
+    "startingAt": "Quoted per song"
+  },
+  {
+    "slug": "engineering",
+    "title": "Recording & engineering",
+    "provider": "ricky",
+    "summary": "Vocal sessions, editing, tuning and session prep.",
+    "deliverables": [
+      "Tracked + edited vocals",
+      "Session files"
+    ],
+    "startingAt": "Quoted per session"
+  },
+  {
+    "slug": "production",
+    "title": "Production & beats",
+    "provider": "flavorful-croissants",
+    "summary": "Custom beats and full productions across EDM, hip-hop and alt.",
+    "deliverables": [
+      "Custom instrumental",
+      "Stems",
+      "License of your choice"
+    ],
+    "startingAt": "Quoted per project"
+  },
+  {
+    "slug": "sound-design",
+    "title": "Sound design & foley",
+    "provider": "flavorful-croissants",
+    "summary": "Foley, textures and sonic branding for film, games and content.",
+    "deliverables": [
+      "Custom sound library",
+      "Stems for picture"
+    ],
+    "startingAt": "Quoted per project"
+  },
+  {
+    "slug": "dj-booking",
+    "title": "DJ sets",
+    "provider": "not-daf",
+    "summary": "Club nights, private events, livestreams and guest mixes.",
+    "deliverables": [
+      "Live set",
+      "Recorded mix on request"
+    ],
+    "startingAt": "Quoted per event",
+    "inquiryType": "booking"
+  },
+  {
+    "slug": "video",
+    "title": "Music videos",
+    "provider": "baylingual-entertainment",
+    "summary": "Concept, shoot and edit, in portrait for socials and landscape for YouTube.",
+    "deliverables": [
+      "Concept",
+      "Shoot + edit",
+      "Vertical cutdowns"
+    ],
+    "startingAt": "Quoted per project"
+  },
+  {
+    "slug": "animation",
+    "title": "Animation & visualisers",
+    "provider": "baylingual-entertainment",
+    "summary": "Animated music videos and loops in the triangle-crew style, or yours.",
+    "deliverables": [
+      "Animated video",
+      "Loopable visualiser"
+    ],
+    "startingAt": "Quoted per project"
+  },
+  {
+    "slug": "design",
+    "title": "Cover art & design",
+    "provider": "baylingual-entertainment",
+    "summary": "Cover art, merch graphics and campaign assets.",
+    "deliverables": [
+      "Cover art",
+      "Social kit"
+    ],
+    "startingAt": "Quoted per project"
+  },
+  {
+    "slug": "photography",
+    "title": "Photography",
+    "provider": "ookie",
+    "summary": "Portraits, press photos and behind-the-scenes.",
+    "deliverables": [
+      "Edited selects"
+    ],
+    "startingAt": "Quoted per session"
+  },
+  {
+    "slug": "commissions",
+    "title": "Art commissions",
+    "provider": "baylingual-entertainment",
+    "summary": "One-off artwork, prints and custom pieces.",
+    "deliverables": [
+      "Original artwork",
+      "Print-ready files"
+    ],
+    "startingAt": "Quoted per piece",
+    "inquiryType": "commission"
+  }
+]

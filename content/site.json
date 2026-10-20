@@ -1,0 +1,38 @@
+{
+  "name": "Flavorful Music",
+  "domain": "flavorfulmusic.com",
+  "tagline": "Make art with friends.",
+  "description": "Flavorful Music is a San Diego artist collective disguised as a record label: EDM, hip-hop and production. Made together, owned end to end.",
+  "partner": {
+    "name": "Baylingual Entertainment",
+    "slug": "baylingual-entertainment"
+  },
+  "supportUrl": null,
+  "email": "ricky@flavorfulmusic.com",
+  "socials": [
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/flavorful_croissants/",
+      "label": "@flavorful_croissants",
+      "verified": true
+    },
+    {
+      "platform": "soundcloud",
+      "url": "https://soundcloud.com/user-536995429",
+      "label": "Flavorful Croissants",
+      "verified": true
+    },
+    {
+      "platform": "spotify",
+      "url": "https://open.spotify.com/artist/7HVJPuRrvPJmyt0s5Rnvb0",
+      "label": "Flavorful Croissants",
+      "verified": true
+    },
+    {
+      "platform": "apple-music",
+      "url": "https://music.apple.com/us/artist/flavorful-croissants/1602660873",
+      "label": "Flavorful Croissants",
+      "verified": true
+    }
+  ]
+}

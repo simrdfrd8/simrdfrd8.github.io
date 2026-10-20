@@ -1,0 +1,65 @@
+[
+  {
+    "slug": "ricky",
+    "name": "Ricky",
+    "role": "Runs Flavorful Music · engineer",
+    "tagline": "Runs Flavorful Music with Ookie. Behind the board: recording, mixing and mastering.",
+    "bio": [
+      "Ricky runs Flavorful Music with Ookie and engineers the crew's records. Book a recording, mixing or mastering session.",
+      "Portfolio and credits coming soon."
+    ],
+    "bioStatus": "draft",
+    "accent": "#F8E8D2",
+    "accentInk": "#17121C",
+    "genres": [],
+    "disciplines": [
+      "Mixing",
+      "Mastering",
+      "Engineering"
+    ],
+    "links": [],
+    "featured": true,
+    "order": 20,
+    "bookable": true,
+    "bookingNote": "Mixing, engineering, toplines and features.",
+    "serviceSlugs": [
+      "mixing",
+      "mastering",
+      "engineering"
+    ],
+    "layout": "standard",
+    "highlights": [
+      {
+        "label": "Services",
+        "value": "Mixing · Mastering · Recording"
+      }
+    ],
+    "listed": false
+  },
+  {
+    "slug": "ookie",
+    "name": "Ookie",
+    "role": "Runs Flavorful Music · photographer",
+    "tagline": "Runs Flavorful Music with Ricky. Behind the lens: portraits, press and behind-the-scenes.",
+    "bio": [
+      "Ookie runs Flavorful Music with Ricky and shoots the crew. Book a portrait, press or behind-the-scenes session.",
+      "A photo portfolio is coming soon."
+    ],
+    "bioStatus": "draft",
+    "accent": "#F8E8D2",
+    "accentInk": "#17121C",
+    "genres": [],
+    "disciplines": [
+      "Photography"
+    ],
+    "links": [],
+    "order": 21,
+    "bookable": true,
+    "bookingNote": "Photo sessions.",
+    "serviceSlugs": [
+      "photography"
+    ],
+    "layout": "standard",
+    "listed": false
+  }
+]

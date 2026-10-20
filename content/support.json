@@ -1,0 +1,40 @@
+{
+  "amounts": [
+    3,
+    5,
+    10,
+    25
+  ],
+  "memberships": [
+    {
+      "id": "workshop-pass",
+      "name": "Workshop pass",
+      "price": "$3 / month",
+      "perks": [
+        "Early listens",
+        "Name in the credits"
+      ]
+    },
+    {
+      "id": "studio-crew",
+      "name": "Studio crew",
+      "price": "$7 / month",
+      "perks": [
+        "Everything above",
+        "Monthly stem or sample drop",
+        "Behind-the-scenes posts"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "producers-circle",
+      "name": "Producer's circle",
+      "price": "$15 / month",
+      "perks": [
+        "Everything above",
+        "All downloads free",
+        "Quarterly feedback session"
+      ]
+    }
+  ]
+}

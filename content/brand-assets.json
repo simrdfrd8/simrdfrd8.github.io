@@ -1,0 +1,118 @@
+{
+  "images": [
+    {
+      "id": "720m-portrait",
+      "stem": "720m/720m-reflections-bold",
+      "web": "720m/720m-reflections-bold-web",
+      "width": 1500,
+      "height": 2000,
+      "webWidth": 1200,
+      "approved": true,
+      "alt": "720M looking down into the camera in a blue cap and round sunglasses, sky behind him; scenes are reflected in both lenses"
+    },
+    {
+      "id": "720m-card",
+      "stem": "720m/720m-card-4x5",
+      "width": 800,
+      "height": 1000,
+      "approved": true,
+      "alt": "720M in a blue cap and round sunglasses against a blue sky"
+    },
+    {
+      "id": "720m-collage-wide",
+      "stem": "720m/720m-collage-wide",
+      "web": "720m/720m-collage-wide-1200",
+      "width": 2400,
+      "height": 1000,
+      "webWidth": 1200,
+      "approved": true,
+      "alt": "A torn-paper collage of the crew's artwork on dark plum: a sun-bleached golden-hour street with drawn triangles, a hot-pink-on-yellow portrait sketch, a sunny pink and gold double exposure of a guy at the piano with a dog, a lavender studio scene with stacked triangles, and a pastel double-exposure selfie with friends and a dog, with hand-drawn coral triangles scattered around."
+    },
+    {
+      "id": "720m-collage-square",
+      "stem": "720m/720m-collage-square",
+      "web": "720m/720m-collage-square-1200",
+      "width": 2048,
+      "height": 2048,
+      "webWidth": 1200,
+      "approved": true,
+      "alt": "A torn-paper collage of the crew's artwork on dark plum, square crop."
+    },
+    {
+      "id": "720m-lens",
+      "stem": "720m/720m-lens-detail-3x",
+      "web": "720m/720m-lens-detail-1.5x",
+      "width": 1950,
+      "height": 810,
+      "webWidth": 975,
+      "approved": true,
+      "alt": "Close-up of 720M's sunglasses and what they reflect"
+    },
+    {
+      "id": "andrew-bigs-card",
+      "stem": "andrew-bigs/andrew-bigs-card-4x5-fullbody",
+      "width": 800,
+      "height": 1000,
+      "approved": true,
+      "alt": "Andrew Bigs standing in front of a roll-up shutter"
+    },
+    {
+      "id": "dan-perales-card",
+      "stem": "dan-perales/dan-perales-card-4x5",
+      "width": 800,
+      "height": 1000,
+      "approved": true,
+      "alt": "Dan Perales in a straw fedora, black-and-white portrait"
+    },
+    {
+      "id": "dan-perales-card-alt",
+      "stem": "dan-perales/dan-perales-poncho-card-4x5",
+      "width": 800,
+      "height": 1000,
+      "approved": true,
+      "alt": "Dan Perales in a rainbow crochet poncho"
+    },
+    {
+      "id": "flavorful-croissants-card",
+      "stem": "flavorful-croissants/fc-card-4x5",
+      "width": 1500,
+      "height": 1875,
+      "approved": true,
+      "publishApproved": true,
+      "approvedBy": "user (chat, 2026-10-20)",
+      "alt": "Flavorful Croissants in a sheet mask"
+    },
+    {
+      "id": "flavorful-croissants-portrait",
+      "stem": "flavorful-croissants/fc-portrait",
+      "width": 1500,
+      "height": 2000,
+      "approved": true,
+      "publishApproved": true,
+      "approvedBy": "user (chat, 2026-10-20)",
+      "alt": "Flavorful Croissants in a sheet mask"
+    }
+  ],
+  "logos": {
+    "text": "logo/svg/logo-text.svg",
+    "cream": "logo/svg/logo-cream.svg",
+    "hip-hop": "logo/svg/logo-coral-hiphop.svg",
+    "edm": "logo/svg/logo-acid-edm.svg",
+    "production": "logo/svg/logo-violet-prod.svg"
+  },
+  "cards": {
+    "720m": [
+      "720m-card"
+    ],
+    "andrew-bigs": [
+      "andrew-bigs-card"
+    ],
+    "dan-perales": [
+      "dan-perales-card",
+      "dan-perales-card-alt"
+    ],
+    "flavorful-croissants": [
+      "flavorful-croissants-card"
+    ]
+  }
+}

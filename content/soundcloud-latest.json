@@ -1,0 +1,83 @@
+{
+  "fetchedAt": "2026-10-20T02:27:22.712Z",
+  "source": "profile page + RSS",
+  "tracks": [
+    {
+      "url": "https://soundcloud.com/user-536995429/daydream",
+      "title": "Daydream",
+      "displayTitle": "Daydream",
+      "date": "2026-05-12T05:49:29Z",
+      "scId": 2319038480,
+      "artworkUrl": "https://i1.sndcdn.com/artworks-b6MJOg2QvwAVKz7s-1ZygDw-t500x500.jpg",
+      "durationSec": 276,
+      "embeddable": false,
+      "artists": [
+        "flavorful-croissants"
+      ],
+      "credit": "solo",
+      "collaborators": []
+    },
+    {
+      "url": "https://soundcloud.com/user-536995429/dydrm",
+      "title": "DYdrm",
+      "displayTitle": "DYdrm",
+      "date": "2026-05-12T05:45:10Z",
+      "scId": 2319037526,
+      "artworkUrl": "/media/streaming/sc-dydrm.webp",
+      "durationSec": 215,
+      "embeddable": false,
+      "artists": [
+        "flavorful-croissants",
+        "720m"
+      ],
+      "credit": "720m-collab",
+      "collaborators": []
+    },
+    {
+      "url": "https://soundcloud.com/user-536995429/eightyn9n3",
+      "title": "Eightyn9n3",
+      "displayTitle": "Eightyn9n3",
+      "date": "2026-05-06T08:16:14Z",
+      "scId": 2315547884,
+      "artworkUrl": "https://i1.sndcdn.com/artworks-J4UiciCtYeYWwIWE-5m4Izg-t500x500.jpg",
+      "durationSec": 131,
+      "embeddable": false,
+      "artists": [
+        "flavorful-croissants"
+      ],
+      "credit": "solo",
+      "collaborators": []
+    },
+    {
+      "url": "https://soundcloud.com/user-536995429/pandaspk",
+      "title": "Pandaspk",
+      "displayTitle": "Pandaspk",
+      "date": "2026-05-06T07:18:18Z",
+      "scId": 2315531756,
+      "artworkUrl": "https://i1.sndcdn.com/artworks-VMUmVQUimZ7jxwAd-rcfrfQ-t500x500.jpg",
+      "durationSec": 215,
+      "embeddable": false,
+      "artists": [
+        "flavorful-croissants"
+      ],
+      "credit": "solo",
+      "collaborators": []
+    },
+    {
+      "url": "https://soundcloud.com/user-536995429/panda",
+      "title": "Panda",
+      "displayTitle": "Panda",
+      "date": "2026-05-05T21:49:59Z",
+      "scId": 2315318222,
+      "artworkUrl": "/media/streaming/sc-panda.webp",
+      "durationSec": 207,
+      "embeddable": false,
+      "artists": [
+        "flavorful-croissants",
+        "720m"
+      ],
+      "credit": "720m-collab",
+      "collaborators": []
+    }
+  ]
+}

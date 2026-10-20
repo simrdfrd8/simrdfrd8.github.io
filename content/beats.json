@@ -1,0 +1,2055 @@
+[
+  {
+    "id": "deserts",
+    "title": "Deserts",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-deserts/audio.mp3",
+      "peaksSrc": "/media/beat-deserts/peaks.json",
+      "durationSec": 163,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 84,
+    "key": "A# major",
+    "publishApproved": true,
+    "status": "available",
+    "featured": true,
+    "order": 0
+  },
+  {
+    "id": "east-county",
+    "title": "East County",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-east-county/audio.mp3",
+      "peaksSrc": "/media/beat-east-county/peaks.json",
+      "durationSec": 209,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 124,
+    "key": "G major",
+    "publishApproved": true,
+    "status": "available",
+    "featured": true,
+    "order": 1
+  },
+  {
+    "id": "name-of-water",
+    "title": "Name of Water",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-name-of-water/audio.mp3",
+      "peaksSrc": "/media/beat-name-of-water/peaks.json",
+      "durationSec": 166,
+      "format": "MP3 320 kbps CBR"
+    },
+    "key": "G major",
+    "publishApproved": true,
+    "status": "available",
+    "featured": true,
+    "order": 2
+  },
+  {
+    "id": "paino-drums",
+    "title": "Paino Drums",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-paino-drums/audio.mp3",
+      "peaksSrc": "/media/beat-paino-drums/peaks.json",
+      "durationSec": 91,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 90,
+    "key": "A minor",
+    "publishApproved": true,
+    "status": "available",
+    "featured": true,
+    "order": 3
+  },
+  {
+    "id": "dydrm",
+    "title": "DYdrm",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-dydrm/audio.mp3",
+      "peaksSrc": "/media/beat-dydrm/peaks.json",
+      "durationSec": 277,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "dydrm",
+    "bpm": 125,
+    "key": "A major",
+    "publishApproved": true,
+    "status": "available",
+    "featured": true,
+    "order": 4
+  },
+  {
+    "id": "eightyn9n3",
+    "title": "Eightyn9n3",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-eightyn9n3/audio.mp3",
+      "peaksSrc": "/media/beat-eightyn9n3/peaks.json",
+      "durationSec": 131,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 126,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 10,
+    "key": "A major"
+  },
+  {
+    "id": "panda",
+    "title": "Panda",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-panda/audio.mp3",
+      "peaksSrc": "/media/beat-panda/peaks.json",
+      "durationSec": 207,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "panda",
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 11,
+    "key": "C# minor"
+  },
+  {
+    "id": "deltaluv",
+    "title": "deltaluv",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-deltaluv/audio.mp3",
+      "peaksSrc": "/media/beat-deltaluv/peaks.json",
+      "durationSec": 219,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "deltaluv-vocals-1-wav",
+    "bpm": 92,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 12,
+    "key": "A# minor"
+  },
+  {
+    "id": "takearidewme",
+    "title": "takearidewme",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-takearidewme/audio.mp3",
+      "peaksSrc": "/media/beat-takearidewme/peaks.json",
+      "durationSec": 76,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "takearidewme-x-ricky",
+    "bpm": 110,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 13,
+    "key": "E minor"
+  },
+  {
+    "id": "whichwaylrd",
+    "title": "whichwaylrd",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-whichwaylrd/audio.mp3",
+      "peaksSrc": "/media/beat-whichwaylrd/peaks.json",
+      "durationSec": 232,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 88,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 14
+  },
+  {
+    "id": "vintagemotion",
+    "title": "vintagemotion",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-vintagemotion/audio.mp3",
+      "peaksSrc": "/media/beat-vintagemotion/peaks.json",
+      "durationSec": 196,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 92,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 15
+  },
+  {
+    "id": "blindspot",
+    "title": "blindspot",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-blindspot/audio.mp3",
+      "peaksSrc": "/media/beat-blindspot/peaks.json",
+      "durationSec": 168,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "blindspot-x-ricky",
+    "bpm": 92,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 16
+  },
+  {
+    "id": "moondans",
+    "title": "moondans",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-moondans/audio.mp3",
+      "peaksSrc": "/media/beat-moondans/peaks.json",
+      "durationSec": 190,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "moondans-pt-3-x-ricky",
+    "bpm": 96,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 17,
+    "key": "C minor"
+  },
+  {
+    "id": "buttermilk-pancakes",
+    "title": "buttermilk pancakes",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-buttermilk-pancakes/audio.mp3",
+      "peaksSrc": "/media/beat-buttermilk-pancakes/peaks.json",
+      "durationSec": 188,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 92,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 18
+  },
+  {
+    "id": "gloryisyours",
+    "title": "gloryisyours",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-gloryisyours/audio.mp3",
+      "peaksSrc": "/media/beat-gloryisyours/peaks.json",
+      "durationSec": 136,
+      "format": "MP3 320 kbps CBR"
+    },
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 19,
+    "key": "G major"
+  },
+  {
+    "id": "chordexas",
+    "title": "chordexas",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-chordexas/audio.mp3",
+      "peaksSrc": "/media/beat-chordexas/peaks.json",
+      "durationSec": 267,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "chordexas",
+    "bpm": 99,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 20
+  },
+  {
+    "id": "gtr-olkecropdfusty",
+    "title": "gtr olkecropdfusty",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-gtr-olkecropdfusty/audio.mp3",
+      "peaksSrc": "/media/beat-gtr-olkecropdfusty/peaks.json",
+      "durationSec": 99,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 94,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 21
+  },
+  {
+    "id": "olecropduster",
+    "title": "olecropduster",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-olecropduster/audio.mp3",
+      "peaksSrc": "/media/beat-olecropduster/peaks.json",
+      "durationSec": 197,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 96,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 22
+  },
+  {
+    "id": "contingent",
+    "title": "contingent",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-contingent/audio.mp3",
+      "peaksSrc": "/media/beat-contingent/peaks.json",
+      "durationSec": 89,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 94,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 23
+  },
+  {
+    "id": "mntlprjctnz",
+    "title": "mntlprjctnz",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-mntlprjctnz/audio.mp3",
+      "peaksSrc": "/media/beat-mntlprjctnz/peaks.json",
+      "durationSec": 143,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 96,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 24
+  },
+  {
+    "id": "danglol",
+    "title": "DANGLOL",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-danglol/audio.mp3",
+      "peaksSrc": "/media/beat-danglol/peaks.json",
+      "durationSec": 138,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 120,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 25
+  },
+  {
+    "id": "findthehab",
+    "title": "findthehab",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-findthehab/audio.mp3",
+      "peaksSrc": "/media/beat-findthehab/peaks.json",
+      "durationSec": 108,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 120,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 26
+  },
+  {
+    "id": "hardlikepap",
+    "title": "hardlikepap",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-hardlikepap/audio.mp3",
+      "peaksSrc": "/media/beat-hardlikepap/peaks.json",
+      "durationSec": 142,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 120,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 27,
+    "key": "F minor"
+  },
+  {
+    "id": "heard",
+    "title": "HEARD",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-heard/audio.mp3",
+      "peaksSrc": "/media/beat-heard/peaks.json",
+      "durationSec": 162,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "heard-x-ricky",
+    "bpm": 120,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 28,
+    "key": "B major"
+  },
+  {
+    "id": "damethod",
+    "title": "damethod",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-damethod/audio.mp3",
+      "peaksSrc": "/media/beat-damethod/peaks.json",
+      "durationSec": 170,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 120,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 29,
+    "key": "B major"
+  },
+  {
+    "id": "floviolento",
+    "title": "floviolento",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-floviolento/audio.mp3",
+      "peaksSrc": "/media/beat-floviolento/peaks.json",
+      "durationSec": 270,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 120,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 30
+  },
+  {
+    "id": "ifistoptherestilldadream",
+    "title": "ifistoptherestilldadream",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-ifistoptherestilldadream/audio.mp3",
+      "peaksSrc": "/media/beat-ifistoptherestilldadream/peaks.json",
+      "durationSec": 225,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 126,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 31
+  },
+  {
+    "id": "nevathatlight",
+    "title": "nevathatlight",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-nevathatlight/audio.mp3",
+      "peaksSrc": "/media/beat-nevathatlight/peaks.json",
+      "durationSec": 212,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 94,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 32
+  },
+  {
+    "id": "toothpick",
+    "title": "toothpick",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-toothpick/audio.mp3",
+      "peaksSrc": "/media/beat-toothpick/peaks.json",
+      "durationSec": 186,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 94,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 33
+  },
+  {
+    "id": "bluejeans",
+    "title": "bluejeans",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-bluejeans/audio.mp3",
+      "peaksSrc": "/media/beat-bluejeans/peaks.json",
+      "durationSec": 263,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 112,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 34
+  },
+  {
+    "id": "marajadezx",
+    "title": "marajadezx",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-marajadezx/audio.mp3",
+      "peaksSrc": "/media/beat-marajadezx/peaks.json",
+      "durationSec": 266,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 120,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 35
+  },
+  {
+    "id": "iswarmgun",
+    "title": "iswarmgun",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-iswarmgun/audio.mp3",
+      "peaksSrc": "/media/beat-iswarmgun/peaks.json",
+      "durationSec": 173,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 115,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 36
+  },
+  {
+    "id": "goodsleepix",
+    "title": "goodsleepix",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-goodsleepix/audio.mp3",
+      "peaksSrc": "/media/beat-goodsleepix/peaks.json",
+      "durationSec": 178,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "goodsleepix-x-ricky",
+    "bpm": 120,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 37
+  },
+  {
+    "id": "pursuitofme",
+    "title": "pursuitofme",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-pursuitofme/audio.mp3",
+      "peaksSrc": "/media/beat-pursuitofme/peaks.json",
+      "durationSec": 194,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "pursuitofme-x-ricky",
+    "bpm": 115,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 38,
+    "key": "C minor"
+  },
+  {
+    "id": "hamburgstarxi",
+    "title": "hamburgstarxi",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-hamburgstarxi/audio.mp3",
+      "peaksSrc": "/media/beat-hamburgstarxi/peaks.json",
+      "durationSec": 266,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "hamburgstarxi-x-ricky",
+    "bpm": 120,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 39,
+    "key": "E minor"
+  },
+  {
+    "id": "vibevibezxi",
+    "title": "vibevibezxi",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-vibevibezxi/audio.mp3",
+      "peaksSrc": "/media/beat-vibevibezxi/peaks.json",
+      "durationSec": 38,
+      "format": "MP3 320 kbps CBR"
+    },
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 40,
+    "key": "A major"
+  },
+  {
+    "id": "stayathomesaturday",
+    "title": "stayathomesaturday",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-stayathomesaturday/audio.mp3",
+      "peaksSrc": "/media/beat-stayathomesaturday/peaks.json",
+      "durationSec": 186,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "stayathomesaturday-x-ricky",
+    "bpm": 120,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 41
+  },
+  {
+    "id": "getdownix",
+    "title": "getdownix",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-getdownix/audio.mp3",
+      "peaksSrc": "/media/beat-getdownix/peaks.json",
+      "durationSec": 156,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "getdownix-x-ricky",
+    "bpm": 120,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 42
+  },
+  {
+    "id": "doesnthatanksuc",
+    "title": "doesnthatanksuc",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-doesnthatanksuc/audio.mp3",
+      "peaksSrc": "/media/beat-doesnthatanksuc/peaks.json",
+      "durationSec": 125,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 126,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 43
+  },
+  {
+    "id": "goodfoodx",
+    "title": "goodfoodx",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-goodfoodx/audio.mp3",
+      "peaksSrc": "/media/beat-goodfoodx/peaks.json",
+      "durationSec": 117,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 126,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 44,
+    "key": "F major"
+  },
+  {
+    "id": "magnumrubberxz",
+    "title": "magnumrubberxz",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-magnumrubberxz/audio.mp3",
+      "peaksSrc": "/media/beat-magnumrubberxz/peaks.json",
+      "durationSec": 89,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 126,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 45
+  },
+  {
+    "id": "haagandaz",
+    "title": "HAAGANDAZ",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-haagandaz/audio.mp3",
+      "peaksSrc": "/media/beat-haagandaz/peaks.json",
+      "durationSec": 156,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 126,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 46
+  },
+  {
+    "id": "loudassprofecyx",
+    "title": "loudassprofecyx",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-loudassprofecyx/audio.mp3",
+      "peaksSrc": "/media/beat-loudassprofecyx/peaks.json",
+      "durationSec": 170,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "loudassprofecyz-x-ricky",
+    "bpm": 120,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 47
+  },
+  {
+    "id": "holysalamisandwich",
+    "title": "holysalamisandwich",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-holysalamisandwich/audio.mp3",
+      "peaksSrc": "/media/beat-holysalamisandwich/peaks.json",
+      "durationSec": 173,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "holysalamisandwhich-x-ricky",
+    "bpm": 126,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 48,
+    "key": "A# minor"
+  },
+  {
+    "id": "cookiedoughpain",
+    "title": "cookiedoughpain",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-cookiedoughpain/audio.mp3",
+      "peaksSrc": "/media/beat-cookiedoughpain/peaks.json",
+      "durationSec": 137,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 92,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 49,
+    "key": "F minor"
+  },
+  {
+    "id": "bareskinxz",
+    "title": "Bareskinxz",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-bareskinxz/audio.mp3",
+      "peaksSrc": "/media/beat-bareskinxz/peaks.json",
+      "durationSec": 192,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 120,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 50
+  },
+  {
+    "id": "encyclopediaxz",
+    "title": "encyclopediaxz",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-encyclopediaxz/audio.mp3",
+      "peaksSrc": "/media/beat-encyclopediaxz/peaks.json",
+      "durationSec": 168,
+      "format": "MP3 320 kbps CBR"
+    },
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 51
+  },
+  {
+    "id": "bigsaucezx",
+    "title": "BIGSAUCEzx",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-bigsaucezx/audio.mp3",
+      "peaksSrc": "/media/beat-bigsaucezx/peaks.json",
+      "durationSec": 165,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 92,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 52
+  },
+  {
+    "id": "skatkatzx",
+    "title": "skatkatzx",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-skatkatzx/audio.mp3",
+      "peaksSrc": "/media/beat-skatkatzx/peaks.json",
+      "durationSec": 119,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 92,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 53
+  },
+  {
+    "id": "saucex",
+    "title": "saucex",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-saucex/audio.mp3",
+      "peaksSrc": "/media/beat-saucex/peaks.json",
+      "durationSec": 179,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 94,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 54,
+    "key": "A# major"
+  },
+  {
+    "id": "sugar-hi",
+    "title": "sugar hi",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-sugar-hi/audio.mp3",
+      "peaksSrc": "/media/beat-sugar-hi/peaks.json",
+      "durationSec": 181,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "sugar-hi-x-ricky",
+    "bpm": 108,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 55,
+    "key": "C major"
+  },
+  {
+    "id": "so-much-space",
+    "title": "so much space",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-so-much-space/audio.mp3",
+      "peaksSrc": "/media/beat-so-much-space/peaks.json",
+      "durationSec": 174,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 83,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 56,
+    "key": "F major"
+  },
+  {
+    "id": "thruthedoor",
+    "title": "thruthedoor",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-thruthedoor/audio.mp3",
+      "peaksSrc": "/media/beat-thruthedoor/peaks.json",
+      "durationSec": 130,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 120,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 57,
+    "key": "F minor"
+  },
+  {
+    "id": "sleeping",
+    "title": "sleeping",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-sleeping/audio.mp3",
+      "peaksSrc": "/media/beat-sleeping/peaks.json",
+      "durationSec": 101,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 144,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 58,
+    "key": "E minor"
+  },
+  {
+    "id": "verdunski",
+    "title": "verdunski",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-verdunski/audio.mp3",
+      "peaksSrc": "/media/beat-verdunski/peaks.json",
+      "durationSec": 128,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "verdunski",
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 59
+  },
+  {
+    "id": "itchyguy",
+    "title": "itchyguy",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-itchyguy/audio.mp3",
+      "peaksSrc": "/media/beat-itchyguy/peaks.json",
+      "durationSec": 150,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 101,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 60
+  },
+  {
+    "id": "lovslf",
+    "title": "lovslf",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-lovslf/audio.mp3",
+      "peaksSrc": "/media/beat-lovslf/peaks.json",
+      "durationSec": 145,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 101,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 61,
+    "key": "F major"
+  },
+  {
+    "id": "hometown",
+    "title": "hometown",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-hometown/audio.mp3",
+      "peaksSrc": "/media/beat-hometown/peaks.json",
+      "durationSec": 154,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 98,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 62,
+    "key": "G minor"
+  },
+  {
+    "id": "kingox",
+    "title": "kingox",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-kingox/audio.mp3",
+      "peaksSrc": "/media/beat-kingox/peaks.json",
+      "durationSec": 170,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 120,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 63
+  },
+  {
+    "id": "glockenspielz-pt2",
+    "title": "glockenspielz pt2",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-glockenspielz-pt2/audio.mp3",
+      "peaksSrc": "/media/beat-glockenspielz-pt2/peaks.json",
+      "durationSec": 162,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "glockenspielz-pt2-x-ricky",
+    "bpm": 108,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 64
+  },
+  {
+    "id": "fannypack-pt2",
+    "title": "fannypack pt2",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-fannypack-pt2/audio.mp3",
+      "peaksSrc": "/media/beat-fannypack-pt2/peaks.json",
+      "durationSec": 171,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "fannypack-pt2-x-ricky",
+    "bpm": 98,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 65,
+    "key": "A# major"
+  },
+  {
+    "id": "fannypack",
+    "title": "FANNYPACK",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-fannypack/audio.mp3",
+      "peaksSrc": "/media/beat-fannypack/peaks.json",
+      "durationSec": 181,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "fannypack-x-ricky",
+    "bpm": 98,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 66,
+    "key": "F minor"
+  },
+  {
+    "id": "kingox-pt2",
+    "title": "kingox pt2",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-kingox-pt2/audio.mp3",
+      "peaksSrc": "/media/beat-kingox-pt2/peaks.json",
+      "durationSec": 312,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "kingox-pt2-x-ricky",
+    "bpm": 120,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 67
+  },
+  {
+    "id": "sndprfrm",
+    "title": "sndprfrm",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-sndprfrm/audio.mp3",
+      "peaksSrc": "/media/beat-sndprfrm/peaks.json",
+      "durationSec": 193,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "sndprfrm-x-ricky",
+    "bpm": 101,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 68,
+    "key": "A minor"
+  },
+  {
+    "id": "crzysht",
+    "title": "crzysht",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-crzysht/audio.mp3",
+      "peaksSrc": "/media/beat-crzysht/peaks.json",
+      "durationSec": 163,
+      "format": "MP3 320 kbps CBR"
+    },
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 69
+  },
+  {
+    "id": "aftrthat",
+    "title": "aftrthat",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-aftrthat/audio.mp3",
+      "peaksSrc": "/media/beat-aftrthat/peaks.json",
+      "durationSec": 217,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "aftrthat-x-ricky",
+    "bpm": 83,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 70
+  },
+  {
+    "id": "srzydd",
+    "title": "srzydd",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-srzydd/audio.mp3",
+      "peaksSrc": "/media/beat-srzydd/peaks.json",
+      "durationSec": 162,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "srzydd-x-ricky",
+    "bpm": 92,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 71,
+    "key": "F major"
+  },
+  {
+    "id": "swollen-cloudszx",
+    "title": "Swollen Cloudszx",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-swollen-cloudszx/audio.mp3",
+      "peaksSrc": "/media/beat-swollen-cloudszx/peaks.json",
+      "durationSec": 155,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "swollen-cloudszx",
+    "bpm": 82,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 72
+  },
+  {
+    "id": "big-smile",
+    "title": "Big Smile",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-big-smile/audio.mp3",
+      "peaksSrc": "/media/beat-big-smile/peaks.json",
+      "durationSec": 163,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "big-smile",
+    "bpm": 83,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 73
+  },
+  {
+    "id": "dolfinz",
+    "title": "Dolfinz",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-dolfinz/audio.mp3",
+      "peaksSrc": "/media/beat-dolfinz/peaks.json",
+      "durationSec": 170,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "dolfinz-x-ricky",
+    "bpm": 93,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 74,
+    "key": "G Phrygian"
+  },
+  {
+    "id": "wearethecolorzx",
+    "title": "wearethecolorzx",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-wearethecolorzx/audio.mp3",
+      "peaksSrc": "/media/beat-wearethecolorzx/peaks.json",
+      "durationSec": 149,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "wearethecolorzx-vocals-2-wav",
+    "bpm": 105,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 75,
+    "key": "D# major"
+  },
+  {
+    "id": "wilubmylulaby",
+    "title": "wilubmylulaby",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-wilubmylulaby/audio.mp3",
+      "peaksSrc": "/media/beat-wilubmylulaby/peaks.json",
+      "durationSec": 158,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 117,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 76
+  },
+  {
+    "id": "paddlzx",
+    "title": "paddlzx",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-paddlzx/audio.mp3",
+      "peaksSrc": "/media/beat-paddlzx/peaks.json",
+      "durationSec": 146,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "paddlzx-x-ricky",
+    "bpm": 148,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 77,
+    "key": "G minor"
+  },
+  {
+    "id": "sunlightszx",
+    "title": "sunlightszx",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-sunlightszx/audio.mp3",
+      "peaksSrc": "/media/beat-sunlightszx/peaks.json",
+      "durationSec": 140,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "sunlightszx-x-ricky",
+    "bpm": 83,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 78
+  },
+  {
+    "id": "sadyellowzx",
+    "title": "sadyellowzx",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-sadyellowzx/audio.mp3",
+      "peaksSrc": "/media/beat-sadyellowzx/peaks.json",
+      "durationSec": 169,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 83,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 79,
+    "key": "A# minor"
+  },
+  {
+    "id": "dprsnzx",
+    "title": "dprsnzx",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-dprsnzx/audio.mp3",
+      "peaksSrc": "/media/beat-dprsnzx/peaks.json",
+      "durationSec": 277,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "dprsnzx-x-ricky",
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 80
+  },
+  {
+    "id": "elaphantzx",
+    "title": "elaphantzx",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-elaphantzx/audio.mp3",
+      "peaksSrc": "/media/beat-elaphantzx/peaks.json",
+      "durationSec": 213,
+      "format": "MP3 320 kbps CBR"
+    },
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 81
+  },
+  {
+    "id": "iluvumore",
+    "title": "iluvumore",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-iluvumore/audio.mp3",
+      "peaksSrc": "/media/beat-iluvumore/peaks.json",
+      "durationSec": 217,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "iluvumore-x-ricky",
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 82
+  },
+  {
+    "id": "wrkhrd",
+    "title": "wrkhrd",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-wrkhrd/audio.mp3",
+      "peaksSrc": "/media/beat-wrkhrd/peaks.json",
+      "durationSec": 200,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "wrkhrd-x-ricky",
+    "bpm": 112,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 83
+  },
+  {
+    "id": "canoexz",
+    "title": "canoexz",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-canoexz/audio.mp3",
+      "peaksSrc": "/media/beat-canoexz/peaks.json",
+      "durationSec": 183,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "canoexz-x-ricky",
+    "bpm": 83,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 84,
+    "key": "E major"
+  },
+  {
+    "id": "new-colorsx-pt2",
+    "title": "new colorsx pt2",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-new-colorsx-pt2/audio.mp3",
+      "peaksSrc": "/media/beat-new-colorsx-pt2/peaks.json",
+      "durationSec": 234,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "new-colorsx-pt-2",
+    "bpm": 161,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 85,
+    "key": "D major"
+  },
+  {
+    "id": "friendszx",
+    "title": "friendszx",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-friendszx/audio.mp3",
+      "peaksSrc": "/media/beat-friendszx/peaks.json",
+      "durationSec": 275,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 110,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 86
+  },
+  {
+    "id": "we-r-the-total-air-pt2",
+    "title": "we r the total air pt2",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-we-r-the-total-air-pt2/audio.mp3",
+      "peaksSrc": "/media/beat-we-r-the-total-air-pt2/peaks.json",
+      "durationSec": 228,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "we-r-the-total-air-pt-2-x",
+    "bpm": 83,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 87
+  },
+  {
+    "id": "steam7",
+    "title": "Steam7",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-steam7/audio.mp3",
+      "peaksSrc": "/media/beat-steam7/peaks.json",
+      "durationSec": 209,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 100,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 88,
+    "key": "G# major"
+  },
+  {
+    "id": "new-drivers",
+    "title": "new drivers",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-new-drivers/audio.mp3",
+      "peaksSrc": "/media/beat-new-drivers/peaks.json",
+      "durationSec": 116,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 85,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 89,
+    "key": "A minor"
+  },
+  {
+    "id": "prosperity",
+    "title": "Prosperity",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-prosperity/audio.mp3",
+      "peaksSrc": "/media/beat-prosperity/peaks.json",
+      "durationSec": 192,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 99,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 90
+  },
+  {
+    "id": "mellow-life",
+    "title": "Mellow Life",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-mellow-life/audio.mp3",
+      "peaksSrc": "/media/beat-mellow-life/peaks.json",
+      "durationSec": 180,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "mello-life-vocals-1-x-ricky",
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 91
+  },
+  {
+    "id": "orange-fruit",
+    "title": "orange fruit",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-orange-fruit/audio.mp3",
+      "peaksSrc": "/media/beat-orange-fruit/peaks.json",
+      "durationSec": 103,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "orange-fruit-3-oz1",
+    "bpm": 144,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 92
+  },
+  {
+    "id": "live-again",
+    "title": "Live Again",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-live-again/audio.mp3",
+      "peaksSrc": "/media/beat-live-again/peaks.json",
+      "durationSec": 146,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 129,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 93
+  },
+  {
+    "id": "here-again",
+    "title": "Here Again",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-here-again/audio.mp3",
+      "peaksSrc": "/media/beat-here-again/peaks.json",
+      "durationSec": 175,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "here-again-2",
+    "bpm": 110,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 94,
+    "key": "E minor"
+  },
+  {
+    "id": "leaves",
+    "title": "leaves",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-leaves/audio.mp3",
+      "peaksSrc": "/media/beat-leaves/peaks.json",
+      "durationSec": 146,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 120,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 95,
+    "key": "C minor"
+  },
+  {
+    "id": "bakin",
+    "title": "bakin",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-bakin/audio.mp3",
+      "peaksSrc": "/media/beat-bakin/peaks.json",
+      "durationSec": 210,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "bakin-x-ricky",
+    "bpm": 157,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 96
+  },
+  {
+    "id": "ride",
+    "title": "ride",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-ride/audio.mp3",
+      "peaksSrc": "/media/beat-ride/peaks.json",
+      "durationSec": 181,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 129,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 97
+  },
+  {
+    "id": "life-after",
+    "title": "life after",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-life-after/audio.mp3",
+      "peaksSrc": "/media/beat-life-after/peaks.json",
+      "durationSec": 177,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 129,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 98
+  },
+  {
+    "id": "life",
+    "title": "life",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-life/audio.mp3",
+      "peaksSrc": "/media/beat-life/peaks.json",
+      "durationSec": 132,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 129,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 99
+  },
+  {
+    "id": "sunrise",
+    "title": "Sunrise",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-sunrise/audio.mp3",
+      "peaksSrc": "/media/beat-sunrise/peaks.json",
+      "durationSec": 161,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 91,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 100,
+    "key": "G# minor"
+  },
+  {
+    "id": "when-push-come-to-shove",
+    "title": "when push come to shove",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-when-push-come-to-shove/audio.mp3",
+      "peaksSrc": "/media/beat-when-push-come-to-shove/peaks.json",
+      "durationSec": 211,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "when-push-come-to-shove-12-2-1",
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 101,
+    "key": "F minor"
+  },
+  {
+    "id": "capitalize",
+    "title": "Capitalize",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-capitalize/audio.mp3",
+      "peaksSrc": "/media/beat-capitalize/peaks.json",
+      "durationSec": 312,
+      "format": "MP3 320 kbps CBR"
+    },
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 102,
+    "key": "C major",
+    "bpm": 80
+  },
+  {
+    "id": "apocolypse-your-face",
+    "title": "Apocolypse your face",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-apocolypse-your-face/audio.mp3",
+      "peaksSrc": "/media/beat-apocolypse-your-face/peaks.json",
+      "durationSec": 209,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 120,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 103,
+    "key": "C major"
+  },
+  {
+    "id": "some-days-we-live",
+    "title": "Some Days We Live",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-some-days-we-live/audio.mp3",
+      "peaksSrc": "/media/beat-some-days-we-live/peaks.json",
+      "durationSec": 170,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 120,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 104,
+    "key": "F minor"
+  },
+  {
+    "id": "africa",
+    "title": "Africa",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-africa/audio.mp3",
+      "peaksSrc": "/media/beat-africa/peaks.json",
+      "durationSec": 146,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 89,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 105,
+    "key": "A major"
+  },
+  {
+    "id": "lowfee",
+    "title": "Lowfee",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-lowfee/audio.mp3",
+      "peaksSrc": "/media/beat-lowfee/peaks.json",
+      "durationSec": 213,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 90,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 106,
+    "key": "G minor"
+  },
+  {
+    "id": "peligrino",
+    "title": "Peligrino",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-peligrino/audio.mp3",
+      "peaksSrc": "/media/beat-peligrino/peaks.json",
+      "durationSec": 392,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "peligrino-1",
+    "bpm": 125,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 107,
+    "key": "G minor"
+  },
+  {
+    "id": "da-amo",
+    "title": "Da Amo",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-da-amo/audio.mp3",
+      "peaksSrc": "/media/beat-da-amo/peaks.json",
+      "durationSec": 234,
+      "format": "MP3 320 kbps CBR"
+    },
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 108,
+    "key": "G minor"
+  },
+  {
+    "id": "love-stroll",
+    "title": "Love Stroll",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-love-stroll/audio.mp3",
+      "peaksSrc": "/media/beat-love-stroll/peaks.json",
+      "durationSec": 148,
+      "format": "MP3 320 kbps CBR"
+    },
+    "heardOn": "love-stroll-23",
+    "bpm": 125,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 109,
+    "key": "G minor"
+  },
+  {
+    "id": "raisin",
+    "title": "Raisin",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-raisin/audio.mp3",
+      "peaksSrc": "/media/beat-raisin/peaks.json",
+      "durationSec": 197,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 100,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 110,
+    "key": "G# major"
+  },
+  {
+    "id": "wave",
+    "title": "Wave",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-wave/audio.mp3",
+      "peaksSrc": "/media/beat-wave/peaks.json",
+      "durationSec": 140,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 120,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 111,
+    "key": "C major"
+  },
+  {
+    "id": "nocinos",
+    "title": "Nocinos",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-nocinos/audio.mp3",
+      "peaksSrc": "/media/beat-nocinos/peaks.json",
+      "durationSec": 214,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 100,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 112,
+    "key": "E minor"
+  },
+  {
+    "id": "glory",
+    "title": "Glory",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-glory/audio.mp3",
+      "peaksSrc": "/media/beat-glory/peaks.json",
+      "durationSec": 116,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 120,
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 113,
+    "key": "G# major"
+  },
+  {
+    "id": "cheesecake",
+    "title": "cheesecake",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-cheesecake/audio.mp3",
+      "peaksSrc": "/media/beat-cheesecake/peaks.json",
+      "durationSec": 152,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 115,
+    "heardOnUrl": "https://soundcloud.com/user-536995429/cheesecake-x-ricky",
+    "heardOnTitle": "cheesecake x ricky",
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 114
+  },
+  {
+    "id": "takeashowerdude",
+    "title": "takeashowerdude",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-takeashowerdude/audio.mp3",
+      "peaksSrc": "/media/beat-takeashowerdude/peaks.json",
+      "durationSec": 209,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 92,
+    "heardOnUrl": "https://soundcloud.com/user-536995429/takeashowerdude-x-ricky",
+    "heardOnTitle": "takeashowerdude x ricky",
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 115
+  },
+  {
+    "id": "lezgolilsauce",
+    "title": "lezgolilsauce",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-lezgolilsauce/audio.mp3",
+      "peaksSrc": "/media/beat-lezgolilsauce/peaks.json",
+      "durationSec": 235,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 92,
+    "heardOnUrl": "https://soundcloud.com/user-536995429/lezgolilsauce-x-ricky",
+    "heardOnTitle": "lezgolilsauce x ricky",
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 116
+  },
+  {
+    "id": "skass",
+    "title": "skass",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-skass/audio.mp3",
+      "peaksSrc": "/media/beat-skass/peaks.json",
+      "durationSec": 146,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 94,
+    "heardOn": "skass-x-ricky",
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 117
+  },
+  {
+    "id": "glowen",
+    "title": "Glowen",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-glowen/audio.mp3",
+      "peaksSrc": "/media/beat-glowen/peaks.json",
+      "durationSec": 190,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 139,
+    "key": "G# major",
+    "heardOnUrl": "https://soundcloud.com/user-536995429/glowen-11",
+    "heardOnTitle": "Glowen 1",
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 118
+  },
+  {
+    "id": "laughter-and-shit",
+    "title": "Laughter and shit",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-laughter-and-shit/audio.mp3",
+      "peaksSrc": "/media/beat-laughter-and-shit/peaks.json",
+      "durationSec": 126,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 124,
+    "key": "G minor",
+    "heardOnUrl": "https://soundcloud.com/user-536995429/laughter-and-shit",
+    "heardOnTitle": "Laughter and shit",
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 119
+  }
+]
