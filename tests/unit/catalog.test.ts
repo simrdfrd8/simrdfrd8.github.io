@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { validateCatalog } from "@/lib/catalog/validate";
 import { visibleProducts } from "@/lib/catalog/filters";
-import { AssetsFile, ProductsFile, SoundCloudFile, ArtistsFile, ProductTemplatesSchema, SamplePacksFile, CATEGORIES } from "@/lib/catalog/schema";
+import { AssetsFile, ProductsFile, SoundCloudFile, ArtistsFile, ProductTemplatesSchema, SamplePacksFile, BeatsFile, CATEGORIES } from "@/lib/catalog/schema";
 import { resolveViews, heroColorwayOf, type ColorwayRef } from "@/lib/merch";
 import { withPreviewCopy } from "@/lib/catalog";
 
@@ -116,6 +116,13 @@ describe("content catalog", () => {
       expect(p.priceApproved).toBe(false);
       expect(p.checkoutUrl).toBeNull();
     }
+  });
+
+  it("beat payhipUrls are public, unique Payhip product pages (never admin/edit links)", () => {
+    const beats = BeatsFile.parse(load("beats"));
+    const urls = beats.map((b) => b.payhipUrl).filter(Boolean) as string[];
+    for (const u of urls) expect(u).toMatch(/^https:\/\/payhip\.com\/b\/[A-Za-z0-9]+$/);
+    expect(new Set(urls).size).toBe(urls.length);
   });
 
   it("solo productions have an audience flagged as inferred; collabs have none", () => {

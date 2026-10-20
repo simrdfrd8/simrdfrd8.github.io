@@ -1,9 +1,13 @@
 import { expect, test, type Page } from "@playwright/test";
+import { readFileSync } from "node:fs";
+import path from "node:path";
 
 /** The public build streams beats from an external media base (Cloudflare R2; a local static server in tests). */
 /** Owner rule: no adjectives before the categories (spelled in pieces so this guard doesn't trip the repo leak scan). */
 const BANNED = new RegExp(["ed" + "gy", "heart" + "felt", "dis" + "torted", "under" + "neath"].join("|"), "i");
 const MEDIA_BASE = (process.env.NEXT_PUBLIC_MEDIA_BASE ?? "http://localhost:3201").replace(/\/$/, "");
+/** Same switch the export was built with (NEXT_PUBLIC_CHECKOUT_LIVE=1 → MP3/WAV lease buttons open the beat's Payhip product). */
+const CHECKOUT_LIVE = process.env.NEXT_PUBLIC_CHECKOUT_LIVE === "1";
 
 const ROUTES = [
   "/", "/music", "/artists", "/artists/flavorful-croissants", "/artists/not-daf", "/artists/720m", "/artists/andrew-bigs", "/artists/ricky",
@@ -92,6 +96,7 @@ test("video page has no videos in the public build yet", async ({ page }) => {
 });
 
 test("checkout is off: buy buttons read 'Coming soon' and nothing links to Payhip", async ({ page }) => {
+  test.skip(CHECKOUT_LIVE, "build has checkout switched on");
   for (const route of ["/shop/", "/music/", "/support/", "/artists/flavorful-croissants/"]) {
     await page.goto(route);
     const html = await page.content();
@@ -102,6 +107,28 @@ test("checkout is off: buy buttons read 'Coming soon' and nothing links to Payhi
   await expect(btn).toHaveText("Coming soon");
   await expect(btn).toBeDisabled();
   await expect(page.locator('[data-checkout="test-mode"]')).toHaveCount(0);
+});
+
+test("checkout is live: MP3 + WAV lease buttons open each beat's Payhip product; Stems + Exclusive stay 'Coming soon'", async ({ page }) => {
+  test.skip(!CHECKOUT_LIVE, "build has checkout switched off");
+  const expected = new Map<string, string>(
+    (JSON.parse(readFileSync(path.join(__dirname, "../../content/beats.json"), "utf8")) as { id: string; payhipUrl?: string }[]).map((b) => [b.id, b.payhipUrl ?? ""]),
+  );
+  await page.goto("/music/");
+  const cards = page.locator("[data-beat-card]");
+  const n = await cards.count();
+  expect(n).toBeGreaterThan(0);
+  for (let i = 0; i < n; i++) {
+    const card = cards.nth(i);
+    const id = (await card.getAttribute("data-beat-card"))!;
+    const hrefs = await card.locator('a[href*="payhip.com"]').evaluateAll((as) => as.map((a) => a.getAttribute("href")));
+    // the beat's own Payhip product, on both the MP3 and the WAV lease button
+    expect(expected.get(id), id).toMatch(/^https:\/\/payhip\.com\/b\/[A-Za-z0-9]+$/);
+    expect(hrefs, id).toEqual([expected.get(id), expected.get(id)]);
+    await expect(card.locator('[data-checkout="coming-soon"]')).toHaveCount(2);
+  }
+  const html = await page.content();
+  expect(html).not.toMatch(/payhip\.com\/(product|edit|account|dashboard)|\.wav\b/i);
 });
 
 test("art lightbox opens, navigates, and closes with Escape", async ({ page }) => {
@@ -285,9 +312,16 @@ test("buy beats: real beats, full player, licenses coming soon, no WAV anywhere"
   const chooser = page.getByRole("dialog");
   await expect(chooser).toContainText("MP3 lease");
   const soon = chooser.locator('[data-checkout="coming-soon"]');
-  await expect(soon.first()).toHaveText("Coming soon");
-  await expect(soon.first()).toBeDisabled();
-  await expect(chooser.locator('a[href*="payhip"]')).toHaveCount(0);
+  if (CHECKOUT_LIVE) {
+    // MP3 + WAV leases open the beat's Payhip product; Stems + Exclusive stay "Coming soon" until stems are delivered.
+    const links = chooser.locator('a[href^="https://payhip.com/b/"]');
+    await expect(links).toHaveCount(2);
+    await expect(soon).toHaveCount(2);
+  } else {
+    await expect(soon.first()).toHaveText("Coming soon");
+    await expect(soon.first()).toBeDisabled();
+    await expect(chooser.locator('a[href*="payhip"]')).toHaveCount(0);
+  }
   await page.keyboard.press("Escape");
   await expect(bb.getByRole("link", { name: "See all beats" })).toHaveAttribute("href", /lane=rapper/);
   await expect(bb.getByRole("link", { name: /DJ edits/ })).toHaveAttribute("href", /lane=dj/);

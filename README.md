@@ -31,7 +31,9 @@ NEXT_PUBLIC_MEDIA_BASE=https://media.flavorfulmusic.com npm run build   # static
 - Contact is a `mailto:` link (ricky@flavorfulmusic.com) with a prefilled subject per inquiry type.
 - Checkout is off: every buy button reads "Coming soon" and nothing links to a checkout provider. To switch it on,
   give each beat a `payhipUrl` (public `payhip.com/b/…` product page) in `content/beats.json` and build with
-  `NEXT_PUBLIC_CHECKOUT_LIVE=1`; the MP3 and WAV lease buttons then open that Payhip product.
+  `NEXT_PUBLIC_CHECKOUT_LIVE=1`; the MP3 and WAV lease buttons then open that Payhip product. Stems and Exclusive
+  stay "Coming soon" until stems are delivered. `content/beats.json` may carry the URLs while the switch is off;
+  nothing links to Payhip until the repo variable `NEXT_PUBLIC_CHECKOUT_LIVE` is `1`.
 
 ## Deploy
 
