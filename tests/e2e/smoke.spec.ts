@@ -514,13 +514,29 @@ test("music: hereiam and Fuck You carry a plain Pop Punk label and play in the s
   const here = list.locator('[data-track-row="song-hereiam"]');
   const fy = list.locator('[data-track-row="song-fuck-you"]');
   await expect(here).toContainText("Pop Punk");
-  await expect(here).toContainText("720M × Flavorful Croissants");
+  await expect(here.locator("p.text-xs").first()).toHaveText("720M");
   await expect(fy).toContainText("Pop Punk");
-  await expect(fy).toContainText("Flavorful Croissants ft. 720M");
+  await expect(fy.locator("p.text-xs").first()).toHaveText("720M");
+  await expect(list.locator('[data-track-row="song-aba-aku"] p.text-xs').first()).toHaveText("720M");
   // only those two are tagged
   await expect(list.getByText("Pop Punk", { exact: true })).toHaveCount(2);
   await fy.locator("[data-row-play]").click();
   const audio = page.locator("audio[data-global-player]");
   await expect(audio).toHaveAttribute("src", "https://pub-ddb33632c8d449e28748481ed9cad826.r2.dev/media/flavorful-croissants/fuck-you.mp3");
   await expect(page.locator("[data-mini-title]")).toHaveText("Fuck You");
+});
+
+test("songs: the three 720M songs live on 720M's page, not Flavorful Croissants', and are never listed twice", async ({ page }) => {
+  await page.goto("/artists/720m/");
+  await expect(page.locator('[data-track-list="720m-songs"] [data-track-row]')).toHaveCount(3);
+  await page.goto("/artists/flavorful-croissants/");
+  const fc = page.locator('[data-track-list="flavorful-croissants-songs"] [data-track-row]');
+  await expect(fc).toHaveCount(7);
+  await expect(page.locator('[data-track-row="song-hereiam"], [data-track-row="song-fuck-you"], [data-track-row="song-aba-aku"]')).toHaveCount(0);
+  for (const path of ["/music/", "/artists/720m/", "/artists/flavorful-croissants/"]) {
+    await page.goto(path);
+    const html = await page.content();
+    expect(html).not.toMatch(/soundcloud\.com\/user-536995429\/(hereiam-x-ricky|fuck-you-ft-rickayyy|aba-aku-ft-ricky)/);
+    expect(html).not.toContain("sc-hereiam-x-ricky");
+  }
 });

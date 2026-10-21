@@ -1,11 +1,12 @@
 {
-  "_note": "Self-hosted full-length songs (most were released free on the old Bandzoogle site). MP3s live on Cloudflare R2 under media/flavorful-croissants/, never in this repo. Optional: artists (co-credited, shown as \"A × B\"), featuring (\"ft. A\"), genre (small label on the row).",
+  "_note": "Self-hosted full-length songs (most were released free on the old Bandzoogle site). MP3s live on Cloudflare R2 under media/flavorful-croissants/, never in this repo. Optional: genre (small plain label on the row); soundcloudUrl (the same song on SoundCloud, kept off the page so it is not listed twice).",
   "songs": [
     {
       "id": "song-aba-aku",
       "title": "aba aku ft. ricky",
-      "artist": "flavorful-croissants",
+      "artist": "720m",
       "src": "https://pub-ddb33632c8d449e28748481ed9cad826.r2.dev/media/flavorful-croissants/aba-aku-ft-ricky.mp3",
+      "soundcloudUrl": "https://soundcloud.com/user-536995429/aba-aku-ft-ricky",
       "durationSec": 211,
       "released": "bandzoogle"
     },
@@ -20,12 +21,10 @@
     {
       "id": "song-fuck-you",
       "title": "Fuck You",
-      "artist": "flavorful-croissants",
-      "featuring": [
-        "720m"
-      ],
+      "artist": "720m",
       "genre": "Pop Punk",
       "src": "https://pub-ddb33632c8d449e28748481ed9cad826.r2.dev/media/flavorful-croissants/fuck-you.mp3",
+      "soundcloudUrl": "https://soundcloud.com/user-536995429/fuck-you-ft-rickayyy",
       "durationSec": 182,
       "released": "soundcloud"
     },
@@ -40,13 +39,10 @@
     {
       "id": "song-hereiam",
       "title": "hereiam",
-      "artist": "flavorful-croissants",
-      "artists": [
-        "720m",
-        "flavorful-croissants"
-      ],
+      "artist": "720m",
       "genre": "Pop Punk",
       "src": "https://pub-ddb33632c8d449e28748481ed9cad826.r2.dev/media/flavorful-croissants/hereiam.mp3",
+      "soundcloudUrl": "https://soundcloud.com/user-536995429/hereiam-x-ricky",
       "durationSec": 177,
       "released": "soundcloud"
     },

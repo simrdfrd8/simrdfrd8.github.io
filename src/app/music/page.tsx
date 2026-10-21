@@ -16,7 +16,7 @@ import { ButtonLink, Section } from "@/components/ui";
 import { JsonLd, releaseLd, trackLd } from "@/lib/jsonld";
 import { Productions } from "@/components/Productions";
 import { CHECKOUT_LIVE } from "@/lib/env";
-import { SongList } from "@/components/SongList";
+import { SongList, SONG_SOUNDCLOUD_URLS } from "@/components/SongList";
 
 export const metadata: Metadata = { title: "Music", description: "Play Flavorful Croissants in full, free, and lease beats. Also on Spotify and SoundCloud.", alternates: { canonical: "/music" } };
 
@@ -26,7 +26,8 @@ export const revalidate = 21600;
 const FC_SPOTIFY = "7HVJPuRrvPJmyt0s5Rnvb0";
 
 export default async function MusicPage() {
-  const latest = await getLatest();
+  const fetched = await getLatest();
+  const latest = { ...fetched, tracks: fetched.tracks.filter((t) => !SONG_SOUNDCLOUD_URLS.has(t.url)) };
   // First section: the owner's SoundCloud "Release" playlist (720M collabs only). The FANNYPACK-folder
   // collection (fc-x-720m) stays in content for the artist pages but no longer drives this section.
   const col = getCollection("release");
@@ -34,7 +35,7 @@ export default async function MusicPage() {
   const colVideos = (col?.videoAssetIds ?? []).map((id) => getAsset(id)).filter((a) => a !== undefined);
   const beats = getBeats("rapper");
   const releases = getReleases();
-  const tracks = getTracks();
+  const tracks = getTracks().filter((t) => !SONG_SOUNDCLOUD_URLS.has(t.url));
   const playlist = tracks.find((t) => t.kind === "playlist" && t.featured);
   const featured = tracks.filter((t) => t.kind === "track" && t.featured);
   const more = tracks.filter((t) => t.kind === "track" && !t.featured && !t.collections.length && t.embeddable).slice(0, 8);
@@ -47,7 +48,7 @@ export default async function MusicPage() {
         Every song plays in full, free, right here. Press play and it keeps going while you browse.
       </PageHeader>
 
-      <Section id="songs" kicker="Flavorful Croissants · full length" title="Songs">
+      <Section id="songs" kicker="Full length · free" title="Songs">
         <SongList id="music-songs" />
       </Section>
 

@@ -4,7 +4,10 @@ import { artistName, creditLine } from "@/lib/catalog";
 import { TrackList, type TrackRow } from "./player/TrackList";
 
 /** artists = co-credited ("720M × Flavorful Croissants"); featuring = "ft." credit; genre = small plain label on the row. */
-type Song = { id: string; title: string; artist: string; artists?: string[]; featuring?: string[]; genre?: string; src: string; durationSec?: number };
+type Song = { id: string; title: string; artist: string; artists?: string[]; featuring?: string[]; genre?: string; src: string; soundcloudUrl?: string; durationSec?: number };
+
+/** SoundCloud copies of self-hosted songs: kept off SoundCloud lists so a song is never shown twice. */
+export const SONG_SOUNDCLOUD_URLS = new Set((songs.songs as Song[]).flatMap((s) => (s.soundcloudUrl ? [s.soundcloudUrl] : [])));
 
 const credit = (s: Song) => {
   const base = s.artists?.length ? creditLine({ artist: s.artist, artists: s.artists, collaborators: [] }) : artistName(s.artist);
