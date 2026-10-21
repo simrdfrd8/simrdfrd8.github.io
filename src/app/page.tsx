@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { brandLogo } from "@/lib/brand-assets";
-import { artistCardImages } from "@/lib/brand-assets";
+import { artistCardImages, monogram } from "@/lib/brand-assets";
 import { listedArtists, CATEGORIES } from "@/lib/catalog";
 import { isPreview } from "@/lib/env";
 import { BrandFilm, type FilmSource } from "@/components/BrandFilm";
@@ -61,7 +61,7 @@ export default function Home() {
                         <li key={a.slug} id={a.slug} className="scroll-mt-24" data-artist-card={a.slug}>
                           <Link href={`/artists/${a.slug}`} className="group flex items-center gap-4 rounded-md px-2 py-2.5 transition-colors hover:bg-[var(--shade-tint)] focus-visible:bg-[var(--shade-tint)]">
                             <span className="relative block size-12 shrink-0 overflow-hidden rounded-full border border-line bg-raised">
-                              {card ? <Image src={card.webp} alt={card.alt} fill sizes="48px" className="object-cover grayscale transition-[filter] group-hover:grayscale-0" data-card-photo /> : <span className="absolute inset-0 bg-[var(--shade-tint)]" aria-hidden="true" />}
+                              {card ? <Image src={card.webp} alt={card.alt} fill sizes="48px" className="object-cover grayscale transition-[filter] group-hover:grayscale-0" data-card-photo /> : <span className="absolute inset-0 flex items-center justify-center bg-[#17121C] text-[15px] font-extrabold tracking-[1px] text-[var(--shade)]" aria-hidden="true" data-card-monogram>{monogram(a.shortName ?? a.name)}</span>}
                             </span>
                             <span className="min-w-0 flex-1">
                               <b className="block text-lg leading-tight">{a.name}</b>

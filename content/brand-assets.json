@@ -91,6 +91,32 @@
       "publishApproved": true,
       "approvedBy": "user (chat, 2026-10-20)",
       "alt": "Flavorful Croissants in a sheet mask"
+    },
+    {
+      "id": "720m-roster",
+      "stem": "720m/720m-roster-4x5",
+      "width": 800,
+      "height": 1000,
+      "approved": true,
+      "alt": "720M"
+    },
+    {
+      "id": "andrew-bigs-roster",
+      "stem": "andrew-bigs/andrew-bigs-roster-4x5",
+      "width": 800,
+      "height": 1000,
+      "approved": true,
+      "alt": "Andrew Bigs"
+    },
+    {
+      "id": "flavorful-croissants-roster",
+      "stem": "flavorful-croissants/fc-roster-4x5",
+      "width": 800,
+      "height": 1000,
+      "approved": true,
+      "publishApproved": true,
+      "approvedBy": "user (chat, 2026-10-20)",
+      "alt": "Flavorful Croissants"
     }
   ],
   "logos": {
@@ -114,5 +140,11 @@
     "flavorful-croissants": [
       "flavorful-croissants-card"
     ]
+  },
+  "roster": {
+    "720m": "720m-roster",
+    "dan-perales": "dan-perales-card-alt",
+    "andrew-bigs": "andrew-bigs-roster",
+    "flavorful-croissants": "flavorful-croissants-roster"
   }
 }

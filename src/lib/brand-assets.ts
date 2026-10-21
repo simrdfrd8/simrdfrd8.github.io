@@ -40,3 +40,18 @@ export const art720m = () => ({
 /** Full-bleed artist-page hero portrait (`<slug>-portrait` in the manifest), same pattern as the 720M page. */
 export const artistPortrait = (slug: string) => brandImage(`${slug}-portrait`);
 
+
+/** Roster tile on /artists (`roster` in the manifest, 4:5 at 800px); falls back to the artist's first homepage card. */
+export const artistRosterImage = (slug: string) => {
+  const id = (brandJson as { roster?: Record<string, string> }).roster?.[slug];
+  return (id ? brandImage(id) : null) ?? artistCardImages(slug)[0] ?? null;
+};
+
+/** Two-letter monogram for artists without approved art ("Not Däf" → "ND"). */
+export const monogram = (name: string) =>
+  name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0]!.toUpperCase())
+    .join("");
