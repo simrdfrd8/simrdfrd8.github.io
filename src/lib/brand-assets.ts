@@ -7,19 +7,19 @@ import { isPreview } from "./env";
  * Brand finals in public/brand/ (manifest: content/brand-assets.json). An image renders only if its files exist and it is
  * approved (or this is the preview build), so production never shows a broken or unapproved brand image.
  */
-export type BrandImage = { id: string; src: string; webp: string; srcSet: string; webpSet: string; width: number; height: number; alt: string; caption?: string };
+export type BrandImage = { id: string; src: string; webp: string; srcSet: string; webpSet: string; width: number; height: number; alt: string; caption?: string; focus?: string };
 type Entry = (typeof brandJson.images)[number];
 
 const pub = (rel: string) => existsSync(path.join(process.cwd(), "public", "brand", rel));
 
 export function brandImage(id: string): BrandImage | null {
-  const e = brandJson.images.find((x) => x.id === id) as (Entry & { web?: string; webWidth?: number; caption?: string }) | undefined;
+  const e = brandJson.images.find((x) => x.id === id) as (Entry & { web?: string; webWidth?: number; caption?: string; focus?: string }) | undefined;
   if (!e || (!e.approved && !isPreview())) return null;
   if (!pub(`${e.stem}.jpg`) || !pub(`${e.stem}.webp`)) return null;
   const at = (stem: string, ext: string) => `/brand/${stem}.${ext}`;
   const set = (ext: string) =>
     [e.web && pub(`${e.web}.${ext}`) ? `${at(e.web, ext)} ${e.webWidth}w` : null, `${at(e.stem, ext)} ${e.width}w`].filter(Boolean).join(", ");
-  return { id, src: at(e.stem, "jpg"), webp: at(e.stem, "webp"), srcSet: set("jpg"), webpSet: set("webp"), width: e.width, height: e.height, alt: e.alt, ...(e.caption ? { caption: e.caption } : {}) };
+  return { id, src: at(e.stem, "jpg"), webp: at(e.stem, "webp"), srcSet: set("jpg"), webpSet: set("webp"), width: e.width, height: e.height, alt: e.alt, ...(e.caption ? { caption: e.caption } : {}), ...(e.focus ? { focus: e.focus } : {}) };
 }
 
 export const artistCardImages = (slug: string) =>
@@ -47,6 +47,12 @@ export const artistRosterImage = (slug: string) => {
   return (id ? brandImage(id) : null) ?? artistCardImages(slug)[0] ?? null;
 };
 
+/** Small round thumbnail (`thumbs` in the manifest, square crop); falls back to the artist's first homepage card. */
+export const artistThumbImage = (slug: string) => {
+  const id = (brandJson as { thumbs?: Record<string, string> }).thumbs?.[slug];
+  return (id ? brandImage(id) : null) ?? artistCardImages(slug)[0] ?? null;
+};
+
 /** Two-letter monogram for artists without approved art ("Not Däf" → "ND"). */
 export const monogram = (name: string) =>
   name
@@ -55,3 +61,6 @@ export const monogram = (name: string) =>
     .slice(0, 2)
     .map((w) => w[0]!.toUpperCase())
     .join("");
+
+
+export { hasMarks } from "./marks";

@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Artist } from "@/lib/catalog/schema";
 import { getAsset } from "@/lib/catalog";
 import { MediaImage } from "./MediaImage";
-import { artistRosterImage, monogram } from "@/lib/brand-assets";
+import { artistRosterImage, hasMarks, monogram } from "@/lib/brand-assets";
 import { Arrow } from "./ui";
 
 export function ArtistCard({ artist, index, label }: { artist: Artist; index?: number; label?: string }) {
@@ -44,7 +44,7 @@ export function ArtistCard({ artist, index, label }: { artist: Artist; index?: n
       {typeof index === "number" && <span className="kicker absolute top-5 left-5 text-cream-dim">{String(index + 1).padStart(2, "0")}</span>}
       <span className="relative">
         <span className="kicker hidden !text-[0.65rem] text-[var(--accent)] sm:block">{artist.role}</span>
-        <span className={`display mt-2 flex items-end justify-between gap-2 break-words ${artist.name.length > 14 ? "text-3xl sm:text-4xl" : "text-4xl sm:text-5xl"}`}>
+        <span className={`display mt-2 flex items-end justify-between gap-2 break-words ${artist.name.length > 14 ? "text-3xl sm:text-4xl" : "text-4xl sm:text-5xl"} ${hasMarks(label ?? artist.name) ? "!leading-[1.08] pt-[0.12em]" : ""}`}>
           {label ?? artist.name}
           <Arrow className="mb-1 h-6 w-6 shrink-0 -translate-x-2 opacity-0 transition group-hover:translate-x-0 group-hover:opacity-100" />
         </span>

@@ -19,7 +19,7 @@ import { ArtistCard } from "./ArtistCard";
 import { MerchByBrand } from "./Merch";
 import type { Release } from "@/lib/catalog/schema";
 import Image from "next/image";
-import { artistPortrait } from "@/lib/brand-assets";
+import { artistPortrait, hasMarks } from "@/lib/brand-assets";
 
 export function ArtistHero({ artist }: { artist: Artist }) {
   const hero = getAsset(artist.heroAssetId);
@@ -48,7 +48,7 @@ export function ArtistHero({ artist }: { artist: Artist }) {
           <p className="kicker mt-8 text-[var(--accent)]">{artist.role}</p>
           <div className="mt-3 flex items-center gap-5">
             {mark && <MediaImage asset={mark} sizes="96px" showMark={false} className="aspect-square w-16 shrink-0 overflow-hidden rounded-2xl ring-1 ring-line md:w-24" />}
-            <h1 className="display artist-title" style={titleSize(artist.name, 10)}>{artist.name}</h1>
+            <h1 className={`display artist-title${hasMarks(artist.name) ? " !leading-[1.08] pt-[0.12em]" : ""}`} style={titleSize(artist.name, 10)}>{artist.name}</h1>
           </div>
           <p className="mt-6 max-w-xl text-xl text-cream-dim">{artist.tagline}</p>
           <div className="mt-8 flex flex-wrap gap-3">
@@ -88,7 +88,8 @@ export function ArtistHero({ artist }: { artist: Artist }) {
 
 /** Fluid title size so the longest single word always fits the viewport (wraps only between words, never mid-word). */
 function titleSize(name: string, maxRem: number): React.CSSProperties {
-  const longest = Math.max(...name.split(/\s+/).map((w) => w.length));
+  // Floor of 5 so very short words ("NOT DÄF") don't blow past the viewport in the wide hero face.
+  const longest = Math.max(5, ...name.split(/\s+/).map((w) => w.length));
   return { fontSize: `clamp(2rem, calc((100vw - 3rem) / ${(longest * 0.7).toFixed(2)}), ${maxRem}rem)` };
 }
 
@@ -96,11 +97,11 @@ function titleSize(name: string, maxRem: number): React.CSSProperties {
 function PortraitHero({ artist, img }: { artist: Artist; img: NonNullable<ReturnType<typeof artistPortrait>> }) {
   return (
     <header className="relative -mt-px flex h-[92svh] max-h-[1500px] min-h-[560px] items-end overflow-hidden bg-[#0f0c13] md:h-[118vh] md:min-h-[680px]" data-hero>
-      <Image src={img.webp} alt={img.alt} fill priority sizes="100vw" quality={82} className="object-cover object-[50%_28%] md:object-[50%_30%]" data-portrait />
+      <Image src={img.webp} alt={img.alt} fill priority sizes="100vw" quality={82} className="object-cover object-[50%_28%] md:object-[50%_30%]" style={img.focus ? { objectPosition: img.focus } : undefined} data-portrait />
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(23,18,28,0)_55%,rgba(23,18,28,.55)_80%,#17121C_100%)]" />
       <div className="relative z-[2] mx-auto w-full max-w-[1120px] px-5 pb-8 sm:px-8 md:pb-14">
         <p className="kicker text-[var(--accent)]">{artist.role}</p>
-        <h1 className="brand-h artist-title mt-4 mb-2.5 leading-[.9] tracking-[4px] [text-shadow:0_2px_30px_rgba(23,18,28,.45)]" style={titleSize(artist.name, 10)} data-artist-title>{artist.name}</h1>
+        <h1 className={`brand-h artist-title mt-4 mb-2.5 tracking-[4px] [text-shadow:0_2px_30px_rgba(23,18,28,.45)] ${hasMarks(artist.name) ? "leading-[1.1]" : "leading-[.9]"}`} style={titleSize(artist.name, 10)} data-artist-title>{artist.name}</h1>
       </div>
     </header>
   );

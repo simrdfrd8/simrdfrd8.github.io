@@ -214,7 +214,7 @@ test("homepage is simple: mark + one line, three plain categories to the artists
   await expect(page.locator("main header p").first()).toHaveText("A San Diego artist collective disguised as a record label: hip-hop, EDM and production.");
   await expect(page.locator("[data-shade] [data-cat-label]")).toHaveText(["Hip-Hop", "EDM", "Production"]);
   expect(await page.locator("[data-artist-card]").evaluateAll((els) => els.map((e) => e.getAttribute("data-artist-card")))).toEqual(["720m", "dan-perales", "andrew-bigs", "not-daf", "flavorful-croissants"]);
-  await expect(page.locator('[data-artist-card="not-daf"] img')).toHaveCount(0);
+  await expect(page.locator('[data-artist-card="not-daf"] img')).toHaveAttribute("src", /not-daf\/nd-thumb-1x1/);
   await expect(page.locator("header [data-wordmark] img").first()).toHaveAttribute("src", "/brand/logo/svg/logo-text.svg");
   await expect(page.locator("[data-hero-mark] img")).toHaveAttribute("src", "/brand/logo/svg/logo-cream.svg");
   expect(await page.locator("[data-cat-toggle] img").evaluateAll((els) => els.map((e) => e.getAttribute("src")))).toEqual(["/brand/logo/svg/logo-coral-hiphop.svg", "/brand/logo/svg/logo-acid-edm.svg", "/brand/logo/svg/logo-violet-prod.svg"]);
@@ -470,12 +470,15 @@ test("old /artists/baylingual URL redirects with a static meta refresh", async (
   await expect(page).toHaveURL(/\/artists\/baylingual-entertainment\/$/);
 });
 
-test("Flavorful Croissants uses the approved photos only (no private gallery)", async ({ page }) => {
+test("Flavorful Croissants uses the approved collage only (no private gallery, no old sheet-mask photo)", async ({ page }) => {
   await page.goto("/artists/flavorful-croissants/");
-  await expect(page.locator("img[data-portrait]")).toHaveAttribute("src", /fc-portrait/);
+  await expect(page.locator("img[data-portrait]")).toHaveAttribute("src", /fc-collage-portrait-3x4/);
   expect(await page.content()).not.toMatch(/\/brand\/[^"]*gallery\//);
   await page.goto("/");
-  expect(await page.locator('img[src*="flavorful-croissants/fc-card-4x5"], source[srcset*="flavorful-croissants/fc-card-4x5"]').count()).toBeGreaterThan(0);
+  expect(await page.locator('img[src*="flavorful-croissants/fc-collage-thumb-1x1"]').count()).toBeGreaterThan(0);
+  expect(await page.content()).not.toMatch(/fc-(card-4x5|portrait|roster-4x5)\./);
+  await page.goto("/artists/");
+  await expect(page.locator('a[href="/artists/flavorful-croissants/"] img')).toHaveAttribute("src", /fc-collage-card-4x5/);
 });
 
 test("artist titles never break mid-word and fit the viewport", async ({ page }) => {

@@ -1,3 +1,4 @@
+import { hasMarks } from "@/lib/marks";
 import Link from "next/link";
 import clsx from "clsx";
 import type { ComponentProps, ReactNode } from "react";
@@ -38,7 +39,7 @@ export function Section({ id, kicker, title, action, children, className, tone =
             <div>
               {kicker && <p className={clsx("kicker mb-3", tone === "cream" ? "text-ink/70" : "text-muted")}>{kicker}</p>}
               {title && (
-                <h2 id={id ? `${id}-title` : undefined} className="display text-5xl sm:text-6xl md:text-7xl">
+                <h2 id={id ? `${id}-title` : undefined} className={`display text-5xl sm:text-6xl md:text-7xl${typeof title === "string" && hasMarks(title) ? " !leading-[1.08] pt-[0.12em]" : ""}`}>
                   {title}
                 </h2>
               )}

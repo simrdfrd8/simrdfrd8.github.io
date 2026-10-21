@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { brandLogo } from "@/lib/brand-assets";
-import { artistCardImages, monogram } from "@/lib/brand-assets";
+import { artistThumbImage, monogram } from "@/lib/brand-assets";
 import { listedArtists, CATEGORIES } from "@/lib/catalog";
 import { isPreview } from "@/lib/env";
 import { BrandFilm, type FilmSource } from "@/components/BrandFilm";
@@ -56,7 +56,7 @@ export default function Home() {
                 >
                   <ul className="grid gap-1 pt-1 pb-6 md:grid-cols-3 md:gap-x-6">
                     {list.map((a) => {
-                      const [card] = artistCardImages(a.slug);
+                      const card = artistThumbImage(a.slug);
                       return (
                         <li key={a.slug} id={a.slug} className="scroll-mt-24" data-artist-card={a.slug}>
                           <Link href={`/artists/${a.slug}`} className="group flex items-center gap-4 rounded-md px-2 py-2.5 transition-colors hover:bg-[var(--shade-tint)] focus-visible:bg-[var(--shade-tint)]">

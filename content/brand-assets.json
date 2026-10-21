@@ -74,23 +74,34 @@
     },
     {
       "id": "flavorful-croissants-card",
-      "stem": "flavorful-croissants/fc-card-4x5",
-      "width": 1500,
-      "height": 1875,
+      "stem": "flavorful-croissants/fc-collage-card-4x5",
+      "width": 800,
+      "height": 1000,
       "approved": true,
       "publishApproved": true,
-      "approvedBy": "user (chat, 2026-10-20)",
-      "alt": "Flavorful Croissants in a sheet mask"
+      "approvedBy": "user (chat, 2026-10-21)",
+      "alt": "Flavorful Croissants"
     },
     {
       "id": "flavorful-croissants-portrait",
-      "stem": "flavorful-croissants/fc-portrait",
-      "width": 1500,
-      "height": 2000,
+      "stem": "flavorful-croissants/fc-collage-portrait-3x4",
+      "width": 1125,
+      "height": 1500,
       "approved": true,
       "publishApproved": true,
-      "approvedBy": "user (chat, 2026-10-20)",
-      "alt": "Flavorful Croissants in a sheet mask"
+      "approvedBy": "user (chat, 2026-10-21)",
+      "focus": "50% 80%",
+      "alt": "Flavorful Croissants: a glitched collage with a spiky-haired figure in a black tee"
+    },
+    {
+      "id": "flavorful-croissants-thumb",
+      "stem": "flavorful-croissants/fc-collage-thumb-1x1",
+      "width": 400,
+      "height": 400,
+      "approved": true,
+      "publishApproved": true,
+      "approvedBy": "user (chat, 2026-10-21)",
+      "alt": "Flavorful Croissants"
     },
     {
       "id": "720m-roster",
@@ -109,14 +120,35 @@
       "alt": "Andrew Bigs"
     },
     {
-      "id": "flavorful-croissants-roster",
-      "stem": "flavorful-croissants/fc-roster-4x5",
+      "id": "not-daf-card",
+      "stem": "not-daf/nd-card-4x5",
       "width": 800,
       "height": 1000,
       "approved": true,
       "publishApproved": true,
-      "approvedBy": "user (chat, 2026-10-20)",
-      "alt": "Flavorful Croissants"
+      "approvedBy": "user (chat, 2026-10-21)",
+      "alt": "Not Däf"
+    },
+    {
+      "id": "not-daf-portrait",
+      "stem": "not-daf/nd-portrait-3x4",
+      "width": 1200,
+      "height": 1600,
+      "approved": true,
+      "publishApproved": true,
+      "approvedBy": "user (chat, 2026-10-21)",
+      "focus": "50% 13%",
+      "alt": "Not Däf: a cream heartbeat line rising into a peak, drawn on a plum pocket tee"
+    },
+    {
+      "id": "not-daf-thumb",
+      "stem": "not-daf/nd-thumb-1x1",
+      "width": 400,
+      "height": 400,
+      "approved": true,
+      "publishApproved": true,
+      "approvedBy": "user (chat, 2026-10-21)",
+      "alt": "Not Däf"
     }
   ],
   "logos": {
@@ -139,12 +171,20 @@
     ],
     "flavorful-croissants": [
       "flavorful-croissants-card"
+    ],
+    "not-daf": [
+      "not-daf-card"
     ]
   },
   "roster": {
     "720m": "720m-roster",
     "dan-perales": "dan-perales-card-alt",
     "andrew-bigs": "andrew-bigs-roster",
-    "flavorful-croissants": "flavorful-croissants-roster"
+    "flavorful-croissants": "flavorful-croissants-card",
+    "not-daf": "not-daf-card"
+  },
+  "thumbs": {
+    "flavorful-croissants": "flavorful-croissants-thumb",
+    "not-daf": "not-daf-thumb"
   }
 }
