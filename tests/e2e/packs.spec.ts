@@ -8,7 +8,7 @@ test("home: Producers card sits under Beats and links to the sample pack library
   const producers = page.locator("#shop a[data-home-producers]");
   await expect(producers).toHaveAttribute("href", /\/shop\/sample-packs\/?$/);
   await expect(producers.locator("b")).toHaveText("Producers");
-  await expect(producers).toContainText("Sample packs for producers.");
+  await expect(producers).toContainText("Sample packs & Foley sounds. For beatmakers, post-production, and video game sound designers.");
   await expect(producers).not.toContainText("$");
   const [m, b, p] = [(await merch.boundingBox())!, (await beats.boundingBox())!, (await producers.boundingBox())!];
   // directly under Beats: same column, below it

@@ -100,7 +100,7 @@ export default function Home() {
           <Link href="/shop/sample-packs" className="shade-prod group flex items-center justify-between gap-6 border border-line bg-raised p-6 transition-colors hover:border-[var(--shade)] md:p-8" data-home-producers>
             <span>
               <b className="brand-h block text-2xl tracking-[2px]">Producers</b>
-              <span className="text-cream-dim">Sample packs for producers. Coming soon.</span>
+              <span className="text-cream-dim">Sample packs &amp; Foley sounds. For beatmakers, post-production, and video game sound designers. Coming soon.</span>
             </span>
             <span aria-hidden="true" className="text-2xl text-[var(--shade-text)] transition-transform group-hover:translate-x-1">→</span>
           </Link>

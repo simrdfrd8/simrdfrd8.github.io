@@ -5,14 +5,14 @@ import { PackLibrary } from "@/components/PackLibrary";
 import { Section } from "@/components/ui";
 import { libraryPacks } from "@/lib/packs";
 
-export const metadata: Metadata = { title: "Sample packs", description: "Sample packs for producers from Flavorful Music. Coming soon.", alternates: { canonical: "/shop/sample-packs" } };
+export const metadata: Metadata = { title: "Sample packs", description: "Sample packs & Foley sounds. For beatmakers, post-production, and video game sound designers. Coming soon.", alternates: { canonical: "/shop/sample-packs" } };
 
 export default function SamplePacksPage() {
   const packs = libraryPacks();
   return (
     <>
       <PageHeader kicker="Producers · coming soon" title="Sample packs" accent="#8C7CFF">
-        Sample packs for producers. Not on sale yet.
+        Sample packs &amp; Foley sounds. For beatmakers, post-production, and video game sound designers.
       </PageHeader>
       <Section id="packs" className="!pt-10 md:!pt-14">
         <PackLibrary packs={packs} />
