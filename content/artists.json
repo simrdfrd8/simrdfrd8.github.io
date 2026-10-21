@@ -56,7 +56,7 @@
   {
     "slug": "dan-perales",
     "name": "Dan Perales",
-    "role": "Rapper",
+    "role": "Rapper · Comedian",
     "tagline": "Hip-hop from \"Cayo\" to \"Bajo La Pluma\".",
     "bio": [
       "Dan Perales raps on the Hip-Hop side of the crew. Start with \"Cayo\" (feat. Ant Del$ol), \"Gentéfication\", and \"Bajo La Pluma\"."
@@ -65,10 +65,12 @@
     "accent": "#FF7A59",
     "accentInk": "#17121C",
     "genres": [
-      "Hip-Hop"
+      "Hip-Hop",
+      "Comedy"
     ],
     "disciplines": [
-      "Rap"
+      "Rap",
+      "Comedy"
     ],
     "links": [
       {
@@ -86,7 +88,7 @@
     "layout": "standard",
     "portraitAssetId": "photo-dan-poncho",
     "category": "hip-hop",
-    "cardRole": "Rapper",
+    "cardRole": "Rapper · Comedian",
     "cardBlurb": "Dan Perales raps on the Hip-Hop side of the crew. Start with \"Cayo\" (feat. Ant Del$ol), \"Gentéfication\", and \"Bajo La Pluma\"."
   },
   {

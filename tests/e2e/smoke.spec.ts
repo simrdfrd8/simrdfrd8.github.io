@@ -497,3 +497,13 @@ test("global player: plays down the list, active row, keyboard, survives route c
   await expect(page).toHaveURL(/\/shop/);
   await expect(mini.locator("[data-mini-title]")).toHaveText("aba aku ft. ricky");
 });
+
+test("Dan Perales: Comedy is one of his categories, next to Hip-Hop", async ({ page }) => {
+  await page.goto("/artists/dan-perales");
+  await expect(page.locator("#about dl")).toContainText("Hip-Hop · Comedy");
+  await expect(page.locator("#about dl")).toContainText("Rap · Comedy");
+  await page.goto("/");
+  await expect(page.locator('[data-shade="hip-hop"] [data-artist-card="dan-perales"]')).toContainText(/Rapper · Comedian/i);
+  await expect(page.locator('[data-shade="hip-hop"] [data-artist-card="720m"]')).toContainText(/^720M\s*Rapper/i);
+  await expect(page.locator("[data-shade] h2")).toHaveText(["Hip-Hop", "EDM", "Production"]);
+});

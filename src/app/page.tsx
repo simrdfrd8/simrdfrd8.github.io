@@ -52,7 +52,7 @@ export default function Home() {
                           </span>
                           <span className="min-w-0 flex-1">
                             <b className="block text-lg leading-tight">{a.name}</b>
-                            <span className="text-xs tracking-[1px] text-muted uppercase">{ROLE[c.id]}</span>
+                            <span className="text-xs tracking-[1px] text-muted uppercase">{a.cardRole ?? ROLE[c.id]}</span>
                           </span>
                           <span aria-hidden="true" className="text-[var(--shade-text)] transition-transform group-hover:translate-x-1">→</span>
                         </Link>

@@ -38,7 +38,10 @@ describe("brand (Bruise) roster", () => {
     ]);
     const dan = artists.find((a) => a.slug === "dan-perales")!;
     expect(dan.category).toBe("hip-hop");
-    expect(JSON.stringify(dan)).not.toMatch(/comed|stand-up/i);
+    // Owner, 2026-10-21: Dan Perales is also a comedian. Comedy is one of his categories, next to Hip-Hop (not a site category).
+    expect(dan.genres).toEqual(["Hip-Hop", "Comedy"]);
+    expect(dan.disciplines).toContain("Comedy");
+    expect(dan.role).toBe("Rapper · Comedian");
     const ab = artists.find((a) => a.slug === "andrew-bigs")!;
     expect(ab.links.map((l) => l.url)).toEqual([
       "https://open.spotify.com/artist/53hggKXepZN14WR83U8g2T",
