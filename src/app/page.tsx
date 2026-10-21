@@ -9,7 +9,7 @@ import film from "../../content/film.json";
 
 /**
  * Landing page, kept extremely simple: mark + one line, three plain categories leading to the artists,
- * one path to beats and merch, and a Films placeholder (poster only; the brand film is not final).
+ * one path to merch and beats (Merch first, matching the nav), and a Films placeholder (poster only; the brand film is not final).
  */
 const ROLE: Record<string, string> = { "hip-hop": "Rapper", edm: "DJ", production: "Producer" };
 
@@ -68,19 +68,19 @@ export default function Home() {
 
       <section id="shop" aria-label="Shop" className="px-5 pb-16 sm:px-8">
         <div className="mx-auto grid max-w-[1120px] gap-4 md:grid-cols-2">
-          <Link href="/music#buy-beats" className="shade-prod group flex items-center justify-between gap-6 border border-line bg-raised p-6 transition-colors hover:border-[var(--shade)] md:p-8" data-home-beats>
-            <span>
-              <b className="brand-h block text-2xl tracking-[2px]">Beats</b>
-              <span className="text-cream-dim">Press play, then license. MP3 $10 · WAV $25.</span>
-            </span>
-            <span aria-hidden="true" className="text-2xl text-[var(--shade-text)] transition-transform group-hover:translate-x-1">→</span>
-          </Link>
           <Link href="/shop/merch" className="group flex items-center justify-between gap-6 border border-line bg-raised p-6 transition-colors hover:border-logo md:p-8" data-home-merch>
             <span>
               <b className="brand-h block text-2xl tracking-[2px]">Merch</b>
               <span className="text-cream-dim">Designed in-house. Coming soon.</span>
             </span>
             <span aria-hidden="true" className="text-2xl text-logo transition-transform group-hover:translate-x-1">→</span>
+          </Link>
+          <Link href="/music#buy-beats" className="shade-prod group flex items-center justify-between gap-6 border border-line bg-raised p-6 transition-colors hover:border-[var(--shade)] md:p-8" data-home-beats>
+            <span>
+              <b className="brand-h block text-2xl tracking-[2px]">Beats</b>
+              <span className="text-cream-dim">Press play, then license. MP3 $10 · WAV $25.</span>
+            </span>
+            <span aria-hidden="true" className="text-2xl text-[var(--shade-text)] transition-transform group-hover:translate-x-1">→</span>
           </Link>
         </div>
       </section>

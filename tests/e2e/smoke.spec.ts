@@ -208,7 +208,7 @@ test("hierarchy: Baylingual Entertainment sits under Dan Perales", async ({ page
   await expect(page.locator("#merch [data-checkout]")).toHaveCount(0);
 });
 
-test("homepage is simple: mark + one line, three plain categories to the artists, beats and merch, brand film", async ({ page }) => {
+test("homepage is simple: mark + one line, three plain categories to the artists, merch then beats, brand film", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator("h1")).toHaveText("Make art with friends.");
   await expect(page.locator("main header p").first()).toHaveText("A San Diego artist collective disguised as a record label: hip-hop, EDM and production.");
@@ -220,6 +220,10 @@ test("homepage is simple: mark + one line, three plain categories to the artists
   expect(await page.locator("[data-shade] > div:first-child img").evaluateAll((els) => els.map((e) => e.getAttribute("src")))).toEqual(["/brand/logo/svg/logo-coral-hiphop.svg", "/brand/logo/svg/logo-acid-edm.svg", "/brand/logo/svg/logo-violet-prod.svg"]);
   await expect(page.locator("a[data-home-beats]")).toHaveAttribute("href", /\/music\/?#buy-beats/);
   await expect(page.locator("a[data-home-merch]")).toHaveAttribute("href", /\/shop\/merch\/?$/);
+  // Merch comes before Beats, matching the nav (Artists, Merch, Beats, Contact, Music)
+  expect(await page.locator("#shop a").evaluateAll((els) => els.map((e) => (e.hasAttribute("data-home-merch") ? "merch" : e.hasAttribute("data-home-beats") ? "beats" : "?")))).toEqual(["merch", "beats"]);
+  const [merchBox, beatsBox] = [(await page.locator("a[data-home-merch]").boundingBox())!, (await page.locator("a[data-home-beats]").boundingBox())!];
+  expect(merchBox.y < beatsBox.y - 1 || (Math.abs(merchBox.y - beatsBox.y) <= 1 && merchBox.x < beatsBox.x)).toBe(true);
   // brand film v6 (approved): poster first, nothing loads until click, then the R2 file sized for the screen
   const slot = page.locator("[data-film-slot]");
   await expect(slot).toHaveAttribute("data-film-state", "poster");
