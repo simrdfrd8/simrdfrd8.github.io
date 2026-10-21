@@ -1,10 +1,10 @@
-
-/** Brandy's nav: Home · Artists · Music · Shop · Contact (the wordmark is Home; Support stays one tap away). */
+/** Nav order: Artists · Merch · Beats · Contact · Music (the wordmark is Home; Support stays one tap away). Beats = the beat store at /shop. */
 export const primaryNav = [
   { label: "Artists", href: "/artists" },
-  { label: "Music", href: "/music" },
-  { label: "Shop", href: "/shop" },
+  { label: "Merch", href: "/shop/merch" },
+  { label: "Beats", href: "/shop" },
   { label: "Contact", href: "/contact" },
+  { label: "Music", href: "/music" },
 ] as const;
 
 export const secondaryNav = [

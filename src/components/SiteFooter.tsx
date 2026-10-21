@@ -30,7 +30,7 @@ export function SiteFooter() {
             </p>
           )}
         </div>
-        <FooterCol title="Explore" items={[{ label: "Home", href: "/" }, ...primaryNav]} />
+        <FooterCol title="Explore" items={[...primaryNav]} />
         <FooterCol title="Work with us" items={[...secondaryNav]} />
         <div>
           <h2 className="kicker mb-4 text-muted">Listen & follow</h2>

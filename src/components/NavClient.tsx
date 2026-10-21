@@ -8,7 +8,10 @@ import { Heart } from "./ui";
 
 type Item = { label: string; href: string };
 
-const isActive = (path: string, href: string) => (href === "/" ? path === "/" : path === href || path.startsWith(href + "/"));
+const matches = (path: string, href: string) => (href === "/" ? path === "/" : path === href || path.startsWith(href + "/"));
+/** Only the most specific matching item is current, so /shop/merch lights up Merch, not Beats (/shop). */
+const isActive = (path: string, href: string, items: Item[]) =>
+  matches(path, href) && !items.some((o) => o.href !== href && o.href.length > href.length && o.href.startsWith(href + "/") && matches(path, o.href));
 
 export function NavLinks({ items }: { items: Item[] }) {
   const path = usePathname();
@@ -18,10 +21,10 @@ export function NavLinks({ items }: { items: Item[] }) {
         <Link
           key={i.href}
           href={i.href}
-          aria-current={isActive(path, i.href) ? "page" : undefined}
+          aria-current={isActive(path, i.href, items) ? "page" : undefined}
           className={clsx(
-            "rounded-full px-3.5 py-2 text-[0.95rem] font-medium transition-colors",
-            isActive(path, i.href) ? "bg-cream/10 text-cream" : "text-cream-dim hover:text-cream",
+            "rounded-full px-2.5 py-2 text-[0.95rem] lg:px-3.5 font-medium transition-colors",
+            isActive(path, i.href, items) ? "bg-cream/10 text-cream" : "text-cream-dim hover:text-cream",
           )}
         >
           {i.label}
@@ -72,7 +75,7 @@ export function MobileMenu({ primary, secondary }: { primary: Item[]; secondary:
           <ul className="space-y-1">
             {primary.map((i) => (
               <li key={i.href}>
-                <Link href={i.href} aria-current={isActive(path, i.href) ? "page" : undefined} className="display block py-2 text-6xl text-cream">
+                <Link href={i.href} aria-current={isActive(path, i.href, primary) ? "page" : undefined} className="display block py-2 text-6xl text-cream">
                   {i.label}
                 </Link>
               </li>

@@ -64,14 +64,33 @@ for (const route of ROUTES) {
   });
 }
 
-test("nav stays at 5 items and support is one tap away", async ({ page, isMobile }) => {
+const NAV = ["Artists", "Merch", "Beats", "Contact", "Music"];
+const NAV_HREF: Record<string, RegExp> = { Artists: /\/artists\/?$/, Merch: /\/shop\/merch\/?$/, Beats: /\/shop\/?$/, Contact: /\/contact\/?$/, Music: /\/music\/?$/ };
+
+test("nav is exactly Artists, Merch, Beats, Contact, Music and support is one tap away", async ({ page, isMobile }) => {
   await page.goto("/");
   if (isMobile) {
     await expect(page.getByRole("link", { name: "Support" }).last()).toBeVisible();
+    await page.getByRole("button", { name: "Menu" }).click();
+    const menu = page.getByRole("navigation", { name: "Mobile" }).locator("ul").first().getByRole("link");
+    await expect(menu).toHaveText(NAV);
+    for (const [i, label] of NAV.entries()) await expect(menu.nth(i)).toHaveAttribute("href", NAV_HREF[label]);
+    // the open menu fills the screen (not clipped to the 64px header bar)
+    expect((await page.locator("#mobile-menu").boundingBox())?.height ?? 0).toBeGreaterThan(600);
+    await expect(menu.last()).toBeInViewport();
   } else {
     const nav = page.getByRole("navigation", { name: "Primary" });
-    expect(await nav.getByRole("link").count()).toBeLessThanOrEqual(5);
+    const links = nav.getByRole("link");
+    await expect(links).toHaveText([...NAV, /Support/]);
+    for (const [i, label] of NAV.entries()) await expect(links.nth(i)).toHaveAttribute("href", NAV_HREF[label]);
     await expect(nav.getByRole("link", { name: "Support" })).toBeVisible();
+    // footer Explore column mirrors the header
+    await expect(page.locator("[data-site-footer] h2", { hasText: "Explore" }).locator("xpath=..").getByRole("link")).toHaveText(NAV);
+    // the most specific item is current: Merch on /shop/merch, Beats on /shop
+    await page.goto("/shop/merch/");
+    await expect(nav.locator('[aria-current="page"]')).toHaveText(["Merch"]);
+    await page.goto("/shop/");
+    await expect(nav.locator('[aria-current="page"]')).toHaveText(["Beats"]);
   }
 });
 
