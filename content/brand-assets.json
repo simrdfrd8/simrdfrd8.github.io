@@ -11,14 +11,6 @@
       "alt": "720M looking down into the camera in a blue cap and round sunglasses, sky behind him; scenes are reflected in both lenses"
     },
     {
-      "id": "720m-card",
-      "stem": "720m/720m-card-4x5",
-      "width": 800,
-      "height": 1000,
-      "approved": true,
-      "alt": "720M in a blue cap and round sunglasses against a blue sky"
-    },
-    {
       "id": "720m-collage-wide",
       "stem": "720m/720m-collage-wide",
       "web": "720m/720m-collage-wide-1200",
@@ -47,14 +39,6 @@
       "webWidth": 975,
       "approved": true,
       "alt": "Close-up of 720M's sunglasses and what they reflect"
-    },
-    {
-      "id": "andrew-bigs-card",
-      "stem": "andrew-bigs/andrew-bigs-card-4x5-fullbody",
-      "width": 800,
-      "height": 1000,
-      "approved": true,
-      "alt": "Andrew Bigs standing in front of a roll-up shutter"
     },
     {
       "id": "dan-perales-card",
@@ -149,6 +133,22 @@
       "publishApproved": true,
       "approvedBy": "user (chat, 2026-10-21)",
       "alt": "Not Däf"
+    },
+    {
+      "id": "720m-thumb",
+      "stem": "720m/720m-thumb-1x1",
+      "width": 400,
+      "height": 400,
+      "approved": true,
+      "alt": "720M"
+    },
+    {
+      "id": "andrew-bigs-thumb",
+      "stem": "andrew-bigs/andrew-bigs-thumb-1x1",
+      "width": 400,
+      "height": 400,
+      "approved": true,
+      "alt": "Andrew Bigs"
     }
   ],
   "logos": {
@@ -160,10 +160,10 @@
   },
   "cards": {
     "720m": [
-      "720m-card"
+      "720m-roster"
     ],
     "andrew-bigs": [
-      "andrew-bigs-card"
+      "andrew-bigs-roster"
     ],
     "dan-perales": [
       "dan-perales-card",
@@ -185,6 +185,8 @@
   },
   "thumbs": {
     "flavorful-croissants": "flavorful-croissants-thumb",
-    "not-daf": "not-daf-thumb"
+    "not-daf": "not-daf-thumb",
+    "720m": "720m-thumb",
+    "andrew-bigs": "andrew-bigs-thumb"
   }
 }
