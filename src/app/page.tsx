@@ -5,10 +5,11 @@ import { artistCardImages } from "@/lib/brand-assets";
 import { listedArtists, CATEGORIES } from "@/lib/catalog";
 import { isPreview } from "@/lib/env";
 import { BrandFilm, type FilmSource } from "@/components/BrandFilm";
+import { CategoryFold } from "@/components/CategoryFold";
 import film from "../../content/film.json";
 
 /**
- * Landing page, kept extremely simple: mark + one line, three plain categories leading to the artists,
+ * Landing page, kept extremely simple: mark + one line, three plain categories that fold open to their artists,
  * one path to merch and beats (Merch first, matching the nav), and a Films placeholder (poster only; the brand film is not final).
  */
 const ROLE: Record<string, string> = { "hip-hop": "Rapper", edm: "DJ", production: "Producer" };
@@ -32,34 +33,47 @@ export default function Home() {
       </header>
 
       <section id="artists" aria-label="Artists" className="px-5 pb-16 sm:px-8">
-        <div className="mx-auto grid max-w-[1120px] gap-px overflow-hidden border border-line bg-line md:grid-cols-3">
+        {/* Without JS every list stays rolled out. */}
+        <noscript>
+          <style>{".cat-panel{visibility:visible!important;grid-template-rows:1fr!important;opacity:1!important}"}</style>
+        </noscript>
+        <div className="mx-auto max-w-[1120px] border-t border-line">
           {CATEGORIES.map((c) => {
             const list = artists.filter((a) => a.category === c.id);
             return (
-              <div key={c.id} className={`${c.shade} flex flex-col bg-ink p-6 md:p-8`} data-shade={c.id}>
-                <div className="mb-5 flex items-center gap-3 border-b border-line pb-4">
-                  {brandLogo(c.id) && <Image src={brandLogo(c.id)!} alt="" width={489} height={473} unoptimized className="h-auto w-9" />}
-                  <h2 className="brand-h text-[22px] tracking-[2px] text-[var(--shade-text)]">{c.label}</h2>
-                </div>
-                <ul className="flex flex-col gap-1">
-                  {list.map((a) => {
-                    const [card] = artistCardImages(a.slug);
-                    return (
-                      <li key={a.slug} id={a.slug} className="scroll-mt-24" data-artist-card={a.slug}>
-                        <Link href={`/artists/${a.slug}`} className="group -mx-2 flex items-center gap-4 rounded-md px-2 py-2.5 transition-colors hover:bg-[var(--shade-tint)] focus-visible:bg-[var(--shade-tint)]">
-                          <span className="relative block size-12 shrink-0 overflow-hidden rounded-full border border-line bg-raised">
-                            {card ? <Image src={card.webp} alt={card.alt} fill sizes="48px" className="object-cover grayscale transition-[filter] group-hover:grayscale-0" data-card-photo /> : <span className="absolute inset-0 bg-[var(--shade-tint)]" aria-hidden="true" />}
-                          </span>
-                          <span className="min-w-0 flex-1">
-                            <b className="block text-lg leading-tight">{a.name}</b>
-                            <span className="text-xs tracking-[1px] text-muted uppercase">{a.cardRole ?? ROLE[c.id]}</span>
-                          </span>
-                          <span aria-hidden="true" className="text-[var(--shade-text)] transition-transform group-hover:translate-x-1">→</span>
-                        </Link>
-                      </li>
-                    );
-                  })}
-                </ul>
+              <div key={c.id} className={`${c.shade} border-b border-line`} data-shade={c.id}>
+                <CategoryFold
+                  id={c.id}
+                  label={c.label}
+                  slugs={list.map((a) => a.slug)}
+                  header={
+                    <>
+                      {brandLogo(c.id) && <Image src={brandLogo(c.id)!} alt="" width={489} height={473} unoptimized className="h-auto w-9 shrink-0" />}
+                      <span className="brand-h flex-1 text-[22px] tracking-[2px] text-[var(--shade-text)]" data-cat-label>{c.label}</span>
+                      <span className="text-xs tracking-[1px] text-muted tabular-nums" data-cat-count>{list.length}</span>
+                    </>
+                  }
+                >
+                  <ul className="grid gap-1 pt-1 pb-6 md:grid-cols-3 md:gap-x-6">
+                    {list.map((a) => {
+                      const [card] = artistCardImages(a.slug);
+                      return (
+                        <li key={a.slug} id={a.slug} className="scroll-mt-24" data-artist-card={a.slug}>
+                          <Link href={`/artists/${a.slug}`} className="group flex items-center gap-4 rounded-md px-2 py-2.5 transition-colors hover:bg-[var(--shade-tint)] focus-visible:bg-[var(--shade-tint)]">
+                            <span className="relative block size-12 shrink-0 overflow-hidden rounded-full border border-line bg-raised">
+                              {card ? <Image src={card.webp} alt={card.alt} fill sizes="48px" className="object-cover grayscale transition-[filter] group-hover:grayscale-0" data-card-photo /> : <span className="absolute inset-0 bg-[var(--shade-tint)]" aria-hidden="true" />}
+                            </span>
+                            <span className="min-w-0 flex-1">
+                              <b className="block text-lg leading-tight">{a.name}</b>
+                              <span className="text-xs tracking-[1px] text-muted uppercase">{a.cardRole ?? ROLE[c.id]}</span>
+                            </span>
+                            <span aria-hidden="true" className="text-[var(--shade-text)] transition-transform group-hover:translate-x-1">→</span>
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </CategoryFold>
               </div>
             );
           })}
