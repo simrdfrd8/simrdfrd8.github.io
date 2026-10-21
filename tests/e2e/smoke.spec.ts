@@ -113,7 +113,7 @@ test("checkout is off: buy buttons read 'Coming soon' and nothing links to Payhi
   await expect(page.locator('[data-checkout="test-mode"]')).toHaveCount(0);
 });
 
-test("checkout is live: MP3 + WAV lease buttons open each beat's Payhip product; Stems + Exclusive stay 'Coming soon'", async ({ page, isMobile }) => {
+test("checkout is live: MP3 + WAV lease buttons open each beat's Payhip product; Stems + Exclusive stay 'Coming soon'", async ({ page }) => {
   test.skip(!CHECKOUT_LIVE, "build has checkout switched off");
   const expected = new Map<string, string>(
     (JSON.parse(readFileSync(path.join(__dirname, "../../content/beats.json"), "utf8")) as { id: string; payhipUrl?: string }[]).map((b) => [b.id, b.payhipUrl ?? ""]),
@@ -189,7 +189,7 @@ test("hierarchy: Baylingual Entertainment sits under Dan Perales", async ({ page
   await expect(page.locator("#merch [data-checkout]")).toHaveCount(0);
 });
 
-test("homepage is simple: mark + one line, three plain categories to the artists, beats and merch, film coming soon", async ({ page }) => {
+test("homepage is simple: mark + one line, three plain categories to the artists, beats and merch, brand film", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator("h1")).toHaveText("Make art with friends.");
   await expect(page.locator("main header p").first()).toHaveText("A San Diego artist collective disguised as a record label: hip-hop, EDM and production.");
@@ -201,11 +201,20 @@ test("homepage is simple: mark + one line, three plain categories to the artists
   expect(await page.locator("[data-shade] > div:first-child img").evaluateAll((els) => els.map((e) => e.getAttribute("src")))).toEqual(["/brand/logo/svg/logo-coral-hiphop.svg", "/brand/logo/svg/logo-acid-edm.svg", "/brand/logo/svg/logo-violet-prod.svg"]);
   await expect(page.locator("a[data-home-beats]")).toHaveAttribute("href", /\/music\/?#buy-beats/);
   await expect(page.locator("a[data-home-merch]")).toHaveAttribute("href", /\/shop\/merch\/?$/);
-  // the brand film is not approved yet: poster + "Coming soon" only, no video anywhere
-  await expect(page.locator("[data-film-slot]")).toHaveAttribute("data-film-state", "coming-soon");
-  await expect(page.locator("[data-film-slot]")).toContainText(/coming soon/i);
-  await expect(page.locator("video, [data-film-play]")).toHaveCount(0);
-  expect(await page.content()).not.toMatch(/brand-film-v\d|preview-only/);
+  // brand film v6 (approved): poster first, nothing loads until click, then the R2 file sized for the screen
+  const slot = page.locator("[data-film-slot]");
+  await expect(slot).toHaveAttribute("data-film-state", "poster");
+  const box = (await slot.boundingBox())!;
+  expect(Math.abs(box.width / box.height - 9 / 16)).toBeLessThan(0.02);
+  await expect(page.locator("video")).toHaveCount(0);
+  await slot.scrollIntoViewIfNeeded();
+  await page.locator("[data-film-play]").click();
+  const v = page.locator("video[data-brand-film]");
+  const narrow = (page.viewportSize()?.width ?? 1280) < 768;
+  await expect(v).toHaveAttribute("src", `https://pub-ddb33632c8d449e28748481ed9cad826.r2.dev/media/film/brand-film-v6-${narrow ? 720 : 1080}.mp4`);
+  await expect(v).toHaveAttribute("preload", "none");
+  expect(await v.evaluate((e: HTMLVideoElement) => [e.controls, e.autoplay, e.playsInline, e.muted])).toEqual([true, false, true, true]);
+  expect(await page.content()).not.toMatch(/preview-only|brand-film-v[1-5]\b/);
   await expect(page.locator("main")).not.toContainText(/persona|same person|\[(link|photo)\]/i);
   await expect(page.locator("body")).not.toContainText(BANNED);
   expect(await page.locator('meta[name="description"], meta[property="og:description"]').evaluateAll((m) => m.map((x) => x.getAttribute("content")).join(" "))).not.toMatch(BANNED);

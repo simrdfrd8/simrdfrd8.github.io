@@ -1,7 +1,20 @@
 {
-  "_note": "Brand film v3 (QA passed Oct 21, 2026). The video plays in the private preview only. Public builds show the poster + 'Coming soon' until Ricky approves the cut (Media confirms) and approved is set true. Never use v1 or v2.",
-  "approved": false,
+  "_note": "Brand film v6, approved as final by Ricky (via Media), Oct 21, 2026. Streams from Cloudflare R2; never commit the mp4s. Phones/narrow screens get the 720 file, desktop the 1080.",
+  "approved": true,
   "title": "Make art with friends: the Flavorful Music brand film",
   "poster": "/media/film/brand-film-poster-9x16.webp",
-  "durationSec": 112
+  "durationSec": 112,
+  "sources": [
+    {
+      "src": "https://pub-ddb33632c8d449e28748481ed9cad826.r2.dev/media/film/brand-film-v6-720.mp4",
+      "media": "(max-width: 767px)",
+      "width": 720,
+      "height": 1280
+    },
+    {
+      "src": "https://pub-ddb33632c8d449e28748481ed9cad826.r2.dev/media/film/brand-film-v6-1080.mp4",
+      "width": 1080,
+      "height": 1920
+    }
+  ]
 }

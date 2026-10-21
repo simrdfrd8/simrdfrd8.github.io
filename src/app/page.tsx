@@ -4,7 +4,7 @@ import { brandLogo } from "@/lib/brand-assets";
 import { artistCardImages } from "@/lib/brand-assets";
 import { listedArtists, CATEGORIES } from "@/lib/catalog";
 import { isPreview } from "@/lib/env";
-import { BrandFilm } from "@/components/BrandFilm";
+import { BrandFilm, type FilmSource } from "@/components/BrandFilm";
 import film from "../../content/film.json";
 
 /**
@@ -16,8 +16,8 @@ const ROLE: Record<string, string> = { "hip-hop": "Rapper", edm: "DJ", productio
 export default function Home() {
   const heroMark = brandLogo("cream");
   const artists = listedArtists();
-  // Film plays only in the private preview until Ricky approves the cut (content/film.json "approved").
-  const filmSrc = isPreview() || film.approved ? (film as { previewSrc?: string }).previewSrc : undefined;
+  // Film plays once approved (content/film.json); the private preview may stage unapproved cuts.
+  const filmSources = film.approved || isPreview() ? (film as { sources?: FilmSource[] }).sources : undefined;
 
   return (
     <>
@@ -91,7 +91,7 @@ export default function Home() {
             <p className="text-xs font-bold tracking-[2px] text-muted uppercase">Film</p>
             <h2 className="brand-h mt-3 text-[clamp(2rem,6vw,44px)] tracking-[2px]">Make art with friends.</h2>
           </div>
-          <BrandFilm src={filmSrc} poster={film.poster} title={film.title} />
+          <BrandFilm sources={filmSources} poster={film.poster} title={film.title} />
         </div>
       </section>
     </>
