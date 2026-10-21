@@ -81,8 +81,9 @@ export default function Home() {
       </section>
 
       <section id="shop" aria-label="Shop" className="px-5 pb-16 sm:px-8">
+        {/* Merch on the left; the music side stacks Beats over Producers (phones: Merch, Beats, Producers). */}
         <div className="mx-auto grid max-w-[1120px] gap-4 md:grid-cols-2">
-          <Link href="/shop/merch" className="group flex items-center justify-between gap-6 border border-line bg-raised p-6 transition-colors hover:border-logo md:p-8" data-home-merch>
+          <Link href="/shop/merch" className="group flex items-center justify-between gap-6 border border-line bg-raised p-6 transition-colors hover:border-logo md:row-span-2 md:p-8" data-home-merch>
             <span>
               <b className="brand-h block text-2xl tracking-[2px]">Merch</b>
               <span className="text-cream-dim">Designed in-house. Coming soon.</span>
@@ -93,6 +94,13 @@ export default function Home() {
             <span>
               <b className="brand-h block text-2xl tracking-[2px]">Beats</b>
               <span className="text-cream-dim">Press play, then license. MP3 $10 · WAV $25.</span>
+            </span>
+            <span aria-hidden="true" className="text-2xl text-[var(--shade-text)] transition-transform group-hover:translate-x-1">→</span>
+          </Link>
+          <Link href="/shop/sample-packs" className="shade-prod group flex items-center justify-between gap-6 border border-line bg-raised p-6 transition-colors hover:border-[var(--shade)] md:p-8" data-home-producers>
+            <span>
+              <b className="brand-h block text-2xl tracking-[2px]">Producers</b>
+              <span className="text-cream-dim">Sample packs for producers. Coming soon.</span>
             </span>
             <span aria-hidden="true" className="text-2xl text-[var(--shade-text)] transition-transform group-hover:translate-x-1">→</span>
           </Link>

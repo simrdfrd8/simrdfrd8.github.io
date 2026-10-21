@@ -5,7 +5,7 @@ import { catalog } from "@/lib/catalog";
 import { siteUrl } from "@/lib/env";
 import { AGREEMENTS } from "@/lib/licenses";
 
-const ROUTES = ["/", "/music", "/artists", "/art", "/video", "/shop", "/shop/merch", "/services", "/support", "/contact", "/licensing"];
+const ROUTES = ["/", "/music", "/artists", "/art", "/video", "/shop", "/shop/merch", "/shop/sample-packs", "/services", "/support", "/contact", "/licensing"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = siteUrl();

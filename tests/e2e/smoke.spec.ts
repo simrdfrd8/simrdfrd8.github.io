@@ -221,7 +221,7 @@ test("homepage is simple: mark + one line, three plain categories to the artists
   await expect(page.locator("a[data-home-beats]")).toHaveAttribute("href", /\/music\/?#buy-beats/);
   await expect(page.locator("a[data-home-merch]")).toHaveAttribute("href", /\/shop\/merch\/?$/);
   // Merch comes before Beats, matching the nav (Artists, Merch, Beats, Contact, Music)
-  expect(await page.locator("#shop a").evaluateAll((els) => els.map((e) => (e.hasAttribute("data-home-merch") ? "merch" : e.hasAttribute("data-home-beats") ? "beats" : "?")))).toEqual(["merch", "beats"]);
+  expect(await page.locator("#shop a").evaluateAll((els) => els.map((e) => (e.hasAttribute("data-home-merch") ? "merch" : e.hasAttribute("data-home-beats") ? "beats" : e.hasAttribute("data-home-producers") ? "producers" : "?")))).toEqual(["merch", "beats", "producers"]);
   const [merchBox, beatsBox] = [(await page.locator("a[data-home-merch]").boundingBox())!, (await page.locator("a[data-home-beats]").boundingBox())!];
   expect(merchBox.y < beatsBox.y - 1 || (Math.abs(merchBox.y - beatsBox.y) <= 1 && merchBox.x < beatsBox.x)).toBe(true);
   // brand film v6 (approved): poster first, nothing loads until click, then the R2 file sized for the screen
