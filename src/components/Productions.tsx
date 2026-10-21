@@ -69,7 +69,7 @@ export function Productions({ tracks, packs = [] }: { tracks: SoundCloudTrack[];
           ? packs.map((p) => <SamplePackCard key={p.id} pack={p} />)
           : [<p key="packs-soon" className="text-cream-dim" data-packs-soon>Sample packs coming soon.</p>]
         : l === "rapper" && getBeats("rapper").length
-          ? [<BeatStore key="beat-store" />]
+          ? [<BeatStore key="beat-store" id="lane-beats" />]
           : tracks.filter((t) => t.audience === l).map((t) => <ProductionCard key={t.id} track={t} />),
   }));
   return <LaneTabs lanes={lanes} />;

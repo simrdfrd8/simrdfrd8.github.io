@@ -25,8 +25,8 @@ describe("WAV masters are purchase-only", () => {
 
   it("beats are listed in the owner's order with no placeholder titles", () => {
     expect(catalog.beats.slice(0, 5).map((b) => b.title)).toEqual(["Deserts", "East County", "Name of Water", "Paino Drums", "DYdrm"]);
-    expect(catalog.beats).toHaveLength(115);
-    expect(new Set(catalog.beats.map((b) => b.id)).size).toBe(115);
+    expect(catalog.beats).toHaveLength(120);
+    expect(new Set(catalog.beats.map((b) => b.id)).size).toBe(120);
     // owner: no held-back vocal beats, remixes or covers
     const titles = catalog.beats.map((b) => b.title.toLowerCase());
     for (const t of ["oldtownremix", "wagon wheel", "cowlagenics", "bay area"]) expect(titles).not.toContain(t);

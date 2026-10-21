@@ -1,0 +1,69 @@
+{
+  "_note": "Self-hosted full-length songs (released free on the old Bandzoogle site). MP3s live on Cloudflare R2 under media/flavorful-croissants/, never in this repo.",
+  "songs": [
+    {
+      "id": "song-aba-aku",
+      "title": "aba aku ft. ricky",
+      "artist": "flavorful-croissants",
+      "src": "https://pub-ddb33632c8d449e28748481ed9cad826.r2.dev/media/flavorful-croissants/aba-aku-ft-ricky.mp3",
+      "durationSec": 211,
+      "released": "bandzoogle"
+    },
+    {
+      "id": "song-blue-like-the-winds",
+      "title": "Blue like the winds",
+      "artist": "flavorful-croissants",
+      "src": "https://pub-ddb33632c8d449e28748481ed9cad826.r2.dev/media/flavorful-croissants/blue-like-the-winds.mp3",
+      "durationSec": 197,
+      "released": "bandzoogle"
+    },
+    {
+      "id": "song-glory",
+      "title": "Glory",
+      "artist": "flavorful-croissants",
+      "src": "https://pub-ddb33632c8d449e28748481ed9cad826.r2.dev/media/flavorful-croissants/glory.mp3",
+      "durationSec": 116,
+      "released": "bandzoogle"
+    },
+    {
+      "id": "song-kevin",
+      "title": "Kevin",
+      "artist": "flavorful-croissants",
+      "src": "https://pub-ddb33632c8d449e28748481ed9cad826.r2.dev/media/flavorful-croissants/kevin.mp3",
+      "durationSec": 154,
+      "released": "bandzoogle"
+    },
+    {
+      "id": "song-laughter-and-shit",
+      "title": "Laughter and shit",
+      "artist": "flavorful-croissants",
+      "src": "https://pub-ddb33632c8d449e28748481ed9cad826.r2.dev/media/flavorful-croissants/laughter-and-shit.mp3",
+      "durationSec": 126,
+      "released": "bandzoogle"
+    },
+    {
+      "id": "song-levi",
+      "title": "Levi",
+      "artist": "flavorful-croissants",
+      "src": "https://pub-ddb33632c8d449e28748481ed9cad826.r2.dev/media/flavorful-croissants/levi.mp3",
+      "durationSec": 201,
+      "released": "bandzoogle"
+    },
+    {
+      "id": "song-louis-xiii",
+      "title": "Louis XIII",
+      "artist": "flavorful-croissants",
+      "src": "https://pub-ddb33632c8d449e28748481ed9cad826.r2.dev/media/flavorful-croissants/louis-xiii.mp3",
+      "durationSec": 172,
+      "released": "bandzoogle"
+    },
+    {
+      "id": "song-raisin",
+      "title": "Raisin",
+      "artist": "flavorful-croissants",
+      "src": "https://pub-ddb33632c8d449e28748481ed9cad826.r2.dev/media/flavorful-croissants/raisin.mp3",
+      "durationSec": 197,
+      "released": "bandzoogle"
+    }
+  ]
+}

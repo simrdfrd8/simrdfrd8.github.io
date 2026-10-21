@@ -5,7 +5,6 @@ import { VideoPlayer } from "@/components/VideoPlayer";
 import { ShowMore } from "@/components/ShowMore";
 import { BeatStore } from "@/components/BeatStore";
 import { SoundCloudEmbed } from "@/components/SoundCloudEmbed";
-import { SoundCloudLinkCard } from "@/components/SoundCloudLinkCard";
 import { getLatest } from "@/lib/soundcloud-latest";
 import { creditLine } from "@/lib/catalog";
 import { PageHeader } from "@/components/PageHeader";
@@ -17,8 +16,9 @@ import { ButtonLink, Section } from "@/components/ui";
 import { JsonLd, releaseLd, trackLd } from "@/lib/jsonld";
 import { Productions } from "@/components/Productions";
 import { CHECKOUT_LIVE } from "@/lib/env";
+import { SongList } from "@/components/SongList";
 
-export const metadata: Metadata = { title: "Music", description: "Stream Flavorful Croissants on Spotify and SoundCloud, and buy downloads, stems and sample packs.", alternates: { canonical: "/music" } };
+export const metadata: Metadata = { title: "Music", description: "Play Flavorful Croissants in full, free, and lease beats. Also on Spotify and SoundCloud.", alternates: { canonical: "/music" } };
 
 /** ISR: the "Latest on SoundCloud" list refreshes from public SoundCloud data at most every 6 hours. */
 export const revalidate = 21600;
@@ -44,8 +44,12 @@ export default async function MusicPage() {
   return (
     <>
       <PageHeader kicker="Stream free · buy what you love" title="Music" accent="#F8E8D2">
-        Every song plays in full, free. Albums and singles on Spotify, plus a hand-picked listening room of SoundCloud cuts straight from the workshop.
+        Every song plays in full, free, right here. Press play and it keeps going while you browse.
       </PageHeader>
+
+      <Section id="songs" kicker="Flavorful Croissants · full length" title="Songs">
+        <SongList id="music-songs" />
+      </Section>
 
       {col && (
         <Section id="fc-x-720m" kicker={col.kicker} title={col.title} tone="raised" action={<ButtonLink href="/artists/720m" variant="secondary">720M</ButtonLink>}>
@@ -76,21 +80,18 @@ export default async function MusicPage() {
           {latest.tracks.map((t) => {
             const sub = [new Date(t.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }), creditLine({ artist: "flavorful-croissants", artists: t.artists, collaborators: t.collaborators })].join(" · ");
             return (
-              <li key={t.url} className="flex flex-col gap-3" data-latest={t.url} data-date={t.date}>
-                {t.embeddable ? (
-                  <SoundCloudEmbed url={t.url} scId={t.scId} title={t.displayTitle} artworkUrl={t.artworkUrl} subtitle={sub} verified />
-                ) : (
-                  <SoundCloudLinkCard url={t.url} title={t.displayTitle} subtitle={sub} artworkUrl={t.artworkUrl} />
-                )}
+              <li key={t.url} className="flex flex-col gap-3 border-t border-line pt-4" data-latest={t.url} data-date={t.date}>
+                
                 <div>
                   <p className="font-semibold">{t.displayTitle}</p>
                   <p className="text-sm text-muted">{sub}</p>
+                  <SoundCloudEmbed url={t.url} title={t.displayTitle} verified />
                 </div>
               </li>
             );
           })}
         </ol>
-        <p className="mt-8 text-sm text-muted">Pulled from the public SoundCloud profile and RSS feed, newest first. Some uploads have embedding turned off, so they open on SoundCloud.</p>
+        <p className="mt-8 text-sm text-muted">Pulled from the public SoundCloud profile and RSS feed, newest first. They open on SoundCloud.</p>
       </Section>
 
       <Section
@@ -104,7 +105,7 @@ export default async function MusicPage() {
           </ButtonLink>
         }
       >
-        <SpotifyEmbed kind="artist" id={FC_SPOTIFY} title="Flavorful Croissants: popular tracks" compact={false} facade={{ label: "Play Flavorful Croissants' most played", note: "Loads the official Spotify player. Spotify keeps this list current." }} />
+        <p className="text-cream-dim">Spotify keeps this list current, so it stays a link. <SpotifyEmbed kind="artist" id={FC_SPOTIFY} title="Flavorful Croissants: most played" /></p>
       </Section>
 
       {beats.length > 0 && (
@@ -114,7 +115,7 @@ export default async function MusicPage() {
           title="Buy beats"
           action={<ButtonLink href="/shop?lane=rapper#lanes" variant="secondary">See all beats</ButtonLink>}
         >
-          <BeatStore />
+          <BeatStore id="music-beats" />
           <p className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-sm">
             <Link href="/shop?lane=dj#lanes" className="underline decoration-line-strong underline-offset-4 hover:text-cream">DJ edits →</Link>
             <Link href="/shop?lane=producer#lanes" className="underline decoration-line-strong underline-offset-4 hover:text-cream">Sample packs →</Link>
@@ -173,7 +174,7 @@ export default async function MusicPage() {
             </div>
           </details>
         )}
-        <p className="mt-8 text-sm text-muted">Full tracks stream through the official SoundCloud player, which loads when you press play. Track notes come from public SoundCloud metadata.</p>
+        <p className="mt-8 text-sm text-muted">These open on SoundCloud. Track notes come from public SoundCloud metadata.</p>
         <JsonLd data={featured.map((t) => trackLd(t, artistName(t.artist)))} />
       </Section>
 

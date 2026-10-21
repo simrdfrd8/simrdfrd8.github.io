@@ -75,14 +75,18 @@ test("nav stays at 5 items and support is one tap away", async ({ page, isMobile
   }
 });
 
-test("SoundCloud facade loads the official player without autoplay", async ({ page }) => {
-  await page.goto("/music");
-  const facade = page.locator('[data-facade="soundcloud"]').first();
-  await facade.scrollIntoViewIfNeeded();
-  await facade.click();
-  const frame = page.locator('iframe[src*="w.soundcloud.com/player"]').first();
-  await expect(frame).toHaveCount(1);
-  expect(await frame.getAttribute("src")).toContain("auto_play=false");
+test("music: self-hosted songs on the shared list player from R2, no iframes, no autoplay", async ({ page }) => {
+  await page.goto("/music/");
+  await expect(page.locator("iframe")).toHaveCount(0);
+  const songs = page.locator('[data-track-list="music-songs"] [data-track-row]');
+  await expect(songs).toHaveCount(8);
+  await expect(page.locator("[data-track-list] .tl-title")).not.toContainText([/Space 22|is killing me/i]);
+  const audio = page.locator("audio[data-global-player]");
+  expect(await audio.evaluate((a: HTMLAudioElement) => a.paused && !a.autoplay)).toBe(true);
+  await songs.first().locator("[data-row-play]").click();
+  await expect(audio).toHaveAttribute("src", "https://pub-ddb33632c8d449e28748481ed9cad826.r2.dev/media/flavorful-croissants/aba-aku-ft-ricky.mp3");
+  await expect(page.locator("[data-mini-title]")).toHaveText("aba aku ft. ricky");
+  await expect(page.locator('a[data-listen-link="soundcloud"]').first()).toHaveAttribute("target", "_blank");
 });
 
 test("video page has no videos in the public build yet", async ({ page }) => {
@@ -109,24 +113,27 @@ test("checkout is off: buy buttons read 'Coming soon' and nothing links to Payhi
   await expect(page.locator('[data-checkout="test-mode"]')).toHaveCount(0);
 });
 
-test("checkout is live: MP3 + WAV lease buttons open each beat's Payhip product; Stems + Exclusive stay 'Coming soon'", async ({ page }) => {
+test("checkout is live: MP3 + WAV lease buttons open each beat's Payhip product; Stems + Exclusive stay 'Coming soon'", async ({ page, isMobile }) => {
   test.skip(!CHECKOUT_LIVE, "build has checkout switched off");
   const expected = new Map<string, string>(
     (JSON.parse(readFileSync(path.join(__dirname, "../../content/beats.json"), "utf8")) as { id: string; payhipUrl?: string }[]).map((b) => [b.id, b.payhipUrl ?? ""]),
   );
   await page.goto("/music/");
-  const cards = page.locator("[data-beat-card]");
-  const n = await cards.count();
+  const rows = page.locator("#buy-beats [data-beat-card]");
+  const n = await rows.count();
   expect(n).toBeGreaterThan(0);
   for (let i = 0; i < n; i++) {
-    const card = cards.nth(i);
-    const id = (await card.getAttribute("data-beat-card"))!;
-    const hrefs = await card.locator('a[href*="payhip.com"]').evaluateAll((as) => as.map((a) => a.getAttribute("href")));
-    // the beat's own Payhip product, on both the MP3 and the WAV lease button
+    const id = (await rows.nth(i).getAttribute("data-beat-card"))!;
     expect(expected.get(id), id).toMatch(/^https:\/\/payhip\.com\/b\/[A-Za-z0-9]+$/);
-    expect(hrefs, id).toEqual([expected.get(id), expected.get(id)]);
-    await expect(card.locator('[data-checkout="coming-soon"]')).toHaveCount(2);
+    // the beat's own Payhip product on the MP3 + WAV buttons (inline on desktop, and in the closed chooser)
+    const hrefs = await rows.nth(i).locator('a[href*="payhip.com"]').evaluateAll((as) => as.map((a) => a.getAttribute("href")));
+    expect(new Set(hrefs), id).toEqual(new Set([expected.get(id)]));
+    expect(hrefs.length, id).toBeGreaterThanOrEqual(2);
   }
+  await rows.first().getByRole("button", { name: /Buy \/ License/ }).click();
+  const dialog = page.getByRole("dialog");
+  await expect(dialog.locator('a[href^="https://payhip.com/b/"]')).toHaveCount(2);
+  await expect(dialog.locator('[data-checkout="coming-soon"]')).toHaveCount(2);
   const html = await page.content();
   expect(html).not.toMatch(/payhip\.com\/(product|edit|account|dashboard)|\.wav\b/i);
 });
@@ -182,35 +189,26 @@ test("hierarchy: Baylingual Entertainment sits under Dan Perales", async ({ page
   await expect(page.locator("#merch [data-checkout]")).toHaveCount(0);
 });
 
-test("homepage follows Brandy's structure: hero, manifesto, three shades, five artists, shop, contact", async ({ page }) => {
+test("homepage is simple: mark + one line, three plain categories to the artists, beats and merch, film coming soon", async ({ page }) => {
   await page.goto("/");
-  await expect(page.locator("h1")).toHaveText(/Make art\s*with friends\./);
-  const ids = await page.locator("main section[id]").evaluateAll((els) => els.map((e) => e.id));
-  expect(ids).toEqual(["about", "shades", "crew", "listen", "who", "shop", "contact"]);
-  await expect(page.locator("[data-shade] h3")).toHaveText(["Hip-Hop", "EDM", "Production"]);
-  const cards = page.locator("[data-artist-card]");
-  expect(await cards.evaluateAll((els) => els.map((e) => e.getAttribute("data-artist-card")))).toEqual(["720m", "dan-perales", "andrew-bigs", "not-daf", "flavorful-croissants"]);
-  await expect(page.locator('[id="720m"]')).toContainText("Meet 720M →");
-  // Brandy's approved finals: card photos (Dan has a hover crossfade), nav + hero + shade logos
-  for (const slug of ["720m", "dan-perales", "andrew-bigs", "flavorful-croissants"]) await expect(page.locator(`[data-artist-card="${slug}"] img[data-card-photo]`)).toHaveCount(1);
-  await expect(page.locator('[data-artist-card="dan-perales"] img[data-card-photo-alt]')).toHaveCount(1);
-  await expect(page.locator(`[data-artist-card="not-daf"] img`)).toHaveCount(0);
+  await expect(page.locator("h1")).toHaveText("Make art with friends.");
+  await expect(page.locator("main header p").first()).toHaveText("A San Diego artist collective disguised as a record label: hip-hop, EDM and production.");
+  await expect(page.locator("[data-shade] h2")).toHaveText(["Hip-Hop", "EDM", "Production"]);
+  expect(await page.locator("[data-artist-card]").evaluateAll((els) => els.map((e) => e.getAttribute("data-artist-card")))).toEqual(["720m", "dan-perales", "andrew-bigs", "not-daf", "flavorful-croissants"]);
+  await expect(page.locator('[data-artist-card="not-daf"] img')).toHaveCount(0);
   await expect(page.locator("header [data-wordmark] img").first()).toHaveAttribute("src", "/brand/logo/svg/logo-text.svg");
   await expect(page.locator("[data-hero-mark] img")).toHaveAttribute("src", "/brand/logo/svg/logo-cream.svg");
-  expect(await page.locator("[data-shade] img").evaluateAll((els) => els.map((e) => e.getAttribute("src")))).toEqual(["/brand/logo/svg/logo-coral-hiphop.svg", "/brand/logo/svg/logo-acid-edm.svg", "/brand/logo/svg/logo-violet-prod.svg"]);
-  for (const img of await page.locator("[data-artist-card] img, [data-hero-mark] img").all()) {
-    await img.scrollIntoViewIfNeeded();
-    await expect.poll(() => img.evaluate((e) => (e as HTMLImageElement).complete && (e as HTMLImageElement).naturalWidth > 0)).toBe(true);
-  }
-  await expect(page.locator("#andrew-bigs a[href='https://open.spotify.com/artist/53hggKXepZN14WR83U8g2T']")).toBeVisible();
-  await expect(page.locator("#shop [data-home-beats] a[href='/music/#buy-beats']")).toBeVisible();
-  await expect(page.locator("main")).not.toContainText(/\[(link|photo|artist art|pack name)\]/);
-  await expect(page.locator("main header p").first()).toContainText("disguised as a record label: EDM, hip-hop and production. Made together, owned end to end.");
-  await expect(page.locator("#about")).toContainText("Our sound comes in three shades: EDM, hip-hop and production.");
-  // no adjectives before the categories, anywhere on the page or in its metadata
+  expect(await page.locator("[data-shade] > div:first-child img").evaluateAll((els) => els.map((e) => e.getAttribute("src")))).toEqual(["/brand/logo/svg/logo-coral-hiphop.svg", "/brand/logo/svg/logo-acid-edm.svg", "/brand/logo/svg/logo-violet-prod.svg"]);
+  await expect(page.locator("a[data-home-beats]")).toHaveAttribute("href", /\/music\/?#buy-beats/);
+  await expect(page.locator("a[data-home-merch]")).toHaveAttribute("href", /\/shop\/merch\/?$/);
+  // the brand film is not approved yet: poster + "Coming soon" only, no video anywhere
+  await expect(page.locator("[data-film-slot]")).toHaveAttribute("data-film-state", "coming-soon");
+  await expect(page.locator("[data-film-slot]")).toContainText(/coming soon/i);
+  await expect(page.locator("video, [data-film-play]")).toHaveCount(0);
+  expect(await page.content()).not.toMatch(/brand-film-v\d|preview-only/);
+  await expect(page.locator("main")).not.toContainText(/persona|same person|\[(link|photo)\]/i);
   await expect(page.locator("body")).not.toContainText(BANNED);
   expect(await page.locator('meta[name="description"], meta[property="og:description"]').evaluateAll((m) => m.map((x) => x.getAttribute("content")).join(" "))).not.toMatch(BANNED);
-  await expect(page.locator("[data-home-beats]")).toContainText("Beats for DJs and rappers from Flavorful Croissants. Press play, find your sound, then license it.");
 });
 
 test("site-wide footer: Make art with friends + Friends row", async ({ page }) => {
@@ -220,13 +218,13 @@ test("site-wide footer: Make art with friends + Friends row", async ({ page }) =
     await expect(footer).toContainText("Make art with friends.");
     await expect(footer).toContainText("Flavorful Music is a DBA of Baylingue LLC");
     const friends = footer.getByRole("navigation", { name: "Friends" });
-    await expect(friends.locator(".fr-name")).toHaveText(["Dan Perales", "Andrew Bigs", "Flavorful Croissants", "James Eagle"]);
+    await expect(friends.locator(".fr-name")).toHaveText(["James Eagle"]);
     const ext = friends.locator("a.fr-link");
     for (const a of await ext.all()) {
       await expect(a).toHaveAttribute("target", "_blank");
       await expect(a).toHaveAttribute("rel", /noopener/);
     }
-    await expect(friends.getByRole("link", { name: "Dan Perales", exact: true })).toHaveAttribute("href", "/#dan-perales");
+    expect(await ext.evaluateAll((as) => as.map((a) => a.getAttribute("href")))).toEqual(["https://open.spotify.com/artist/3wwS8vlx9xmeH9fRrVjAgc", "https://www.instagram.com/jamesb0p/"]);
   }
 });
 
@@ -259,10 +257,10 @@ test("720M page: bio verbatim and an accessible Look-closer zoom (tap, keyboard)
   expect(box!.width).toBeGreaterThan(page.viewportSize()!.width * (isMobile ? 0.95 : 0.4));
 });
 
-test("music page order: FC × 720M, Latest, Most played, Buy beats", async ({ page }) => {
+test("music page order: Songs, FC × 720M, Latest, Most played, Buy beats", async ({ page }) => {
   await page.goto("/music");
   const ids = await page.locator("main section[id]").evaluateAll((els) => els.map((e) => e.id));
-  expect(ids.slice(0, 4)).toEqual(["fc-x-720m", "latest", "most-played", "buy-beats"]);
+  expect(ids.slice(0, 5)).toEqual(["songs", "fc-x-720m", "latest", "most-played", "buy-beats"]);
   // FC × 720M highlight: every track credited to both, no iframes until clicked
   const hi = page.locator("#fc-x-720m");
   await expect(hi).toContainText("720M × Flavorful Croissants");
@@ -288,83 +286,69 @@ test("music page order: FC × 720M, Latest, Most played, Buy beats", async ({ pa
   await expect(mp.getByRole("link", { name: /Follow on Spotify/ })).toHaveAttribute("href", /7HVJPuRrvPJmyt0s5Rnvb0/);
 });
 
-test("buy beats: real beats, full player, licenses coming soon, no WAV anywhere", async ({ page }) => {
+test("buy beats: one minimal list, global player, licenses, no WAV anywhere", async ({ page, isMobile }) => {
   const requested: string[] = [];
   page.on("request", (r) => requested.push(r.url()));
-  await page.goto("/music");
+  await page.goto("/music/");
   const bb = page.locator("#buy-beats");
-  const titles = bb.locator("[data-beat-card] h3");
-  await expect(titles).toHaveCount(13); // featured + 12
-  expect((await titles.allTextContents()).slice(0, 5)).toEqual(["Deserts", "East County", "Name of Water", "Paino Drums", "DYdrm"]);
-  await expect(bb.locator("[data-beat-card=deserts]")).toHaveAttribute("data-wide", "true");
-  await expect(bb.locator("[data-beat-card=dydrm] [data-heard-on]")).toContainText("720M × Flavorful Croissants");
-  const tiers = bb.locator("[data-beat-card=deserts] [data-lease-tiers] li");
-  await expect(tiers).toHaveText([/MP3 lease\s*\$10/, /WAV lease\s*\$25/, /Stems lease\s*\$50/, /Exclusive rights\s*\$500/]);
-  await expect(bb.locator("[data-beat-card=deserts]").getByRole("button", { name: "Buy / License · from $10" })).toBeVisible();
-  await expect(bb.locator("[data-beat-browser] [data-beat-card]").first().getByRole("button", { name: "Buy / License · from $10" })).toBeVisible();
+  const rows = bb.locator("[data-track-row]");
+  await expect(rows).toHaveCount(25);
+  expect((await bb.locator("[data-track-row] .tl-title").allTextContents()).slice(0, 5).map((t) => t.replace(/Featured$/, "").trim())).toEqual(["Deserts", "East County", "Name of Water", "Paino Drums", "DYdrm"]);
+  await expect(bb.locator("[data-track-count]")).toHaveText("120 beats");
   await expect(bb).not.toContainText("$100");
   await expect(bb).not.toContainText(/by inquiry|Unlimited license/i);
-  const audio = bb.locator("[data-beat-card=east-county] audio");
-  await expect(audio).toHaveAttribute("src", `${MEDIA_BASE}/media/beat-east-county/audio.mp3`);
-  await expect(audio).toHaveAttribute("preload", "none");
-  expect(await audio.evaluate((a: HTMLAudioElement) => a.autoplay)).toBe(false);
+  if (!isMobile) await expect(bb.locator("[data-beat-card=deserts]")).toContainText(/MP3 \$10.*WAV \$25/s);
   await bb.locator("[data-beat-card=east-county]").getByRole("button", { name: /Buy \/ License/ }).click();
   const chooser = page.getByRole("dialog");
   await expect(chooser).toContainText("MP3 lease");
   const soon = chooser.locator('[data-checkout="coming-soon"]');
   if (CHECKOUT_LIVE) {
-    // MP3 + WAV leases open the beat's Payhip product; Stems + Exclusive stay "Coming soon" until stems are delivered.
-    const links = chooser.locator('a[href^="https://payhip.com/b/"]');
-    await expect(links).toHaveCount(2);
+    await expect(chooser.locator('a[href^="https://payhip.com/b/"]')).toHaveCount(2);
     await expect(soon).toHaveCount(2);
   } else {
     await expect(soon.first()).toHaveText("Coming soon");
-    await expect(soon.first()).toBeDisabled();
     await expect(chooser.locator('a[href*="payhip"]')).toHaveCount(0);
   }
   await page.keyboard.press("Escape");
+  const audio = page.locator("audio[data-global-player]");
+  await expect(audio).toHaveAttribute("preload", "none");
+  expect(await audio.evaluate((a: HTMLAudioElement) => a.autoplay)).toBe(false);
+  await bb.locator("[data-beat-card=east-county] [data-row-play]").click();
+  await expect(audio).toHaveAttribute("src", `${MEDIA_BASE}/media/beat-east-county/audio.mp3`);
+  await expect(bb.locator("[data-beat-card=east-county]")).toHaveAttribute("data-active", "true");
+  await expect(page.locator("[data-mini-title]")).toHaveText("East County");
   await expect(bb.getByRole("link", { name: "See all beats" })).toHaveAttribute("href", /lane=rapper/);
-  await expect(bb.getByRole("link", { name: /DJ edits/ })).toHaveAttribute("href", /lane=dj/);
-  await expect(bb.getByRole("link", { name: /Sample packs/ })).toHaveAttribute("href", /lane=producer/);
   for (const route of ["/music", "/shop"]) {
     await page.goto(route);
-    const html = await page.content();
-    expect(html).not.toMatch(/\.(wav|aiff?|flac)\b/i);
+    expect(await page.content()).not.toMatch(/\.(wav|aiff?|flac)\b/i);
   }
   expect(requested.filter((u) => /\.(wav|aiff?|flac)(\?|$)/i.test(u))).toEqual([]);
 });
 
-test("beat catalog: search, BPM and key filters, load more", async ({ page }) => {
-  await page.goto("/music");
-  const browser = page.locator("#buy-beats [data-beat-browser]");
-  const cards = browser.locator("[data-beat-card]");
-  await expect(cards).toHaveCount(12);
-  await expect(browser.locator("[data-beat-count]")).toHaveText("114 beats");
-  await browser.getByRole("button", { name: /Load 12 more/ }).click();
-  await expect(cards).toHaveCount(24);
-  await browser.getByLabel("Search beats").fill("paino");
-  await expect(cards).toHaveCount(1);
-  await expect(cards.first().locator("h3")).toHaveText("Paino Drums");
-  await browser.getByLabel("Search beats").fill("");
-  await browser.getByLabel("BPM").selectOption("90-109");
-  await expect(browser.locator("[data-beat-count]")).not.toHaveText("114 beats");
-  await expect.poll(async () => (await cards.evaluateAll((els) => els.map((e) => Number(e.getAttribute("data-bpm"))))).every((n) => n >= 90 && n < 110)).toBe(true);
-  expect(await cards.count()).toBeGreaterThan(0);
-  await browser.getByLabel("BPM").selectOption("");
-  await browser.getByLabel("Key").selectOption("A minor");
-  await expect.poll(async () => (await cards.evaluateAll((els) => els.map((e) => e.getAttribute("data-key")))).every((k) => k === "A minor")).toBe(true);
-  expect(await cards.count()).toBeGreaterThan(0);
-  await browser.getByLabel("Search beats").fill("zzzz-none");
-  await expect(browser).toContainText("No beats match that.");
+test("beat list: search, sort, show more", async ({ page }) => {
+  await page.goto("/music/");
+  const list = page.locator('[data-track-list="music-beats"]');
+  const rows = list.locator("[data-track-row]");
+  await expect(rows).toHaveCount(25);
+  await list.getByRole("button", { name: /Show \d+ more/ }).click();
+  await expect(rows).toHaveCount(50);
+  await list.getByLabel("Search beats").fill("paino");
+  await expect(rows).toHaveCount(1);
+  await expect(rows.first().locator(".tl-title")).toHaveText("Paino Drums");
+  await list.getByLabel("Search beats").fill("");
+  await list.getByLabel("Sort").selectOption("bpm-asc");
+  await expect.poll(async () => { const b = (await rows.evaluateAll((els) => els.map((e) => Number(e.getAttribute("data-bpm"))))).filter((n) => n > 0); return b.every((n, i) => i === 0 || n >= b[i - 1]); }).toBe(true);
+  await list.getByLabel("Search beats").fill("zzzz-none");
+  await expect(list).toContainText("Nothing matches that.");
 });
 
 test("shop For Rappers shows only the real beats", async ({ page }) => {
   await page.goto("/shop?lane=rapper#lanes");
   const panel = page.getByRole("tabpanel");
-  const titles = panel.locator("[data-beat-card] h3");
-  await expect(titles).toHaveCount(13);
-  expect((await titles.allTextContents()).slice(0, 5)).toEqual(["Deserts", "East County", "Name of Water", "Paino Drums", "DYdrm"]);
-  await expect(page.getByRole("tab", { name: /For Rappers/ })).toContainText("115");
+  const titles = panel.locator("[data-track-row] .tl-title");
+  await expect(titles).toHaveCount(25);
+  expect((await titles.allTextContents()).slice(0, 5).map((t) => t.replace(/Featured$/, "").trim())).toEqual(["Deserts", "East County", "Name of Water", "Paino Drums", "DYdrm"]);
+  await expect(page.getByRole("tab", { name: /For Rappers/ })).toContainText("120");
 });
 
 test("license page: comparison table matches the contracts, each tier links to its full agreement", async ({ page, request }) => {
@@ -416,14 +400,13 @@ test("license page: comparison table matches the contracts, each tier links to i
 });
 
 test("beat tiers link to their agreements", async ({ page }) => {
-  await page.goto("/music");
-  const tiers = page.locator("#buy-beats [data-beat-card=deserts] [data-lease-tiers] a[data-agreement-link]");
-  await expect(tiers).toHaveCount(4);
-  expect(await tiers.evaluateAll((as) => as.map((a) => a.getAttribute("href")))).toEqual(["/licensing/mp3-lease/", "/licensing/wav-lease/", "/licensing/stems-lease/", "/licensing/exclusive-rights/"]);
+  await page.goto("/music/");
   await page.locator("#buy-beats [data-beat-card=deserts]").getByRole("button", { name: /Buy \/ License/ }).click();
   const dialog = page.getByRole("dialog");
   await expect(dialog).toContainText("2 years · 50,000 streams");
-  await expect(dialog.locator("a[data-agreement-link]")).toHaveCount(4);
+  const links = dialog.locator("a[data-agreement-link]");
+  await expect(links).toHaveCount(4);
+  expect(await links.evaluateAll((as) => as.map((a) => a.getAttribute("href")))).toEqual(["/licensing/mp3-lease/", "/licensing/wav-lease/", "/licensing/stems-lease/", "/licensing/exclusive-rights/"]);
 });
 
 test("contact is a mailto link with a prefilled subject per inquiry type", async ({ page }) => {
@@ -439,26 +422,15 @@ test("contact is a mailto link with a prefilled subject per inquiry type", async
   expect(new Set(mails)).toEqual(new Set(["mailto:ricky@flavorfulmusic.com"]));
 });
 
-test("beat audio and peaks load from the external media base, never from the site", async ({ page }) => {
-  const media: { url: string; status: number }[] = [];
-  page.on("response", (r) => { if (/\/media\/beat-/.test(r.url())) media.push({ url: r.url(), status: r.status() }); });
+test("beat audio loads from the external media base, never from the site", async ({ page }) => {
   await page.goto("/music/");
-  const card = page.locator("#buy-beats [data-beat-card=deserts]");
-  await card.scrollIntoViewIfNeeded();
-  await expect.poll(() => media.filter((m) => m.url.endsWith("/peaks.json") && m.status === 200).length, { timeout: 10_000 }).toBeGreaterThan(0);
-  const audio = card.locator("audio");
+  await page.locator("#buy-beats [data-beat-card=deserts] [data-row-play]").click();
+  const audio = page.locator("audio[data-global-player]");
   await expect(audio).toHaveAttribute("src", `${MEDIA_BASE}/media/beat-deserts/audio.mp3`);
-  const ok = await audio.evaluate(async (a: HTMLAudioElement) => {
-    a.preload = "metadata";
-    a.load();
-    await new Promise<void>((res, rej) => { a.addEventListener("loadedmetadata", () => res(), { once: true }); a.addEventListener("error", () => rej(new Error("audio error")), { once: true }); setTimeout(() => rej(new Error("timeout")), 10_000); });
-    return a.duration;
-  });
-  expect(ok).toBeGreaterThan(60);
-  for (const m of media) expect(m.url.startsWith(MEDIA_BASE)).toBe(true);
+  await expect.poll(() => audio.evaluate((a: HTMLAudioElement) => (Number.isFinite(a.duration) ? a.duration : 0)), { timeout: 15000 }).toBeGreaterThan(60);
   const site = new URL(page.url()).origin;
   expect((await page.request.get(`${site}/media/beat-deserts/audio.mp3`)).status()).toBe(404);
-  expect((await page.request.get(`${site}/media/beat-deserts/peaks.json`)).status()).toBe(404);
+  expect((await page.request.get(`${site}/media/flavorful-croissants/glory.mp3`)).status()).toBe(404);
 });
 
 test("old /artists/baylingual URL redirects with a static meta refresh", async ({ page }) => {
@@ -498,4 +470,21 @@ test("artist titles never break mid-word and fit the viewport", async ({ page })
 test("HOTDO G shows the approved copy in the shop", async ({ page }) => {
   await page.goto("/shop/merch/");
   await expect(page.locator('[data-product="merch-hotdog-tee-white"] h3')).toHaveText("HOTDO G Tee");
+});
+
+test("global player: plays down the list, active row, keyboard, survives route changes", async ({ page }) => {
+  await page.goto("/music/");
+  const list = page.locator('[data-track-list="music-songs"]');
+  await list.locator("[data-row-play]").first().click();
+  const mini = page.getByRole("region", { name: "Audio player" });
+  await expect(mini.locator("[data-mini-title]")).toHaveText("aba aku ft. ricky");
+  await expect(list.locator("[data-track-row]").first()).toHaveAttribute("data-active", "true");
+  await mini.getByRole("button", { name: "Next track" }).click();
+  await expect(mini.locator("[data-mini-title]")).toHaveText("Blue like the winds");
+  await expect(list.locator("[data-track-row]").nth(1)).toHaveAttribute("data-active", "true");
+  await mini.getByRole("button", { name: "Previous track" }).click();
+  await expect(mini.locator("[data-mini-title]")).toHaveText("aba aku ft. ricky");
+  await page.locator('a[href^="/shop"]:visible').last().click();
+  await expect(page).toHaveURL(/\/shop/);
+  await expect(mini.locator("[data-mini-title]")).toHaveText("aba aku ft. ricky");
 });

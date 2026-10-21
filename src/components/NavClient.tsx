@@ -59,7 +59,7 @@ export function MobileMenu({ primary, secondary }: { primary: Item[]; secondary:
         aria-expanded={open}
         aria-controls="mobile-menu"
         onClick={() => setOpen((o) => !o)}
-        className="kicker flex h-10 items-center gap-2 rounded-full border border-line-strong px-4 text-cream"
+        className="kicker flex h-10 shrink-0 items-center gap-2 rounded-full border border-line-strong px-3 text-cream min-[360px]:px-4"
       >
         {open ? "Close" : "Menu"}
       </button>
@@ -100,9 +100,11 @@ export function MobileSupportButton() {
   return (
     <Link
       href="/support"
-      className="fixed right-4 bottom-[max(1rem,env(safe-area-inset-bottom))] z-40 inline-flex h-12 items-center gap-2 rounded-full bg-hot px-5 font-semibold text-ink shadow-[0_10px_30px_-8px_rgba(255,122,89,0.7)] md:hidden"
+      data-mobile-support
+      aria-label="Support"
+      className="fixed right-3 bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-40 inline-flex size-11 items-center justify-center rounded-full bg-hot text-ink shadow-[0_8px_22px_-8px_rgba(255,122,89,0.7)] md:hidden"
     >
-      <Heart /> Support
+      <Heart />
     </Link>
   );
 }

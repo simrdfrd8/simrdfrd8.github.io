@@ -1,0 +1,7 @@
+{
+  "_note": "Brand film v3 (QA passed Oct 21, 2026). The video plays in the private preview only. Public builds show the poster + 'Coming soon' until Ricky approves the cut (Media confirms) and approved is set true. Never use v1 or v2.",
+  "approved": false,
+  "title": "Make art with friends: the Flavorful Music brand film",
+  "poster": "/media/film/brand-film-poster-9x16.webp",
+  "durationSec": 112
+}

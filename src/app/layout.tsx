@@ -5,6 +5,8 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { MobileSupportButton } from "@/components/NavClient";
 import { Analytics } from "@/components/Analytics";
+import { PlayerProvider } from "@/components/player/PlayerProvider";
+import { MiniPlayer } from "@/components/player/MiniPlayer";
 import { catalog } from "@/lib/catalog";
 import { isPreview, siteUrl } from "@/lib/env";
 import { JsonLd, orgLd } from "@/lib/jsonld";
@@ -36,12 +38,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a href="#main" className="sr-only z-[70] rounded-full bg-cream px-4 py-2 text-ink focus:not-sr-only focus:fixed focus:top-3 focus:left-3">
           Skip to content
         </a>
+        <PlayerProvider>
         <SiteHeader />
         <main id="main" tabIndex={-1} className="outline-none">
           {children}
         </main>
         <SiteFooter />
         <MobileSupportButton />
+        <MiniPlayer />
+        </PlayerProvider>
         <JsonLd data={orgLd(site.name, site.description, site.socials.filter((s) => s.verified).map((s) => s.url))} />
         <Analytics />
       </body>

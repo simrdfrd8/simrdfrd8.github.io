@@ -99,7 +99,7 @@ export function Artist720mIntro({ artist }: { artist: Artist }) {
       <div className="border-t border-line px-5 py-10 sm:px-8">
         <div className="mx-auto flex max-w-[1120px] items-center gap-6">
           <ShadeBar className="!w-16" />
-          <Link href="/#crew" className="text-[13px] font-semibold tracking-[2px] text-hiphop uppercase hover:underline">
+          <Link href="/#artists" className="text-[13px] font-semibold tracking-[2px] text-hiphop uppercase hover:underline">
             ← All artists
           </Link>
         </div>

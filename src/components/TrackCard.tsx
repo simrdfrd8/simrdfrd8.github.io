@@ -4,7 +4,6 @@ import { formatPrice, productsFor } from "@/lib/catalog/filters";
 import { artistName, creditLine, getProducts, supportProduct, trackTitle } from "@/lib/catalog";
 import { SoundCloudEmbed } from "./SoundCloudEmbed";
 import { SpotifyEmbed } from "./SpotifyEmbed";
-import { SoundCloudLinkCard } from "./SoundCloudLinkCard";
 import { CheckoutButton } from "./CheckoutButton";
 import { formatDuration, yearOf } from "@/lib/format";
 
@@ -41,18 +40,12 @@ export function TrackActions({ productIds, artist, compact }: { productIds: stri
 export function TrackCard({ track, size = "md" }: { track: SoundCloudTrack; size?: "md" | "lg" }) {
   const meta = [track.kind === "playlist" ? "Playlist" : track.genre, yearOf(track.date), formatDuration(track.durationSec)].filter(Boolean).join(" · ");
   return (
-    <article className="flex flex-col gap-4" data-track={track.id} data-credit={track.credit}>
-      {track.embeddable ? (
-        <SoundCloudEmbed url={track.url} scId={track.scId} kind={track.kind} title={trackTitle(track)} artworkUrl={track.artworkUrl} subtitle={meta} verified={track.verified} size={size} />
-      ) : (
-        <SoundCloudLinkCard url={track.url} title={trackTitle(track)} subtitle={meta} artworkUrl={track.artworkUrl} size={size} />
-      )}
-      <div className="flex flex-col gap-3">
-        <div>
-          <h3 className="text-lg leading-snug font-semibold">{trackTitle(track)}</h3>
-          <p className="text-sm text-muted">{creditLine(track)}</p>
-          {track.description && size === "lg" && <p className="mt-2 max-w-prose text-cream-dim">{track.description}</p>}
-        </div>
+    <article className="flex flex-col gap-1.5 border-t border-line pt-4" data-track={track.id} data-credit={track.credit}>
+      <h3 className="text-lg leading-snug font-semibold">{trackTitle(track)}</h3>
+      <p className="text-sm text-muted">{[creditLine(track), meta].filter(Boolean).join(" · ")}</p>
+      {track.description && size === "lg" && <p className="mt-1 max-w-prose text-cream-dim">{track.description}</p>}
+      <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-2">
+        <SoundCloudEmbed url={track.url} title={trackTitle(track)} verified={track.verified} />
         <TrackActions productIds={track.productIds} artist={track.artist} compact />
       </div>
     </article>
@@ -61,7 +54,8 @@ export function TrackCard({ track, size = "md" }: { track: SoundCloudTrack; size
 
 export function ReleaseCard({ release }: { release: Release }) {
   return (
-    <article className="flex flex-col gap-3" data-release={release.id}>
+    <article className="flex flex-col gap-3 border-t border-line pt-4" data-release={release.id}>
+      <h3 className="text-lg font-semibold">{release.title}</h3>
       {release.spotify ? (
         <SpotifyEmbed kind={release.spotify.kind} id={release.spotify.id} title={`${release.title} by ${artistName(release.artist)}`} />
       ) : (

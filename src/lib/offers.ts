@@ -1,5 +1,5 @@
 import { PAYHIP_TIERS } from "@/lib/env";
-import type { Offer } from "@/components/BeatTile";
+import type { Offer } from "@/lib/beat-data";
 
 /** Offers are identical per beat apart from id/title; the template uses "__beat__" / "__title__". */
 export const offersFor = (tpl: Offer[], b: { id: string; title: string; payhipUrl?: string }) =>

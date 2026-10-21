@@ -34,3 +34,8 @@ yarn-error.log*
 *.aiff
 *.flac
 !.env.example
+/masters
+.next-preview/
+
+# Unapproved media served only by the private preview (never exported, never R2)
+/public/preview-only/

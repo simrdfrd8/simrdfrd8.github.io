@@ -106,11 +106,11 @@
       "format": "MP3 320 kbps CBR"
     },
     "bpm": 126,
+    "key": "A major",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 10,
-    "key": "A major",
     "payhipUrl": "https://payhip.com/b/s4I2d"
   },
   {
@@ -125,11 +125,11 @@
       "format": "MP3 320 kbps CBR"
     },
     "heardOn": "panda",
+    "key": "C# minor",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 11,
-    "key": "C# minor",
     "payhipUrl": "https://payhip.com/b/Nch2G"
   },
   {
@@ -145,11 +145,11 @@
     },
     "heardOn": "deltaluv-vocals-1-wav",
     "bpm": 92,
+    "key": "A# minor",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 12,
-    "key": "A# minor",
     "payhipUrl": "https://payhip.com/b/jlFiZ"
   },
   {
@@ -165,11 +165,11 @@
     },
     "heardOn": "takearidewme-x-ricky",
     "bpm": 110,
+    "key": "E minor",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 13,
-    "key": "E minor",
     "payhipUrl": "https://payhip.com/b/amWJe"
   },
   {
@@ -240,11 +240,11 @@
     },
     "heardOn": "moondans-pt-3-x-ricky",
     "bpm": 96,
+    "key": "C minor",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 17,
-    "key": "C minor",
     "payhipUrl": "https://payhip.com/b/NvHtV"
   },
   {
@@ -276,11 +276,11 @@
       "durationSec": 136,
       "format": "MP3 320 kbps CBR"
     },
+    "key": "G major",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 19,
-    "key": "G major",
     "payhipUrl": "https://payhip.com/b/UANfk"
   },
   {
@@ -422,11 +422,11 @@
       "format": "MP3 320 kbps CBR"
     },
     "bpm": 120,
+    "key": "F minor",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 27,
-    "key": "F minor",
     "payhipUrl": "https://payhip.com/b/Ui547"
   },
   {
@@ -442,11 +442,11 @@
     },
     "heardOn": "heard-x-ricky",
     "bpm": 120,
+    "key": "B major",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 28,
-    "key": "B major",
     "payhipUrl": "https://payhip.com/b/zD4T9"
   },
   {
@@ -461,11 +461,11 @@
       "format": "MP3 320 kbps CBR"
     },
     "bpm": 120,
+    "key": "B major",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 29,
-    "key": "B major",
     "payhipUrl": "https://payhip.com/b/3Wzq5"
   },
   {
@@ -626,11 +626,11 @@
     },
     "heardOn": "pursuitofme-x-ricky",
     "bpm": 115,
+    "key": "C minor",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 38,
-    "key": "C minor",
     "payhipUrl": "https://payhip.com/b/0Wltg"
   },
   {
@@ -646,11 +646,11 @@
     },
     "heardOn": "hamburgstarxi-x-ricky",
     "bpm": 120,
+    "key": "E minor",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 39,
-    "key": "E minor",
     "payhipUrl": "https://payhip.com/b/9EoXZ"
   },
   {
@@ -664,11 +664,11 @@
       "durationSec": 38,
       "format": "MP3 320 kbps CBR"
     },
+    "key": "A major",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 40,
-    "key": "A major",
     "payhipUrl": "https://payhip.com/b/BirUd"
   },
   {
@@ -739,11 +739,11 @@
       "format": "MP3 320 kbps CBR"
     },
     "bpm": 126,
+    "key": "F major",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 44,
-    "key": "F major",
     "payhipUrl": "https://payhip.com/b/4AUGs"
   },
   {
@@ -814,11 +814,11 @@
     },
     "heardOn": "holysalamisandwhich-x-ricky",
     "bpm": 126,
+    "key": "A# minor",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 48,
-    "key": "A# minor",
     "payhipUrl": "https://payhip.com/b/sPJbK"
   },
   {
@@ -833,11 +833,11 @@
       "format": "MP3 320 kbps CBR"
     },
     "bpm": 92,
+    "key": "F minor",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 49,
-    "key": "F minor",
     "payhipUrl": "https://payhip.com/b/JWn0m"
   },
   {
@@ -923,11 +923,11 @@
       "format": "MP3 320 kbps CBR"
     },
     "bpm": 94,
+    "key": "A# major",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 54,
-    "key": "A# major",
     "payhipUrl": "https://payhip.com/b/EyjsW"
   },
   {
@@ -943,11 +943,11 @@
     },
     "heardOn": "sugar-hi-x-ricky",
     "bpm": 108,
+    "key": "C major",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 55,
-    "key": "C major",
     "payhipUrl": "https://payhip.com/b/4xM6Z"
   },
   {
@@ -962,11 +962,11 @@
       "format": "MP3 320 kbps CBR"
     },
     "bpm": 83,
+    "key": "F major",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 56,
-    "key": "F major",
     "payhipUrl": "https://payhip.com/b/qhWL7"
   },
   {
@@ -981,11 +981,11 @@
       "format": "MP3 320 kbps CBR"
     },
     "bpm": 120,
+    "key": "F minor",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 57,
-    "key": "F minor",
     "payhipUrl": "https://payhip.com/b/TQi1J"
   },
   {
@@ -1000,11 +1000,11 @@
       "format": "MP3 320 kbps CBR"
     },
     "bpm": 144,
+    "key": "E minor",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 58,
-    "key": "E minor",
     "payhipUrl": "https://payhip.com/b/coU4G"
   },
   {
@@ -1055,11 +1055,11 @@
       "format": "MP3 320 kbps CBR"
     },
     "bpm": 101,
+    "key": "F major",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 61,
-    "key": "F major",
     "payhipUrl": "https://payhip.com/b/hYlSC"
   },
   {
@@ -1074,11 +1074,11 @@
       "format": "MP3 320 kbps CBR"
     },
     "bpm": 98,
+    "key": "G minor",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 62,
-    "key": "G minor",
     "payhipUrl": "https://payhip.com/b/OQTh0"
   },
   {
@@ -1131,11 +1131,11 @@
     },
     "heardOn": "fannypack-pt2-x-ricky",
     "bpm": 98,
+    "key": "A# major",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 65,
-    "key": "A# major",
     "payhipUrl": "https://payhip.com/b/AJmHD"
   },
   {
@@ -1151,11 +1151,11 @@
     },
     "heardOn": "fannypack-x-ricky",
     "bpm": 98,
+    "key": "F minor",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 66,
-    "key": "F minor",
     "payhipUrl": "https://payhip.com/b/ZhrXd"
   },
   {
@@ -1190,11 +1190,11 @@
     },
     "heardOn": "sndprfrm-x-ricky",
     "bpm": 101,
+    "key": "A minor",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 68,
-    "key": "A minor",
     "payhipUrl": "https://payhip.com/b/g5TGI"
   },
   {
@@ -1246,11 +1246,11 @@
     },
     "heardOn": "srzydd-x-ricky",
     "bpm": 92,
+    "key": "F major",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 71,
-    "key": "F major",
     "payhipUrl": "https://payhip.com/b/03D1g"
   },
   {
@@ -1304,11 +1304,11 @@
     },
     "heardOn": "dolfinz-x-ricky",
     "bpm": 93,
+    "key": "G Phrygian",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 74,
-    "key": "G Phrygian",
     "payhipUrl": "https://payhip.com/b/HwgCv"
   },
   {
@@ -1324,11 +1324,11 @@
     },
     "heardOn": "wearethecolorzx-vocals-2-wav",
     "bpm": 105,
+    "key": "D# major",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 75,
-    "key": "D# major",
     "payhipUrl": "https://payhip.com/b/5F19J"
   },
   {
@@ -1362,11 +1362,11 @@
     },
     "heardOn": "paddlzx-x-ricky",
     "bpm": 148,
+    "key": "G minor",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 77,
-    "key": "G minor",
     "payhipUrl": "https://payhip.com/b/hfdXL"
   },
   {
@@ -1400,11 +1400,11 @@
       "format": "MP3 320 kbps CBR"
     },
     "bpm": 83,
+    "key": "A# minor",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 79,
-    "key": "A# minor",
     "payhipUrl": "https://payhip.com/b/uni4D"
   },
   {
@@ -1492,11 +1492,11 @@
     },
     "heardOn": "canoexz-x-ricky",
     "bpm": 83,
+    "key": "E major",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 84,
-    "key": "E major",
     "payhipUrl": "https://payhip.com/b/vmjHK"
   },
   {
@@ -1512,11 +1512,11 @@
     },
     "heardOn": "new-colorsx-pt-2",
     "bpm": 161,
+    "key": "D major",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 85,
-    "key": "D major",
     "payhipUrl": "https://payhip.com/b/IRuSn"
   },
   {
@@ -1568,11 +1568,11 @@
       "format": "MP3 320 kbps CBR"
     },
     "bpm": 100,
+    "key": "G# major",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 88,
-    "key": "G# major",
     "payhipUrl": "https://payhip.com/b/oOvca"
   },
   {
@@ -1587,11 +1587,11 @@
       "format": "MP3 320 kbps CBR"
     },
     "bpm": 85,
+    "key": "A minor",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 89,
-    "key": "A minor",
     "payhipUrl": "https://payhip.com/b/BTVix"
   },
   {
@@ -1680,11 +1680,11 @@
     },
     "heardOn": "here-again-2",
     "bpm": 110,
+    "key": "E minor",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 94,
-    "key": "E minor",
     "payhipUrl": "https://payhip.com/b/bwE30"
   },
   {
@@ -1699,11 +1699,11 @@
       "format": "MP3 320 kbps CBR"
     },
     "bpm": 120,
+    "key": "C minor",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 95,
-    "key": "C minor",
     "payhipUrl": "https://payhip.com/b/RNxQI"
   },
   {
@@ -1791,11 +1791,11 @@
       "format": "MP3 320 kbps CBR"
     },
     "bpm": 91,
+    "key": "G# minor",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 100,
-    "key": "G# minor",
     "payhipUrl": "https://payhip.com/b/xhGWO"
   },
   {
@@ -1810,11 +1810,11 @@
       "format": "MP3 320 kbps CBR"
     },
     "heardOn": "when-push-come-to-shove-12-2-1",
+    "key": "F minor",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 101,
-    "key": "F minor",
     "payhipUrl": "https://payhip.com/b/RMyJ1"
   },
   {
@@ -1828,12 +1828,12 @@
       "durationSec": 312,
       "format": "MP3 320 kbps CBR"
     },
+    "bpm": 80,
+    "key": "C major",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 102,
-    "key": "C major",
-    "bpm": 80,
     "payhipUrl": "https://payhip.com/b/BI1we"
   },
   {
@@ -1848,11 +1848,11 @@
       "format": "MP3 320 kbps CBR"
     },
     "bpm": 120,
+    "key": "C major",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 103,
-    "key": "C major",
     "payhipUrl": "https://payhip.com/b/3tpEj"
   },
   {
@@ -1867,11 +1867,11 @@
       "format": "MP3 320 kbps CBR"
     },
     "bpm": 120,
+    "key": "F minor",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 104,
-    "key": "F minor",
     "payhipUrl": "https://payhip.com/b/3ra7E"
   },
   {
@@ -1886,11 +1886,11 @@
       "format": "MP3 320 kbps CBR"
     },
     "bpm": 89,
+    "key": "A major",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 105,
-    "key": "A major",
     "payhipUrl": "https://payhip.com/b/b9xJc"
   },
   {
@@ -1905,11 +1905,11 @@
       "format": "MP3 320 kbps CBR"
     },
     "bpm": 90,
+    "key": "G minor",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 106,
-    "key": "G minor",
     "payhipUrl": "https://payhip.com/b/9BH0h"
   },
   {
@@ -1925,11 +1925,11 @@
     },
     "heardOn": "peligrino-1",
     "bpm": 125,
+    "key": "G minor",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 107,
-    "key": "G minor",
     "payhipUrl": "https://payhip.com/b/zQldr"
   },
   {
@@ -1943,11 +1943,11 @@
       "durationSec": 234,
       "format": "MP3 320 kbps CBR"
     },
+    "key": "G minor",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 108,
-    "key": "G minor",
     "payhipUrl": "https://payhip.com/b/sE40b"
   },
   {
@@ -1963,11 +1963,11 @@
     },
     "heardOn": "love-stroll-23",
     "bpm": 125,
+    "key": "G minor",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 109,
-    "key": "G minor",
     "payhipUrl": "https://payhip.com/b/O1hbq"
   },
   {
@@ -1982,11 +1982,11 @@
       "format": "MP3 320 kbps CBR"
     },
     "bpm": 100,
+    "key": "G# major",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 110,
-    "key": "G# major",
     "payhipUrl": "https://payhip.com/b/nBEkT"
   },
   {
@@ -2001,11 +2001,11 @@
       "format": "MP3 320 kbps CBR"
     },
     "bpm": 120,
+    "key": "C major",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 111,
-    "key": "C major",
     "payhipUrl": "https://payhip.com/b/8bR6k"
   },
   {
@@ -2020,11 +2020,11 @@
       "format": "MP3 320 kbps CBR"
     },
     "bpm": 100,
+    "key": "E minor",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 112,
-    "key": "E minor",
     "payhipUrl": "https://payhip.com/b/si3pS"
   },
   {
@@ -2039,11 +2039,11 @@
       "format": "MP3 320 kbps CBR"
     },
     "bpm": 120,
+    "key": "G# major",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 113,
-    "key": "G# major",
     "payhipUrl": "https://payhip.com/b/bTN7X"
   },
   {
@@ -2057,9 +2057,9 @@
       "durationSec": 152,
       "format": "MP3 320 kbps CBR"
     },
-    "bpm": 115,
     "heardOnUrl": "https://soundcloud.com/user-536995429/cheesecake-x-ricky",
     "heardOnTitle": "cheesecake x ricky",
+    "bpm": 115,
     "publishApproved": true,
     "status": "available",
     "featured": false,
@@ -2077,9 +2077,9 @@
       "durationSec": 209,
       "format": "MP3 320 kbps CBR"
     },
-    "bpm": 92,
     "heardOnUrl": "https://soundcloud.com/user-536995429/takeashowerdude-x-ricky",
     "heardOnTitle": "takeashowerdude x ricky",
+    "bpm": 92,
     "publishApproved": true,
     "status": "available",
     "featured": false,
@@ -2097,9 +2097,9 @@
       "durationSec": 235,
       "format": "MP3 320 kbps CBR"
     },
-    "bpm": 92,
     "heardOnUrl": "https://soundcloud.com/user-536995429/lezgolilsauce-x-ricky",
     "heardOnTitle": "lezgolilsauce x ricky",
+    "bpm": 92,
     "publishApproved": true,
     "status": "available",
     "featured": false,
@@ -2117,8 +2117,8 @@
       "durationSec": 146,
       "format": "MP3 320 kbps CBR"
     },
-    "bpm": 94,
     "heardOn": "skass-x-ricky",
+    "bpm": 94,
     "publishApproved": true,
     "status": "available",
     "featured": false,
@@ -2136,10 +2136,10 @@
       "durationSec": 190,
       "format": "MP3 320 kbps CBR"
     },
-    "bpm": 139,
-    "key": "G# major",
     "heardOnUrl": "https://soundcloud.com/user-536995429/glowen-11",
     "heardOnTitle": "Glowen 1",
+    "bpm": 139,
+    "key": "G# major",
     "publishApproved": true,
     "status": "available",
     "featured": false,
@@ -2157,14 +2157,107 @@
       "durationSec": 126,
       "format": "MP3 320 kbps CBR"
     },
-    "bpm": 124,
-    "key": "G minor",
     "heardOnUrl": "https://soundcloud.com/user-536995429/laughter-and-shit",
     "heardOnTitle": "Laughter and shit",
+    "bpm": 124,
+    "key": "G minor",
     "publishApproved": true,
     "status": "available",
     "featured": false,
     "order": 119,
     "payhipUrl": "https://payhip.com/b/fTRKL"
+  },
+  {
+    "id": "louis-xiii",
+    "title": "Louis XIII",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-louis-xiii/audio.mp3",
+      "peaksSrc": "/media/beat-louis-xiii/peaks.json",
+      "durationSec": 172,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 120,
+    "key": "C major",
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 120,
+    "payhipUrl": "https://payhip.com/b/nGh2H"
+  },
+  {
+    "id": "aba-aku",
+    "title": "aba aku",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-aba-aku/audio.mp3",
+      "peaksSrc": "/media/beat-aba-aku/peaks.json",
+      "durationSec": 210,
+      "format": "MP3 320 kbps CBR"
+    },
+    "key": "C major",
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 121,
+    "payhipUrl": "https://payhip.com/b/Aygnc"
+  },
+  {
+    "id": "blue-like-the-winds",
+    "title": "Blue like the winds",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-blue-like-the-winds/audio.mp3",
+      "peaksSrc": "/media/beat-blue-like-the-winds/peaks.json",
+      "durationSec": 197,
+      "format": "MP3 320 kbps CBR"
+    },
+    "key": "G major",
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 122,
+    "payhipUrl": "https://payhip.com/b/I1M4p"
+  },
+  {
+    "id": "levi",
+    "title": "Levi",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-levi/audio.mp3",
+      "peaksSrc": "/media/beat-levi/peaks.json",
+      "durationSec": 201,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 140,
+    "key": "A minor",
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 124,
+    "payhipUrl": "https://payhip.com/b/K03M5"
+  },
+  {
+    "id": "kevin",
+    "title": "Kevin",
+    "artist": "flavorful-croissants",
+    "audience": "rapper",
+    "audio": {
+      "src": "/media/beat-kevin/audio.mp3",
+      "peaksSrc": "/media/beat-kevin/peaks.json",
+      "durationSec": 154,
+      "format": "MP3 320 kbps CBR"
+    },
+    "bpm": 101,
+    "key": "E major",
+    "publishApproved": true,
+    "status": "available",
+    "featured": false,
+    "order": 126,
+    "payhipUrl": "https://payhip.com/b/12NMw"
   }
 ]

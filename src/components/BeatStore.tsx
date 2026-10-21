@@ -1,18 +1,22 @@
 import { getBeats } from "@/lib/catalog";
-import { BeatCard, beatTileData, offerTemplate } from "./BeatCard";
-import { BeatBrowser } from "./BeatBrowser";
+import { beatTileData, offerTemplate } from "./BeatCard";
+import { TrackList } from "./player/TrackList";
 
-/** Featured beat on top (Deserts), then the searchable catalog of every other beat. */
-export function BeatStore() {
+/**
+ * The beat store: one minimal list (search + light sort) wired to the global mini-player.
+ * Reads whatever content/beats.json holds at build time; catalog order keeps Deserts first.
+ */
+export function BeatStore({ id = "beats" }: { id?: string }) {
   const beats = getBeats("rapper");
   if (!beats.length) return null;
-  const [featured, ...rest] = beats;
+  const rows = beats.map((b, i) => ({ ...beatTileData(b), badge: i === 0 ? "Featured" : undefined }));
+  const tpl = offerTemplate();
   return (
-    <div className="flex flex-col gap-16" data-beat-store>
-      <div className="max-w-4xl">
-        <BeatCard beat={featured} wide />
-      </div>
-      {rest.length > 0 && <BeatBrowser beats={rest.map(beatTileData)} offerTemplate={offerTemplate()} />}
+    <div data-beat-store style={{ ["--tl-accent" as string]: "#FF7A59" }}>
+      <TrackList id={id} tracks={rows} offerTemplate={tpl} search sort label="Beats" noun="beats" />
+      <p className="mt-6 text-xs text-muted">
+        Every beat: {tpl.map((o) => `${o.title.replace("__title__: ", "")} ${o.priceLabel}`).join(" · ")}. BPM and key are shown only where they could be measured reliably.
+      </p>
     </div>
   );
 }

@@ -1,3 +1,4 @@
+import { SongList, songsFor } from "./SongList";
 import Link from "next/link";
 import type { Artist } from "@/lib/catalog/schema";
 import { catalog, getAsset, getProducts, getReleases, getTracks, getSamplePacks, visibleAssets, creditLine, assetHasArtist, childArtists, getArtist, getCollaborator, merchProducts, brandApparelAssets } from "@/lib/catalog";
@@ -159,6 +160,12 @@ export function ArtistPage({ artist, intro }: { artist: Artist; intro?: React.Re
         </div>
       </Section>
         </>
+      )}
+
+      {songsFor(artist.slug).length > 0 && (
+        <Section id="songs" kicker="Full length · free" title="Songs">
+          <SongList id={`${artist.slug}-songs`} artist={artist.slug} />
+        </Section>
       )}
 
       {(spotifyArtist || releases.length > 0) && (

@@ -167,7 +167,7 @@ body {
 .friends-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; font-size: 13px; }
 .friends-row .fr-label { font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--color-muted); }
 .fr-list { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0; padding: 0; }
-.fr { display: inline-flex; align-items: baseline; gap: 8px; }
+.fr { display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; max-width: 100%; }
 .fr i { align-self: center; width: 7px; height: 7px; border-radius: 50%; background: var(--shade, var(--color-muted)); }
 .fr.fr-ext i { background: transparent; border: 1px solid var(--color-muted); width: 6px; height: 6px; }
 .fr-name { color: var(--color-cream); font-weight: 600; text-decoration: none; letter-spacing: .5px; }
@@ -178,3 +178,33 @@ body {
 
 /* Artist titles wrap only between words, never mid-word (size set inline from the longest word). */
 .artist-title { overflow-wrap: normal; word-break: normal; hyphens: none; }
+/* ── Track list + global mini-player ─────────────────────────────── */
+.track-list { --tl-accent: #FF7A59; }
+.tl-row { border-radius: 10px; padding-inline: 0.25rem; }
+.tl-row:hover { background: rgba(241, 236, 245, 0.04); }
+.tl-row:hover .tl-play, .tl-row:focus-within .tl-play { color: #F1ECF5; }
+.tl-row.tl-active { background: color-mix(in srgb, var(--tl-accent) 9%, transparent); box-shadow: inset 2px 0 0 var(--tl-accent); }
+.tl-row.tl-active .tl-title, .tl-row.tl-active .tl-play { color: var(--tl-accent); }
+.tl-row { cursor: pointer; }
+.tl-buy { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.tl-eq i { display: block; width: 3px; background: var(--tl-accent); border-radius: 1px; height: 40%; }
+@media (prefers-reduced-motion: no-preference) {
+  .tl-eq i { animation: tl-eq 900ms ease-in-out infinite alternate; }
+  .tl-eq i:nth-child(2) { animation-delay: -300ms; }
+  .tl-eq i:nth-child(3) { animation-delay: -600ms; }
+}
+@keyframes tl-eq { from { height: 25%; } to { height: 100%; } }
+.mini-seek { -webkit-appearance: none; appearance: none; height: 18px; background: transparent; cursor: pointer; }
+.mini-seek::-webkit-slider-runnable-track { height: 3px; border-radius: 2px; background: linear-gradient(to right, #F8E8D2 var(--pct, 0%), rgba(241,236,245,.18) var(--pct, 0%)); }
+.mini-seek::-moz-range-track { height: 3px; border-radius: 2px; background: linear-gradient(to right, #F8E8D2 var(--pct, 0%), rgba(241,236,245,.18) var(--pct, 0%)); }
+.mini-seek::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; margin-top: -4.5px; border-radius: 50%; background: #F8E8D2; }
+.mini-seek::-moz-range-thumb { width: 12px; height: 12px; border: 0; border-radius: 50%; background: #F8E8D2; }
+.mini-seek:focus-visible { outline: 2px solid #F8E8D2; outline-offset: 2px; border-radius: 4px; }
+/* keep page content and floating buttons clear of the mini-player */
+html[data-player-open] body { padding-bottom: 76px; }
+html[data-player-open] [data-mobile-support], html[data-player-open] [data-look-closer] { bottom: calc(76px + 0.75rem) !important; }
+/* Phones: the compact Support button floats bottom-right; keep page content clear of it (and of the mini-player). */
+@media (max-width: 767px) {
+  body { padding-bottom: 68px; }
+  html[data-player-open] body { padding-bottom: calc(76px + 68px); }
+}

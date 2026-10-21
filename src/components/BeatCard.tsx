@@ -5,7 +5,7 @@ import { catalog, creditLine, laneOffers, trackTitle } from "@/lib/catalog";
 import { LEGACY_720M, displayTitleFor } from "@/lib/catalog/credits";
 import { formatPrice } from "@/lib/catalog/filters";
 import { CHECKOUT_LIVE, mediaBase, mediaUrl } from "@/lib/env";
-import { BeatTile, type BeatTileData, type Offer } from "./BeatTile";
+import type { BeatTileData, Offer } from "@/lib/beat-data";
 import { offersFor } from "@/lib/offers";
 
 /**
@@ -53,9 +53,4 @@ export function offerTemplate(): Offer[] {
 export function beatOffers(beat: Beat): Offer[] {
   const offers = laneOffers({ id: beat.id, title: beat.title, displayTitle: beat.title, audience: beat.audience, artist: beat.artist, artworkUrl: undefined }).map((o) => ({ ...o, priceLabel: formatPrice(o).label }));
   return offersFor(offers, beatTileData(beat));
-}
-
-/** Server-rendered beat card (used for the featured beat). */
-export function BeatCard({ beat, wide = false }: { beat: Beat; index?: number; wide?: boolean }) {
-  return <BeatTile beat={beatTileData(beat)} offers={beatOffers(beat)} wide={wide} peaks={loadPeaks(beat.audio?.peaksSrc)} />;
 }

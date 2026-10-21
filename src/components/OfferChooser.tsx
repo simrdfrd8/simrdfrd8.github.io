@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useRef } from "react";
+import { useId, useRef, type ReactNode } from "react";
 import Link from "next/link";
 import type { Product } from "@/lib/catalog/schema";
 import { CheckoutButton } from "./CheckoutButton";
@@ -9,12 +9,12 @@ import { buttonClass } from "./ui";
 type Offer = Product & { terms: string; priceLabel: string; agreementUrl?: string };
 
 /** One primary button ("Buy / License · from $10"); every tier with its terms opens in a sheet. */
-export function OfferChooser({ title, label, offers }: { title: string; label: string; offers: Offer[] }) {
+export function OfferChooser({ title, label, offers, buttonClassName, ariaLabel }: { title: string; label: ReactNode; offers: Offer[]; buttonClassName?: string; ariaLabel?: string }) {
   const ref = useRef<HTMLDialogElement>(null);
   const id = useId();
   return (
     <>
-      <button type="button" className={buttonClass("primary", "sm")} onClick={() => ref.current?.showModal()} data-offer-chooser>
+      <button type="button" className={buttonClassName ?? buttonClass("primary", "sm")} aria-label={ariaLabel} aria-haspopup="dialog" onClick={() => ref.current?.showModal()} data-offer-chooser>
         {label}
       </button>
       <dialog

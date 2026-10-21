@@ -65,7 +65,7 @@ describe("beat license agreements", () => {
   });
 
   it("the old 10k / 100k / 500k caps are gone from content and components", () => {
-    const files = ["content/product-templates.json", "content/licenses.json", "content/beats.json", "src/app/licensing/page.tsx", "src/components/BeatTile.tsx", "src/components/OfferChooser.tsx"];
+    const files = ["content/product-templates.json", "content/licenses.json", "content/beats.json", "src/app/licensing/page.tsx", "src/components/player/TrackList.tsx", "src/components/OfferChooser.tsx"];
     for (const f of files) expect(readFileSync(f, "utf8"), f).not.toMatch(/\b(10|100|500)k streams|up to (10|100|500)k\b|unlimited license|by inquiry\b.*exclusive/i);
   });
 

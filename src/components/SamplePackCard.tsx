@@ -5,6 +5,7 @@ import { MediaImage } from "./MediaImage";
 import { CheckoutButton } from "./CheckoutButton";
 import { SoundCloudEmbed } from "./SoundCloudEmbed";
 import { Badge } from "./ui";
+import { PlayButton } from "./player/PlayButton";
 
 export function SamplePackCard({ pack }: { pack: SamplePack }) {
   const product = packProduct(pack);
@@ -23,7 +24,7 @@ export function SamplePackCard({ pack }: { pack: SamplePack }) {
         </div>
       )}
       {pack.demo.clipSrc && (
-        <audio controls preload="none" src={pack.demo.clipSrc} className="w-full" aria-label={`${pack.title} demo clip`} />
+        <PlayButton track={{ id: `pack-${pack.id}`, title: `${pack.title} (demo)`, src: pack.demo.clipSrc, subtitle: "Sample pack demo" }} label="Play demo" />
       )}
       <div>
         <h3 className="text-lg leading-snug font-semibold">{pack.title}</h3>
