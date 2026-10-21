@@ -1,5 +1,5 @@
 {
-  "_note": "Self-hosted full-length songs (most were released free on the old Bandzoogle site). MP3s live on Cloudflare R2 under media/flavorful-croissants/, never in this repo. Optional: genre (small plain label on the row); soundcloudUrl (the same song on SoundCloud, kept off the page so it is not listed twice).",
+  "_note": "Self-hosted full-length songs (most were released for free before). MP3s live on Cloudflare R2 under media/flavorful-croissants/, never in this repo. Optional: genre (small plain label on the row); soundcloudUrl (the same song on SoundCloud, kept off the page so it is not listed twice).",
   "songs": [
     {
       "id": "song-aba-aku",
@@ -7,16 +7,14 @@
       "artist": "720m",
       "src": "https://pub-ddb33632c8d449e28748481ed9cad826.r2.dev/media/flavorful-croissants/aba-aku-ft-ricky.mp3",
       "soundcloudUrl": "https://soundcloud.com/user-536995429/aba-aku-ft-ricky",
-      "durationSec": 211,
-      "released": "bandzoogle"
+      "durationSec": 211
     },
     {
       "id": "song-blue-like-the-winds",
       "title": "Blue like the winds",
       "artist": "flavorful-croissants",
       "src": "https://pub-ddb33632c8d449e28748481ed9cad826.r2.dev/media/flavorful-croissants/blue-like-the-winds.mp3",
-      "durationSec": 197,
-      "released": "bandzoogle"
+      "durationSec": 197
     },
     {
       "id": "song-fuck-you",
@@ -25,16 +23,14 @@
       "genre": "Pop Punk",
       "src": "https://pub-ddb33632c8d449e28748481ed9cad826.r2.dev/media/flavorful-croissants/fuck-you.mp3",
       "soundcloudUrl": "https://soundcloud.com/user-536995429/fuck-you-ft-rickayyy",
-      "durationSec": 182,
-      "released": "soundcloud"
+      "durationSec": 182
     },
     {
       "id": "song-glory",
       "title": "Glory",
       "artist": "flavorful-croissants",
       "src": "https://pub-ddb33632c8d449e28748481ed9cad826.r2.dev/media/flavorful-croissants/glory.mp3",
-      "durationSec": 116,
-      "released": "bandzoogle"
+      "durationSec": 116
     },
     {
       "id": "song-hereiam",
@@ -43,48 +39,42 @@
       "genre": "Pop Punk",
       "src": "https://pub-ddb33632c8d449e28748481ed9cad826.r2.dev/media/flavorful-croissants/hereiam.mp3",
       "soundcloudUrl": "https://soundcloud.com/user-536995429/hereiam-x-ricky",
-      "durationSec": 177,
-      "released": "soundcloud"
+      "durationSec": 177
     },
     {
       "id": "song-kevin",
       "title": "Kevin",
       "artist": "flavorful-croissants",
       "src": "https://pub-ddb33632c8d449e28748481ed9cad826.r2.dev/media/flavorful-croissants/kevin.mp3",
-      "durationSec": 154,
-      "released": "bandzoogle"
+      "durationSec": 154
     },
     {
       "id": "song-laughter-and-shit",
       "title": "Laughter and shit",
       "artist": "flavorful-croissants",
       "src": "https://pub-ddb33632c8d449e28748481ed9cad826.r2.dev/media/flavorful-croissants/laughter-and-shit.mp3",
-      "durationSec": 126,
-      "released": "bandzoogle"
+      "durationSec": 126
     },
     {
       "id": "song-levi",
       "title": "Levi",
       "artist": "flavorful-croissants",
       "src": "https://pub-ddb33632c8d449e28748481ed9cad826.r2.dev/media/flavorful-croissants/levi.mp3",
-      "durationSec": 201,
-      "released": "bandzoogle"
+      "durationSec": 201
     },
     {
       "id": "song-louis-xiii",
       "title": "Louis XIII",
       "artist": "flavorful-croissants",
       "src": "https://pub-ddb33632c8d449e28748481ed9cad826.r2.dev/media/flavorful-croissants/louis-xiii.mp3",
-      "durationSec": 172,
-      "released": "bandzoogle"
+      "durationSec": 172
     },
     {
       "id": "song-raisin",
       "title": "Raisin",
       "artist": "flavorful-croissants",
       "src": "https://pub-ddb33632c8d449e28748481ed9cad826.r2.dev/media/flavorful-croissants/raisin.mp3",
-      "durationSec": 197,
-      "released": "bandzoogle"
+      "durationSec": 197
     }
   ]
 }
