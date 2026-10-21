@@ -1,5 +1,5 @@
 {
-  "_note": "Self-hosted full-length songs (released free on the old Bandzoogle site). MP3s live on Cloudflare R2 under media/flavorful-croissants/, never in this repo.",
+  "_note": "Self-hosted full-length songs (most were released free on the old Bandzoogle site). MP3s live on Cloudflare R2 under media/flavorful-croissants/, never in this repo. Optional: artists (co-credited, shown as \"A × B\"), featuring (\"ft. A\"), genre (small label on the row).",
   "songs": [
     {
       "id": "song-aba-aku",
@@ -18,12 +18,37 @@
       "released": "bandzoogle"
     },
     {
+      "id": "song-fuck-you",
+      "title": "Fuck You",
+      "artist": "flavorful-croissants",
+      "featuring": [
+        "720m"
+      ],
+      "genre": "Pop Punk",
+      "src": "https://pub-ddb33632c8d449e28748481ed9cad826.r2.dev/media/flavorful-croissants/fuck-you.mp3",
+      "durationSec": 182,
+      "released": "soundcloud"
+    },
+    {
       "id": "song-glory",
       "title": "Glory",
       "artist": "flavorful-croissants",
       "src": "https://pub-ddb33632c8d449e28748481ed9cad826.r2.dev/media/flavorful-croissants/glory.mp3",
       "durationSec": 116,
       "released": "bandzoogle"
+    },
+    {
+      "id": "song-hereiam",
+      "title": "hereiam",
+      "artist": "flavorful-croissants",
+      "artists": [
+        "720m",
+        "flavorful-croissants"
+      ],
+      "genre": "Pop Punk",
+      "src": "https://pub-ddb33632c8d449e28748481ed9cad826.r2.dev/media/flavorful-croissants/hereiam.mp3",
+      "durationSec": 177,
+      "released": "soundcloud"
     },
     {
       "id": "song-kevin",

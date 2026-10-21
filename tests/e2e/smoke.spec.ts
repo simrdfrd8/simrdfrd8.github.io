@@ -79,7 +79,7 @@ test("music: self-hosted songs on the shared list player from R2, no iframes, no
   await page.goto("/music/");
   await expect(page.locator("iframe")).toHaveCount(0);
   const songs = page.locator('[data-track-list="music-songs"] [data-track-row]');
-  await expect(songs).toHaveCount(8);
+  await expect(songs).toHaveCount(10);
   await expect(page.locator("[data-track-list] .tl-title")).not.toContainText([/Space 22|is killing me/i]);
   const audio = page.locator("audio[data-global-player]");
   expect(await audio.evaluate((a: HTMLAudioElement) => a.paused && !a.autoplay)).toBe(true);
@@ -506,4 +506,21 @@ test("Dan Perales: Comedy is one of his categories, next to Hip-Hop", async ({ p
   await expect(page.locator('[data-shade="hip-hop"] [data-artist-card="dan-perales"]')).toContainText(/Rapper · Comedian/i);
   await expect(page.locator('[data-shade="hip-hop"] [data-artist-card="720m"]')).toContainText(/^720M\s*Rapper/i);
   await expect(page.locator("[data-shade] h2")).toHaveText(["Hip-Hop", "EDM", "Production"]);
+});
+
+test("music: hereiam and Fuck You carry a plain Pop Punk label and play in the shared player", async ({ page }) => {
+  await page.goto("/music/");
+  const list = page.locator('[data-track-list="music-songs"]');
+  const here = list.locator('[data-track-row="song-hereiam"]');
+  const fy = list.locator('[data-track-row="song-fuck-you"]');
+  await expect(here).toContainText("Pop Punk");
+  await expect(here).toContainText("720M × Flavorful Croissants");
+  await expect(fy).toContainText("Pop Punk");
+  await expect(fy).toContainText("Flavorful Croissants ft. 720M");
+  // only those two are tagged
+  await expect(list.getByText("Pop Punk", { exact: true })).toHaveCount(2);
+  await fy.locator("[data-row-play]").click();
+  const audio = page.locator("audio[data-global-player]");
+  await expect(audio).toHaveAttribute("src", "https://pub-ddb33632c8d449e28748481ed9cad826.r2.dev/media/flavorful-croissants/fuck-you.mp3");
+  await expect(page.locator("[data-mini-title]")).toHaveText("Fuck You");
 });
