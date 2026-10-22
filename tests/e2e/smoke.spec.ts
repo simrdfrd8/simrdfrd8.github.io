@@ -8,6 +8,8 @@ const BANNED = new RegExp(["ed" + "gy", "heart" + "felt", "dis" + "torted", "und
 const MEDIA_BASE = (process.env.NEXT_PUBLIC_MEDIA_BASE ?? "http://localhost:3201").replace(/\/$/, "");
 /** Same switch the export was built with (NEXT_PUBLIC_CHECKOUT_LIVE=1 → MP3/WAV lease buttons open the beat's Payhip product). */
 const CHECKOUT_LIVE = process.env.NEXT_PUBLIC_CHECKOUT_LIVE === "1";
+/** Same switch the export was built with (MERCH_PUBLIC_SET=1 → only the published merch, content/catalog-published.json, is built). */
+const PUBLIC_SET = process.env.MERCH_PUBLIC_SET === "1";
 
 const ROUTES = [
   "/", "/music", "/artists", "/artists/flavorful-croissants", "/artists/not-daf", "/artists/720m", "/artists/andrew-bigs", "/artists/ricky",
@@ -503,13 +505,18 @@ test("artist titles never break mid-word and fit the viewport", async ({ page })
 });
 
 /** The curated launch line, in shop order (owner, 2026-10-22); the other 8 pieces keep their pages but are off the grids. */
-const MENS = ["merch-hotdog-tee-white", "merch-heartbeat-triangle-tee", "merch-no-thanks-tee", "merch-feelings-notice-tee", "merch-make-art-with-friends-tee", "merch-santa-cruz-dipper-tank"];
+const MENS = PUBLIC_SET
+  ? ["merch-hotdog-tee-white", "merch-feelings-notice-tee", "merch-make-art-with-friends-tee", "merch-santa-cruz-dipper-tank", "merch-heartbeat-croissant-pocket-tee"]
+  : ["merch-hotdog-tee-white", "merch-heartbeat-triangle-tee", "merch-no-thanks-tee", "merch-feelings-notice-tee", "merch-make-art-with-friends-tee", "merch-santa-cruz-dipper-tank"];
 /** Women's Comfort Colors 3023CL boxy cut (owner pick, 2026-10-22): front + back flats only until the cast is approved. */
 const WOMENS = ["merch-make-art-with-friends-womens-boxy-tee", "merch-feelings-notice-womens-boxy-tee", "merch-hotdo-g-womens-boxy-tee", "merch-santa-cruz-dipper-womens-rib-tank"];
-const LAUNCH = [...MENS, ...WOMENS];
+/** Grid (DOM) order follows each product's `order`: the pocket tee (90) comes after the women's cuts. */
+const LAUNCH = PUBLIC_SET ? [...MENS.slice(0, 4), ...WOMENS, MENS[4]] : [...MENS, ...WOMENS];
 const MERCH_COUNT = LAUNCH.length;
 /** All tab: one card per design, in shop order. Owner, 2026-10-22: "only m/f ... No unisex category visible" (unisex-fit cuts list as Men). */
-const DESIGNS = ["hotdo-g", "heartbeat-triangle", "no-thanks", "feelings-notice", "make-art-with-friends", "santa-cruz-dipper"];
+const DESIGNS = PUBLIC_SET
+  ? ["hotdo-g", "feelings-notice", "make-art-with-friends", "santa-cruz-dipper", "heartbeat-croissant-pocket"]
+  : ["hotdo-g", "heartbeat-triangle", "no-thanks", "feelings-notice", "make-art-with-friends", "santa-cruz-dipper"];
 const WITH_WOMENS = ["hotdo-g", "feelings-notice", "make-art-with-friends", "santa-cruz-dipper"];
 
 test("merch store lists every piece as a swipe card, display-only, no prices or buy buttons", async ({ page }) => {
@@ -537,6 +544,19 @@ test("merch store lists every piece as a swipe card, display-only, no prices or 
   await page.goto("/shop");
   await page.locator("#all").getByRole("button", { name: /Merch/ }).click();
   await expect(page.locator('#all [data-merch="inquire-only"]:visible')).toHaveCount(MERCH_COUNT);
+});
+
+test("public-set build (MERCH_PUBLIC_SET=1): only the 5 public designs; admin-only pages, images and Closer look renders are not in the export", async ({ page, request }) => {
+  test.skip(!PUBLIC_SET, "only for a MERCH_PUBLIC_SET=1 build");
+  await page.goto("/shop/merch");
+  expect(await page.locator("[data-merch-design]").evaluateAll((els) => els.map((e) => e.getAttribute("data-merch-design")))).toEqual(DESIGNS);
+  await expect(page.locator('[data-merch-design="heartbeat-croissant-pocket"] [data-cut-option]')).toHaveText(["Men"]);
+  for (const slug of ["heartbeat-triangle-tee", "no-thanks-tee", "santa-cruz-sun-tank", "taco-slu-t-pocket-tee"]) {
+    expect((await request.get(`/shop/merch/${slug}/`)).status(), slug).toBe(404);
+  }
+  for (const f of ["/media/closer-look/print-heartbeat-triangle-tee-960.webp", "/media/merch-no-thanks-tee/graphite-cream-160.webp"]) expect((await request.get(f)).status(), f).toBe(404);
+  const html = await page.content();
+  expect(html).not.toMatch(/heartbeat-triangle-tee|no-thanks-tee|grape-black/);
 });
 
 test("merch categories: All plus a tab per category in use; linkable with ?category=; works at 390 and 1280", async ({ page }) => {
@@ -610,6 +630,7 @@ test("women's Dipper rib tank page: XS-XL, 3 colourways, each colourway is its G
 });
 
 test("merch off the launch line: hidden from the grids, but its page still resolves (noindex) and stays out of the sitemap", async ({ page, request }) => {
+  test.skip(PUBLIC_SET, "public-set build: off-line pages are not built at all (see the public-set test)");
   await page.goto("/shop/merch");
   for (const id of ["merch-santa-cruz-sun-tank", "merch-redwood-lif-e-grove-tee", "merch-taco-slu-t-pocket-tee"]) await expect(page.locator(`[data-product="${id}"]`)).toHaveCount(0);
   const res = await page.goto("/shop/merch/santa-cruz-sun-tank/");
@@ -649,6 +670,7 @@ test("merch card: arrow keys / Home / End move through the photos, tap opens the
 });
 
 test("merch product page: one swipe gallery; moving into a colorway selects it; swatches and back choice still work", async ({ page }) => {
+  test.skip(PUBLIC_SET, "walks the admin-only no thanks page");
   await page.goto("/shop/merch");
   await page.locator('[data-merch-design="no-thanks"] h3 a').click();
   await expect(page).toHaveURL(/\/shop\/merch\/no-thanks-tee\/?$/);
@@ -720,6 +742,7 @@ test("merch product page: printed / blank back keeps the captions right (Golden 
 });
 
 test("Santa Cruz Sun Tank (off the launch line): the product page still shows the whole cast after the main shots", async ({ page }) => {
+  test.skip(PUBLIC_SET, "admin-only page");
   await page.goto("/shop/merch/santa-cruz-sun-tank");
   const gallery = page.locator('[data-gallery-variant="page"]');
   const car = gallery.locator("[data-carousel]");
@@ -933,7 +956,7 @@ test("contact page carries the plain label line (Spotify for Artists verificatio
 
 test("phone: the Support heart tucks away while scrolling down a product page and comes back on scroll-up", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/shop/merch/no-thanks-tee/");
+  await page.goto("/shop/merch/feelings-notice-tee/");
   const heart = page.locator("[data-mobile-support]");
   await expect(heart).toBeVisible();
   await page.mouse.wheel(0, 600);
