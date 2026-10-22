@@ -30,6 +30,6 @@
 
 **Exclusive Rights ($500).** Unlimited commercial use forever, sync included, and the beat comes off the store. Anyone who leased the beat before your purchase keeps their license. Producer credit and the publishing split still apply, and the producer keeps the copyright – you get exclusive use, not ownership of the beat.
 
-**Need more?** If your song is about to pass a limit, upgrade before it does. Questions or sync requests: ricky@flavorfulmusic.com.
+**Need more?** If your song is about to pass a limit, upgrade before it does. Questions or sync requests: hello@flavorfulmusic.com.
 
 *This page is a summary. The full license agreement for each tier governs.*
