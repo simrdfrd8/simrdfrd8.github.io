@@ -104,7 +104,7 @@ function MerchNote() {
   );
 }
 
-/** All tab: one card per design (cuts of the same artwork grouped), with a Men / Women / Unisex selector. Same brand groups and order as the category grids. */
+/** All tab: one card per design (cuts of the same artwork grouped), with a Men / Women selector (only the cuts it comes in). Same brand groups and order as the category grids. */
 export function MerchDesignsByBrand() {
   const groups = merchByBrand().map((g) => ({ ...g, designs: groupByDesign(g.items) }));
   const before = groups.map((_, gi) => groups.slice(0, gi).reduce((sum, x) => sum + x.designs.length, 0));
@@ -135,7 +135,7 @@ export function MerchDesignsByBrand() {
 }
 
 /**
- * The merch shop: All, then a tab per category that has pieces (Men / Women / Unisex, from each product's `category`).
+ * The merch shop: All, then a tab per category that has pieces (Men / Women, from each product's `category`).
  * All shows one card per design with a cut selector (its count is designs); the category tabs show that cut's products.
  */
 export function MerchShop() {

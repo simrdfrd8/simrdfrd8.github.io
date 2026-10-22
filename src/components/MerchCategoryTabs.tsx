@@ -6,7 +6,7 @@ import clsx from "clsx";
 export type MerchTab = { id: string; label: string; count: number };
 
 /**
- * Shop categories (All / Men / Women / Unisex). Rendered on the server (static export). All shows the [data-merch-view=all]
+ * Shop categories (All / Men / Women). Rendered on the server (static export). All shows the [data-merch-view=all]
  * block (one card per design, with a cut selector); a category tab shows [data-merch-view=category] and hides the cards
  * (data-category) and brand groups (data-categories) outside it. All works without JS.
  * Linkable: /shop/merch?category=men (read client-side, kept in the URL with replaceState). Unknown categories fall back to All.

@@ -11,21 +11,23 @@ type P = { id: string; design?: string; category: MerchCategory };
 const p = (id: string, category: MerchCategory, design?: string): P => ({ id, category, ...(design ? { design } : {}) });
 const cutsOf = (d: ReturnType<typeof groupByDesign<P>>[number]) => Object.fromEntries(d.cuts.map((c) => [c.cut, c.item?.id ?? null]));
 
-describe("All tab: one card per design with a Men / Women / Unisex cut selector", () => {
-  it("groups cuts of the same design, keeps first-appearance order, and lists all three cuts in Men, Women, Unisex order", () => {
-    const out = groupByDesign([p("tee", "unisex", "a"), p("solo", "unisex"), p("tee-w", "women", "a"), p("tank-w", "women", "b")]);
+describe("All tab: one card per design with a Men / Women cut selector (no Unisex)", () => {
+  it("groups cuts of the same design, keeps first-appearance order, and lists only the cuts each design has (Men, then Women)", () => {
+    const out = groupByDesign([p("tee", "men", "a"), p("solo", "men"), p("tee-w", "women", "a"), p("tank-w", "women", "b")]);
     expect(out.map((d) => d.design)).toEqual(["a", "solo", "b"]);
-    for (const d of out) expect(d.cuts.map((c) => c.label)).toEqual(["Men", "Women", "Unisex"]);
-    expect(cutsOf(out[0])).toEqual({ men: null, women: "tee-w", unisex: "tee" });
-    expect(cutsOf(out[1])).toEqual({ men: null, women: null, unisex: "solo" });
+    expect(out.map((d) => d.cuts.map((c) => c.label))).toEqual([["Men", "Women"], ["Men"], ["Women"]]);
+    expect(cutsOf(out[0])).toEqual({ men: "tee", women: "tee-w" });
+    expect(cutsOf(out[1])).toEqual({ men: "solo" });
+    expect(cutsOf(out[2])).toEqual({ women: "tank-w" });
+    for (const d of out) expect(d.cuts.every((c) => c.item)).toBe(true);
   });
 
-  it("opens on Unisex; a design without a unisex cut opens on the first cut it has", () => {
-    const [a, b, c] = groupByDesign([p("tee-w", "women", "a"), p("tee", "unisex", "a"), p("tank-w", "women", "b"), p("m", "men", "c"), p("w", "women", "c")]);
-    expect(a.defaultCut).toBe("unisex");
+  it("opens on Men; a women-only design opens on Women", () => {
+    const [a, b] = groupByDesign([p("tee-w", "women", "a"), p("tee", "men", "a"), p("tank-w", "women", "b")]);
+    expect(a.defaultCut).toBe("men");
+    expect(a.cuts.map((c) => c.cut)).toEqual(["men", "women"]);
     expect(b.defaultCut).toBe("women");
-    expect(c.defaultCut).toBe("men");
-    expect(defaultCutOf([])).toBe("unisex");
+    expect(defaultCutOf([])).toBe("men");
   });
 
   it("first product wins if two claim the same design and cut", () => {
@@ -33,18 +35,19 @@ describe("All tab: one card per design with a Men / Women / Unisex cut selector"
     expect(cutsOf(d).women).toBe("one");
   });
 
-  it("the launch line groups into 6 designs; the 4 with a women's cut get Women + Unisex, Men stays disabled everywhere", () => {
+  it("the launch line groups into 6 designs; the 4 with a women's cut get Men + Women, the rest Men only", () => {
     const products = visibleProducts(ProductsFile.parse(load("products")), "production", AssetsFile.parse(load("assets"))).filter((x) => x.type === "merch" && x.listed && x.shopListed);
     const designs = groupByDesign([...products].sort((x, y) => x.order - y.order));
     expect(designs.map((d) => [d.design, cutsOf(d)])).toEqual([
-      ["hotdo-g", { men: null, women: "merch-hotdo-g-womens-boxy-tee", unisex: "merch-hotdog-tee-white" }],
-      ["heartbeat-triangle", { men: null, women: null, unisex: "merch-heartbeat-triangle-tee" }],
-      ["no-thanks", { men: null, women: null, unisex: "merch-no-thanks-tee" }],
-      ["feelings-notice", { men: null, women: "merch-feelings-notice-womens-boxy-tee", unisex: "merch-feelings-notice-tee" }],
-      ["make-art-with-friends", { men: null, women: "merch-make-art-with-friends-womens-boxy-tee", unisex: "merch-make-art-with-friends-tee" }],
-      ["santa-cruz-dipper", { men: null, women: "merch-santa-cruz-dipper-womens-rib-tank", unisex: "merch-santa-cruz-dipper-tank" }],
+      ["hotdo-g", { men: "merch-hotdog-tee-white", women: "merch-hotdo-g-womens-boxy-tee" }],
+      ["heartbeat-triangle", { men: "merch-heartbeat-triangle-tee" }],
+      ["no-thanks", { men: "merch-no-thanks-tee" }],
+      ["feelings-notice", { men: "merch-feelings-notice-tee", women: "merch-feelings-notice-womens-boxy-tee" }],
+      ["make-art-with-friends", { men: "merch-make-art-with-friends-tee", women: "merch-make-art-with-friends-womens-boxy-tee" }],
+      ["santa-cruz-dipper", { men: "merch-santa-cruz-dipper-tank", women: "merch-santa-cruz-dipper-womens-rib-tank" }],
     ]);
-    for (const d of designs) expect(d.defaultCut).toBe("unisex");
+    for (const d of designs) expect(d.defaultCut).toBe("men");
+    for (const d of designs) expect(d.cuts.map((c) => c.label)).not.toContain("Unisex");
   });
 
   it("validation flags two shop-listed pieces with the same design and cut", () => {
@@ -54,6 +57,6 @@ describe("All tab: one card per design with a Men / Women / Unisex cut selector"
     };
     expect(validateCatalog(raw).filter((e) => e.includes("design/cut"))).toEqual([]);
     raw.products = raw.products.map((x: { id: string; design?: string }) => (x.id === "merch-no-thanks-tee" ? { ...x, design: "hotdo-g" } : x));
-    expect(validateCatalog(raw)).toContain("products: two shop-listed merch pieces share design/cut hotdo-g/unisex");
+    expect(validateCatalog(raw)).toContain("products: two shop-listed merch pieces share design/cut hotdo-g/men");
   });
 });

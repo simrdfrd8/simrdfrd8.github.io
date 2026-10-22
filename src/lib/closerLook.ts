@@ -30,7 +30,7 @@ type Garment = "cc1717" | "cc3023cl" | "cc9360" | "as4063g";
 
 /** Launch line only. Products not listed here get no Closer look block. */
 const PRODUCTS: Record<string, { garment: Garment; label: boolean }> = {
-  // label: the 1.5" woven label row exists in the spec sheet only for these 6 unisex pieces (04-spec-sheet/spec-sheet.csv)
+  // label: the 1.5" woven label row exists in the spec sheet only for these 6 non-women's-cut pieces (04-spec-sheet/spec-sheet.csv)
   "merch-hotdog-tee-white": { garment: "cc1717", label: true },
   "merch-feelings-notice-tee": { garment: "cc1717", label: true },
   "merch-heartbeat-triangle-tee": { garment: "cc1717", label: true },

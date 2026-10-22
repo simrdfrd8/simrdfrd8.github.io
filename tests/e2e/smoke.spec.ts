@@ -503,12 +503,12 @@ test("artist titles never break mid-word and fit the viewport", async ({ page })
 });
 
 /** The curated launch line, in shop order (owner, 2026-10-22); the other 8 pieces keep their pages but are off the grids. */
-const UNISEX_LAUNCH = ["merch-hotdog-tee-white", "merch-heartbeat-triangle-tee", "merch-no-thanks-tee", "merch-feelings-notice-tee", "merch-make-art-with-friends-tee", "merch-santa-cruz-dipper-tank"];
+const MENS = ["merch-hotdog-tee-white", "merch-heartbeat-triangle-tee", "merch-no-thanks-tee", "merch-feelings-notice-tee", "merch-make-art-with-friends-tee", "merch-santa-cruz-dipper-tank"];
 /** Women's Comfort Colors 3023CL boxy cut (owner pick, 2026-10-22): front + back flats only until the cast is approved. */
 const WOMENS = ["merch-make-art-with-friends-womens-boxy-tee", "merch-feelings-notice-womens-boxy-tee", "merch-hotdo-g-womens-boxy-tee", "merch-santa-cruz-dipper-womens-rib-tank"];
-const LAUNCH = [...UNISEX_LAUNCH, ...WOMENS];
+const LAUNCH = [...MENS, ...WOMENS];
 const MERCH_COUNT = LAUNCH.length;
-/** All tab: one card per design (owner, 2026-10-22: "When all is selected show m/f/u options"), in shop order. */
+/** All tab: one card per design, in shop order. Owner, 2026-10-22: "only m/f ... No unisex category visible" (unisex-fit cuts list as Men). */
 const DESIGNS = ["hotdo-g", "heartbeat-triangle", "no-thanks", "feelings-notice", "make-art-with-friends", "santa-cruz-dipper"];
 const WITH_WOMENS = ["hotdo-g", "feelings-notice", "make-art-with-friends", "santa-cruz-dipper"];
 
@@ -544,30 +544,32 @@ test("merch categories: All plus a tab per category in use; linkable with ?categ
     await page.setViewportSize({ width, height: 900 });
     await page.goto("/shop/merch");
     const tabs = page.locator("[data-merch-categories] [role=tab]");
-    // Women + Unisex in use (no Men pieces yet), so the Men tab stays hidden
-    expect(await tabs.evaluateAll((els) => els.map((e) => e.getAttribute("data-category-tab")))).toEqual(["all", "women", "unisex"]);
+    // only All / Men / Women: no Unisex tab anywhere
+    expect(await tabs.evaluateAll((els) => els.map((e) => e.getAttribute("data-category-tab")))).toEqual(["all", "men", "women"]);
+    await expect(page.locator("main")).not.toContainText(/unisex/i);
     // All counts designs (one card each, with a cut selector); the category tabs count pieces
     await expect(tabs.nth(0)).toHaveText(new RegExp(`^All\\s*${DESIGNS.length}$`));
-    await expect(tabs.nth(1)).toHaveText(new RegExp(`^Women\\s*${WOMENS.length}$`));
-    await expect(tabs.nth(2)).toHaveText(new RegExp(`^Unisex\\s*${UNISEX_LAUNCH.length}$`));
+    await expect(tabs.nth(1)).toHaveText(new RegExp(`^Men\\s*${MENS.length}$`));
+    await expect(tabs.nth(2)).toHaveText(new RegExp(`^Women\\s*${WOMENS.length}$`));
     await expect(tabs.nth(0)).toHaveAttribute("aria-selected", "true");
     await expect(page.locator('[data-merch="inquire-only"]:visible')).toHaveCount(0);
     expect(await page.locator("[data-merch-design]:visible").evaluateAll((els) => els.map((e) => e.getAttribute("data-merch-design")))).toEqual(DESIGNS);
-    await tabs.nth(2).click();
-    await expect(page).toHaveURL(/\?category=unisex$/);
-    await expect(page.locator('[data-merch="inquire-only"]:visible')).toHaveCount(UNISEX_LAUNCH.length);
-    await expect(page.locator('[data-merch="inquire-only"][data-category="unisex"]:visible')).toHaveCount(UNISEX_LAUNCH.length);
-    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
     await tabs.nth(1).click();
+    await expect(page).toHaveURL(/\?category=men$/);
+    expect(await page.locator('[data-merch="inquire-only"]:visible').evaluateAll((els) => els.map((e) => e.getAttribute("data-product")))).toEqual(MENS);
+    await expect(page.locator('[data-merch="inquire-only"][data-category="men"]:visible')).toHaveCount(MENS.length);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
+    await tabs.nth(2).click();
     await expect(page).toHaveURL(/\?category=women$/);
     expect(await page.locator('[data-merch="inquire-only"]:visible').evaluateAll((els) => els.map((e) => e.getAttribute("data-product")))).toEqual(WOMENS);
-    await page.goto("/shop/merch?category=unisex");
-    await expect(page.locator("[data-category-tab=unisex]")).toHaveAttribute("aria-selected", "true");
+    await page.goto("/shop/merch?category=men");
+    await expect(page.locator("[data-category-tab=men]")).toHaveAttribute("aria-selected", "true");
     await page.goto("/shop/merch?category=women");
     await expect(page.locator("[data-category-tab=women]")).toHaveAttribute("aria-selected", "true");
     await expect(page.locator('[data-merch="inquire-only"]:visible')).toHaveCount(WOMENS.length);
-    // an unknown or empty category falls back to All
-    await page.goto("/shop/merch?category=men");
+    // an unknown category (the retired ?category=unisex too) falls back to All
+    await page.goto("/shop/merch?category=unisex");
+    await expect(page.locator("[data-category-tab=unisex]")).toHaveCount(0);
     await expect(page.locator("[data-category-tab=all]")).toHaveAttribute("aria-selected", "true");
     await expect(page.locator("[data-merch-design]:visible")).toHaveCount(DESIGNS.length);
     // back to All from a category tab shows the design cards again
@@ -613,7 +615,7 @@ test("merch off the launch line: hidden from the grids, but its page still resol
 });
 
 test("merch card: arrow keys / Home / End move through the photos, tap opens the product on that colorway", async ({ page }) => {
-  await page.goto("/shop/merch?category=unisex");
+  await page.goto("/shop/merch?category=men");
   const card = page.locator('[data-card-carousel="merch-feelings-notice-tee"]');
   const link = card.locator("a[data-product-link]");
   await expect(card).toHaveAttribute("data-index", "0");
@@ -649,7 +651,7 @@ test("merch product page: one swipe gallery; moving into a colorway selects it; 
   await expect(gallery).toHaveAttribute("data-selected-colorway", "graphite-cream");
   await expect(gallery.locator("[role=radio][aria-checked=true]")).toHaveAttribute("data-colorway", "graphite-cream");
   await gallery.locator("[data-carousel] [tabindex='0']").focus();
-  // uniform order: front, back, then one model front + back (Unisex: a man on the first colorway)
+  // uniform order: front, back, then one model front + back (Men: the man)
   const steps = [
     [1, /graphite-cream-back-\d/, "Back"],
     [2, /graphite-cream-model-front-2-\d/, "On model (front)"],
@@ -729,7 +731,7 @@ test("Santa Cruz Sun Tank (off the launch line): the product page still shows th
 });
 
 test("Make Art With Friends card swipes through 4 colorways (hero Chalky Mint first)", async ({ page }) => {
-  await page.goto("/shop/merch?category=unisex");
+  await page.goto("/shop/merch?category=men");
   const card = page.locator('[data-card-carousel="merch-make-art-with-friends-tee"]');
   // hero views (4) + the other 3 colorways' fronts
   await expect(card.locator("[data-slide]")).toHaveCount(7);
@@ -743,7 +745,7 @@ test("Make Art With Friends card swipes through 4 colorways (hero Chalky Mint fi
 test("phone (390px): touch-swiping a merch card moves to the next photo; the Dipper front is the SANTA CRUZ print", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/shop/merch/");
-  // All tab: the Dipper design card, on its default Unisex cut
+  // All tab: the Dipper design card, on its default Men cut
   const card = page.locator('[data-design-carousel="santa-cruz-dipper"]');
   await card.scrollIntoViewIfNeeded();
   await expect(card).toHaveAttribute("data-index", "0");
@@ -757,20 +759,19 @@ test("phone (390px): touch-swiping a merch card moves to the next photo; the Dip
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
 });
 
-test("All tab: one card per design with a Men / Women / Unisex cut selector; picking a cut swaps photos, colors, sizes and link", async ({ page }) => {
+test("All tab: one card per design with a Men / Women cut selector (no Unisex); picking a cut swaps photos, colors, sizes and link", async ({ page }) => {
   for (const width of [390, 1280]) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto("/shop/merch");
     for (const d of DESIGNS) {
       const card = page.locator(`[data-merch-design="${d}"]`);
       const opts = card.locator("[data-cut-selector] [role=radio]");
-      expect(await opts.evaluateAll((els) => els.map((e) => e.textContent))).toEqual(["Men", "Women", "Unisex"]);
-      // no men's cuts yet: Men is shown but disabled; Women only where the design has a women's cut; opens on Unisex
-      await expect(card.locator("[data-cut-option=men]")).toBeDisabled();
-      if (WITH_WOMENS.includes(d)) await expect(card.locator("[data-cut-option=women]")).toBeEnabled();
-      else await expect(card.locator("[data-cut-option=women]")).toBeDisabled();
-      await expect(card.locator("[data-cut-option=unisex]")).toHaveAttribute("aria-checked", "true");
-      await expect(card).toHaveAttribute("data-cut", "unisex");
+      // both cuts -> Men / Women; one cut -> just that one. Nothing disabled, no Unisex; opens on Men
+      expect(await opts.evaluateAll((els) => els.map((e) => e.textContent))).toEqual(WITH_WOMENS.includes(d) ? ["Men", "Women"] : ["Men"]);
+      await expect(card.locator("[data-cut-option=unisex]")).toHaveCount(0);
+      await expect(card.locator("[data-cut-selector] [role=radio]:disabled")).toHaveCount(0);
+      await expect(card.locator("[data-cut-option=men]")).toHaveAttribute("aria-checked", "true");
+      await expect(card).toHaveAttribute("data-cut", "men");
     }
     const hot = page.locator('[data-merch-design="hotdo-g"]');
     await expect(hot).toHaveAttribute("data-design-product", "merch-hotdog-tee-white");
@@ -778,7 +779,7 @@ test("All tab: one card per design with a Men / Women / Unisex cut selector; pic
     await expect(hot.locator("[data-design-link]")).toHaveAttribute("href", /\/shop\/merch\/hotdog-tee-white\/?$/);
     await expect(hot.locator("[data-slide='0'] img")).toHaveAttribute("src", /merch-hotdo-g-tee\/white-taco-red-\d/);
     await expect(hot.locator("[data-design-colorways]")).toHaveAttribute("data-design-colorways", "3");
-    await expect(hot.locator("[data-design-sizes]")).toHaveCount(0); // no unisex size run in the catalog yet
+    await expect(hot.locator("[data-design-sizes]")).toHaveCount(0); // no size run on the Comfort Colors tee in the catalog yet
     await hot.locator("[data-cut-option=women]").click();
     await expect(hot).toHaveAttribute("data-cut", "women");
     await expect(hot.locator("[data-cut-option=women]")).toHaveAttribute("aria-checked", "true");
@@ -789,13 +790,12 @@ test("All tab: one card per design with a Men / Women / Unisex cut selector; pic
     await expect(hot.locator("[data-slide='0'] img")).toHaveAttribute("src", /merch-hotdo-g-womens-boxy-tee\//);
     await expect(hot.locator("[data-design-colorways]")).toHaveAttribute("data-design-colorways", "1");
     await expect(hot.locator("[data-design-sizes]")).toHaveText("Sizes S–2XL");
-    // a disabled cut can't be picked; arrow keys move between the enabled ones
-    await hot.locator("[data-cut-option=men]").click({ force: true });
-    await expect(hot).toHaveAttribute("data-cut", "women");
+    // arrow keys move between the cuts (wrapping)
     await hot.locator("[data-cut-option=women]").focus();
     await page.keyboard.press("ArrowRight");
-    await expect(hot).toHaveAttribute("data-cut", "unisex");
-    await expect(hot.locator("[data-cut-option=unisex]")).toBeFocused();
+    await expect(hot).toHaveAttribute("data-cut", "men");
+    await expect(hot.locator("[data-cut-option=men]")).toBeFocused();
+    await expect(hot).toHaveAttribute("data-design-product", "merch-hotdog-tee-white");
     // the women's Dipper is the rib tank, XS-XL
     const dip = page.locator('[data-merch-design="santa-cruz-dipper"]');
     await dip.locator("[data-cut-option=women]").click();

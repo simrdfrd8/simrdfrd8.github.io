@@ -15,21 +15,19 @@ export type ResolvedView = { kind: ViewKind; assetId: string; label: string; fro
 
 export const VIEW_LABEL: Record<ViewKind, string> = { front: "Front", back: "Back", "model-front": "On model (front)", "model-back": "On model (back)", "model-front-extra": "On model (front)", "model-back-extra": "On model (back)" };
 
-/** Shop category (Men / Women / Unisex tab): one per product, from the cut of the supplier's blank. */
-export type MerchCategory = "men" | "women" | "unisex";
+/** Shop category (Men / Women tab): one per product. Women's cuts are "women"; every other cut (unisex-fit blanks too) is "men". */
+export type MerchCategory = "men" | "women";
 export const MERCH_CATEGORIES: { id: MerchCategory; label: string }[] = [
   { id: "men", label: "Men" },
   { id: "women", label: "Women" },
-  { id: "unisex", label: "Unisex" },
 ];
 
 /**
- * The one model shown for a colorway: men -> the first man, women -> the first woman, unisex -> a man on even colorways
- * (the first, which the shop card shows) and a woman on odd ones. Falls back to whoever is there, so the gallery works with
- * any cast (one person, two, or none).
+ * The one model shown for a colorway: men -> the man, women -> the woman. Falls back to whoever is there, so the gallery
+ * works with any cast (one person, two, or none).
  */
-export function pickModel(models: ColorwayModel[] = [], category: MerchCategory = "unisex", colorwayIndex = 0): ColorwayModel | undefined {
-  const want = category === "men" ? "male" : category === "women" ? "female" : colorwayIndex % 2 === 0 ? "male" : "female";
+export function pickModel(models: ColorwayModel[] = [], category: MerchCategory = "men"): ColorwayModel | undefined {
+  const want = category === "women" ? "female" : "male";
   return models.find((m) => m.gender === want) ?? models[0];
 }
 
@@ -65,16 +63,16 @@ export function heroColorwayOf<T extends ColorwayRef>(colorways: T[], heroSlug?:
   return colorways.find((c) => c.slug === heroSlug) ?? colorways.find((c) => c.modelFrontAssetId || c.modelBackAssetId) ?? colorways[0];
 }
 
-export function resolveViews(colorways: ColorwayRef[], heroSlug: string | undefined, exists: (id: string) => boolean = () => true, category: MerchCategory = "unisex"): ResolvedView[][] {
+export function resolveViews(colorways: ColorwayRef[], heroSlug: string | undefined, exists: (id: string) => boolean = () => true, category: MerchCategory = "men"): ResolvedView[][] {
   const hero = heroColorwayOf(colorways, heroSlug);
-  return colorways.map((c, ci) => {
+  return colorways.map((c) => {
     const ok = (id?: string): id is string => !!id && exists(id);
     const out: ResolvedView[] = [];
     if (ok(c.assetId)) out.push({ kind: "front", assetId: c.assetId, label: VIEW_LABEL.front, fromHero: false });
     if (ok(c.backAssetId)) out.push({ kind: "back", assetId: c.backAssetId, label: VIEW_LABEL.back, fromHero: false });
     if (c.models?.length) {
       // uniform 4-image set: front, back, then one model's front + back. Older single-model fields, extras and the rest of the cast are not shown.
-      const m = pickModel(c.models, category, ci);
+      const m = pickModel(c.models, category);
       if (m && ok(m.frontAssetId)) out.push({ kind: "model-front", assetId: m.frontAssetId, label: VIEW_LABEL["model-front"], fromHero: false });
       if (m && ok(m.backAssetId)) out.push({ kind: "model-back", assetId: m.backAssetId, label: VIEW_LABEL["model-back"], fromHero: false });
       return out;
@@ -93,19 +91,19 @@ export function resolveViews(colorways: ColorwayRef[], heroSlug: string | undefi
   });
 }
 
-/** One cut of a design on the All tab: `item` is the product in that cut, or undefined when the design has no such cut. */
+/** One cut of a design on the All tab: `item` is the product in that cut. */
 export type DesignCut<T> = { cut: MerchCategory; label: string; item?: T };
 export type MerchDesign<T> = { design: string; cuts: DesignCut<T>[]; defaultCut: MerchCategory };
 
-/** The cut a design card opens on: Unisex when the design has it, else the first cut it has (Men, Women, Unisex order). */
+/** The cut a design card opens on: Men when the design has it, else the first cut it has (Men, Women order). */
 export function defaultCutOf<T>(cuts: DesignCut<T>[]): MerchCategory {
-  return cuts.find((c) => c.cut === "unisex" && c.item)?.cut ?? cuts.find((c) => c.item)?.cut ?? "unisex";
+  return cuts.find((c) => c.item)?.cut ?? "men";
 }
 
 /**
  * All tab: one card per design (products sharing `design`, else their own id), in the order each design first appears.
- * Every card lists all three cuts (Men / Women / Unisex) so the selector always reads the same; cuts the design doesn't
- * come in have no item (shown disabled). If two products claim the same design + cut the first wins (validate.ts flags it).
+ * A card lists only the cuts the design comes in (Men, then Women): both cuts -> a Men / Women selector, one cut -> just
+ * that one. If two products claim the same design + cut the first wins (validate.ts flags it).
  */
 export function groupByDesign<T extends { id: string; design?: string; category: MerchCategory }>(items: T[]): MerchDesign<T>[] {
   const byDesign = new Map<string, Partial<Record<MerchCategory, T>>>();
@@ -116,7 +114,7 @@ export function groupByDesign<T extends { id: string; design?: string; category:
     byDesign.set(key, cuts);
   }
   return [...byDesign.entries()].map(([design, have]) => {
-    const cuts = MERCH_CATEGORIES.map((c) => ({ cut: c.id, label: c.label, item: have[c.id] }));
+    const cuts = MERCH_CATEGORIES.filter((c) => have[c.id]).map((c) => ({ cut: c.id, label: c.label, item: have[c.id] }));
     return { design, cuts, defaultCut: defaultCutOf(cuts) };
   });
 }

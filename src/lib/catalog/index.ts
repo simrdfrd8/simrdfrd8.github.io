@@ -84,7 +84,7 @@ export const getSamplePacks = () => catalog.samplePacks.filter((p) => p.status !
 export const packProduct = (p: SamplePack): Product => ({
   id: p.id, title: p.title, assetId: p.coverAssetId, artist: "flavorful-croissants", type: "sample-pack", price: p.price, currency: p.currency,
   payWhatYouWant: false, priceApproved: p.priceApproved, status: p.status, checkoutProvider: p.checkoutProvider, checkoutUrl: p.checkoutUrl,
-  licenseTerms: p.license, summary: p.contents[0] ?? "", includes: p.contents, inquireOnly: false, listed: true, shopListed: true, category: "unisex" as const, brand: null, galleryAssetIds: [], colorways: [], lifestyleAssetIds: [], featured: false, order: p.order,
+  licenseTerms: p.license, summary: p.contents[0] ?? "", includes: p.contents, inquireOnly: false, listed: true, shopListed: true, category: "men" as const, brand: null, galleryAssetIds: [], colorways: [], lifestyleAssetIds: [], featured: false, order: p.order,
 });
 
 /** Lane offers for a solo production, built from content/product-templates.json (checkout gated by CHECKOUT_LIVE). */
@@ -97,7 +97,7 @@ export function laneOffers(track: Pick<SoundCloudTrack, "id" | "title" | "displa
       id: `${track.id}--${o.id}`, title: `${track.displayTitle ?? track.title}: ${o.title}`, assetId: null, artist: track.artist, type: o.type,
       price: o.price, currency: "USD" as const, payWhatYouWant: false, priceApproved: o.priceApproved, status: o.status,
       checkoutProvider: o.price === null ? ("none" as const) : ("payhip" as const), checkoutUrl: null, licenseTerms: o.terms,
-      summary: o.summary, artworkUrl: track.artworkUrl, includes: [], inquireOnly: false, listed: true, shopListed: true, category: "unisex" as const, brand: null, galleryAssetIds: [], colorways: [], lifestyleAssetIds: [], featured: false, order: i, terms: o.terms, licenseTierId: o.licenseTierId,
+      summary: o.summary, artworkUrl: track.artworkUrl, includes: [], inquireOnly: false, listed: true, shopListed: true, category: "men" as const, brand: null, galleryAssetIds: [], colorways: [], lifestyleAssetIds: [], featured: false, order: i, terms: o.terms, licenseTierId: o.licenseTierId,
       agreementUrl: o.agreement ? `/licensing/${o.agreement}` : undefined,
     }));
 }

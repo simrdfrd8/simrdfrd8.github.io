@@ -11,7 +11,7 @@ import { MediaImage } from "./MediaImage";
 import { ComingSoonTag } from "./SwipeCarousel";
 
 export type DesignCardColorway = SlideColorwayLike<Asset> & { swatch?: string };
-/** One cut of the design, ready to render (`product` is missing when the design doesn't come in that cut). */
+/** One cut of the design, ready to render (`product` is always set for cuts from groupByDesign). */
 export type DesignCardCut = {
   cut: MerchCategory;
   label: string;
@@ -21,9 +21,8 @@ export type DesignCardCut = {
 const sizeRange = (s?: string[]) => (!s?.length ? null : s.length > 1 ? `${s[0]}–${s[s.length - 1]}` : s[0]);
 
 /**
- * All tab: one card per design with a Men / Women / Unisex cut selector. Picking a cut swaps the card's photos, colorways,
- * sizes, title and link to that cut's own product. Cuts the design doesn't come in stay visible but disabled, so every card
- * reads the same. Display only: merch is coming soon, there is no price or checkout here.
+ * All tab: one card per design with a Men / Women cut selector. Picking a cut swaps the card's photos, colorways,
+ * sizes, title and link to that cut's own product. Only the cuts the design comes in are listed (one cut: just that one). Display only: merch is coming soon, there is no price or checkout here.
  */
 export function MerchDesignCard({ design, cuts, defaultCut, priority = false }: { design: string; cuts: DesignCardCut[]; defaultCut: MerchCategory; priority?: boolean }) {
   const [cut, setCut] = useState<MerchCategory>(defaultCut);

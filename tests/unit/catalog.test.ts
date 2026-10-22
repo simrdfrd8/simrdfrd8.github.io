@@ -10,13 +10,13 @@ import { withPreviewCopy } from "@/lib/catalog";
 const V2_IDS = ["merch-feelings-notice-tee", "merch-heartbeat-triangle-tee", "merch-heartbeat-croissant-pocket-tee", "merch-taco-slu-t-pocket-tee", "merch-no-thanks-tee", "merch-taco-slu-t-pixel-patch-tee", "merch-hotdog-tee-white", "merch-redwood-lif-e-heartbeat-tee", "merch-redwood-lif-e-grove-tee", "merch-make-art-with-friends-tee"];
 const TANK_IDS = ["merch-santa-cruz-sun-tank", "merch-santa-cruz-dipper-tank", "merch-santa-cruz-redwoods-tank", "merch-santa-cruz-sunset-tank"];
 /** The curated launch line (owner, 2026-10-22), in shop order. */
-const UNISEX_LAUNCH_IDS = ["merch-hotdog-tee-white", "merch-heartbeat-triangle-tee", "merch-no-thanks-tee", "merch-feelings-notice-tee", "merch-make-art-with-friends-tee", "merch-santa-cruz-dipper-tank"];
+const MENS_LAUNCH_IDS = ["merch-hotdog-tee-white", "merch-heartbeat-triangle-tee", "merch-no-thanks-tee", "merch-feelings-notice-tee", "merch-make-art-with-friends-tee", "merch-santa-cruz-dipper-tank"];
 /** Women's Comfort Colors 3023CL boxy cut (owner pick, 2026-10-22): flats only until the cast is approved. */
 const WOMENS_BOXY_IDS = ["merch-make-art-with-friends-womens-boxy-tee", "merch-feelings-notice-womens-boxy-tee", "merch-hotdo-g-womens-boxy-tee"];
 /** Women's Santa Cruz Dipper on the AS Colour 4063G rib tank (owner pick, 2026-10-22): Powder, Orchid, White; flats only. */
 const WOMENS_TANK_ID = "merch-santa-cruz-dipper-womens-rib-tank";
 const WOMENS_IDS = [...WOMENS_BOXY_IDS, WOMENS_TANK_ID];
-const LAUNCH_IDS = [...UNISEX_LAUNCH_IDS, ...WOMENS_IDS];
+const LAUNCH_IDS = [...MENS_LAUNCH_IDS, ...WOMENS_IDS];
 
 /** Owner rule: no adjectives before the categories (spelled in pieces so this guard doesn't trip the repo leak scan). */
 const BANNED_WORDS = new RegExp(["ed" + "gy", "heart" + "felt", "dis" + "torted", "under" + "neath it all"].join("|"), "i");
@@ -83,11 +83,12 @@ describe("merch v2 views", () => {
     expect(wv.map((x) => x.assetId)).toEqual(["navy-front", "navy-back", "f-mf", "f-mb"]);
     expect(blankBackViews(u, wv)!.map((x) => x.assetId)).toEqual(["navy-front", "navy-back-blank", "f-mf", "f-mb-blank"]);
     expect(resolveViews([u], undefined, () => true, "men")[0].map((x) => x.assetId)).toEqual(["navy-front", "navy-back", "m-mf", "m-mb"]);
-    // unisex alternates man / woman across colorways
-    expect(resolveViews([u, { ...u, slug: "navy-2" }, { ...u, slug: "navy-3" }], undefined).map((v) => v[2].assetId)).toEqual(["m-mf", "f-mf", "m-mf"]);
+    // Men (the default) shows the man on every colorway; no alternating cast
+    expect(resolveViews([u, { ...u, slug: "navy-2" }, { ...u, slug: "navy-3" }], undefined).map((v) => v[2].assetId)).toEqual(["m-mf", "m-mf", "m-mf"]);
+    expect(resolveViews([u, { ...u, slug: "navy-2" }], undefined, () => true, "women").map((v) => v[2].assetId)).toEqual(["f-mf", "f-mf"]);
     // any cast works: one person (whatever the category), or none
     const solo = [{ gender: "female" as const, frontAssetId: "s-f", backAssetId: "s-b" }];
-    for (const cat of ["men", "women", "unisex"] as const) expect(pickModel(solo, cat, 0)?.frontAssetId).toBe("s-f");
+    for (const cat of ["men", "women"] as const) expect(pickModel(solo, cat)?.frontAssetId).toBe("s-f");
     expect(pickModel([], "men")).toBeUndefined();
     expect(resolveViews([cw("solo", { backAssetId: "solo-back", models: solo })], undefined, () => true, "men")[0].map((x) => x.assetId)).toEqual(["solo-front", "solo-back", "s-f", "s-b"]);
     expect(resolveViews([cw("none", { backAssetId: "none-back", models: [] })], undefined)[0].map((x) => x.assetId)).toEqual(["none-front", "none-back"]);
@@ -225,7 +226,7 @@ describe("content catalog", () => {
   it("merges the CSV HOTDO G tee into the existing product instead of duplicating it", () => {
     const products = ProductsFile.parse(load("products"));
     const assets = AssetsFile.parse(load("assets"));
-    const hot = products.filter((p) => /hotdo/.test(p.id) && p.category === "unisex");
+    const hot = products.filter((p) => /hotdo/.test(p.id) && p.category === "men");
     expect(hot.map((p) => p.id)).toEqual(["merch-hotdog-tee-white"]);
     expect(hot[0].title).toBe("HOTDO G Tee");
     expect(hot[0].assetId).toBe("merch-hotdo-g-tee-white-taco-red");
@@ -383,20 +384,20 @@ describe("merch final cast", () => {
     for (const p of merch) for (const c of p.colorways) for (const x of c.modelExtras ?? []) expect(x.assetId).toMatch(new RegExp(`-model-${x.side}-\\d+$`));
   });
 
-  it("unisex launch line: one category each (Unisex for now); every colorway has the 4-image gallery (front, back, one model front/back)", () => {
+  it("launch line (unisex-fit blanks): listed as Men; every colorway has the 4-image gallery (front, back, one model front/back)", () => {
     const byId = new Map(assets.map((a) => [a.id, a]));
-    for (const id of UNISEX_LAUNCH_IDS) {
+    for (const id of MENS_LAUNCH_IDS) {
       const p = products.find((x) => x.id === id)!;
-      expect(p.category, id).toBe("unisex");
-      for (const cat of ["men", "women", "unisex"] as const) {
+      expect(p.category, id).toBe("men");
+      for (const cat of ["men", "women"] as const) {
         const views = resolveViews(p.colorways, p.heroColorway, (x) => byId.has(x), cat);
         p.colorways.forEach((c, i) => {
           expect(views[i].map((v) => v.kind), `${id}/${c.slug}/${cat}`).toEqual(["front", "back", "model-front", "model-back"]);
           expect(views[i].map((v) => v.label)).toEqual(["Front", "Back", "On model (front)", "On model (back)"]);
           expect(views[i].every((v) => !v.fromHero)).toBe(true);
           // the model's shots are this colorway's own photos, front and back of the same person
-          const m = pickModel(c.models, cat, i)!;
-          expect(m.gender).toBe(cat === "men" ? "male" : cat === "women" ? "female" : i % 2 === 0 ? "male" : "female");
+          const m = pickModel(c.models, cat)!;
+          expect(m.gender).toBe(cat === "men" ? "male" : "female");
           expect(views[i].slice(2).map((v) => v.assetId)).toEqual([m.frontAssetId, m.backAssetId]);
           for (const v of views[i].slice(2)) expect(v.assetId.startsWith(`${c.assetId}-model-`), v.assetId).toBe(true);
           if (TANK_IDS.includes(id)) {
@@ -406,8 +407,10 @@ describe("merch final cast", () => {
         });
       }
     }
-    // hidden products default to Unisex too (schema default) and stay off the grids
-    expect(products.filter((p) => p.type === "merch").every((p) => ["men", "women", "unisex"].includes(p.category))).toBe(true);
+    // only two shop categories exist: hidden products default to Men (schema default); women's cuts are Women
+    expect(products.filter((p) => p.type === "merch").every((p) => ["men", "women"].includes(p.category))).toBe(true);
+    for (const id of WOMENS_IDS) expect(products.find((x) => x.id === id)!.category, id).toBe("women");
+    expect(JSON.stringify(load("products"))).not.toMatch(/"category":\s*"unisex"/);
   });
 
   it("the shop lists only the launch line, in order; the other merch keeps its page but is off the grids", () => {
