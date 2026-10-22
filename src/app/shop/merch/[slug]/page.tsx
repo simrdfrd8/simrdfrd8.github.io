@@ -6,6 +6,8 @@ import { MerchProductGallery } from "@/components/MerchProductGallery";
 import { ComingSoonTag } from "@/components/SwipeCarousel";
 import { MediaImage } from "@/components/MediaImage";
 import { merchGallery, merchSlug } from "@/components/Merch";
+import { CloserLook } from "@/components/CloserLook";
+import { closerLookFor } from "@/lib/closerLook";
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -56,6 +58,7 @@ export default async function MerchProductPage({ params }: { params: Promise<{ s
             </p>
           </div>
         </div>
+        <CloserLook tiles={closerLookFor(product.id, product.title)} className="mt-16 border-t border-line pt-12 md:mt-24 md:pt-16" />
       </div>
     </section>
   );

@@ -871,3 +871,18 @@ test("phone: the Support heart tucks away while scrolling down a product page an
   await page.mouse.wheel(0, -300);
   await expect(heart).not.toHaveAttribute("data-hidden", "true");
 });
+
+test("closer look on the merch shop and a product page", async ({ page }) => {
+  for (const [route, count] of [["/shop/merch", 3], ["/shop/merch/heartbeat-triangle-tee", 3], ["/shop/merch/santa-cruz-dipper-womens-rib-tank", 2]] as const) {
+    await page.goto(route, { waitUntil: "load" });
+    const block = page.locator("[data-closer-look]");
+    await expect(block).toHaveCount(1);
+    await expect(block.locator("[data-tile]")).toHaveCount(count);
+    await block.scrollIntoViewIfNeeded();
+    for (const img of await block.locator("img").all()) {
+      await img.scrollIntoViewIfNeeded();
+      await expect.poll(() => img.evaluate((el) => (el as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
+    }
+    await expect(block).not.toContainText(/DTG|\$\d/);
+  }
+});
