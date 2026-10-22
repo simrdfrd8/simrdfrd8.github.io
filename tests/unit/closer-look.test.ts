@@ -31,6 +31,10 @@ describe("closer look", () => {
     }
   });
 
+  it("the label mark is a croissant, never called a dome", () => {
+    for (const t of all) expect(`${t.title} ${t.body} ${t.spec ?? ""} ${t.alt}`).not.toMatch(/\bdome\b/i);
+  });
+
   it("the woven label tile only appears where the spec sheet has a label row", () => {
     const withLabel = listed.filter((p) => closerLookFor(p.id, p.title).some((t) => t.id === "label")).map((p) => p.id);
     expect(withLabel.every((id) => !/womens/.test(id))).toBe(true);

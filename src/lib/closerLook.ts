@@ -43,14 +43,14 @@ const PRODUCTS: Record<string, { garment: Garment; label: boolean }> = {
   "merch-santa-cruz-dipper-womens-rib-tank": { garment: "as4063g", label: false },
 };
 
-// Label: 01-woven-label/README.md (v1 dome, 1.5" decided Oct 22, woven, two flat colours, thinnest line 1.10 mm,
+// Label: 01-woven-label/README.md (v1 mark, a croissant; packet files call it "dome"; 1.5" decided Oct 22, woven, two flat colours, thinnest line 1.10 mm,
 // Apliiq 1 mm rule) + spec-sheet.csv (Left Hem, 0.5" up from the hem).
 const LABEL: Omit<CloserLookTile, "file"> = {
   id: "label",
   title: "a woven label",
-  body: "our little dome, woven (not printed) into a 1.5-inch label and sewn just above the hem. every line is over a millimeter thick, so it weaves clean.",
+  body: "our little croissant, woven (not printed) into a 1.5-inch label and sewn just above the hem. every line is over a millimeter thick, so it weaves clean.",
   spec: "woven · 1.5 in · two colors, no text",
-  alt: "Close-up of the square woven label with the red dome mark, sewn above a tee's hem",
+  alt: "Close-up of the square woven label with the red croissant mark, sewn above a tee's hem",
   mockup: true,
 };
 
