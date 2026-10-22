@@ -3,6 +3,7 @@ import { existsSync } from "node:fs";
 import path from "node:path";
 import { merchProducts } from "@/lib/catalog";
 import { CLOSER_LOOK_WIDTHS, closerLookFor, closerLookShop, closerLookSrc } from "@/lib/closerLook";
+import { isPubliclyVisible } from "@/lib/merch-visibility";
 
 const PUBLIC = path.join(__dirname, "../../public");
 
@@ -20,8 +21,12 @@ describe("closer look", () => {
     }
   });
 
-  it("every tile image exists in every width and format", () => {
-    for (const t of all) for (const w of CLOSER_LOOK_WIDTHS) for (const ext of ["webp", "avif"] as const) {
+  // Admin-only products' images were purged from the public repo (history rewrite, Oct 22 2026); their masters live
+  // outside it. Only tiles of products in the public set must have their files in public/.
+  const shipped = [...closerLookShop(), ...listed.filter((p) => isPubliclyVisible(p, true)).flatMap((p) => closerLookFor(p.id, p.title))];
+
+  it("every tile image of a public product exists in every width and format", () => {
+    for (const t of shipped) for (const w of CLOSER_LOOK_WIDTHS) for (const ext of ["webp", "avif"] as const) {
       expect(existsSync(path.join(PUBLIC, closerLookSrc(t.file, w, ext))), `${t.file}-${w}.${ext}`).toBe(true);
     }
   });
