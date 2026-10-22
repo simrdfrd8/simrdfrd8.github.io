@@ -7,8 +7,12 @@ import type { NextConfig } from "next";
  */
 const basePath = (process.env.NEXT_PUBLIC_BASE_PATH ?? "").replace(/\/$/, "");
 
+/** The price display demo (src/app/price-demo/page.demo.tsx, example data) only exists in a PRICE_DEMO=1 screenshot build. */
+const pageExtensions = ["tsx", "ts", "jsx", "js", ...(process.env.PRICE_DEMO === "1" ? ["demo.tsx"] : [])];
+
 const nextConfig: NextConfig = {
   output: "export",
+  pageExtensions,
   trailingSlash: true,
   images: { unoptimized: true },
   poweredByHeader: false,

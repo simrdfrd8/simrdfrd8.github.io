@@ -37,8 +37,16 @@ async function call<T>(path: string, init: RequestInit = {}): Promise<T> {
 }
 const send = <T,>(method: string, path: string, body?: unknown) => call<T>(path, { method, body: body === undefined ? undefined : JSON.stringify(body) });
 
+let inflight: Promise<Session> | null = null;
+/**
+ * One /session request at a time: on a first visit (no csrf cookie yet) two parallel calls (nav + form) would each mint a
+ * different token, and the form could send the one whose cookie lost ("Please reload the page and try again").
+ */
 export async function getSession(): Promise<Session> {
-  const s = await call<Session>("/session");
+  inflight ??= call<Session>("/session").finally(() => {
+    inflight = null;
+  });
+  const s = await inflight;
   csrf = s.csrf;
   return s;
 }
