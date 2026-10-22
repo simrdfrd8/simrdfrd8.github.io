@@ -315,10 +315,13 @@ describe("merch final cast", () => {
       }
   });
 
-  it("162 on-model photos in all (118 + 44 for the uniform launch galleries), each used once, each with a full set of web sizes", () => {
+  // Dipper Ivory / Navy and Crimson / Cream were dropped from the line (Oct 22, 2026); their records and files are kept, just not shown.
+  const RETIRED = /^merch-santa-cruz-dipper-tank-(ivory-navy|crimson-cream)(-|$)/;
+
+  it("173 on-model photos in all, each used once, each with a full set of web sizes", () => {
     const ids = merch.flatMap((p) => p.colorways.flatMap(modelIds));
-    expect(ids).toHaveLength(162);
-    expect(new Set(ids).size).toBe(162);
+    expect(ids).toHaveLength(173);
+    expect(new Set(ids).size).toBe(173);
     const byId = new Map(assets.map((a) => [a.id, a]));
     for (const id of ids) {
       const a = byId.get(id)!;
@@ -326,12 +329,13 @@ describe("merch final cast", () => {
       expect(a.previews.map((x) => `${x.format}${x.width}`).sort(), id).toEqual(["avif1500", "avif480", "avif960", "webp1500", "webp160", "webp480", "webp960"]);
     }
     // no stray on-model records left over from the earlier shoot
-    expect(assets.filter((a) => a.id.startsWith("merch-") && /-model-/.test(a.id)).map((a) => a.id).sort()).toEqual([...ids].sort());
+    expect(assets.filter((a) => a.id.startsWith("merch-") && /-model-/.test(a.id) && !RETIRED.test(a.id)).map((a) => a.id).sort()).toEqual([...ids].sort());
+    expect(assets.filter((a) => RETIRED.test(a.id))).toHaveLength(22); // 6 flats + 16 on-model, kept on file
   });
 
   it("every Santa Cruz tank carries the full cast; extra shots are numbered by side", () => {
     const counts = Object.fromEntries(merch.filter((p) => TANK_IDS.includes(p.id)).map((p) => [p.id, p.colorways.flatMap(modelIds).length]));
-    expect(counts).toEqual({ "merch-santa-cruz-sun-tank": 13, "merch-santa-cruz-dipper-tank": 28, "merch-santa-cruz-redwoods-tank": 14, "merch-santa-cruz-sunset-tank": 13 });
+    expect(counts).toEqual({ "merch-santa-cruz-sun-tank": 13, "merch-santa-cruz-dipper-tank": 32, "merch-santa-cruz-redwoods-tank": 14, "merch-santa-cruz-sunset-tank": 13 });
     for (const p of merch) for (const c of p.colorways) for (const x of c.modelExtras ?? []) expect(x.assetId).toMatch(new RegExp(`-model-${x.side}-\\d+$`));
   });
 
@@ -365,5 +369,57 @@ describe("merch final cast", () => {
     const d = products.find((p) => p.id === "merch-santa-cruz-dipper-tank")!;
     expect(d.summary).toContain("hiding in the water below");
     expect(d.summary).not.toContain("built into the woodwork");
+  });
+});
+
+describe("merch follow-ups, Oct 22, 2026", () => {
+  const products = ProductsFile.parse(load("products"));
+  const assets = AssetsFile.parse(load("assets"));
+  const byId = new Map(assets.map((a) => [a.id, a]));
+  const find = (id: string) => products.find((p) => p.id === id)!;
+  const cw = (id: string, slug: string) => find(id).colorways.find((c) => c.slug === slug)!;
+
+  it("Dipper Tank is on the CC 9360 in exactly 5 colorways, Chambray first (hero and thumbnail)", () => {
+    const d = find("merch-santa-cruz-dipper-tank");
+    expect(d.colorways.map((c) => c.slug)).toEqual(["chambray-navy", "blossom-navy", "butter-navy", "white-navy", "grape-cream"]);
+    expect(d.heroColorway).toBe("chambray-navy");
+    expect(d.assetId).toBe("merch-santa-cruz-dipper-tank-chambray-navy");
+    expect(cw(d.id, "grape-cream").ink).toBe("#F8E8D2");
+    // dropped colorways keep their records on file, but nothing points at them
+    expect(byId.has("merch-santa-cruz-dipper-tank-ivory-navy")).toBe(true);
+    expect(JSON.stringify(d)).not.toMatch(/ivory-navy|crimson-cream/);
+  });
+
+  it("new Dipper colorways have both people, with a blank-back version of each back shot", () => {
+    for (const slug of ["butter-navy", "white-navy", "grape-cream"]) {
+      const c = cw("merch-santa-cruz-dipper-tank", slug);
+      expect(c.models?.map((m) => m.gender)).toEqual(["male", "female"]);
+      for (const m of c.models!) for (const id of [m.frontAssetId, m.backAssetId, m.blankBackAssetId!]) expect(byId.has(id), id).toBe(true);
+    }
+  });
+
+  it("over-the-shoulder backs are replaced by true-back shots (old files kept, no longer shown)", () => {
+    const swaps: [string, string, "male" | "female", string][] = [
+      ["merch-hotdog-tee-white", "white-taco-red", "female", "merch-hotdo-g-tee-white-taco-red-model-back-3"],
+      ["merch-hotdog-tee-white", "black-white", "male", "merch-hotdo-g-tee-black-white-model-back-3"],
+      ["merch-no-thanks-tee", "graphite-cream", "female", "merch-no-thanks-tee-graphite-cream-model-back-3"],
+      ["merch-make-art-with-friends-tee", "chalky-mint-plum", "female", "merch-make-art-with-friends-tee-chalky-mint-plum-model-back-3"],
+      ["merch-make-art-with-friends-tee", "grape-acid-green", "male", "merch-make-art-with-friends-tee-grape-acid-green-model-back-3"],
+      ["merch-santa-cruz-dipper-tank", "chambray-navy", "female", "merch-santa-cruz-dipper-tank-chambray-navy-model-back-3"],
+    ];
+    for (const [id, slug, g, back] of swaps) {
+      const p = find(id);
+      const i = p.colorways.findIndex((c) => c.slug === slug);
+      expect(p.colorways[i].models!.find((m) => m.gender === g)!.backAssetId).toBe(back);
+      const shown = resolveViews(p.colorways, p.heroColorway, (x) => byId.has(x))[i].map((v) => v.assetId);
+      expect(shown).toContain(back);
+      expect(shown).not.toContain(back.replace(/-3$/, ""));
+    }
+    expect(cw("merch-santa-cruz-dipper-tank", "chambray-navy").models!.find((m) => m.gender === "female")!.blankBackAssetId).toBe("merch-santa-cruz-dipper-tank-chambray-navy-model-back-3-blank");
+  });
+
+  it("Make Art Grape / Black: Carmen (front and back) is the woman", () => {
+    const w = cw("merch-make-art-with-friends-tee", "grape-black").models!.find((m) => m.gender === "female")!;
+    expect([w.frontAssetId, w.backAssetId]).toEqual(["merch-make-art-with-friends-tee-grape-black-model-front-3", "merch-make-art-with-friends-tee-grape-black-model-back-3"]);
   });
 });

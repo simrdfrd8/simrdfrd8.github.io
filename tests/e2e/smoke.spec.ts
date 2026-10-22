@@ -584,7 +584,7 @@ test("merch product page: one swipe gallery; moving into a colorway selects it; 
     [2, /graphite-cream-model-front-2-\d/, "On model (front)"],
     [3, /graphite-cream-model-back-2-\d/, "On model (back)"],
     [4, /graphite-cream-model-front-\d+\./, "On model (front)"],
-    [5, /graphite-cream-model-back-\d+\./, "On model (back)"],
+    [5, /graphite-cream-model-back-3-\d+\./, "On model (back)"],
   ] as const;
   for (const [i, re, label] of steps) {
     await page.keyboard.press("ArrowRight");
@@ -617,13 +617,16 @@ test("merch product page: printed / blank back keeps the captions right", async 
   await expect(gallery.locator("[data-colorway-name]")).toHaveText("Chambray / Navy · Back (blank)");
   await expect(car.locator("[data-slide='1'] img")).toHaveAttribute("src", /chambray-navy-back-blank-/);
   // both people's back shots swap to the blank back too (man = slide 3, woman = slide 5); the fronts stay
-  await expect(car.locator("[data-slide]")).toHaveCount(24);
+  // 5 colorways x 6 (Chambray, Blossom, Butter, White, Grape; Ivory and Crimson are gone)
+  await expect(car.locator("[data-slide]")).toHaveCount(30);
+  await expect(gallery.locator("[role=radio][data-colorway]")).toHaveCount(5);
+  await expect(gallery.locator("[data-colorway=ivory-navy], [data-colorway=crimson-cream]")).toHaveCount(0);
   await gallery.locator("[data-carousel] [tabindex='0']").focus();
   for (const [i, re, cap] of [
     [2, /chambray-navy-model-front-2-\d/, "On model (front) · Blank back"],
     [3, /chambray-navy-model-back-2-blank-/, "On model, back (blank)"],
     [4, /chambray-navy-model-front-\d+\./, "On model (front) · Blank back"],
-    [5, /chambray-navy-model-back-blank-/, "On model, back (blank)"],
+    [5, /chambray-navy-model-back-3-blank-/, "On model, back (blank)"],
   ] as const) {
     await page.keyboard.press("ArrowRight");
     await expect(car).toHaveAttribute("data-index", String(i));
@@ -631,13 +634,16 @@ test("merch product page: printed / blank back keeps the captions right", async 
     await expect(gallery.locator("[data-colorway-name]")).toHaveText(`Chambray / Navy · ${cap}`);
   }
   await gallery.locator("[data-back-option=printed]").click();
-  await expect(car.locator("[data-slide='5'] img")).toHaveAttribute("src", /chambray-navy-model-back-\d+\./);
+  await expect(car.locator("[data-slide='5'] img")).toHaveAttribute("src", /chambray-navy-model-back-3-\d+\./);
   await expect(gallery.locator("[data-colorway-name]")).toHaveText("Chambray / Navy · On model, back (printed)");
   await gallery.locator("[data-carousel] [tabindex='0']").focus();
   await page.keyboard.press("Home");
   await expect(car).toHaveAttribute("data-index", "0");
   await page.keyboard.press("ArrowRight");
   await expect(gallery.locator("[data-colorway-name]")).toHaveText("Chambray / Navy · Back (printed)");
+  await page.keyboard.press("End");
+  await expect(car.locator("[data-slide='29'] img")).toHaveAttribute("src", /grape-cream-model-back-2-\d+\./);
+  await expect(gallery.locator("[data-colorway-name]")).toHaveText("Grape / Cream · On model, back (printed)");
 });
 
 test("Santa Cruz Sun Tank (off the launch line): the product page still shows the whole cast after the main shots", async ({ page }) => {

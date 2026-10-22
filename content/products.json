@@ -190,7 +190,7 @@
           {
             "gender": "female",
             "frontAssetId": "merch-hotdo-g-tee-white-taco-red-model-front",
-            "backAssetId": "merch-hotdo-g-tee-white-taco-red-model-back"
+            "backAssetId": "merch-hotdo-g-tee-white-taco-red-model-back-3"
           }
         ]
       },
@@ -207,7 +207,7 @@
           {
             "gender": "male",
             "frontAssetId": "merch-hotdo-g-tee-black-white-model-front",
-            "backAssetId": "merch-hotdo-g-tee-black-white-model-back"
+            "backAssetId": "merch-hotdo-g-tee-black-white-model-back-3"
           },
           {
             "gender": "female",
@@ -643,7 +643,7 @@
           {
             "gender": "female",
             "frontAssetId": "merch-no-thanks-tee-graphite-cream-model-front",
-            "backAssetId": "merch-no-thanks-tee-graphite-cream-model-back"
+            "backAssetId": "merch-no-thanks-tee-graphite-cream-model-back-3"
           }
         ]
       },
@@ -856,7 +856,7 @@
           {
             "gender": "female",
             "frontAssetId": "merch-make-art-with-friends-tee-chalky-mint-plum-model-front",
-            "backAssetId": "merch-make-art-with-friends-tee-chalky-mint-plum-model-back"
+            "backAssetId": "merch-make-art-with-friends-tee-chalky-mint-plum-model-back-3"
           }
         ]
       },
@@ -895,7 +895,7 @@
           {
             "gender": "male",
             "frontAssetId": "merch-make-art-with-friends-tee-grape-acid-green-model-front",
-            "backAssetId": "merch-make-art-with-friends-tee-grape-acid-green-model-back"
+            "backAssetId": "merch-make-art-with-friends-tee-grape-acid-green-model-back-3"
           },
           {
             "gender": "female",
@@ -921,8 +921,8 @@
           },
           {
             "gender": "female",
-            "frontAssetId": "merch-make-art-with-friends-tee-grape-black-model-front",
-            "backAssetId": "merch-make-art-with-friends-tee-grape-black-model-back"
+            "frontAssetId": "merch-make-art-with-friends-tee-grape-black-model-front-3",
+            "backAssetId": "merch-make-art-with-friends-tee-grape-black-model-back-3"
           }
         ]
       }
@@ -1058,44 +1058,8 @@
           {
             "gender": "female",
             "frontAssetId": "merch-santa-cruz-dipper-tank-chambray-navy-model-front",
-            "backAssetId": "merch-santa-cruz-dipper-tank-chambray-navy-model-back",
-            "blankBackAssetId": "merch-santa-cruz-dipper-tank-chambray-navy-model-back-blank"
-          }
-        ]
-      },
-      {
-        "name": "Ivory / Navy",
-        "slug": "ivory-navy",
-        "swatch": "#FFF4D9",
-        "ink": "#1E2C4A",
-        "assetId": "merch-santa-cruz-dipper-tank-ivory-navy",
-        "backAssetId": "merch-santa-cruz-dipper-tank-ivory-navy-back",
-        "blankBackAssetId": "merch-santa-cruz-dipper-tank-ivory-navy-back-blank",
-        "modelFrontAssetId": "merch-santa-cruz-dipper-tank-ivory-navy-model-front",
-        "modelBackAssetId": "merch-santa-cruz-dipper-tank-ivory-navy-model-back",
-        "blankModelBackAssetId": "merch-santa-cruz-dipper-tank-ivory-navy-model-back-blank",
-        "modelExtras": [
-          {
-            "assetId": "merch-santa-cruz-dipper-tank-ivory-navy-model-front-2",
-            "side": "front"
-          },
-          {
-            "assetId": "merch-santa-cruz-dipper-tank-ivory-navy-model-back-2",
-            "side": "back"
-          }
-        ],
-        "models": [
-          {
-            "gender": "male",
-            "frontAssetId": "merch-santa-cruz-dipper-tank-ivory-navy-model-front-3",
-            "backAssetId": "merch-santa-cruz-dipper-tank-ivory-navy-model-back-3",
-            "blankBackAssetId": "merch-santa-cruz-dipper-tank-ivory-navy-model-back-3-blank"
-          },
-          {
-            "gender": "female",
-            "frontAssetId": "merch-santa-cruz-dipper-tank-ivory-navy-model-front",
-            "backAssetId": "merch-santa-cruz-dipper-tank-ivory-navy-model-back",
-            "blankBackAssetId": "merch-santa-cruz-dipper-tank-ivory-navy-model-back-blank"
+            "backAssetId": "merch-santa-cruz-dipper-tank-chambray-navy-model-back-3",
+            "blankBackAssetId": "merch-santa-cruz-dipper-tank-chambray-navy-model-back-3-blank"
           }
         ]
       },
@@ -1126,38 +1090,80 @@
         ]
       },
       {
-        "name": "Crimson / Cream",
-        "slug": "crimson-cream",
-        "swatch": "#BB5151",
-        "ink": "#F8E8D2",
-        "assetId": "merch-santa-cruz-dipper-tank-crimson-cream",
-        "backAssetId": "merch-santa-cruz-dipper-tank-crimson-cream-back",
-        "blankBackAssetId": "merch-santa-cruz-dipper-tank-crimson-cream-back-blank",
-        "modelFrontAssetId": "merch-santa-cruz-dipper-tank-crimson-cream-model-front",
-        "modelBackAssetId": "merch-santa-cruz-dipper-tank-crimson-cream-model-back",
-        "blankModelBackAssetId": "merch-santa-cruz-dipper-tank-crimson-cream-model-back-blank",
-        "modelExtras": [
-          {
-            "assetId": "merch-santa-cruz-dipper-tank-crimson-cream-model-front-2",
-            "side": "front"
-          },
-          {
-            "assetId": "merch-santa-cruz-dipper-tank-crimson-cream-model-back-2",
-            "side": "back"
-          }
-        ],
+        "name": "Butter / Navy",
+        "slug": "butter-navy",
+        "swatch": "#FFE09E",
+        "ink": "#1E2C4A",
+        "assetId": "merch-santa-cruz-dipper-tank-butter-navy",
+        "backAssetId": "merch-santa-cruz-dipper-tank-butter-navy-back",
+        "blankBackAssetId": "merch-santa-cruz-dipper-tank-butter-navy-back-blank",
+        "modelFrontAssetId": "merch-santa-cruz-dipper-tank-butter-navy-model-front",
+        "modelBackAssetId": "merch-santa-cruz-dipper-tank-butter-navy-model-back",
+        "blankModelBackAssetId": "merch-santa-cruz-dipper-tank-butter-navy-model-back-blank",
         "models": [
           {
             "gender": "male",
-            "frontAssetId": "merch-santa-cruz-dipper-tank-crimson-cream-model-front",
-            "backAssetId": "merch-santa-cruz-dipper-tank-crimson-cream-model-back",
-            "blankBackAssetId": "merch-santa-cruz-dipper-tank-crimson-cream-model-back-blank"
+            "frontAssetId": "merch-santa-cruz-dipper-tank-butter-navy-model-front",
+            "backAssetId": "merch-santa-cruz-dipper-tank-butter-navy-model-back",
+            "blankBackAssetId": "merch-santa-cruz-dipper-tank-butter-navy-model-back-blank"
           },
           {
             "gender": "female",
-            "frontAssetId": "merch-santa-cruz-dipper-tank-crimson-cream-model-front-3",
-            "backAssetId": "merch-santa-cruz-dipper-tank-crimson-cream-model-back-3",
-            "blankBackAssetId": "merch-santa-cruz-dipper-tank-crimson-cream-model-back-3-blank"
+            "frontAssetId": "merch-santa-cruz-dipper-tank-butter-navy-model-front-2",
+            "backAssetId": "merch-santa-cruz-dipper-tank-butter-navy-model-back-2",
+            "blankBackAssetId": "merch-santa-cruz-dipper-tank-butter-navy-model-back-2-blank"
+          }
+        ]
+      },
+      {
+        "name": "White / Navy",
+        "slug": "white-navy",
+        "swatch": "#FFFFFF",
+        "ink": "#1E2C4A",
+        "assetId": "merch-santa-cruz-dipper-tank-white-navy",
+        "backAssetId": "merch-santa-cruz-dipper-tank-white-navy-back",
+        "blankBackAssetId": "merch-santa-cruz-dipper-tank-white-navy-back-blank",
+        "modelFrontAssetId": "merch-santa-cruz-dipper-tank-white-navy-model-front",
+        "modelBackAssetId": "merch-santa-cruz-dipper-tank-white-navy-model-back",
+        "blankModelBackAssetId": "merch-santa-cruz-dipper-tank-white-navy-model-back-blank",
+        "models": [
+          {
+            "gender": "male",
+            "frontAssetId": "merch-santa-cruz-dipper-tank-white-navy-model-front",
+            "backAssetId": "merch-santa-cruz-dipper-tank-white-navy-model-back",
+            "blankBackAssetId": "merch-santa-cruz-dipper-tank-white-navy-model-back-blank"
+          },
+          {
+            "gender": "female",
+            "frontAssetId": "merch-santa-cruz-dipper-tank-white-navy-model-front-2",
+            "backAssetId": "merch-santa-cruz-dipper-tank-white-navy-model-back-2",
+            "blankBackAssetId": "merch-santa-cruz-dipper-tank-white-navy-model-back-2-blank"
+          }
+        ]
+      },
+      {
+        "name": "Grape / Cream",
+        "slug": "grape-cream",
+        "swatch": "#644E6D",
+        "ink": "#F8E8D2",
+        "assetId": "merch-santa-cruz-dipper-tank-grape-cream",
+        "backAssetId": "merch-santa-cruz-dipper-tank-grape-cream-back",
+        "blankBackAssetId": "merch-santa-cruz-dipper-tank-grape-cream-back-blank",
+        "modelFrontAssetId": "merch-santa-cruz-dipper-tank-grape-cream-model-front",
+        "modelBackAssetId": "merch-santa-cruz-dipper-tank-grape-cream-model-back",
+        "blankModelBackAssetId": "merch-santa-cruz-dipper-tank-grape-cream-model-back-blank",
+        "models": [
+          {
+            "gender": "male",
+            "frontAssetId": "merch-santa-cruz-dipper-tank-grape-cream-model-front",
+            "backAssetId": "merch-santa-cruz-dipper-tank-grape-cream-model-back",
+            "blankBackAssetId": "merch-santa-cruz-dipper-tank-grape-cream-model-back-blank"
+          },
+          {
+            "gender": "female",
+            "frontAssetId": "merch-santa-cruz-dipper-tank-grape-cream-model-front-2",
+            "backAssetId": "merch-santa-cruz-dipper-tank-grape-cream-model-back-2",
+            "blankBackAssetId": "merch-santa-cruz-dipper-tank-grape-cream-model-back-2-blank"
           }
         ]
       }
