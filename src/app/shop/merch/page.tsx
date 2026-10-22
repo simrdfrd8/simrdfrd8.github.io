@@ -4,6 +4,7 @@ import { Section, ButtonLink, Arrow } from "@/components/ui";
 import { MerchShop } from "@/components/Merch";
 import { CloserLook } from "@/components/CloserLook";
 import { closerLookShop } from "@/lib/closerLook";
+import { BundlesSection } from "@/components/price/Bundles";
 
 export const metadata: Metadata = { title: "Merch", description: "Apparel from Flavorful Music. Coming soon.", alternates: { canonical: "/shop/merch" } };
 
@@ -15,6 +16,7 @@ export default function MerchPage() {
       </PageHeader>
       <Section id="merch" action={<ButtonLink href="/shop" variant="secondary">Back to shop <Arrow /></ButtonLink>}>
         <MerchShop />
+        <BundlesSection />
       </Section>
       <Section tone="raised">
         <CloserLook tiles={closerLookShop()} intro="the stuff you only notice once it's in your hands." />

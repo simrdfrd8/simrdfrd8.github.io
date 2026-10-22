@@ -37,6 +37,7 @@ import {
 import { isPreview } from "@/lib/env";
 import { getSiteMode } from "../env";
 import { isAssetVisible, sortByOrder, visibleProducts, visibleReleases, visibleTracks } from "./filters";
+import { isPubliclyVisible, withPublicSetListing, withPublishedColorways } from "../merch-visibility";
 
 export * from "./schema";
 export * from "./filters";
@@ -141,7 +142,8 @@ export const visibleAssets = () => catalog.assets.filter((a) => isAssetVisible(a
 /** Preview build swaps in previewTitle/previewSummary; production always shows the approved title/summary. */
 export const withPreviewCopy = <T extends { title: string; summary: string; previewTitle?: string; previewSummary?: string }>(p: T, m: typeof mode = mode): T =>
   m === "preview" && (p.previewTitle || p.previewSummary) ? { ...p, title: p.previewTitle ?? p.title, summary: p.previewSummary ?? p.summary } : p;
-export const getProducts = () => visibleProducts(catalog.products, mode, catalog.assets).filter((p) => p.listed).map((p) => withPreviewCopy(p));
+/** Merch (and colourways) not in the published snapshot are dropped here when the build-time MERCH_PUBLIC_SET filter is on (lib/merch-visibility). */
+export const getProducts = () => visibleProducts(catalog.products, mode, catalog.assets).filter((p) => p.listed && isPubliclyVisible(p)).map((p) => withPreviewCopy(withPublishedColorways(withPublicSetListing(p))));
 /** Unlisted apparel for a brand page, shown as artwork only (never as a store item). */
 export const brandApparelAssets = (brand: string) =>
   visibleProducts(catalog.products, mode, catalog.assets)

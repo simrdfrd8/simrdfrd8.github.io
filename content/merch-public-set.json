@@ -1,0 +1,10 @@
+{
+  "note": "Merch that public visitors and customer accounts see: 1 tank, 3 shirts, 1 hoodie. Each slot lists product slugs (the id without 'merch-'): the Men listing first, then the Women listing. Every colourway of a listed product stays public (the filter works per product, never per colour). The filter only applies when the build sets MERCH_PUBLIC_SET=1; otherwise every published product shows, as today.",
+  "slots": [
+    { "slot": "tank", "products": ["santa-cruz-dipper-tank", "santa-cruz-dipper-womens-rib-tank"] },
+    { "slot": "shirt", "products": ["hotdog-tee-white", "hotdo-g-womens-boxy-tee"] },
+    { "slot": "shirt", "products": ["feelings-notice-tee", "feelings-notice-womens-boxy-tee"] },
+    { "slot": "shirt", "products": ["make-art-with-friends-tee", "make-art-with-friends-womens-boxy-tee"] },
+    { "slot": "hoodie", "products": [], "untilFilled": ["heartbeat-croissant-pocket-tee"] }
+  ]
+}

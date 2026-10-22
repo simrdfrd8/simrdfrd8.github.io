@@ -8,6 +8,7 @@ import { ComingSoonTag } from "./SwipeCarousel";
 import { blankBackViews, groupByDesign, resolveViews, MERCH_CATEGORIES } from "@/lib/merch";
 import { MerchCategoryTabs } from "./MerchCategoryTabs";
 import { MerchDesignCard, type DesignCardCut } from "./MerchDesignCard";
+import { MerchPrice } from "./price/MerchPrice";
 
 export const merchSlug = (p: Pick<Product, "id">) => p.id.replace(/^merch-/, "");
 
@@ -58,6 +59,7 @@ export function MerchCard({ product, priority = false }: { product: Product; pri
           </Link>
         </h3>
         <p className="line-clamp-2 text-sm text-cream-dim">{product.summary}</p>
+        <MerchPrice product={product} className="mt-1" />
       </div>
     </article>
   );
@@ -122,7 +124,7 @@ export function MerchDesignsByBrand() {
                 return {
                   cut: c.cut,
                   label: c.label,
-                  product: { id: p.id, title: p.title, summary: p.summary, href: `/shop/merch/${merchSlug(p)}`, ...(p.sizes ? { sizes: p.sizes } : {}), ...(asset ? { asset } : {}), colorways },
+                  product: { id: p.id, title: p.title, summary: p.summary, href: `/shop/merch/${merchSlug(p)}`, ...(p.sizes ? { sizes: p.sizes } : {}), ...(asset ? { asset } : {}), colorways, price: <MerchPrice product={p} className="mt-1" /> },
                 };
               });
               return <MerchDesignCard key={d.design} design={d.design} cuts={cuts} defaultCut={d.defaultCut} priority={before[gi] + di < 4} />;

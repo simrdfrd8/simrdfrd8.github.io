@@ -8,6 +8,7 @@ import { MediaImage } from "@/components/MediaImage";
 import { merchGallery, merchSlug } from "@/components/Merch";
 import { CloserLook } from "@/components/CloserLook";
 import { closerLookFor } from "@/lib/closerLook";
+import { MerchPrice } from "@/components/price/MerchPrice";
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -44,6 +45,7 @@ export default async function MerchProductPage({ params }: { params: Promise<{ s
           ) : null}
           <div className="md:sticky md:top-24">
             <h1 className="brand-h text-[clamp(2rem,5vw,3.5rem)]">{product.title}</h1>
+            <MerchPrice product={product} size="lg" className="mt-4" />
             <p className="mt-4 text-lg text-cream-dim">{product.summary}</p>
             {product.sizes?.length ? (
               <p className="mt-4 text-sm text-muted" data-sizes>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, type KeyboardEvent } from "react";
+import { useRef, useState, type KeyboardEvent, type ReactNode } from "react";
 import Link from "next/link";
 import clsx from "clsx";
 import type { Asset } from "@/lib/catalog/schema";
@@ -15,7 +15,7 @@ export type DesignCardColorway = SlideColorwayLike<Asset> & { swatch?: string };
 export type DesignCardCut = {
   cut: MerchCategory;
   label: string;
-  product?: { id: string; title: string; summary: string; href: string; sizes?: string[]; asset?: Asset; colorways: DesignCardColorway[] };
+  product?: { id: string; title: string; summary: string; href: string; sizes?: string[]; asset?: Asset; colorways: DesignCardColorway[]; price?: ReactNode };
 };
 
 const sizeRange = (s?: string[]) => (!s?.length ? null : s.length > 1 ? `${s[0]}–${s[s.length - 1]}` : s[0]);
@@ -93,6 +93,8 @@ export function MerchDesignCard({ design, cuts, defaultCut, priority = false }: 
           </Link>
         </h3>
         <p className="line-clamp-2 text-sm text-cream-dim">{current.summary}</p>
+        {/* published price of the picked cut (server-rendered MerchPrice; renders nothing while unpriced) */}
+        {current.price ? <div data-design-price>{current.price}</div> : null}
         {n > 0 && (
           <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted" data-design-meta>
             <span className="flex items-center gap-1" aria-label={current.colorways.map((c) => c.name).join(", ")} data-design-colorways={n}>

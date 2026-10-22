@@ -1,0 +1,88 @@
+{
+ "schema": "fm-catalog-published/1",
+ "release": 0,
+ "exportedAt": "2026-10-22T18:00:00.000Z",
+ "merch": {
+  "hotdog-tee-white": {
+   "price_cents": null,
+   "sale": null,
+   "colorways": {
+    "white-taco-red": {},
+    "black-white": {},
+    "graphite-electric-orange": {}
+   }
+  },
+  "feelings-notice-tee": {
+   "price_cents": null,
+   "sale": null,
+   "colorways": {
+    "true-navy-cream": {},
+    "graphite-cream": {},
+    "ivory-plum": {}
+   }
+  },
+  "heartbeat-croissant-pocket-tee": {
+   "price_cents": null,
+   "sale": null,
+   "colorways": {
+    "burnt-orange-plum": {},
+    "ivory-plum": {},
+    "graphite-coral": {}
+   }
+  },
+  "make-art-with-friends-tee": {
+   "price_cents": null,
+   "sale": null,
+   "colorways": {
+    "chalky-mint-plum": {},
+    "butter-plum": {},
+    "grape-acid-green": {},
+    "chambray-plum": {}
+   }
+  },
+  "santa-cruz-dipper-tank": {
+   "price_cents": null,
+   "sale": null,
+   "colorways": {
+    "chambray-navy": {},
+    "blossom-navy": {},
+    "butter-navy": {},
+    "white-navy": {},
+    "grape-cream": {}
+   }
+  },
+  "make-art-with-friends-womens-boxy-tee": {
+   "price_cents": null,
+   "sale": null,
+   "colorways": {
+    "butter-plum": {}
+   }
+  },
+  "feelings-notice-womens-boxy-tee": {
+   "price_cents": null,
+   "sale": null,
+   "colorways": {
+    "ivory-plum": {}
+   }
+  },
+  "hotdo-g-womens-boxy-tee": {
+   "price_cents": null,
+   "sale": null,
+   "colorways": {
+    "black-white": {},
+    "ivory-taco-red": {},
+    "butter-taco-red": {}
+   }
+  },
+  "santa-cruz-dipper-womens-rib-tank": {
+   "price_cents": null,
+   "sale": null,
+   "colorways": {
+    "powder-navy": {},
+    "orchid-navy": {},
+    "white-navy": {}
+   }
+  }
+ },
+ "bundles": []
+}
