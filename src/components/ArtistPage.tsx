@@ -87,10 +87,17 @@ export function ArtistHero({ artist }: { artist: Artist }) {
 }
 
 /** Fluid title size so the longest single word always fits the viewport (wraps only between words, never mid-word). */
-function titleSize(name: string, maxRem: number): React.CSSProperties {
+function titleSize(name: string, maxRem: number, column?: { maxPx: number; trackPx: number }): React.CSSProperties {
+  const words = name.split(/\s+/).map((w) => w.length);
   // Floor of 5 so very short words ("NOT DÄF") don't blow past the viewport in the wide hero face.
-  const longest = Math.max(5, ...name.split(/\s+/).map((w) => w.length));
-  return { fontSize: `clamp(2rem, calc((100vw - 3rem) / ${(longest * 0.7).toFixed(2)}), ${maxRem}rem)` };
+  const longest = Math.max(5, ...words);
+  const fluid = `calc((100vw - 3rem) / ${(longest * 0.7).toFixed(2)})`;
+  if (!column) return { fontSize: `clamp(2rem, ${fluid}, ${maxRem}rem)` };
+  // Column fit for the wide Raleway hero face: the longest word (glyphs ≈0.69em + letter-spacing each) must fit the
+  // padded max-width column, so long names ("CROISSANTS") never run past it. Short names never hit this term.
+  const n = Math.max(...words);
+  const fit = `calc((min(100vw, ${column.maxPx}px) - 2 * var(--hero-pad) - ${n * column.trackPx}px) / ${(n * 0.69).toFixed(2)})`;
+  return { fontSize: `clamp(2rem, min(${fluid}, ${fit}), ${maxRem}rem)` };
 }
 
 /** Full-bleed portrait hero (720M pattern) for artists with an approved `<slug>-portrait` brand image. */
@@ -99,9 +106,9 @@ function PortraitHero({ artist, img }: { artist: Artist; img: NonNullable<Return
     <header className="relative -mt-px flex h-[92svh] max-h-[1500px] min-h-[560px] items-end overflow-hidden bg-[#0f0c13] md:h-[118vh] md:min-h-[680px]" data-hero>
       <Image src={img.webp} alt={img.alt} fill priority sizes="100vw" quality={82} className="object-cover object-[50%_28%] md:object-[50%_30%]" style={img.focus ? { objectPosition: img.focus } : undefined} data-portrait />
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(23,18,28,0)_55%,rgba(23,18,28,.55)_80%,#17121C_100%)]" />
-      <div className="relative z-[2] mx-auto w-full max-w-[1120px] px-5 pb-8 sm:px-8 md:pb-14">
+      <div className="relative z-[2] mx-auto w-full max-w-[1120px] px-[var(--hero-pad)] pb-8 [--hero-pad:1.25rem] sm:[--hero-pad:2rem] md:pb-14">
         <p className="kicker text-[var(--accent)]">{artist.role}</p>
-        <h1 className={`brand-h artist-title mt-4 mb-2.5 tracking-[4px] [text-shadow:0_2px_30px_rgba(23,18,28,.45)] ${hasMarks(artist.name) ? "leading-[1.1]" : "leading-[.9]"}`} style={titleSize(artist.name, 10)} data-artist-title>{artist.name}</h1>
+        <h1 className={`brand-h artist-title mt-4 mb-2.5 tracking-[4px] [text-shadow:0_2px_30px_rgba(23,18,28,.45)] ${hasMarks(artist.name) ? "leading-[1.1]" : "leading-[.9]"}`} style={titleSize(artist.name, 10, { maxPx: 1120, trackPx: 4 })} data-artist-title>{artist.name}</h1>
       </div>
     </header>
   );

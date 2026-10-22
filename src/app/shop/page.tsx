@@ -10,7 +10,8 @@ import { Section } from "@/components/ui";
 import { JsonLd, productLd } from "@/lib/jsonld";
 import { CHECKOUT_LIVE } from "@/lib/env";
 
-export const metadata: Metadata = { title: "Shop", description: "Downloads, stems, sample packs, prints, licenses and merch from Flavorful Music.", alternates: { canonical: "/shop" } };
+/** Page title matches its nav label ("Beats"); the layout template renders the tab title as "Beats · Flavorful Music". */
+export const metadata: Metadata = { title: "Beats", description: "Downloads, stems, sample packs, prints, licenses and merch from Flavorful Music.", alternates: { canonical: "/shop" } };
 
 const SHOP_GROUPS = [
   { id: "music", label: "Music", types: ["download", "stems", "sample-pack"] },
@@ -24,7 +25,7 @@ export default function ShopPage() {
   const cards = Object.fromEntries(products.map((p) => [p.id, <ProductCard key={p.id} product={p} />]));
   return (
     <>
-      <PageHeader kicker="One cart-free store · instant digital delivery" title="Shop" accent="#FF7A59">
+      <PageHeader kicker="One cart-free store · instant digital delivery" title="Beats" accent="#FF7A59">
         Every purchase goes straight to the artists. Pick something, pay, and it&apos;s yours. No account needed.
       </PageHeader>
       <Section id="lanes" kicker="Beats, tracks & sample packs by Flavorful Croissants" title="Shop by lane" tone="raised">
