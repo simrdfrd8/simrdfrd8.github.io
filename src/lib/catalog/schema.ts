@@ -286,6 +286,9 @@ export const ProductSchema = z.object({
    *  (noindex) so old links keep working. Reversible: set back to true (or delete the field). */
   shopListed: z.boolean().default(true),
   unlistedNote: z.string().optional(),
+  /** Merch only: the shop category (Men / Women / Unisex tab), set by the cut of the supplier's blank. One per product.
+   *  Also picks which model the gallery shows (men: a man, women: a woman, unisex: alternates man / woman across the colorways, starting with a man). */
+  category: z.enum(["men", "women", "unisex"]).default("unisex"),
   /** Merch brand line (artist slug, e.g. "baylingual-entertainment"); null = general Flavorful Music. */
   brand: slug.nullable().default(null),
   /** Extra assets shown with the product (lifestyle photos, videos). */
@@ -308,8 +311,9 @@ export const ProductSchema = z.object({
         blankModelBackAssetId: z.string().optional(),
         /** More on-model photos of this colorway (other people from the cast), in display order after the main model front/back. */
         modelExtras: z.array(z.object({ assetId: z.string(), side: z.enum(["front", "back"]) })).optional(),
-        /** Uniform gallery: one man and one woman, each front + back (+ blank-back variant). When set, the gallery shows
-         *  front, back, then these (men first) and ignores modelFront/modelBack/modelExtras (kept for reference, reversible). */
+        /** Cast shots of this colorway, each front + back (+ blank-back variant). When set, the gallery shows front, back,
+         *  then ONE model's front + back, picked by the product's category (see `category`), and ignores
+         *  modelFront/modelBack/modelExtras. Extra people stay in the list (not shown, reversible). */
         models: z
           .array(z.object({ gender: z.enum(["male", "female"]), frontAssetId: z.string(), backAssetId: z.string(), blankBackAssetId: z.string().optional() }))
           .optional(),

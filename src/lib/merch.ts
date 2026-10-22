@@ -1,6 +1,6 @@
 /**
  * Merch v2 views: each colorway can carry front, back, model-front and model-back images.
- * - With `models` (one man, one woman): exactly front, back, man front, man back, woman front, woman back.
+ * - With `models`: exactly front, back, then ONE model's front + back, picked by the product category (pickModel).
  * - The thumbnail / swatch is always the front.
  * - Back is per colorway only (a back shot of another colour would be misleading).
  * - Model shots fall back to the hero colorway's when a colorway has none (model photos are usually shot in one colour).
@@ -15,7 +15,25 @@ export type ResolvedView = { kind: ViewKind; assetId: string; label: string; fro
 
 export const VIEW_LABEL: Record<ViewKind, string> = { front: "Front", back: "Back", "model-front": "On model (front)", "model-back": "On model (back)", "model-front-extra": "On model (front)", "model-back-extra": "On model (back)" };
 
-/** Uniform gallery order: men first, then women ("front, back, then 2 models front/back, m/f"). */
+/** Shop category (Men / Women / Unisex tab): one per product, from the cut of the supplier's blank. */
+export type MerchCategory = "men" | "women" | "unisex";
+export const MERCH_CATEGORIES: { id: MerchCategory; label: string }[] = [
+  { id: "men", label: "Men" },
+  { id: "women", label: "Women" },
+  { id: "unisex", label: "Unisex" },
+];
+
+/**
+ * The one model shown for a colorway: men -> the first man, women -> the first woman, unisex -> a man on even colorways
+ * (the first, which the shop card shows) and a woman on odd ones. Falls back to whoever is there, so the gallery works with
+ * any cast (one person, two, or none).
+ */
+export function pickModel(models: ColorwayModel[] = [], category: MerchCategory = "unisex", colorwayIndex = 0): ColorwayModel | undefined {
+  const want = category === "men" ? "male" : category === "women" ? "female" : colorwayIndex % 2 === 0 ? "male" : "female";
+  return models.find((m) => m.gender === want) ?? models[0];
+}
+
+/** Gender order used when listing the whole cast (men first, then women). */
 const GENDER_ORDER = { male: 0, female: 1 } as const;
 export const orderedModels = (models: ColorwayModel[] = []) => [...models].sort((a, b) => GENDER_ORDER[a.gender] - GENDER_ORDER[b.gender]);
 
@@ -47,19 +65,18 @@ export function heroColorwayOf<T extends ColorwayRef>(colorways: T[], heroSlug?:
   return colorways.find((c) => c.slug === heroSlug) ?? colorways.find((c) => c.modelFrontAssetId || c.modelBackAssetId) ?? colorways[0];
 }
 
-export function resolveViews(colorways: ColorwayRef[], heroSlug: string | undefined, exists: (id: string) => boolean = () => true): ResolvedView[][] {
+export function resolveViews(colorways: ColorwayRef[], heroSlug: string | undefined, exists: (id: string) => boolean = () => true, category: MerchCategory = "unisex"): ResolvedView[][] {
   const hero = heroColorwayOf(colorways, heroSlug);
-  return colorways.map((c) => {
+  return colorways.map((c, ci) => {
     const ok = (id?: string): id is string => !!id && exists(id);
     const out: ResolvedView[] = [];
     if (ok(c.assetId)) out.push({ kind: "front", assetId: c.assetId, label: VIEW_LABEL.front, fromHero: false });
     if (ok(c.backAssetId)) out.push({ kind: "back", assetId: c.backAssetId, label: VIEW_LABEL.back, fromHero: false });
     if (c.models?.length) {
-      // uniform 6-image set: front, back, then each person's front + back (men first). Older single-model fields and extras are not shown.
-      for (const m of orderedModels(c.models)) {
-        if (ok(m.frontAssetId)) out.push({ kind: "model-front", assetId: m.frontAssetId, label: VIEW_LABEL["model-front"], fromHero: false, key: `model-front:${m.gender}` });
-        if (ok(m.backAssetId)) out.push({ kind: "model-back", assetId: m.backAssetId, label: VIEW_LABEL["model-back"], fromHero: false, key: `model-back:${m.gender}` });
-      }
+      // uniform 4-image set: front, back, then one model's front + back. Older single-model fields, extras and the rest of the cast are not shown.
+      const m = pickModel(c.models, category, ci);
+      if (m && ok(m.frontAssetId)) out.push({ kind: "model-front", assetId: m.frontAssetId, label: VIEW_LABEL["model-front"], fromHero: false });
+      if (m && ok(m.backAssetId)) out.push({ kind: "model-back", assetId: m.backAssetId, label: VIEW_LABEL["model-back"], fromHero: false });
       return out;
     }
     for (const [kind, key] of [["model-front", "modelFrontAssetId"], ["model-back", "modelBackAssetId"]] as const) {

@@ -4,7 +4,7 @@ import path from "node:path";
 import { validateCatalog } from "@/lib/catalog/validate";
 import { visibleProducts, isAssetVisible } from "@/lib/catalog/filters";
 import { AssetsFile, ProductsFile, SoundCloudFile, ArtistsFile, ProductTemplatesSchema, SamplePacksFile, BeatsFile, CATEGORIES } from "@/lib/catalog/schema";
-import { resolveViews, heroColorwayOf, blankBackViews, type ColorwayRef } from "@/lib/merch";
+import { resolveViews, heroColorwayOf, blankBackViews, pickModel, type ColorwayRef } from "@/lib/merch";
 import { withPreviewCopy } from "@/lib/catalog";
 
 const V2_IDS = ["merch-feelings-notice-tee", "merch-heartbeat-triangle-tee", "merch-heartbeat-croissant-pocket-tee", "merch-taco-slu-t-pocket-tee", "merch-no-thanks-tee", "merch-taco-slu-t-pixel-patch-tee", "merch-hotdog-tee-white", "merch-redwood-lif-e-heartbeat-tee", "merch-redwood-lif-e-grove-tee", "merch-make-art-with-friends-tee"];
@@ -66,12 +66,25 @@ describe("merch v2 views", () => {
     expect(v[0].map((x) => [x.kind, x.assetId, x.fromHero])).toEqual([["front", "plum-front", false], ["model-front", "black-mf", true], ["model-back", "black-mb", true]]);
     expect(v[1].map((x) => x.kind)).toEqual(["front", "back", "model-front", "model-back"]);
     expect(v[2].map((x) => [x.kind, x.assetId, x.fromHero])).toEqual([["front", "coral-front", false], ["model-front", "coral-mf", false], ["model-back", "black-mb", true]]);
-    // with models: front, back, then the man, then the woman (whatever order they are listed in); legacy model fields are ignored
+    // with models: front, back, then ONE model (by category); legacy model fields and the rest of the cast are ignored
     const u = cw("navy", { backAssetId: "navy-back", modelFrontAssetId: "old-mf", modelExtras: [{ assetId: "x-2", side: "front" }], blankBackAssetId: "navy-back-blank",
       models: [{ gender: "female", frontAssetId: "f-mf", backAssetId: "f-mb", blankBackAssetId: "f-mb-blank" }, { gender: "male", frontAssetId: "m-mf", backAssetId: "m-mb" }] });
     const uv = resolveViews([u], undefined)[0];
-    expect(uv.map((x) => x.assetId)).toEqual(["navy-front", "navy-back", "m-mf", "m-mb", "f-mf", "f-mb"]);
-    expect(blankBackViews(u, uv)!.map((x) => x.assetId)).toEqual(["navy-front", "navy-back-blank", "m-mf", "m-mb", "f-mf", "f-mb-blank"]);
+    expect(uv.map((x) => x.assetId)).toEqual(["navy-front", "navy-back", "m-mf", "m-mb"]);
+    expect(uv.map((x) => x.key ?? x.kind)).toEqual(["front", "back", "model-front", "model-back"]);
+    expect(blankBackViews(u, uv)!.map((x) => x.assetId)).toEqual(["navy-front", "navy-back-blank", "m-mf", "m-mb"]);
+    const wv = resolveViews([u], undefined, () => true, "women")[0];
+    expect(wv.map((x) => x.assetId)).toEqual(["navy-front", "navy-back", "f-mf", "f-mb"]);
+    expect(blankBackViews(u, wv)!.map((x) => x.assetId)).toEqual(["navy-front", "navy-back-blank", "f-mf", "f-mb-blank"]);
+    expect(resolveViews([u], undefined, () => true, "men")[0].map((x) => x.assetId)).toEqual(["navy-front", "navy-back", "m-mf", "m-mb"]);
+    // unisex alternates man / woman across colorways
+    expect(resolveViews([u, { ...u, slug: "navy-2" }, { ...u, slug: "navy-3" }], undefined).map((v) => v[2].assetId)).toEqual(["m-mf", "f-mf", "m-mf"]);
+    // any cast works: one person (whatever the category), or none
+    const solo = [{ gender: "female" as const, frontAssetId: "s-f", backAssetId: "s-b" }];
+    for (const cat of ["men", "women", "unisex"] as const) expect(pickModel(solo, cat, 0)?.frontAssetId).toBe("s-f");
+    expect(pickModel([], "men")).toBeUndefined();
+    expect(resolveViews([cw("solo", { backAssetId: "solo-back", models: solo })], undefined, () => true, "men")[0].map((x) => x.assetId)).toEqual(["solo-front", "solo-back", "s-f", "s-b"]);
+    expect(resolveViews([cw("none", { backAssetId: "none-back", models: [] })], undefined)[0].map((x) => x.assetId)).toEqual(["none-front", "none-back"]);
     // explicit hero wins; missing assets are skipped
     const v2 = resolveViews(list, "coral", (id) => id !== "coral-mf");
     expect(v2[0].map((x) => x.kind)).toEqual(["front"]);
@@ -364,24 +377,31 @@ describe("merch final cast", () => {
     for (const p of merch) for (const c of p.colorways) for (const x of c.modelExtras ?? []) expect(x.assetId).toMatch(new RegExp(`-model-${x.side}-\\d+$`));
   });
 
-  it("launch line: every colorway has the uniform 6-image gallery (front, back, man front/back, woman front/back)", () => {
+  it("launch line: one category each (Unisex for now); every colorway has the 4-image gallery (front, back, one model front/back)", () => {
     const byId = new Map(assets.map((a) => [a.id, a]));
     for (const id of LAUNCH_IDS) {
       const p = products.find((x) => x.id === id)!;
-      const views = resolveViews(p.colorways, p.heroColorway, (x) => byId.has(x));
-      p.colorways.forEach((c, i) => {
-        expect(views[i].map((v) => v.kind), `${id}/${c.slug}`).toEqual(["front", "back", "model-front", "model-back", "model-front", "model-back"]);
-        expect(views[i].map((v) => v.label)).toEqual(["Front", "Back", "On model (front)", "On model (back)", "On model (front)", "On model (back)"]);
-        expect(views[i].map((v) => v.key ?? v.kind).slice(2)).toEqual(["model-front:male", "model-back:male", "model-front:female", "model-back:female"]);
-        expect(views[i].every((v) => !v.fromHero)).toBe(true);
-        // the man's and the woman's shots are this colorway's own photos
-        for (const v of views[i].slice(2)) expect(v.assetId.startsWith(`${c.assetId}-model-`), v.assetId).toBe(true);
-        if (TANK_IDS.includes(id)) {
-          const blank = blankBackViews(c, views[i], (x) => byId.has(x))!;
-          expect(blank.map((v) => v.assetId)).toEqual(views[i].map((v) => (v.kind === "back" || v.kind === "model-back" ? v.assetId.replace(/-back(-\d+)?$/, "-back$1-blank") : v.assetId)));
-        }
-      });
+      expect(p.category, id).toBe("unisex");
+      for (const cat of ["men", "women", "unisex"] as const) {
+        const views = resolveViews(p.colorways, p.heroColorway, (x) => byId.has(x), cat);
+        p.colorways.forEach((c, i) => {
+          expect(views[i].map((v) => v.kind), `${id}/${c.slug}/${cat}`).toEqual(["front", "back", "model-front", "model-back"]);
+          expect(views[i].map((v) => v.label)).toEqual(["Front", "Back", "On model (front)", "On model (back)"]);
+          expect(views[i].every((v) => !v.fromHero)).toBe(true);
+          // the model's shots are this colorway's own photos, front and back of the same person
+          const m = pickModel(c.models, cat, i)!;
+          expect(m.gender).toBe(cat === "men" ? "male" : cat === "women" ? "female" : i % 2 === 0 ? "male" : "female");
+          expect(views[i].slice(2).map((v) => v.assetId)).toEqual([m.frontAssetId, m.backAssetId]);
+          for (const v of views[i].slice(2)) expect(v.assetId.startsWith(`${c.assetId}-model-`), v.assetId).toBe(true);
+          if (TANK_IDS.includes(id)) {
+            const blank = blankBackViews(c, views[i], (x) => byId.has(x))!;
+            expect(blank.map((v) => v.assetId)).toEqual(views[i].map((v) => (v.kind === "back" || v.kind === "model-back" ? v.assetId.replace(/-back(-\d+)?$/, "-back$1-blank") : v.assetId)));
+          }
+        });
+      }
     }
+    // hidden products default to Unisex too (schema default) and stay off the grids
+    expect(products.filter((p) => p.type === "merch").every((p) => ["men", "women", "unisex"].includes(p.category))).toBe(true);
   });
 
   it("the shop lists only the launch line, in order; the other merch keeps its page but is off the grids", () => {
@@ -436,7 +456,7 @@ describe("merch follow-ups, Oct 22, 2026", () => {
       const p = find(id);
       const i = p.colorways.findIndex((c) => c.slug === slug);
       expect(p.colorways[i].models!.find((m) => m.gender === g)!.backAssetId).toBe(back);
-      const shown = resolveViews(p.colorways, p.heroColorway, (x) => byId.has(x))[i].map((v) => v.assetId);
+      const shown = resolveViews(p.colorways, p.heroColorway, (x) => byId.has(x), g === "male" ? "men" : "women")[i].map((v) => v.assetId);
       expect(shown).toContain(back);
       expect(shown).not.toContain(back.replace(/-3$/, ""));
     }
@@ -472,7 +492,7 @@ describe("merch follow-ups, Oct 22, 2026", () => {
       const m = p.colorways[i].models!.find((x) => x.gender === g)!;
       expect(m[key], `${id}/${slug}/${g}`).toBe(want);
       expect(byId.has(want), want).toBe(true);
-      expect(resolveViews(p.colorways, p.heroColorway, (x) => byId.has(x))[i].map((v) => v.assetId)).toContain(want);
+      expect(resolveViews(p.colorways, p.heroColorway, (x) => byId.has(x), g === "male" ? "men" : "women")[i].map((v) => v.assetId)).toContain(want);
       if (id === "merch-santa-cruz-dipper-tank") expect(m.blankBackAssetId).toBe(`${want}-blank`);
     }
   });

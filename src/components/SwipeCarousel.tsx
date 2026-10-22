@@ -89,8 +89,13 @@ export function SwipeCarousel({
   useEffect(() => {
     const el = strip.current;
     if (!el || typeof ResizeObserver === "undefined") return;
+    // the slide in view is read from the scroll position at the previous width, not from state: state lags a programmatic
+    // jump (e.g. a "#cw-" link scrolls on mount) until the scroll event lands, and the observer's first call would undo it
+    let width = el.clientWidth;
     const ro = new ResizeObserver(() => {
-      el.scrollTo({ left: indexRef.current * el.clientWidth, behavior: "auto" });
+      const i = width ? Math.round(el.scrollLeft / width) : indexRef.current;
+      width = el.clientWidth;
+      el.scrollTo({ left: i * el.clientWidth, behavior: "auto" });
     });
     ro.observe(el);
     return () => ro.disconnect();

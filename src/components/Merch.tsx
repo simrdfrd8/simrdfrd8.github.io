@@ -5,14 +5,15 @@ import { MediaImage } from "./MediaImage";
 import { VideoPlayer } from "./VideoPlayer";
 import { MerchCardCarousel } from "./MerchCardCarousel";
 import { ComingSoonTag } from "./SwipeCarousel";
-import { blankBackViews, resolveViews } from "@/lib/merch";
+import { blankBackViews, resolveViews, MERCH_CATEGORIES } from "@/lib/merch";
+import { MerchCategoryTabs } from "./MerchCategoryTabs";
 
 export const merchSlug = (p: Pick<Product, "id">) => p.id.replace(/^merch-/, "");
 
 /** Gallery data for a merch product: visible colorways (each with its resolved view set) + extra photos. */
 export function merchGallery(product: Product) {
   const asset = getAsset(product.assetId);
-  const resolved = resolveViews(product.colorways, product.heroColorway, (id) => !!getAsset(id));
+  const resolved = resolveViews(product.colorways, product.heroColorway, (id) => !!getAsset(id), product.category);
   const colorways = product.colorways.flatMap((c, i) => {
     const a = getAsset(c.assetId);
     if (!a) return [];
@@ -40,7 +41,7 @@ export function MerchCard({ product, priority = false }: { product: Product; pri
   const { asset, colorways } = merchGallery(product);
   const href = `/shop/merch/${merchSlug(product)}`;
   return (
-    <article className="group relative flex flex-col" data-product={product.id} data-merch="inquire-only">
+    <article className="group relative flex flex-col" data-product={product.id} data-merch="inquire-only" data-category={product.category}>
       {colorways.length ? (
         <MerchCardCarousel productId={product.id} title={product.title} href={href} colorways={colorways} priority={priority} />
       ) : (
@@ -80,7 +81,7 @@ export function MerchByBrand({ only }: { only?: string | null }) {
   return (
     <div className="space-y-16">
       {groups.map((g) => (
-        <div key={g.brand ?? "general"} data-brand={g.brand ?? "flavorful-music"}>
+        <div key={g.brand ?? "general"} data-brand={g.brand ?? "flavorful-music"} data-categories={[...new Set(g.items.map((p) => p.category))].join(" ")}>
           {only === undefined && (
             <h3 className="display mb-6 text-4xl">
               {g.brand ? <Link href={`/artists/${g.brand}`} className="hover:text-[var(--accent)]">{g.name}</Link> : g.name}
@@ -93,5 +94,16 @@ export function MerchByBrand({ only }: { only?: string | null }) {
         Not on sale yet. <Link href="/contact/?type=business" className="underline decoration-line-strong underline-offset-4 hover:text-cream">Ask about any piece</Link>.
       </p>
     </div>
+  );
+}
+
+/** The merch shop: All, then a tab per category that has pieces (Men / Women / Unisex, from each product's `category`). */
+export function MerchShop() {
+  const items = merchByBrand().flatMap((g) => g.items);
+  const cats = MERCH_CATEGORIES.map((c) => ({ ...c, count: items.filter((p) => p.category === c.id).length })).filter((c) => c.count);
+  return (
+    <MerchCategoryTabs tabs={[{ id: "all", label: "All", count: items.length }, ...cats]}>
+      <MerchByBrand />
+    </MerchCategoryTabs>
   );
 }
