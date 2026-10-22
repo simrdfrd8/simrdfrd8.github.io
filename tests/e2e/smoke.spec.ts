@@ -624,7 +624,7 @@ test("merch product page: printed / blank back keeps the captions right", async 
   await gallery.locator("[data-carousel] [tabindex='0']").focus();
   for (const [i, re, cap] of [
     [2, /chambray-navy-model-front-2-\d/, "On model (front) · Blank back"],
-    [3, /chambray-navy-model-back-2-blank-/, "On model, back (blank)"],
+    [3, /chambray-navy-model-back-4-blank-/, "On model, back (blank)"],
     [4, /chambray-navy-model-front-\d+\./, "On model (front) · Blank back"],
     [5, /chambray-navy-model-back-3-blank-/, "On model, back (blank)"],
   ] as const) {
@@ -642,7 +642,7 @@ test("merch product page: printed / blank back keeps the captions right", async 
   await page.keyboard.press("ArrowRight");
   await expect(gallery.locator("[data-colorway-name]")).toHaveText("Chambray / Navy · Back (printed)");
   await page.keyboard.press("End");
-  await expect(car.locator("[data-slide='29'] img")).toHaveAttribute("src", /grape-cream-model-back-2-\d+\./);
+  await expect(car.locator("[data-slide='29'] img")).toHaveAttribute("src", /grape-cream-model-back-3-\d+\./);
   await expect(gallery.locator("[data-colorway-name]")).toHaveText("Grape / Cream · On model, back (printed)");
 });
 
