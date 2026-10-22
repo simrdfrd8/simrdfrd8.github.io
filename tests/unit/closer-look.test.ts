@@ -8,10 +8,12 @@ const PUBLIC = path.join(__dirname, "../../public");
 
 describe("closer look", () => {
   const listed = merchProducts().filter((p) => p.shopListed);
+  // Not in the Apliiq production packet yet (no sourced fabric/print facts), so it gets no Closer look until it is.
+  const NOT_IN_PACKET = new Set(["merch-heartbeat-croissant-pocket-tee"]);
   const all = [...closerLookShop(), ...listed.flatMap((p) => closerLookFor(p.id, p.title))];
 
   it("every shop-listed merch product gets cotton + print tiles", () => {
-    for (const p of listed) {
+    for (const p of listed.filter((p) => !NOT_IN_PACKET.has(p.id))) {
       const ids = closerLookFor(p.id, p.title).map((t) => t.id);
       expect(ids, p.id).toContain("cotton");
       expect(ids, p.id).toContain("print");
