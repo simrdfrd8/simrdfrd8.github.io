@@ -6,8 +6,9 @@ import clsx from "clsx";
 export type MerchTab = { id: string; label: string; count: number };
 
 /**
- * Shop categories (All / Men / Women / Unisex). The grid is rendered once on the server (static export); a tab only hides
- * the cards (data-category) and brand groups (data-categories) outside it, so nothing is duplicated and All works without JS.
+ * Shop categories (All / Men / Women / Unisex). Rendered on the server (static export). All shows the [data-merch-view=all]
+ * block (one card per design, with a cut selector); a category tab shows [data-merch-view=category] and hides the cards
+ * (data-category) and brand groups (data-categories) outside it. All works without JS.
  * Linkable: /shop/merch?category=men (read client-side, kept in the URL with replaceState). Unknown categories fall back to All.
  */
 export function MerchCategoryTabs({ tabs, children, label = "Merch categories" }: { tabs: MerchTab[]; children: ReactNode; label?: string }) {
@@ -36,9 +37,12 @@ export function MerchCategoryTabs({ tabs, children, label = "Merch categories" }
     .slice(1)
     .map((t) => `[data-merch-shop][data-active-category="${t.id}"] [data-category]:not([data-category="${t.id}"]),[data-merch-shop][data-active-category="${t.id}"] [data-categories]:not([data-categories~="${t.id}"]){display:none}`)
     .join("");
+  // All shows the per-design view, a category tab the per-product one (both rendered; only one is displayed)
+  const all = tabs[0]?.id;
+  const views = `[data-merch-shop][data-active-category="${all}"] [data-merch-view="category"],[data-merch-shop]:not([data-active-category="${all}"]) [data-merch-view="all"]{display:none}`;
   return (
     <div data-merch-shop data-active-category={active}>
-      {filters && <style>{filters}</style>}
+      <style>{views + filters}</style>
       {tabs.length > 1 && (
         <div role="tablist" aria-label={label} className="mb-8 inline-flex max-w-full overflow-x-auto rounded-full border border-line-strong p-1" onKeyDown={onKey} data-merch-categories>
           {tabs.map((t) => (

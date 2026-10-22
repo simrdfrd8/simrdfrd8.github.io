@@ -508,6 +508,9 @@ const UNISEX_LAUNCH = ["merch-hotdog-tee-white", "merch-heartbeat-triangle-tee",
 const WOMENS = ["merch-make-art-with-friends-womens-boxy-tee", "merch-feelings-notice-womens-boxy-tee", "merch-hotdo-g-womens-boxy-tee", "merch-santa-cruz-dipper-womens-rib-tank"];
 const LAUNCH = [...UNISEX_LAUNCH, ...WOMENS];
 const MERCH_COUNT = LAUNCH.length;
+/** All tab: one card per design (owner, 2026-10-22: "When all is selected show m/f/u options"), in shop order. */
+const DESIGNS = ["hotdo-g", "heartbeat-triangle", "no-thanks", "feelings-notice", "make-art-with-friends", "santa-cruz-dipper"];
+const WITH_WOMENS = ["hotdo-g", "feelings-notice", "make-art-with-friends", "santa-cruz-dipper"];
 
 test("merch store lists every piece as a swipe card, display-only, no prices or buy buttons", async ({ page }) => {
   await page.goto("/shop/merch");
@@ -528,8 +531,9 @@ test("merch store lists every piece as a swipe card, display-only, no prices or 
   await expect(page.locator('[data-brand="baylingual-entertainment"]')).toHaveCount(0);
   await expect(page.locator("main [data-checkout]")).toHaveCount(0);
   await expect(page.locator("main")).not.toContainText("$");
-  // a small corner tag on every card instead of big badges
-  await expect(page.locator("[data-coming-soon]")).toHaveCount(MERCH_COUNT);
+  // a small corner tag on every card instead of big badges (the category grids' cards + the All tab's design cards)
+  await expect(page.locator("[data-coming-soon]")).toHaveCount(MERCH_COUNT + DESIGNS.length);
+  await expect(page.locator("[data-coming-soon]:visible")).toHaveCount(DESIGNS.length);
   await page.goto("/shop");
   await page.locator("#all").getByRole("button", { name: /Merch/ }).click();
   await expect(page.locator('#all [data-merch="inquire-only"]:visible')).toHaveCount(MERCH_COUNT);
@@ -542,11 +546,13 @@ test("merch categories: All plus a tab per category in use; linkable with ?categ
     const tabs = page.locator("[data-merch-categories] [role=tab]");
     // Women + Unisex in use (no Men pieces yet), so the Men tab stays hidden
     expect(await tabs.evaluateAll((els) => els.map((e) => e.getAttribute("data-category-tab")))).toEqual(["all", "women", "unisex"]);
-    await expect(tabs.nth(0)).toHaveText(new RegExp(`^All\\s*${MERCH_COUNT}$`));
+    // All counts designs (one card each, with a cut selector); the category tabs count pieces
+    await expect(tabs.nth(0)).toHaveText(new RegExp(`^All\\s*${DESIGNS.length}$`));
     await expect(tabs.nth(1)).toHaveText(new RegExp(`^Women\\s*${WOMENS.length}$`));
     await expect(tabs.nth(2)).toHaveText(new RegExp(`^Unisex\\s*${UNISEX_LAUNCH.length}$`));
     await expect(tabs.nth(0)).toHaveAttribute("aria-selected", "true");
-    await expect(page.locator('[data-merch="inquire-only"]:visible')).toHaveCount(MERCH_COUNT);
+    await expect(page.locator('[data-merch="inquire-only"]:visible')).toHaveCount(0);
+    expect(await page.locator("[data-merch-design]:visible").evaluateAll((els) => els.map((e) => e.getAttribute("data-merch-design")))).toEqual(DESIGNS);
     await tabs.nth(2).click();
     await expect(page).toHaveURL(/\?category=unisex$/);
     await expect(page.locator('[data-merch="inquire-only"]:visible')).toHaveCount(UNISEX_LAUNCH.length);
@@ -563,7 +569,13 @@ test("merch categories: All plus a tab per category in use; linkable with ?categ
     // an unknown or empty category falls back to All
     await page.goto("/shop/merch?category=men");
     await expect(page.locator("[data-category-tab=all]")).toHaveAttribute("aria-selected", "true");
-    await expect(page.locator('[data-merch="inquire-only"]:visible')).toHaveCount(MERCH_COUNT);
+    await expect(page.locator("[data-merch-design]:visible")).toHaveCount(DESIGNS.length);
+    // back to All from a category tab shows the design cards again
+    await tabs.nth(1).click();
+    await expect(page.locator("[data-merch-design]:visible")).toHaveCount(0);
+    await tabs.nth(0).click();
+    await expect(page).toHaveURL(/\/shop\/merch\/?$/);
+    await expect(page.locator("[data-merch-design]:visible")).toHaveCount(DESIGNS.length);
   }
 });
 
@@ -601,7 +613,7 @@ test("merch off the launch line: hidden from the grids, but its page still resol
 });
 
 test("merch card: arrow keys / Home / End move through the photos, tap opens the product on that colorway", async ({ page }) => {
-  await page.goto("/shop/merch");
+  await page.goto("/shop/merch?category=unisex");
   const card = page.locator('[data-card-carousel="merch-feelings-notice-tee"]');
   const link = card.locator("a[data-product-link]");
   await expect(card).toHaveAttribute("data-index", "0");
@@ -628,7 +640,7 @@ test("merch card: arrow keys / Home / End move through the photos, tap opens the
 
 test("merch product page: one swipe gallery; moving into a colorway selects it; swatches and back choice still work", async ({ page }) => {
   await page.goto("/shop/merch");
-  await page.locator('[data-product="merch-no-thanks-tee"] h3 a').click();
+  await page.locator('[data-merch-design="no-thanks"] h3 a').click();
   await expect(page).toHaveURL(/\/shop\/merch\/no-thanks-tee\/?$/);
   await expect(page.locator("h1")).toHaveText(/no thanks Tee/i);
   const gallery = page.locator('[data-gallery-variant="page"]');
@@ -717,7 +729,7 @@ test("Santa Cruz Sun Tank (off the launch line): the product page still shows th
 });
 
 test("Make Art With Friends card swipes through 4 colorways (hero Chalky Mint first)", async ({ page }) => {
-  await page.goto("/shop/merch");
+  await page.goto("/shop/merch?category=unisex");
   const card = page.locator('[data-card-carousel="merch-make-art-with-friends-tee"]');
   // hero views (4) + the other 3 colorways' fronts
   await expect(card.locator("[data-slide]")).toHaveCount(7);
@@ -731,7 +743,8 @@ test("Make Art With Friends card swipes through 4 colorways (hero Chalky Mint fi
 test("phone (390px): touch-swiping a merch card moves to the next photo; the Dipper front is the SANTA CRUZ print", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/shop/merch/");
-  const card = page.locator('[data-card-carousel="merch-santa-cruz-dipper-tank"]');
+  // All tab: the Dipper design card, on its default Unisex cut
+  const card = page.locator('[data-design-carousel="santa-cruz-dipper"]');
   await card.scrollIntoViewIfNeeded();
   await expect(card).toHaveAttribute("data-index", "0");
   const strip = card.locator("[data-carousel-strip]");
@@ -742,6 +755,58 @@ test("phone (390px): touch-swiping a merch card moves to the next photo; the Dip
   await expect(card.locator("[data-coming-soon]")).toBeVisible();
   await expect(page.locator("main")).not.toContainText("$");
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
+});
+
+test("All tab: one card per design with a Men / Women / Unisex cut selector; picking a cut swaps photos, colors, sizes and link", async ({ page }) => {
+  for (const width of [390, 1280]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/shop/merch");
+    for (const d of DESIGNS) {
+      const card = page.locator(`[data-merch-design="${d}"]`);
+      const opts = card.locator("[data-cut-selector] [role=radio]");
+      expect(await opts.evaluateAll((els) => els.map((e) => e.textContent))).toEqual(["Men", "Women", "Unisex"]);
+      // no men's cuts yet: Men is shown but disabled; Women only where the design has a women's cut; opens on Unisex
+      await expect(card.locator("[data-cut-option=men]")).toBeDisabled();
+      if (WITH_WOMENS.includes(d)) await expect(card.locator("[data-cut-option=women]")).toBeEnabled();
+      else await expect(card.locator("[data-cut-option=women]")).toBeDisabled();
+      await expect(card.locator("[data-cut-option=unisex]")).toHaveAttribute("aria-checked", "true");
+      await expect(card).toHaveAttribute("data-cut", "unisex");
+    }
+    const hot = page.locator('[data-merch-design="hotdo-g"]');
+    await expect(hot).toHaveAttribute("data-design-product", "merch-hotdog-tee-white");
+    await expect(hot.locator("h3")).toHaveText("HOTDO G Tee");
+    await expect(hot.locator("[data-design-link]")).toHaveAttribute("href", /\/shop\/merch\/hotdog-tee-white\/?$/);
+    await expect(hot.locator("[data-slide='0'] img")).toHaveAttribute("src", /merch-hotdo-g-tee\/white-taco-red-\d/);
+    await expect(hot.locator("[data-design-colorways]")).toHaveAttribute("data-design-colorways", "3");
+    await expect(hot.locator("[data-design-sizes]")).toHaveCount(0); // no unisex size run in the catalog yet
+    await hot.locator("[data-cut-option=women]").click();
+    await expect(hot).toHaveAttribute("data-cut", "women");
+    await expect(hot.locator("[data-cut-option=women]")).toHaveAttribute("aria-checked", "true");
+    await expect(hot).toHaveAttribute("data-design-product", "merch-hotdo-g-womens-boxy-tee");
+    await expect(hot.locator("h3")).toHaveText("HOTDO G Women's Boxy Tee");
+    await expect(hot.locator("[data-design-link]")).toHaveAttribute("href", /\/shop\/merch\/hotdo-g-womens-boxy-tee\/?$/);
+    await expect(hot.locator("[data-design-carousel] a[data-product-link]")).toHaveAttribute("href", /\/shop\/merch\/hotdo-g-womens-boxy-tee\/?$/);
+    await expect(hot.locator("[data-slide='0'] img")).toHaveAttribute("src", /merch-hotdo-g-womens-boxy-tee\//);
+    await expect(hot.locator("[data-design-colorways]")).toHaveAttribute("data-design-colorways", "1");
+    await expect(hot.locator("[data-design-sizes]")).toHaveText("Sizes S–2XL");
+    // a disabled cut can't be picked; arrow keys move between the enabled ones
+    await hot.locator("[data-cut-option=men]").click({ force: true });
+    await expect(hot).toHaveAttribute("data-cut", "women");
+    await hot.locator("[data-cut-option=women]").focus();
+    await page.keyboard.press("ArrowRight");
+    await expect(hot).toHaveAttribute("data-cut", "unisex");
+    await expect(hot.locator("[data-cut-option=unisex]")).toBeFocused();
+    // the women's Dipper is the rib tank, XS-XL
+    const dip = page.locator('[data-merch-design="santa-cruz-dipper"]');
+    await dip.locator("[data-cut-option=women]").click();
+    await expect(dip.locator("h3")).toHaveText("Santa Cruz Dipper Women's Rib Tank");
+    await expect(dip.locator("[data-design-sizes]")).toHaveText("Sizes XS–XL");
+    await expect(dip.locator("[data-design-colorways]")).toHaveAttribute("data-design-colorways", "3");
+    // still display-only
+    await expect(page.locator("main [data-checkout]")).toHaveCount(0);
+    await expect(page.locator("main")).not.toContainText("$");
+    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
+  }
 });
 
 test("global player: plays down the list, active row, keyboard, survives route changes", async ({ page }) => {

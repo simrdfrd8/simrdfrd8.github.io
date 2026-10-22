@@ -92,3 +92,31 @@ export function resolveViews(colorways: ColorwayRef[], heroSlug: string | undefi
     return out;
   });
 }
+
+/** One cut of a design on the All tab: `item` is the product in that cut, or undefined when the design has no such cut. */
+export type DesignCut<T> = { cut: MerchCategory; label: string; item?: T };
+export type MerchDesign<T> = { design: string; cuts: DesignCut<T>[]; defaultCut: MerchCategory };
+
+/** The cut a design card opens on: Unisex when the design has it, else the first cut it has (Men, Women, Unisex order). */
+export function defaultCutOf<T>(cuts: DesignCut<T>[]): MerchCategory {
+  return cuts.find((c) => c.cut === "unisex" && c.item)?.cut ?? cuts.find((c) => c.item)?.cut ?? "unisex";
+}
+
+/**
+ * All tab: one card per design (products sharing `design`, else their own id), in the order each design first appears.
+ * Every card lists all three cuts (Men / Women / Unisex) so the selector always reads the same; cuts the design doesn't
+ * come in have no item (shown disabled). If two products claim the same design + cut the first wins (validate.ts flags it).
+ */
+export function groupByDesign<T extends { id: string; design?: string; category: MerchCategory }>(items: T[]): MerchDesign<T>[] {
+  const byDesign = new Map<string, Partial<Record<MerchCategory, T>>>();
+  for (const p of items) {
+    const key = p.design ?? p.id;
+    const cuts = byDesign.get(key) ?? {};
+    cuts[p.category] ??= p;
+    byDesign.set(key, cuts);
+  }
+  return [...byDesign.entries()].map(([design, have]) => {
+    const cuts = MERCH_CATEGORIES.map((c) => ({ cut: c.id, label: c.label, item: have[c.id] }));
+    return { design, cuts, defaultCut: defaultCutOf(cuts) };
+  });
+}

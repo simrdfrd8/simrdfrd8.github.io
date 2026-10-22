@@ -5,8 +5,9 @@ import { MediaImage } from "./MediaImage";
 import { VideoPlayer } from "./VideoPlayer";
 import { MerchCardCarousel } from "./MerchCardCarousel";
 import { ComingSoonTag } from "./SwipeCarousel";
-import { blankBackViews, resolveViews, MERCH_CATEGORIES } from "@/lib/merch";
+import { blankBackViews, groupByDesign, resolveViews, MERCH_CATEGORIES } from "@/lib/merch";
 import { MerchCategoryTabs } from "./MerchCategoryTabs";
+import { MerchDesignCard, type DesignCardCut } from "./MerchDesignCard";
 
 export const merchSlug = (p: Pick<Product, "id">) => p.id.replace(/^merch-/, "");
 
@@ -62,21 +63,21 @@ export function MerchCard({ product, priority = false }: { product: Product; pri
   );
 }
 
-export function MerchGrid({ items }: { items: Product[] }) {
+export function MerchGrid({ items, eager = true }: { items: Product[]; eager?: boolean }) {
   const videos = [...new Set(items.flatMap((p) => p.galleryAssetIds))].map((id) => getAsset(id)).filter((a) => a?.type === "video");
   const photos = [...new Set(items.flatMap((p) => p.galleryAssetIds))].map((id) => getAsset(id)).filter((a) => a && a.type !== "video");
   return (
     <div className="grid items-start gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
       {videos.map((v) => v && <VideoPlayer key={v.id} asset={v} sizes="(min-width:1024px) 25vw, (min-width:640px) 50vw, 100vw" />)}
       {items.map((p, i) => (
-        <MerchCard key={p.id} product={p} priority={i < 4} />
+        <MerchCard key={p.id} product={p} priority={eager && i < 4} />
       ))}
       {photos.map((a) => a && <MediaImage key={a.id} asset={a} sizes="(min-width:1024px) 25vw, 50vw" className="aspect-[3/4] rounded-2xl ring-1 ring-line" />)}
     </div>
   );
 }
 
-export function MerchByBrand({ only }: { only?: string | null }) {
+export function MerchByBrand({ only, note = true, eager = true }: { only?: string | null; note?: boolean; eager?: boolean }) {
   const groups = merchByBrand().filter((g) => only === undefined || g.brand === only);
   return (
     <div className="space-y-16">
@@ -87,23 +88,70 @@ export function MerchByBrand({ only }: { only?: string | null }) {
               {g.brand ? <Link href={`/artists/${g.brand}`} className="hover:text-[var(--accent)]">{g.name}</Link> : g.name}
             </h3>
           )}
-          <MerchGrid items={g.items} />
+          <MerchGrid items={g.items} eager={eager} />
         </div>
       ))}
-      <p className="text-sm text-muted">
-        Not on sale yet. <Link href="/contact/?type=business" className="underline decoration-line-strong underline-offset-4 hover:text-cream">Ask about any piece</Link>.
-      </p>
+      {note && <MerchNote />}
     </div>
   );
 }
 
-/** The merch shop: All, then a tab per category that has pieces (Men / Women / Unisex, from each product's `category`). */
+function MerchNote() {
+  return (
+    <p className="text-sm text-muted">
+      Not on sale yet. <Link href="/contact/?type=business" className="underline decoration-line-strong underline-offset-4 hover:text-cream">Ask about any piece</Link>.
+    </p>
+  );
+}
+
+/** All tab: one card per design (cuts of the same artwork grouped), with a Men / Women / Unisex selector. Same brand groups and order as the category grids. */
+export function MerchDesignsByBrand() {
+  const groups = merchByBrand().map((g) => ({ ...g, designs: groupByDesign(g.items) }));
+  const before = groups.map((_, gi) => groups.slice(0, gi).reduce((sum, x) => sum + x.designs.length, 0));
+  return (
+    <div className="space-y-16">
+      {groups.map((g, gi) => (
+        <div key={g.brand ?? "general"} data-design-brand={g.brand ?? "flavorful-music"}>
+          <h3 className="display mb-6 text-4xl">{g.brand ? <Link href={`/artists/${g.brand}`} className="hover:text-[var(--accent)]">{g.name}</Link> : g.name}</h3>
+          <div className="grid items-start gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+            {g.designs.map((d, di) => {
+              const cuts: DesignCardCut[] = d.cuts.map((c) => {
+                if (!c.item) return { cut: c.cut, label: c.label };
+                const p = c.item;
+                const { asset, colorways } = merchGallery(p);
+                return {
+                  cut: c.cut,
+                  label: c.label,
+                  product: { id: p.id, title: p.title, summary: p.summary, href: `/shop/merch/${merchSlug(p)}`, ...(p.sizes ? { sizes: p.sizes } : {}), ...(asset ? { asset } : {}), colorways },
+                };
+              });
+              return <MerchDesignCard key={d.design} design={d.design} cuts={cuts} defaultCut={d.defaultCut} priority={before[gi] + di < 4} />;
+            })}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/**
+ * The merch shop: All, then a tab per category that has pieces (Men / Women / Unisex, from each product's `category`).
+ * All shows one card per design with a cut selector (its count is designs); the category tabs show that cut's products.
+ */
 export function MerchShop() {
   const items = merchByBrand().flatMap((g) => g.items);
   const cats = MERCH_CATEGORIES.map((c) => ({ ...c, count: items.filter((p) => p.category === c.id).length })).filter((c) => c.count);
   return (
-    <MerchCategoryTabs tabs={[{ id: "all", label: "All", count: items.length }, ...cats]}>
-      <MerchByBrand />
+    <MerchCategoryTabs tabs={[{ id: "all", label: "All", count: groupByDesign(items).length }, ...cats]}>
+      <div className="space-y-16">
+        <div data-merch-view="all">
+          <MerchDesignsByBrand />
+        </div>
+        <div data-merch-view="category">
+          <MerchByBrand note={false} eager={false} />
+        </div>
+        <MerchNote />
+      </div>
     </MerchCategoryTabs>
   );
 }

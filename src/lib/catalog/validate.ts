@@ -47,6 +47,9 @@ export function validateCatalog(raw: Raw): string[] {
     if (p.checkoutProvider !== "none" && p.checkoutUrl && !/^https:\/\//.test(p.checkoutUrl)) out.push(`products.${p.id}: checkoutUrl must be https`);
     if (p.priceApproved === false && p.price !== null && p.status === "available" && p.checkoutUrl) out.push(`products.${p.id}: has a live checkoutUrl but price is not approved`);
   }
+  // one shop-listed product per design and cut, so the All tab's cut selector is unambiguous
+  const cuts = products.filter((p) => p.type === "merch" && p.listed && p.shopListed).map((p) => `${p.design ?? p.id}/${p.category}`);
+  for (const k of new Set(cuts.filter((k, i) => cuts.indexOf(k) !== i))) out.push(`products: two shop-listed merch pieces share design/cut ${k}`);
   for (const x of [...releases, ...sc]) {
     for (const id of x.productIds) if (!productIds.has(id)) out.push(`${x.id}: unknown product ${id}`);
     if (!slugs.has(x.artist)) out.push(`${x.id}: unknown artist ${x.artist}`);

@@ -8,7 +8,22 @@ import { ComingSoonTag, SwipeCarousel } from "./SwipeCarousel";
  * Shop-grid card image: swipe through the hero colorway (front flat first, back, model front, model back), then the other
  * colorways' fronts. Tapping opens the product, on the colorway that was showing.
  */
-export function MerchCardCarousel({ productId, title, href, colorways, priority }: { productId: string; title: string; href: string; colorways: SlideColorwayLike<Asset>[]; priority?: boolean }) {
+export function MerchCardCarousel({
+  productId,
+  title,
+  href,
+  colorways,
+  priority,
+  dataAttrs,
+}: {
+  productId: string;
+  title: string;
+  href: string;
+  colorways: SlideColorwayLike<Asset>[];
+  priority?: boolean;
+  /** Replaces the default data-card-carousel hook (the All tab's design cards use their own, so test hooks stay unique). */
+  dataAttrs?: Record<string, string>;
+}) {
   const slides = cardSlides(colorways);
   return (
     <SwipeCarousel
@@ -23,7 +38,7 @@ export function MerchCardCarousel({ productId, title, href, colorways, priority 
       priority={priority}
       className="aspect-square rounded-2xl ring-1 ring-line"
       overlay={<ComingSoonTag />}
-      dataAttrs={{ "data-card-carousel": productId }}
+      dataAttrs={dataAttrs ?? { "data-card-carousel": productId }}
     />
   );
 }
