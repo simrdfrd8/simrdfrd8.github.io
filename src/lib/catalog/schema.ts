@@ -289,6 +289,8 @@ export const ProductSchema = z.object({
   /** Merch only: the shop category (Men / Women / Unisex tab), set by the cut of the supplier's blank. One per product.
    *  Also picks which model the gallery shows (men: a man, women: a woman, unisex: alternates man / woman across the colorways, starting with a man). */
   category: z.enum(["men", "women", "unisex"]).default("unisex"),
+  /** Merch only: sizes the supplier's blank comes in (e.g. ["S","M","L","XL","2XL"]). Shown on the product page when set. */
+  sizes: z.array(z.string()).optional(),
   /** Merch brand line (artist slug, e.g. "baylingual-entertainment"); null = general Flavorful Music. */
   brand: slug.nullable().default(null),
   /** Extra assets shown with the product (lifestyle photos, videos). */

@@ -10,7 +10,10 @@ import { withPreviewCopy } from "@/lib/catalog";
 const V2_IDS = ["merch-feelings-notice-tee", "merch-heartbeat-triangle-tee", "merch-heartbeat-croissant-pocket-tee", "merch-taco-slu-t-pocket-tee", "merch-no-thanks-tee", "merch-taco-slu-t-pixel-patch-tee", "merch-hotdog-tee-white", "merch-redwood-lif-e-heartbeat-tee", "merch-redwood-lif-e-grove-tee", "merch-make-art-with-friends-tee"];
 const TANK_IDS = ["merch-santa-cruz-sun-tank", "merch-santa-cruz-dipper-tank", "merch-santa-cruz-redwoods-tank", "merch-santa-cruz-sunset-tank"];
 /** The curated launch line (owner, 2026-10-22), in shop order. */
-const LAUNCH_IDS = ["merch-hotdog-tee-white", "merch-heartbeat-triangle-tee", "merch-no-thanks-tee", "merch-feelings-notice-tee", "merch-make-art-with-friends-tee", "merch-santa-cruz-dipper-tank"];
+const UNISEX_LAUNCH_IDS = ["merch-hotdog-tee-white", "merch-heartbeat-triangle-tee", "merch-no-thanks-tee", "merch-feelings-notice-tee", "merch-make-art-with-friends-tee", "merch-santa-cruz-dipper-tank"];
+/** Women's Comfort Colors 3023CL boxy cut (owner pick, 2026-10-22): flats only until the cast is approved. */
+const WOMENS_IDS = ["merch-make-art-with-friends-womens-boxy-tee", "merch-feelings-notice-womens-boxy-tee", "merch-hotdo-g-womens-boxy-tee"];
+const LAUNCH_IDS = [...UNISEX_LAUNCH_IDS, ...WOMENS_IDS];
 
 /** Owner rule: no adjectives before the categories (spelled in pieces so this guard doesn't trip the repo leak scan). */
 const BANNED_WORDS = new RegExp(["ed" + "gy", "heart" + "felt", "dis" + "torted", "under" + "neath it all"].join("|"), "i");
@@ -185,7 +188,7 @@ describe("content catalog", () => {
     const products = ProductsFile.parse(load("products"));
     const merch = products.filter((p) => p.type === "merch");
     // public build: exactly the 14 approved designs, nothing else (no concept sketches, no Baylingual apparel)
-    expect(merch.map((p) => p.id).sort()).toEqual([...V2_IDS, ...TANK_IDS].sort());
+    expect(merch.map((p) => p.id).sort()).toEqual([...V2_IDS, ...TANK_IDS, ...WOMENS_IDS].sort());
     for (const p of merch) {
       expect(p.inquireOnly).toBe(true);
       expect(p.price).toBeNull();
@@ -201,8 +204,8 @@ describe("content catalog", () => {
     const products = ProductsFile.parse(load("products"));
     const assets = AssetsFile.parse(load("assets"));
     const storeMerch = (mode: "production" | "preview") => visibleProducts(products, mode, assets).filter((p) => p.type === "merch" && p.listed).map((p) => p.id);
-    expect(storeMerch("production").sort()).toEqual([...V2_IDS, ...TANK_IDS].sort());
-    expect(storeMerch("preview").sort()).toEqual([...V2_IDS, ...TANK_IDS].sort());
+    expect(storeMerch("production").sort()).toEqual([...V2_IDS, ...TANK_IDS, ...WOMENS_IDS].sort());
+    expect(storeMerch("preview").sort()).toEqual([...V2_IDS, ...TANK_IDS, ...WOMENS_IDS].sort());
     const byId = new Map(assets.map((a) => [a.id, a]));
     for (const p of products.filter((x) => x.colorways.length)) {
       expect(p.price).toBeNull();
@@ -219,7 +222,7 @@ describe("content catalog", () => {
   it("merges the CSV HOTDO G tee into the existing product instead of duplicating it", () => {
     const products = ProductsFile.parse(load("products"));
     const assets = AssetsFile.parse(load("assets"));
-    const hot = products.filter((p) => /hotdo/.test(p.id));
+    const hot = products.filter((p) => /hotdo/.test(p.id) && p.category === "unisex");
     expect(hot.map((p) => p.id)).toEqual(["merch-hotdog-tee-white"]);
     expect(hot[0].title).toBe("HOTDO G Tee");
     expect(hot[0].assetId).toBe("merch-hotdo-g-tee-white-taco-red");
@@ -377,9 +380,9 @@ describe("merch final cast", () => {
     for (const p of merch) for (const c of p.colorways) for (const x of c.modelExtras ?? []) expect(x.assetId).toMatch(new RegExp(`-model-${x.side}-\\d+$`));
   });
 
-  it("launch line: one category each (Unisex for now); every colorway has the 4-image gallery (front, back, one model front/back)", () => {
+  it("unisex launch line: one category each (Unisex for now); every colorway has the 4-image gallery (front, back, one model front/back)", () => {
     const byId = new Map(assets.map((a) => [a.id, a]));
-    for (const id of LAUNCH_IDS) {
+    for (const id of UNISEX_LAUNCH_IDS) {
       const p = products.find((x) => x.id === id)!;
       expect(p.category, id).toBe("unisex");
       for (const cat of ["men", "women", "unisex"] as const) {
@@ -408,6 +411,23 @@ describe("merch final cast", () => {
     const merchAll = visibleProducts(products, "production", assets).filter((p) => p.type === "merch" && p.listed);
     expect(merchAll.filter((p) => p.shopListed).map((p) => p.id)).toEqual(LAUNCH_IDS);
     expect(merchAll.filter((p) => !p.shopListed).map((p) => p.id).sort()).toEqual([...V2_IDS, ...TANK_IDS].filter((id) => !LAUNCH_IDS.includes(id)).sort());
+  });
+
+  it("women's boxy tees: Women category, S-2XL, front + back flats only (no models yet), HOTDO G copy word for word", () => {
+    const hot = products.find((p) => p.id === "merch-hotdog-tee-white")!;
+    for (const id of WOMENS_IDS) {
+      const p = products.find((x) => x.id === id)!;
+      expect(p.category).toBe("women");
+      expect(p.shopListed).toBe(true);
+      expect(p.price).toBeNull();
+      expect(p.sizes).toEqual(["S", "M", "L", "XL", "2XL"]);
+      expect(p.colorways).toHaveLength(1);
+      const c = p.colorways[0];
+      expect(c.models).toBeUndefined();
+      const views = resolveViews(p.colorways, p.heroColorway, (x) => assets.some((a) => a.id === x), p.category);
+      expect(views[0].map((v) => v.kind)).toEqual(["front", "back"]);
+    }
+    expect(products.find((p) => p.id === "merch-hotdo-g-womens-boxy-tee")!.summary).toBe(hot.summary);
   });
 
   it("Dipper Tank uses the Reflection copy", () => {

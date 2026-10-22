@@ -503,7 +503,10 @@ test("artist titles never break mid-word and fit the viewport", async ({ page })
 });
 
 /** The curated launch line, in shop order (owner, 2026-10-22); the other 8 pieces keep their pages but are off the grids. */
-const LAUNCH = ["merch-hotdog-tee-white", "merch-heartbeat-triangle-tee", "merch-no-thanks-tee", "merch-feelings-notice-tee", "merch-make-art-with-friends-tee", "merch-santa-cruz-dipper-tank"];
+const UNISEX_LAUNCH = ["merch-hotdog-tee-white", "merch-heartbeat-triangle-tee", "merch-no-thanks-tee", "merch-feelings-notice-tee", "merch-make-art-with-friends-tee", "merch-santa-cruz-dipper-tank"];
+/** Women's Comfort Colors 3023CL boxy cut (owner pick, 2026-10-22): front + back flats only until the cast is approved. */
+const WOMENS = ["merch-make-art-with-friends-womens-boxy-tee", "merch-feelings-notice-womens-boxy-tee", "merch-hotdo-g-womens-boxy-tee"];
+const LAUNCH = [...UNISEX_LAUNCH, ...WOMENS];
 const MERCH_COUNT = LAUNCH.length;
 
 test("merch store lists every piece as a swipe card, display-only, no prices or buy buttons", async ({ page }) => {
@@ -537,18 +540,26 @@ test("merch categories: All plus a tab per category in use; linkable with ?categ
     await page.setViewportSize({ width, height: 900 });
     await page.goto("/shop/merch");
     const tabs = page.locator("[data-merch-categories] [role=tab]");
-    // every launch piece is Unisex for now, so Men / Women only appear once a product is set to them
-    expect(await tabs.evaluateAll((els) => els.map((e) => e.getAttribute("data-category-tab")))).toEqual(["all", "unisex"]);
-    await expect(tabs.nth(0)).toHaveText(/^All\s*6$/);
-    await expect(tabs.nth(1)).toHaveText(/^Unisex\s*6$/);
+    // Women + Unisex in use (no Men pieces yet), so the Men tab stays hidden
+    expect(await tabs.evaluateAll((els) => els.map((e) => e.getAttribute("data-category-tab")))).toEqual(["all", "women", "unisex"]);
+    await expect(tabs.nth(0)).toHaveText(new RegExp(`^All\\s*${MERCH_COUNT}$`));
+    await expect(tabs.nth(1)).toHaveText(new RegExp(`^Women\\s*${WOMENS.length}$`));
+    await expect(tabs.nth(2)).toHaveText(new RegExp(`^Unisex\\s*${UNISEX_LAUNCH.length}$`));
     await expect(tabs.nth(0)).toHaveAttribute("aria-selected", "true");
     await expect(page.locator('[data-merch="inquire-only"]:visible')).toHaveCount(MERCH_COUNT);
-    await tabs.nth(1).click();
+    await tabs.nth(2).click();
     await expect(page).toHaveURL(/\?category=unisex$/);
-    await expect(page.locator('[data-merch="inquire-only"][data-category="unisex"]:visible')).toHaveCount(MERCH_COUNT);
+    await expect(page.locator('[data-merch="inquire-only"]:visible')).toHaveCount(UNISEX_LAUNCH.length);
+    await expect(page.locator('[data-merch="inquire-only"][data-category="unisex"]:visible')).toHaveCount(UNISEX_LAUNCH.length);
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
+    await tabs.nth(1).click();
+    await expect(page).toHaveURL(/\?category=women$/);
+    expect(await page.locator('[data-merch="inquire-only"]:visible').evaluateAll((els) => els.map((e) => e.getAttribute("data-product")))).toEqual(WOMENS);
     await page.goto("/shop/merch?category=unisex");
     await expect(page.locator("[data-category-tab=unisex]")).toHaveAttribute("aria-selected", "true");
+    await page.goto("/shop/merch?category=women");
+    await expect(page.locator("[data-category-tab=women]")).toHaveAttribute("aria-selected", "true");
+    await expect(page.locator('[data-merch="inquire-only"]:visible')).toHaveCount(WOMENS.length);
     // an unknown or empty category falls back to All
     await page.goto("/shop/merch?category=men");
     await expect(page.locator("[data-category-tab=all]")).toHaveAttribute("aria-selected", "true");
