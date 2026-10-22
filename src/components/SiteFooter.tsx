@@ -49,7 +49,7 @@ export function SiteFooter() {
         <div className="space-y-1">
           <p data-label-line>
             Flavorful Music is an independent record label, a DBA of Baylingue LLC, San Diego, CA. Contact:{" "}
-            <a href="mailto:ricky@flavorfulmusic.com" className="underline underline-offset-4 hover:text-cream">ricky@flavorfulmusic.com</a>
+            <a href="mailto:hello@flavorfulmusic.com" className="underline underline-offset-4 hover:text-cream">hello@flavorfulmusic.com</a>
           </p>
           <p>
             Sister brand:{" "}

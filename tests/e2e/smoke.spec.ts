@@ -248,7 +248,7 @@ test("site-wide footer: Make art with friends + Friends row", async ({ page }) =
     await page.goto(route);
     const footer = page.locator("footer[data-site-footer]");
     await expect(footer).toContainText("Make art with friends.");
-    await expect(footer.locator("[data-label-line]")).toHaveText("Flavorful Music is an independent record label, a DBA of Baylingue LLC, San Diego, CA. Contact: ricky@flavorfulmusic.com");
+    await expect(footer.locator("[data-label-line]")).toHaveText("Flavorful Music is an independent record label, a DBA of Baylingue LLC, San Diego, CA. Contact: hello@flavorfulmusic.com");
     const friends = footer.getByRole("navigation", { name: "Friends" });
     await expect(friends.locator(".fr-name")).toHaveText(["James Eagle"]);
     const ext = friends.locator("a.fr-link");
@@ -446,12 +446,12 @@ test("contact is a mailto link with a prefilled subject per inquiry type", async
   const primary = page.locator("[data-inquiry-primary]");
   await expect(primary).toHaveText(/licensing/i);
   const href = (await primary.getAttribute("href"))!;
-  expect(href.startsWith("mailto:ricky@flavorfulmusic.com?subject=")).toBe(true);
+  expect(href.startsWith("mailto:hello@flavorfulmusic.com?subject=")).toBe(true);
   expect(decodeURIComponent(href.split("subject=")[1])).toBe("License request (ref: deserts)");
   expect(decodeURIComponent((await page.locator('[data-inquiry-type="booking"]').getAttribute("href"))!.split("subject=")[1])).toBe("Booking inquiry");
   expect(await page.locator("form").count()).toBe(0);
   const mails = await page.locator('a[href^="mailto:"]').evaluateAll((as) => as.map((a) => a.getAttribute("href")!.split("?")[0]));
-  expect(new Set(mails)).toEqual(new Set(["mailto:ricky@flavorfulmusic.com"]));
+  expect(new Set(mails)).toEqual(new Set(["mailto:hello@flavorfulmusic.com"]));
 });
 
 test("beat audio loads from the external media base, never from the site", async ({ page }) => {
@@ -856,8 +856,8 @@ test("songs: the three 720M songs live on 720M's page, not Flavorful Croissants'
 
 test("contact page carries the plain label line (Spotify for Artists verification)", async ({ page }) => {
   await page.goto("/contact/");
-  await expect(page.locator("main [data-label-line] p").last()).toHaveText("Flavorful Music is an independent record label, a DBA of Baylingue LLC, San Diego, CA. Contact: ricky@flavorfulmusic.com");
-  await expect(page.locator("main [data-label-line] a")).toHaveAttribute("href", "mailto:ricky@flavorfulmusic.com");
+  await expect(page.locator("main [data-label-line] p").last()).toHaveText("Flavorful Music is an independent record label, a DBA of Baylingue LLC, San Diego, CA. Contact: hello@flavorfulmusic.com");
+  await expect(page.locator("main [data-label-line] a")).toHaveAttribute("href", "mailto:hello@flavorfulmusic.com");
   expect(await page.content()).not.toMatch(new RegExp(["band" + "zoogle", "zoogle" + "tools"].join("|"), "i")); // old hosting site
 });
 
