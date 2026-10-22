@@ -21,7 +21,7 @@ const SHOP_GROUPS = [
 ] as const;
 
 export default function ShopPage() {
-  const products = getProducts().filter((p) => p.type !== "support");
+  const products = getProducts().filter((p) => p.type !== "support" && (p.type !== "merch" || p.shopListed));
   const cards = Object.fromEntries(products.map((p) => [p.id, <ProductCard key={p.id} product={p} />]));
   return (
     <>

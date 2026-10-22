@@ -4,11 +4,13 @@ import path from "node:path";
 import { validateCatalog } from "@/lib/catalog/validate";
 import { visibleProducts, isAssetVisible } from "@/lib/catalog/filters";
 import { AssetsFile, ProductsFile, SoundCloudFile, ArtistsFile, ProductTemplatesSchema, SamplePacksFile, BeatsFile, CATEGORIES } from "@/lib/catalog/schema";
-import { resolveViews, heroColorwayOf, type ColorwayRef } from "@/lib/merch";
+import { resolveViews, heroColorwayOf, blankBackViews, type ColorwayRef } from "@/lib/merch";
 import { withPreviewCopy } from "@/lib/catalog";
 
 const V2_IDS = ["merch-feelings-notice-tee", "merch-heartbeat-triangle-tee", "merch-heartbeat-croissant-pocket-tee", "merch-taco-slu-t-pocket-tee", "merch-no-thanks-tee", "merch-taco-slu-t-pixel-patch-tee", "merch-hotdog-tee-white", "merch-redwood-lif-e-heartbeat-tee", "merch-redwood-lif-e-grove-tee", "merch-make-art-with-friends-tee"];
 const TANK_IDS = ["merch-santa-cruz-sun-tank", "merch-santa-cruz-dipper-tank", "merch-santa-cruz-redwoods-tank", "merch-santa-cruz-sunset-tank"];
+/** The curated launch line (owner, 2026-10-22), in shop order. */
+const LAUNCH_IDS = ["merch-hotdog-tee-white", "merch-heartbeat-triangle-tee", "merch-no-thanks-tee", "merch-feelings-notice-tee", "merch-make-art-with-friends-tee", "merch-santa-cruz-dipper-tank"];
 
 /** Owner rule: no adjectives before the categories (spelled in pieces so this guard doesn't trip the repo leak scan). */
 const BANNED_WORDS = new RegExp(["ed" + "gy", "heart" + "felt", "dis" + "torted", "under" + "neath it all"].join("|"), "i");
@@ -64,6 +66,12 @@ describe("merch v2 views", () => {
     expect(v[0].map((x) => [x.kind, x.assetId, x.fromHero])).toEqual([["front", "plum-front", false], ["model-front", "black-mf", true], ["model-back", "black-mb", true]]);
     expect(v[1].map((x) => x.kind)).toEqual(["front", "back", "model-front", "model-back"]);
     expect(v[2].map((x) => [x.kind, x.assetId, x.fromHero])).toEqual([["front", "coral-front", false], ["model-front", "coral-mf", false], ["model-back", "black-mb", true]]);
+    // with models: front, back, then the man, then the woman (whatever order they are listed in); legacy model fields are ignored
+    const u = cw("navy", { backAssetId: "navy-back", modelFrontAssetId: "old-mf", modelExtras: [{ assetId: "x-2", side: "front" }], blankBackAssetId: "navy-back-blank",
+      models: [{ gender: "female", frontAssetId: "f-mf", backAssetId: "f-mb", blankBackAssetId: "f-mb-blank" }, { gender: "male", frontAssetId: "m-mf", backAssetId: "m-mb" }] });
+    const uv = resolveViews([u], undefined)[0];
+    expect(uv.map((x) => x.assetId)).toEqual(["navy-front", "navy-back", "m-mf", "m-mb", "f-mf", "f-mb"]);
+    expect(blankBackViews(u, uv)!.map((x) => x.assetId)).toEqual(["navy-front", "navy-back-blank", "m-mf", "m-mb", "f-mf", "f-mb-blank"]);
     // explicit hero wins; missing assets are skipped
     const v2 = resolveViews(list, "coral", (id) => id !== "coral-mf");
     expect(v2[0].map((x) => x.kind)).toEqual(["front"]);
@@ -294,7 +302,9 @@ describe("merch final cast", () => {
   const assets = AssetsFile.parse(load("assets"));
   const merch = products.filter((p) => [...V2_IDS, ...TANK_IDS].includes(p.id));
   const modelIds = (c: (typeof merch)[number]["colorways"][number]) =>
-    [c.modelFrontAssetId, c.modelBackAssetId, c.blankModelBackAssetId, ...(c.modelExtras ?? []).map((x) => x.assetId)].filter((x): x is string => !!x);
+    [c.modelFrontAssetId, c.modelBackAssetId, c.blankModelBackAssetId, ...(c.modelExtras ?? []).map((x) => x.assetId), ...(c.models ?? []).flatMap((m) => [m.frontAssetId, m.backAssetId, m.blankBackAssetId])]
+      .filter((x): x is string => !!x)
+      .filter((x, i, all) => all.indexOf(x) === i);
 
   it("every colorway has its own on-model front and back; every tank colorway also has a blank-back model shot", () => {
     for (const p of merch)
@@ -305,10 +315,10 @@ describe("merch final cast", () => {
       }
   });
 
-  it("118 on-model photos in all, each used once, each with a full set of web sizes", () => {
+  it("162 on-model photos in all (118 + 44 for the uniform launch galleries), each used once, each with a full set of web sizes", () => {
     const ids = merch.flatMap((p) => p.colorways.flatMap(modelIds));
-    expect(ids).toHaveLength(118);
-    expect(new Set(ids).size).toBe(118);
+    expect(ids).toHaveLength(162);
+    expect(new Set(ids).size).toBe(162);
     const byId = new Map(assets.map((a) => [a.id, a]));
     for (const id of ids) {
       const a = byId.get(id)!;
@@ -321,8 +331,34 @@ describe("merch final cast", () => {
 
   it("every Santa Cruz tank carries the full cast; extra shots are numbered by side", () => {
     const counts = Object.fromEntries(merch.filter((p) => TANK_IDS.includes(p.id)).map((p) => [p.id, p.colorways.flatMap(modelIds).length]));
-    expect(counts).toEqual({ "merch-santa-cruz-sun-tank": 13, "merch-santa-cruz-dipper-tank": 16, "merch-santa-cruz-redwoods-tank": 14, "merch-santa-cruz-sunset-tank": 13 });
+    expect(counts).toEqual({ "merch-santa-cruz-sun-tank": 13, "merch-santa-cruz-dipper-tank": 28, "merch-santa-cruz-redwoods-tank": 14, "merch-santa-cruz-sunset-tank": 13 });
     for (const p of merch) for (const c of p.colorways) for (const x of c.modelExtras ?? []) expect(x.assetId).toMatch(new RegExp(`-model-${x.side}-\\d+$`));
+  });
+
+  it("launch line: every colorway has the uniform 6-image gallery (front, back, man front/back, woman front/back)", () => {
+    const byId = new Map(assets.map((a) => [a.id, a]));
+    for (const id of LAUNCH_IDS) {
+      const p = products.find((x) => x.id === id)!;
+      const views = resolveViews(p.colorways, p.heroColorway, (x) => byId.has(x));
+      p.colorways.forEach((c, i) => {
+        expect(views[i].map((v) => v.kind), `${id}/${c.slug}`).toEqual(["front", "back", "model-front", "model-back", "model-front", "model-back"]);
+        expect(views[i].map((v) => v.label)).toEqual(["Front", "Back", "On model (front)", "On model (back)", "On model (front)", "On model (back)"]);
+        expect(views[i].map((v) => v.key ?? v.kind).slice(2)).toEqual(["model-front:male", "model-back:male", "model-front:female", "model-back:female"]);
+        expect(views[i].every((v) => !v.fromHero)).toBe(true);
+        // the man's and the woman's shots are this colorway's own photos
+        for (const v of views[i].slice(2)) expect(v.assetId.startsWith(`${c.assetId}-model-`), v.assetId).toBe(true);
+        if (TANK_IDS.includes(id)) {
+          const blank = blankBackViews(c, views[i], (x) => byId.has(x))!;
+          expect(blank.map((v) => v.assetId)).toEqual(views[i].map((v) => (v.kind === "back" || v.kind === "model-back" ? v.assetId.replace(/-back(-\d+)?$/, "-back$1-blank") : v.assetId)));
+        }
+      });
+    }
+  });
+
+  it("the shop lists only the launch line, in order; the other merch keeps its page but is off the grids", () => {
+    const merchAll = visibleProducts(products, "production", assets).filter((p) => p.type === "merch" && p.listed);
+    expect(merchAll.filter((p) => p.shopListed).map((p) => p.id)).toEqual(LAUNCH_IDS);
+    expect(merchAll.filter((p) => !p.shopListed).map((p) => p.id).sort()).toEqual([...V2_IDS, ...TANK_IDS].filter((id) => !LAUNCH_IDS.includes(id)).sort());
   });
 
   it("Dipper Tank uses the Reflection copy", () => {

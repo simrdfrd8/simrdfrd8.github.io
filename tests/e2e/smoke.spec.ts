@@ -502,19 +502,22 @@ test("artist titles never break mid-word and fit the viewport", async ({ page })
   await expect(page.locator("main, body").first()).toContainText("Production · EDM & hip-hop");
 });
 
-const MERCH_COUNT = 14;
+/** The curated launch line, in shop order (owner, 2026-10-22); the other 8 pieces keep their pages but are off the grids. */
+const LAUNCH = ["merch-hotdog-tee-white", "merch-heartbeat-triangle-tee", "merch-no-thanks-tee", "merch-feelings-notice-tee", "merch-make-art-with-friends-tee", "merch-santa-cruz-dipper-tank"];
+const MERCH_COUNT = LAUNCH.length;
 
 test("merch store lists every piece as a swipe card, display-only, no prices or buy buttons", async ({ page }) => {
   await page.goto("/shop/merch");
   const cards = page.locator('[data-merch="inquire-only"]');
   await expect(cards).toHaveCount(MERCH_COUNT);
+  expect(await cards.evaluateAll((els) => els.map((e) => e.getAttribute("data-product")))).toEqual(LAUNCH);
   await expect(page.locator("[data-card-carousel]")).toHaveCount(MERCH_COUNT);
   const hot = page.locator('[data-product="merch-hotdog-tee-white"]');
   await expect(hot).toHaveCount(1);
   await expect(hot.locator("h3")).toHaveText("HOTDO G Tee");
   await expect(hot).toContainText("Is it a Hotdo? Is it a g? Yes. One bold box, one awkward space. A term we can all agree on.");
-  // hero views (front, back, model front, model back) + the other 2 colorways' fronts; the front flat is the thumbnail
-  await expect(hot.locator("[data-slide]")).toHaveCount(6);
+  // hero views (front, back, man front/back, woman front/back) + the other 2 colorways' fronts; the front flat is the thumbnail
+  await expect(hot.locator("[data-slide]")).toHaveCount(8);
   await expect(hot.locator("[data-slide='0'] img")).toHaveAttribute("src", /merch-hotdo-g-tee\/white-taco-red-\d/);
   // no text buttons to browse: no swatches / view toggles on the card
   await expect(hot.locator("[role=radio], [data-merch-views], [data-extra-photo]")).toHaveCount(0);
@@ -529,6 +532,19 @@ test("merch store lists every piece as a swipe card, display-only, no prices or 
   await expect(page.locator('#all [data-merch="inquire-only"]:visible')).toHaveCount(MERCH_COUNT);
 });
 
+test("merch off the launch line: hidden from the grids, but its page still resolves (noindex) and stays out of the sitemap", async ({ page, request }) => {
+  await page.goto("/shop/merch");
+  for (const id of ["merch-santa-cruz-sun-tank", "merch-redwood-lif-e-grove-tee", "merch-taco-slu-t-pocket-tee"]) await expect(page.locator(`[data-product="${id}"]`)).toHaveCount(0);
+  const res = await page.goto("/shop/merch/santa-cruz-sun-tank/");
+  expect(res?.status()).toBe(200);
+  await expect(page.locator("h1")).toHaveText(/Santa Cruz Sun Tank/i);
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
+  await page.goto("/shop/merch/no-thanks-tee/");
+  await expect(page.locator('meta[name="robots"]')).not.toHaveAttribute("content", /noindex/);
+  const sitemap = await (await request.get("/sitemap.xml")).text();
+  expect(sitemap).not.toContain("santa-cruz-sun-tank");
+});
+
 test("merch card: arrow keys / Home / End move through the photos, tap opens the product on that colorway", async ({ page }) => {
   await page.goto("/shop/merch");
   const card = page.locator('[data-card-carousel="merch-feelings-notice-tee"]');
@@ -541,7 +557,7 @@ test("merch card: arrow keys / Home / End move through the photos, tap opens the
   await page.keyboard.press("ArrowDown"); // vertical keys are left to the page
   await expect(card).toHaveAttribute("data-index", "1");
   await page.keyboard.press("End");
-  await expect(card).toHaveAttribute("data-index", "5");
+  await expect(card).toHaveAttribute("data-index", "7");
   await expect(link).toHaveAttribute("href", /\/shop\/merch\/feelings-notice-tee\/?#cw-/);
   const cw = (await link.getAttribute("href"))!.split("#cw-")[1];
   await page.keyboard.press("Home");
@@ -562,10 +578,19 @@ test("merch product page: one swipe gallery; moving into a colorway selects it; 
   await expect(gallery).toHaveAttribute("data-selected-colorway", "graphite-cream");
   await expect(gallery.locator("[role=radio][aria-checked=true]")).toHaveAttribute("data-colorway", "graphite-cream");
   await gallery.locator("[data-carousel] [tabindex='0']").focus();
-  for (const [i, re] of [[1, /-back-/], [2, /-model-front-/], [3, /-model-back-/]] as const) {
+  // uniform order: front, back, man front, man back, woman front, woman back
+  const steps = [
+    [1, /graphite-cream-back-\d/, "Back"],
+    [2, /graphite-cream-model-front-2-\d/, "On model (front)"],
+    [3, /graphite-cream-model-back-2-\d/, "On model (back)"],
+    [4, /graphite-cream-model-front-\d+\./, "On model (front)"],
+    [5, /graphite-cream-model-back-\d+\./, "On model (back)"],
+  ] as const;
+  for (const [i, re, label] of steps) {
     await page.keyboard.press("ArrowRight");
     await expect(car).toHaveAttribute("data-index", String(i));
     await expect(car.locator(`[data-slide='${i}'] img`)).toHaveAttribute("src", re);
+    await expect(gallery.locator("[data-colorway-name]")).toHaveText(`Graphite / Cream · ${label}`);
   }
   // next slide is the second colorway's front: the colorway follows the gallery
   await page.keyboard.press("ArrowRight");
@@ -591,11 +616,31 @@ test("merch product page: printed / blank back keeps the captions right", async 
   await expect(car).toHaveAttribute("data-index", "1");
   await expect(gallery.locator("[data-colorway-name]")).toHaveText("Chambray / Navy · Back (blank)");
   await expect(car.locator("[data-slide='1'] img")).toHaveAttribute("src", /chambray-navy-back-blank-/);
+  // both people's back shots swap to the blank back too (man = slide 3, woman = slide 5); the fronts stay
+  await expect(car.locator("[data-slide]")).toHaveCount(24);
+  await gallery.locator("[data-carousel] [tabindex='0']").focus();
+  for (const [i, re, cap] of [
+    [2, /chambray-navy-model-front-2-\d/, "On model (front) · Blank back"],
+    [3, /chambray-navy-model-back-2-blank-/, "On model, back (blank)"],
+    [4, /chambray-navy-model-front-\d+\./, "On model (front) · Blank back"],
+    [5, /chambray-navy-model-back-blank-/, "On model, back (blank)"],
+  ] as const) {
+    await page.keyboard.press("ArrowRight");
+    await expect(car).toHaveAttribute("data-index", String(i));
+    await expect(car.locator(`[data-slide='${i}'] img`)).toHaveAttribute("src", re);
+    await expect(gallery.locator("[data-colorway-name]")).toHaveText(`Chambray / Navy · ${cap}`);
+  }
   await gallery.locator("[data-back-option=printed]").click();
+  await expect(car.locator("[data-slide='5'] img")).toHaveAttribute("src", /chambray-navy-model-back-\d+\./);
+  await expect(gallery.locator("[data-colorway-name]")).toHaveText("Chambray / Navy · On model, back (printed)");
+  await gallery.locator("[data-carousel] [tabindex='0']").focus();
+  await page.keyboard.press("Home");
+  await expect(car).toHaveAttribute("data-index", "0");
+  await page.keyboard.press("ArrowRight");
   await expect(gallery.locator("[data-colorway-name]")).toHaveText("Chambray / Navy · Back (printed)");
 });
 
-test("Santa Cruz Sun Tank: the product page shows the whole cast after the main shots; the shop card stays short", async ({ page }) => {
+test("Santa Cruz Sun Tank (off the launch line): the product page still shows the whole cast after the main shots", async ({ page }) => {
   await page.goto("/shop/merch/santa-cruz-sun-tank");
   const gallery = page.locator('[data-gallery-variant="page"]');
   const car = gallery.locator("[data-carousel]");
@@ -607,14 +652,14 @@ test("Santa Cruz Sun Tank: the product page shows the whole cast after the main 
   await expect(car.locator("[data-slide='13'] img")).toHaveAttribute("src", /butter-plum-model-back-\d+-\d+\./);
   await expect(gallery.locator("[data-colorway-name]")).toHaveText("Butter / Plum · On model, back (printed)");
   await page.goto("/shop/merch");
-  await expect(page.locator('[data-card-carousel="merch-santa-cruz-sun-tank"] [data-slide]')).toHaveCount(4);
+  await expect(page.locator('[data-card-carousel="merch-santa-cruz-sun-tank"]')).toHaveCount(0);
 });
 
 test("Make Art With Friends card swipes through 4 colorways (hero Chalky Mint first)", async ({ page }) => {
   await page.goto("/shop/merch");
   const card = page.locator('[data-card-carousel="merch-make-art-with-friends-tee"]');
-  // hero views (4) + the other 3 colorways' fronts
-  await expect(card.locator("[data-slide]")).toHaveCount(7);
+  // hero views (6) + the other 3 colorways' fronts
+  await expect(card.locator("[data-slide]")).toHaveCount(9);
   await expect(card.locator("[data-slide='0'] img")).toHaveAttribute("src", /chalky-mint-plum-\d/);
   await expect(card).toHaveAttribute("aria-label", /4 colorways/);
   await card.locator("a[data-product-link]").focus();

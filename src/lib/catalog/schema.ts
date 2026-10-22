@@ -282,6 +282,9 @@ export const ProductSchema = z.object({
   inquireOnly: z.boolean().default(false),
   /** false = hidden from the store (kept in the catalog, reversible). Unlisted merch can still show as brand art. */
   listed: z.boolean().default(true),
+  /** Merch only: false = left out of the shop grids (merch page, shop, artist pages) but the product page still builds
+   *  (noindex) so old links keep working. Reversible: set back to true (or delete the field). */
+  shopListed: z.boolean().default(true),
   unlistedNote: z.string().optional(),
   /** Merch brand line (artist slug, e.g. "baylingual-entertainment"); null = general Flavorful Music. */
   brand: slug.nullable().default(null),
@@ -305,6 +308,11 @@ export const ProductSchema = z.object({
         blankModelBackAssetId: z.string().optional(),
         /** More on-model photos of this colorway (other people from the cast), in display order after the main model front/back. */
         modelExtras: z.array(z.object({ assetId: z.string(), side: z.enum(["front", "back"]) })).optional(),
+        /** Uniform gallery: one man and one woman, each front + back (+ blank-back variant). When set, the gallery shows
+         *  front, back, then these (men first) and ignores modelFront/modelBack/modelExtras (kept for reference, reversible). */
+        models: z
+          .array(z.object({ gender: z.enum(["male", "female"]), frontAssetId: z.string(), backAssetId: z.string(), blankBackAssetId: z.string().optional() }))
+          .optional(),
         /** Shirt colour (CSV shirt_hex) for the swatch, and the print/ink colour (ink_hex). */
         swatch: hex.optional(),
         ink: hex.optional(),

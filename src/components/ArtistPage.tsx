@@ -1,7 +1,7 @@
 import { SongList, songsFor } from "./SongList";
 import Link from "next/link";
 import type { Artist } from "@/lib/catalog/schema";
-import { catalog, getAsset, getProducts, getReleases, getTracks, getSamplePacks, visibleAssets, creditLine, assetHasArtist, childArtists, getArtist, getCollaborator, merchProducts, brandApparelAssets } from "@/lib/catalog";
+import { catalog, getAsset, getProducts, getReleases, getTracks, getSamplePacks, visibleAssets, creditLine, assetHasArtist, childArtists, getArtist, getCollaborator, shopMerchProducts, brandApparelAssets } from "@/lib/catalog";
 import type { SoundCloudTrack } from "@/lib/catalog/schema";
 import { VideoPlayer } from "./VideoPlayer";
 import { MediaImage } from "./MediaImage";
@@ -132,7 +132,7 @@ export function ArtistPage({ artist, intro }: { artist: Artist; intro?: React.Re
   const videos = visibleAssets().filter((a) => a.type === "video" && assetHasArtist(a, artist.slug) && a.id !== artist.heroAssetId && !a.tags.includes("merch"));
   const art = visibleAssets().filter((a) => a.artist === artist.slug && ["artwork", "illustration", "photo"].includes(a.type) && a.id !== artist.heroAssetId && !a.tags.includes("merch"));
   const products = getProducts().filter((p) => p.artist === artist.slug && p.type !== "support" && p.type !== "merch");
-  const merch = merchProducts().filter((p) => p.brand === artist.slug);
+  const merch = shopMerchProducts().filter((p) => p.brand === artist.slug);
   const apparel = brandApparelAssets(artist.slug);
   const children = childArtists(artist.slug);
   const coverReleases = releases.filter((r) => r.artworkAssetId);

@@ -180,7 +180,19 @@
         "assetId": "merch-hotdo-g-tee-white-taco-red",
         "backAssetId": "merch-hotdo-g-tee-white-taco-red-back",
         "modelFrontAssetId": "merch-hotdo-g-tee-white-taco-red-model-front",
-        "modelBackAssetId": "merch-hotdo-g-tee-white-taco-red-model-back"
+        "modelBackAssetId": "merch-hotdo-g-tee-white-taco-red-model-back",
+        "models": [
+          {
+            "gender": "male",
+            "frontAssetId": "merch-hotdo-g-tee-white-taco-red-model-front-2",
+            "backAssetId": "merch-hotdo-g-tee-white-taco-red-model-back-2"
+          },
+          {
+            "gender": "female",
+            "frontAssetId": "merch-hotdo-g-tee-white-taco-red-model-front",
+            "backAssetId": "merch-hotdo-g-tee-white-taco-red-model-back"
+          }
+        ]
       },
       {
         "name": "Black / White",
@@ -190,7 +202,19 @@
         "assetId": "merch-hotdo-g-tee-black-white",
         "backAssetId": "merch-hotdo-g-tee-black-white-back",
         "modelFrontAssetId": "merch-hotdo-g-tee-black-white-model-front",
-        "modelBackAssetId": "merch-hotdo-g-tee-black-white-model-back"
+        "modelBackAssetId": "merch-hotdo-g-tee-black-white-model-back",
+        "models": [
+          {
+            "gender": "male",
+            "frontAssetId": "merch-hotdo-g-tee-black-white-model-front",
+            "backAssetId": "merch-hotdo-g-tee-black-white-model-back"
+          },
+          {
+            "gender": "female",
+            "frontAssetId": "merch-hotdo-g-tee-black-white-model-front-2",
+            "backAssetId": "merch-hotdo-g-tee-black-white-model-back-2"
+          }
+        ]
       },
       {
         "name": "Graphite / Electric Orange",
@@ -200,7 +224,19 @@
         "assetId": "merch-hotdo-g-tee-graphite-electric-orange",
         "backAssetId": "merch-hotdo-g-tee-graphite-electric-orange-back",
         "modelFrontAssetId": "merch-hotdo-g-tee-graphite-electric-orange-model-front",
-        "modelBackAssetId": "merch-hotdo-g-tee-graphite-electric-orange-model-back"
+        "modelBackAssetId": "merch-hotdo-g-tee-graphite-electric-orange-model-back",
+        "models": [
+          {
+            "gender": "male",
+            "frontAssetId": "merch-hotdo-g-tee-graphite-electric-orange-model-front",
+            "backAssetId": "merch-hotdo-g-tee-graphite-electric-orange-model-back"
+          },
+          {
+            "gender": "female",
+            "frontAssetId": "merch-hotdo-g-tee-graphite-electric-orange-model-front-2",
+            "backAssetId": "merch-hotdo-g-tee-graphite-electric-orange-model-back-2"
+          }
+        ]
       }
     ],
     "lifestyleAssetIds": [],
@@ -226,7 +262,7 @@
     "inquireOnly": true,
     "galleryAssetIds": [],
     "featured": false,
-    "order": 71,
+    "order": 73,
     "listed": true,
     "colorways": [
       {
@@ -237,7 +273,19 @@
         "assetId": "merch-feelings-notice-tee-true-navy-cream",
         "backAssetId": "merch-feelings-notice-tee-true-navy-cream-back",
         "modelFrontAssetId": "merch-feelings-notice-tee-true-navy-cream-model-front",
-        "modelBackAssetId": "merch-feelings-notice-tee-true-navy-cream-model-back"
+        "modelBackAssetId": "merch-feelings-notice-tee-true-navy-cream-model-back",
+        "models": [
+          {
+            "gender": "male",
+            "frontAssetId": "merch-feelings-notice-tee-true-navy-cream-model-front",
+            "backAssetId": "merch-feelings-notice-tee-true-navy-cream-model-back"
+          },
+          {
+            "gender": "female",
+            "frontAssetId": "merch-feelings-notice-tee-true-navy-cream-model-front-2",
+            "backAssetId": "merch-feelings-notice-tee-true-navy-cream-model-back-2"
+          }
+        ]
       },
       {
         "name": "Graphite / Cream",
@@ -247,7 +295,19 @@
         "assetId": "merch-feelings-notice-tee-graphite-cream",
         "backAssetId": "merch-feelings-notice-tee-graphite-cream-back",
         "modelFrontAssetId": "merch-feelings-notice-tee-graphite-cream-model-front",
-        "modelBackAssetId": "merch-feelings-notice-tee-graphite-cream-model-back"
+        "modelBackAssetId": "merch-feelings-notice-tee-graphite-cream-model-back",
+        "models": [
+          {
+            "gender": "male",
+            "frontAssetId": "merch-feelings-notice-tee-graphite-cream-model-front",
+            "backAssetId": "merch-feelings-notice-tee-graphite-cream-model-back"
+          },
+          {
+            "gender": "female",
+            "frontAssetId": "merch-feelings-notice-tee-graphite-cream-model-front-2",
+            "backAssetId": "merch-feelings-notice-tee-graphite-cream-model-back-2"
+          }
+        ]
       },
       {
         "name": "Ivory / Plum",
@@ -257,7 +317,19 @@
         "assetId": "merch-feelings-notice-tee-ivory-plum",
         "backAssetId": "merch-feelings-notice-tee-ivory-plum-back",
         "modelFrontAssetId": "merch-feelings-notice-tee-ivory-plum-model-front",
-        "modelBackAssetId": "merch-feelings-notice-tee-ivory-plum-model-back"
+        "modelBackAssetId": "merch-feelings-notice-tee-ivory-plum-model-back",
+        "models": [
+          {
+            "gender": "male",
+            "frontAssetId": "merch-feelings-notice-tee-ivory-plum-model-front-2",
+            "backAssetId": "merch-feelings-notice-tee-ivory-plum-model-back-2"
+          },
+          {
+            "gender": "female",
+            "frontAssetId": "merch-feelings-notice-tee-ivory-plum-model-front",
+            "backAssetId": "merch-feelings-notice-tee-ivory-plum-model-back"
+          }
+        ]
       }
     ],
     "lifestyleAssetIds": [],
@@ -283,7 +355,7 @@
     "inquireOnly": true,
     "galleryAssetIds": [],
     "featured": false,
-    "order": 72,
+    "order": 71,
     "listed": true,
     "colorways": [
       {
@@ -294,7 +366,19 @@
         "assetId": "merch-heartbeat-triangle-tee-violet-plum",
         "backAssetId": "merch-heartbeat-triangle-tee-violet-plum-back",
         "modelFrontAssetId": "merch-heartbeat-triangle-tee-violet-plum-model-front",
-        "modelBackAssetId": "merch-heartbeat-triangle-tee-violet-plum-model-back"
+        "modelBackAssetId": "merch-heartbeat-triangle-tee-violet-plum-model-back",
+        "models": [
+          {
+            "gender": "male",
+            "frontAssetId": "merch-heartbeat-triangle-tee-violet-plum-model-front",
+            "backAssetId": "merch-heartbeat-triangle-tee-violet-plum-model-back"
+          },
+          {
+            "gender": "female",
+            "frontAssetId": "merch-heartbeat-triangle-tee-violet-plum-model-front-2",
+            "backAssetId": "merch-heartbeat-triangle-tee-violet-plum-model-back-2"
+          }
+        ]
       },
       {
         "name": "Graphite / Electric Orange",
@@ -304,7 +388,19 @@
         "assetId": "merch-heartbeat-triangle-tee-graphite-electric-orange",
         "backAssetId": "merch-heartbeat-triangle-tee-graphite-electric-orange-back",
         "modelFrontAssetId": "merch-heartbeat-triangle-tee-graphite-electric-orange-model-front",
-        "modelBackAssetId": "merch-heartbeat-triangle-tee-graphite-electric-orange-model-back"
+        "modelBackAssetId": "merch-heartbeat-triangle-tee-graphite-electric-orange-model-back",
+        "models": [
+          {
+            "gender": "male",
+            "frontAssetId": "merch-heartbeat-triangle-tee-graphite-electric-orange-model-front",
+            "backAssetId": "merch-heartbeat-triangle-tee-graphite-electric-orange-model-back"
+          },
+          {
+            "gender": "female",
+            "frontAssetId": "merch-heartbeat-triangle-tee-graphite-electric-orange-model-front-2",
+            "backAssetId": "merch-heartbeat-triangle-tee-graphite-electric-orange-model-back-2"
+          }
+        ]
       },
       {
         "name": "True Navy / Cream",
@@ -314,7 +410,19 @@
         "assetId": "merch-heartbeat-triangle-tee-true-navy-cream",
         "backAssetId": "merch-heartbeat-triangle-tee-true-navy-cream-back",
         "modelFrontAssetId": "merch-heartbeat-triangle-tee-true-navy-cream-model-front",
-        "modelBackAssetId": "merch-heartbeat-triangle-tee-true-navy-cream-model-back"
+        "modelBackAssetId": "merch-heartbeat-triangle-tee-true-navy-cream-model-back",
+        "models": [
+          {
+            "gender": "male",
+            "frontAssetId": "merch-heartbeat-triangle-tee-true-navy-cream-model-front-2",
+            "backAssetId": "merch-heartbeat-triangle-tee-true-navy-cream-model-back-2"
+          },
+          {
+            "gender": "female",
+            "frontAssetId": "merch-heartbeat-triangle-tee-true-navy-cream-model-front",
+            "backAssetId": "merch-heartbeat-triangle-tee-true-navy-cream-model-back"
+          }
+        ]
       }
     ],
     "lifestyleAssetIds": [],
@@ -340,7 +448,7 @@
     "inquireOnly": true,
     "galleryAssetIds": [],
     "featured": false,
-    "order": 73,
+    "order": 90,
     "listed": true,
     "colorways": [
       {
@@ -375,7 +483,8 @@
       }
     ],
     "lifestyleAssetIds": [],
-    "heroColorway": "burnt-orange-plum"
+    "heroColorway": "burnt-orange-plum",
+    "shopListed": false
   },
   {
     "id": "merch-taco-slu-t-pocket-tee",
@@ -397,7 +506,7 @@
     "inquireOnly": true,
     "galleryAssetIds": [],
     "featured": false,
-    "order": 74,
+    "order": 91,
     "listed": true,
     "colorways": [
       {
@@ -432,7 +541,8 @@
       }
     ],
     "lifestyleAssetIds": [],
-    "heroColorway": "ivory-taco-red"
+    "heroColorway": "ivory-taco-red",
+    "shopListed": false
   },
   {
     "id": "merch-taco-slu-t-pixel-patch-tee",
@@ -454,7 +564,7 @@
     "inquireOnly": true,
     "galleryAssetIds": [],
     "featured": false,
-    "order": 76,
+    "order": 92,
     "listed": true,
     "colorways": [
       {
@@ -489,7 +599,8 @@
       }
     ],
     "lifestyleAssetIds": [],
-    "heroColorway": "black-acid-green"
+    "heroColorway": "black-acid-green",
+    "shopListed": false
   },
   {
     "id": "merch-no-thanks-tee",
@@ -511,7 +622,7 @@
     "inquireOnly": true,
     "galleryAssetIds": [],
     "featured": false,
-    "order": 75,
+    "order": 72,
     "listed": true,
     "colorways": [
       {
@@ -522,7 +633,19 @@
         "assetId": "merch-no-thanks-tee-graphite-cream",
         "backAssetId": "merch-no-thanks-tee-graphite-cream-back",
         "modelFrontAssetId": "merch-no-thanks-tee-graphite-cream-model-front",
-        "modelBackAssetId": "merch-no-thanks-tee-graphite-cream-model-back"
+        "modelBackAssetId": "merch-no-thanks-tee-graphite-cream-model-back",
+        "models": [
+          {
+            "gender": "male",
+            "frontAssetId": "merch-no-thanks-tee-graphite-cream-model-front-2",
+            "backAssetId": "merch-no-thanks-tee-graphite-cream-model-back-2"
+          },
+          {
+            "gender": "female",
+            "frontAssetId": "merch-no-thanks-tee-graphite-cream-model-front",
+            "backAssetId": "merch-no-thanks-tee-graphite-cream-model-back"
+          }
+        ]
       },
       {
         "name": "Burnt Orange / Plum",
@@ -532,7 +655,19 @@
         "assetId": "merch-no-thanks-tee-burnt-orange-plum",
         "backAssetId": "merch-no-thanks-tee-burnt-orange-plum-back",
         "modelFrontAssetId": "merch-no-thanks-tee-burnt-orange-plum-model-front",
-        "modelBackAssetId": "merch-no-thanks-tee-burnt-orange-plum-model-back"
+        "modelBackAssetId": "merch-no-thanks-tee-burnt-orange-plum-model-back",
+        "models": [
+          {
+            "gender": "male",
+            "frontAssetId": "merch-no-thanks-tee-burnt-orange-plum-model-front",
+            "backAssetId": "merch-no-thanks-tee-burnt-orange-plum-model-back"
+          },
+          {
+            "gender": "female",
+            "frontAssetId": "merch-no-thanks-tee-burnt-orange-plum-model-front-2",
+            "backAssetId": "merch-no-thanks-tee-burnt-orange-plum-model-back-2"
+          }
+        ]
       },
       {
         "name": "Violet / Plum",
@@ -542,7 +677,19 @@
         "assetId": "merch-no-thanks-tee-violet-plum",
         "backAssetId": "merch-no-thanks-tee-violet-plum-back",
         "modelFrontAssetId": "merch-no-thanks-tee-violet-plum-model-front",
-        "modelBackAssetId": "merch-no-thanks-tee-violet-plum-model-back"
+        "modelBackAssetId": "merch-no-thanks-tee-violet-plum-model-back",
+        "models": [
+          {
+            "gender": "male",
+            "frontAssetId": "merch-no-thanks-tee-violet-plum-model-front-2",
+            "backAssetId": "merch-no-thanks-tee-violet-plum-model-back-2"
+          },
+          {
+            "gender": "female",
+            "frontAssetId": "merch-no-thanks-tee-violet-plum-model-front",
+            "backAssetId": "merch-no-thanks-tee-violet-plum-model-back"
+          }
+        ]
       }
     ],
     "heroColorway": "graphite-cream",
@@ -568,7 +715,7 @@
     "inquireOnly": true,
     "galleryAssetIds": [],
     "featured": false,
-    "order": 78,
+    "order": 93,
     "listed": true,
     "colorways": [
       {
@@ -605,7 +752,8 @@
     "heroColorway": "washed-denim-navy",
     "lifestyleAssetIds": [],
     "approved": false,
-    "publishApproved": false
+    "publishApproved": false,
+    "shopListed": false
   },
   {
     "id": "merch-redwood-lif-e-grove-tee",
@@ -627,7 +775,7 @@
     "inquireOnly": true,
     "galleryAssetIds": [],
     "featured": false,
-    "order": 79,
+    "order": 94,
     "listed": true,
     "colorways": [
       {
@@ -664,7 +812,8 @@
     "heroColorway": "blue-spruce-cream",
     "lifestyleAssetIds": [],
     "approved": false,
-    "publishApproved": false
+    "publishApproved": false,
+    "shopListed": false
   },
   {
     "id": "merch-make-art-with-friends-tee",
@@ -686,7 +835,7 @@
     "inquireOnly": true,
     "galleryAssetIds": [],
     "featured": false,
-    "order": 80,
+    "order": 74,
     "listed": true,
     "colorways": [
       {
@@ -697,7 +846,19 @@
         "assetId": "merch-make-art-with-friends-tee-chalky-mint-plum",
         "backAssetId": "merch-make-art-with-friends-tee-chalky-mint-plum-back",
         "modelFrontAssetId": "merch-make-art-with-friends-tee-chalky-mint-plum-model-front",
-        "modelBackAssetId": "merch-make-art-with-friends-tee-chalky-mint-plum-model-back"
+        "modelBackAssetId": "merch-make-art-with-friends-tee-chalky-mint-plum-model-back",
+        "models": [
+          {
+            "gender": "male",
+            "frontAssetId": "merch-make-art-with-friends-tee-chalky-mint-plum-model-front-2",
+            "backAssetId": "merch-make-art-with-friends-tee-chalky-mint-plum-model-back-2"
+          },
+          {
+            "gender": "female",
+            "frontAssetId": "merch-make-art-with-friends-tee-chalky-mint-plum-model-front",
+            "backAssetId": "merch-make-art-with-friends-tee-chalky-mint-plum-model-back"
+          }
+        ]
       },
       {
         "name": "Butter / Plum",
@@ -707,7 +868,19 @@
         "assetId": "merch-make-art-with-friends-tee-butter-plum",
         "backAssetId": "merch-make-art-with-friends-tee-butter-plum-back",
         "modelFrontAssetId": "merch-make-art-with-friends-tee-butter-plum-model-front",
-        "modelBackAssetId": "merch-make-art-with-friends-tee-butter-plum-model-back"
+        "modelBackAssetId": "merch-make-art-with-friends-tee-butter-plum-model-back",
+        "models": [
+          {
+            "gender": "male",
+            "frontAssetId": "merch-make-art-with-friends-tee-butter-plum-model-front",
+            "backAssetId": "merch-make-art-with-friends-tee-butter-plum-model-back"
+          },
+          {
+            "gender": "female",
+            "frontAssetId": "merch-make-art-with-friends-tee-butter-plum-model-front-2",
+            "backAssetId": "merch-make-art-with-friends-tee-butter-plum-model-back-2"
+          }
+        ]
       },
       {
         "name": "Grape / Acid Green",
@@ -717,7 +890,19 @@
         "assetId": "merch-make-art-with-friends-tee-grape-acid-green",
         "backAssetId": "merch-make-art-with-friends-tee-grape-acid-green-back",
         "modelFrontAssetId": "merch-make-art-with-friends-tee-grape-acid-green-model-front",
-        "modelBackAssetId": "merch-make-art-with-friends-tee-grape-acid-green-model-back"
+        "modelBackAssetId": "merch-make-art-with-friends-tee-grape-acid-green-model-back",
+        "models": [
+          {
+            "gender": "male",
+            "frontAssetId": "merch-make-art-with-friends-tee-grape-acid-green-model-front",
+            "backAssetId": "merch-make-art-with-friends-tee-grape-acid-green-model-back"
+          },
+          {
+            "gender": "female",
+            "frontAssetId": "merch-make-art-with-friends-tee-grape-acid-green-model-front-2",
+            "backAssetId": "merch-make-art-with-friends-tee-grape-acid-green-model-back-2"
+          }
+        ]
       },
       {
         "name": "Grape / Black",
@@ -727,7 +912,19 @@
         "assetId": "merch-make-art-with-friends-tee-grape-black",
         "backAssetId": "merch-make-art-with-friends-tee-grape-black-back",
         "modelFrontAssetId": "merch-make-art-with-friends-tee-grape-black-model-front",
-        "modelBackAssetId": "merch-make-art-with-friends-tee-grape-black-model-back"
+        "modelBackAssetId": "merch-make-art-with-friends-tee-grape-black-model-back",
+        "models": [
+          {
+            "gender": "male",
+            "frontAssetId": "merch-make-art-with-friends-tee-grape-black-model-front-2",
+            "backAssetId": "merch-make-art-with-friends-tee-grape-black-model-back-2"
+          },
+          {
+            "gender": "female",
+            "frontAssetId": "merch-make-art-with-friends-tee-grape-black-model-front",
+            "backAssetId": "merch-make-art-with-friends-tee-grape-black-model-back"
+          }
+        ]
       }
     ],
     "heroColorway": "chalky-mint-plum",
@@ -755,7 +952,7 @@
     "inquireOnly": true,
     "galleryAssetIds": [],
     "featured": false,
-    "order": 81,
+    "order": 95,
     "listed": true,
     "colorways": [
       {
@@ -814,7 +1011,8 @@
       }
     ],
     "heroColorway": "butter-plum",
-    "lifestyleAssetIds": []
+    "lifestyleAssetIds": [],
+    "shopListed": false
   },
   {
     "id": "merch-santa-cruz-dipper-tank",
@@ -836,7 +1034,7 @@
     "inquireOnly": true,
     "galleryAssetIds": [],
     "featured": false,
-    "order": 82,
+    "order": 75,
     "listed": true,
     "colorways": [
       {
@@ -849,7 +1047,21 @@
         "blankBackAssetId": "merch-santa-cruz-dipper-tank-chambray-navy-back-blank",
         "modelFrontAssetId": "merch-santa-cruz-dipper-tank-chambray-navy-model-front",
         "modelBackAssetId": "merch-santa-cruz-dipper-tank-chambray-navy-model-back",
-        "blankModelBackAssetId": "merch-santa-cruz-dipper-tank-chambray-navy-model-back-blank"
+        "blankModelBackAssetId": "merch-santa-cruz-dipper-tank-chambray-navy-model-back-blank",
+        "models": [
+          {
+            "gender": "male",
+            "frontAssetId": "merch-santa-cruz-dipper-tank-chambray-navy-model-front-2",
+            "backAssetId": "merch-santa-cruz-dipper-tank-chambray-navy-model-back-2",
+            "blankBackAssetId": "merch-santa-cruz-dipper-tank-chambray-navy-model-back-2-blank"
+          },
+          {
+            "gender": "female",
+            "frontAssetId": "merch-santa-cruz-dipper-tank-chambray-navy-model-front",
+            "backAssetId": "merch-santa-cruz-dipper-tank-chambray-navy-model-back",
+            "blankBackAssetId": "merch-santa-cruz-dipper-tank-chambray-navy-model-back-blank"
+          }
+        ]
       },
       {
         "name": "Ivory / Navy",
@@ -871,6 +1083,20 @@
             "assetId": "merch-santa-cruz-dipper-tank-ivory-navy-model-back-2",
             "side": "back"
           }
+        ],
+        "models": [
+          {
+            "gender": "male",
+            "frontAssetId": "merch-santa-cruz-dipper-tank-ivory-navy-model-front-3",
+            "backAssetId": "merch-santa-cruz-dipper-tank-ivory-navy-model-back-3",
+            "blankBackAssetId": "merch-santa-cruz-dipper-tank-ivory-navy-model-back-3-blank"
+          },
+          {
+            "gender": "female",
+            "frontAssetId": "merch-santa-cruz-dipper-tank-ivory-navy-model-front",
+            "backAssetId": "merch-santa-cruz-dipper-tank-ivory-navy-model-back",
+            "blankBackAssetId": "merch-santa-cruz-dipper-tank-ivory-navy-model-back-blank"
+          }
         ]
       },
       {
@@ -883,7 +1109,21 @@
         "blankBackAssetId": "merch-santa-cruz-dipper-tank-blossom-navy-back-blank",
         "modelFrontAssetId": "merch-santa-cruz-dipper-tank-blossom-navy-model-front",
         "modelBackAssetId": "merch-santa-cruz-dipper-tank-blossom-navy-model-back",
-        "blankModelBackAssetId": "merch-santa-cruz-dipper-tank-blossom-navy-model-back-blank"
+        "blankModelBackAssetId": "merch-santa-cruz-dipper-tank-blossom-navy-model-back-blank",
+        "models": [
+          {
+            "gender": "male",
+            "frontAssetId": "merch-santa-cruz-dipper-tank-blossom-navy-model-front",
+            "backAssetId": "merch-santa-cruz-dipper-tank-blossom-navy-model-back",
+            "blankBackAssetId": "merch-santa-cruz-dipper-tank-blossom-navy-model-back-blank"
+          },
+          {
+            "gender": "female",
+            "frontAssetId": "merch-santa-cruz-dipper-tank-blossom-navy-model-front-2",
+            "backAssetId": "merch-santa-cruz-dipper-tank-blossom-navy-model-back-2",
+            "blankBackAssetId": "merch-santa-cruz-dipper-tank-blossom-navy-model-back-2-blank"
+          }
+        ]
       },
       {
         "name": "Crimson / Cream",
@@ -904,6 +1144,20 @@
           {
             "assetId": "merch-santa-cruz-dipper-tank-crimson-cream-model-back-2",
             "side": "back"
+          }
+        ],
+        "models": [
+          {
+            "gender": "male",
+            "frontAssetId": "merch-santa-cruz-dipper-tank-crimson-cream-model-front",
+            "backAssetId": "merch-santa-cruz-dipper-tank-crimson-cream-model-back",
+            "blankBackAssetId": "merch-santa-cruz-dipper-tank-crimson-cream-model-back-blank"
+          },
+          {
+            "gender": "female",
+            "frontAssetId": "merch-santa-cruz-dipper-tank-crimson-cream-model-front-3",
+            "backAssetId": "merch-santa-cruz-dipper-tank-crimson-cream-model-back-3",
+            "blankBackAssetId": "merch-santa-cruz-dipper-tank-crimson-cream-model-back-3-blank"
           }
         ]
       }
@@ -931,7 +1185,7 @@
     "inquireOnly": true,
     "galleryAssetIds": [],
     "featured": false,
-    "order": 83,
+    "order": 96,
     "listed": true,
     "colorways": [
       {
@@ -996,7 +1250,8 @@
       }
     ],
     "heroColorway": "light-green-cream",
-    "lifestyleAssetIds": []
+    "lifestyleAssetIds": [],
+    "shopListed": false
   },
   {
     "id": "merch-santa-cruz-sunset-tank",
@@ -1018,7 +1273,7 @@
     "inquireOnly": true,
     "galleryAssetIds": [],
     "featured": false,
-    "order": 84,
+    "order": 97,
     "listed": true,
     "colorways": [
       {
@@ -1077,6 +1332,7 @@
       }
     ],
     "heroColorway": "lagoon-blue-plum",
-    "lifestyleAssetIds": []
+    "lifestyleAssetIds": [],
+    "shopListed": false
   }
 ]

@@ -84,7 +84,7 @@ export const getSamplePacks = () => catalog.samplePacks.filter((p) => p.status !
 export const packProduct = (p: SamplePack): Product => ({
   id: p.id, title: p.title, assetId: p.coverAssetId, artist: "flavorful-croissants", type: "sample-pack", price: p.price, currency: p.currency,
   payWhatYouWant: false, priceApproved: p.priceApproved, status: p.status, checkoutProvider: p.checkoutProvider, checkoutUrl: p.checkoutUrl,
-  licenseTerms: p.license, summary: p.contents[0] ?? "", includes: p.contents, inquireOnly: false, listed: true, brand: null, galleryAssetIds: [], colorways: [], lifestyleAssetIds: [], featured: false, order: p.order,
+  licenseTerms: p.license, summary: p.contents[0] ?? "", includes: p.contents, inquireOnly: false, listed: true, shopListed: true, brand: null, galleryAssetIds: [], colorways: [], lifestyleAssetIds: [], featured: false, order: p.order,
 });
 
 /** Lane offers for a solo production, built from content/product-templates.json (checkout gated by CHECKOUT_LIVE). */
@@ -97,7 +97,7 @@ export function laneOffers(track: Pick<SoundCloudTrack, "id" | "title" | "displa
       id: `${track.id}--${o.id}`, title: `${track.displayTitle ?? track.title}: ${o.title}`, assetId: null, artist: track.artist, type: o.type,
       price: o.price, currency: "USD" as const, payWhatYouWant: false, priceApproved: o.priceApproved, status: o.status,
       checkoutProvider: o.price === null ? ("none" as const) : ("payhip" as const), checkoutUrl: null, licenseTerms: o.terms,
-      summary: o.summary, artworkUrl: track.artworkUrl, includes: [], inquireOnly: false, listed: true, brand: null, galleryAssetIds: [], colorways: [], lifestyleAssetIds: [], featured: false, order: i, terms: o.terms, licenseTierId: o.licenseTierId,
+      summary: o.summary, artworkUrl: track.artworkUrl, includes: [], inquireOnly: false, listed: true, shopListed: true, brand: null, galleryAssetIds: [], colorways: [], lifestyleAssetIds: [], featured: false, order: i, terms: o.terms, licenseTierId: o.licenseTierId,
       agreementUrl: o.agreement ? `/licensing/${o.agreement}` : undefined,
     }));
 }
@@ -123,11 +123,14 @@ const catRank = (a: { category?: string }) => { const i = CATEGORIES.findIndex((
 export const listedArtists = () => catalog.artists.filter((a) => a.listed).sort((a, b) => catRank(a) - catRank(b) || a.order - b.order);
 export const categoryOf = (id?: string) => CATEGORIES.find((c) => c.id === id);
 export const childArtists = (slug: string) => catalog.artists.filter((a) => a.parentArtist === slug).sort((a, b) => a.order - b.order);
+/** Every listed merch product (each has a product page). */
 export const merchProducts = () => getProducts().filter((p) => p.type === "merch");
+/** Merch shown in the shop grids (the curated line): shopListed !== false, in `order`. */
+export const shopMerchProducts = () => merchProducts().filter((p) => p.shopListed);
 /** Merch grouped by brand line; brands with an artist page first, general Flavorful Music last. */
 export const merchByBrand = () => {
   const groups = new Map<string | null, ReturnType<typeof merchProducts>>();
-  for (const p of merchProducts()) groups.set(p.brand, [...(groups.get(p.brand) ?? []), p]);
+  for (const p of shopMerchProducts()) groups.set(p.brand, [...(groups.get(p.brand) ?? []), p]);
   return [...groups.entries()].sort(([a], [b]) => (a === null ? 1 : b === null ? -1 : 0)).map(([brand, items]) => ({ brand, name: brand ? artistName(brand) : "Flavorful Music", items }));
 };
 

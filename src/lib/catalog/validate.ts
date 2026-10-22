@@ -34,6 +34,12 @@ export function validateCatalog(raw: Raw): string[] {
   for (const p of products) {
     if (p.assetId && !assetIds.has(p.assetId)) out.push(`products.${p.id}: unknown asset ${p.assetId}`);
     for (const c of p.colorways) if (!assetIds.has(c.assetId)) out.push(`products.${p.id}: colorway ${c.slug} has unknown asset ${c.assetId}`);
+    for (const c of p.colorways) {
+      const genders = (c.models ?? []).map((m) => m.gender);
+      if (c.models && (genders.length !== 2 || !genders.includes("male") || !genders.includes("female"))) out.push(`products.${p.id}: colorway ${c.slug} models must be one man and one woman`);
+      for (const m of c.models ?? []) for (const id of [m.frontAssetId, m.backAssetId, m.blankBackAssetId]) if (id && !assetIds.has(id)) out.push(`products.${p.id}: colorway ${c.slug} has unknown model asset ${id}`);
+    }
+    if (p.type !== "merch" && !p.shopListed) out.push(`products.${p.id}: shopListed is for merch only (use listed)`);
     for (const id of p.lifestyleAssetIds) if (!assetIds.has(id)) out.push(`products.${p.id}: unknown lifestyle asset ${id}`);
     if (p.colorways.length && p.type !== "merch") out.push(`products.${p.id}: colorways are for merch only`);
     if (p.type === "merch" && (p.price !== null || p.checkoutUrl || !p.inquireOnly)) out.push(`products.${p.id}: merch must stay display-only (no price, no checkout)`);

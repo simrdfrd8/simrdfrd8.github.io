@@ -16,7 +16,8 @@ const find = (slug: string) => merchProducts().find((p) => merchSlug(p) === slug
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const p = find((await params).slug);
   if (!p) return {};
-  return { title: p.title, description: p.summary, alternates: { canonical: `/shop/merch/${merchSlug(p)}` } };
+  // off the curated shop line: the page still resolves for old links but stays out of search
+  return { title: p.title, description: p.summary, alternates: { canonical: `/shop/merch/${merchSlug(p)}` }, ...(p.shopListed ? {} : { robots: { index: false, follow: true } }) };
 }
 
 /** Merch product page: full-bleed swipe gallery of every colorway (swiping selects the colorway). Display-only: no price, no cart. */
