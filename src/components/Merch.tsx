@@ -3,9 +3,9 @@ import type { Product } from "@/lib/catalog/schema";
 import { getAsset, merchByBrand } from "@/lib/catalog";
 import { MediaImage } from "./MediaImage";
 import { VideoPlayer } from "./VideoPlayer";
-import { ColorwayGallery } from "./ColorwayGallery";
-import { resolveViews } from "@/lib/merch";
-import { Badge } from "./ui";
+import { MerchCardCarousel } from "./MerchCardCarousel";
+import { ComingSoonTag } from "./SwipeCarousel";
+import { blankBackViews, resolveViews } from "@/lib/merch";
 
 export const merchSlug = (p: Pick<Product, "id">) => p.id.replace(/^merch-/, "");
 
@@ -16,48 +16,46 @@ export function merchGallery(product: Product) {
   const colorways = product.colorways.flatMap((c, i) => {
     const a = getAsset(c.assetId);
     if (!a) return [];
-    const views = resolved[i].flatMap((v) => {
-      const va = getAsset(v.assetId);
-      return va ? [{ kind: v.kind, label: v.label, asset: va, fromHero: v.fromHero }] : [];
-    });
-    return [{ name: c.name, slug: c.slug, asset: a, swatch: c.swatch, ink: c.ink, views }];
+    const toGallery = (list: typeof resolved[number]) =>
+      list.flatMap((v) => {
+        const va = getAsset(v.assetId);
+        return va ? [{ kind: v.kind, label: v.label, asset: va, fromHero: v.fromHero, ...(v.key ? { key: v.key } : {}) }] : [];
+      });
+    const views = toGallery(resolved[i]);
+    const blank = blankBackViews(c, resolved[i], (id) => !!getAsset(id));
+    return [{ name: c.name, slug: c.slug, asset: a, swatch: c.swatch, ink: c.ink, views, ...(blank ? { blankViews: toGallery(blank) } : {}) }];
   });
-  const shownIds = new Set(colorways.flatMap((c) => [c.asset.id, ...c.views.map((v) => v.asset.id)]));
+  const shownIds = new Set(colorways.flatMap((c) => [c.asset.id, ...c.views.map((v) => v.asset.id), ...("blankViews" in c && c.blankViews ? c.blankViews.map((v) => v.asset.id) : [])]));
   const extras = [asset && !shownIds.has(asset.id) ? asset : undefined, ...product.lifestyleAssetIds.map((id) => getAsset(id))].filter(
     (a, i, all): a is NonNullable<typeof a> => !!a && a.type !== "video" && all.findIndex((x) => x?.id === a.id) === i,
   );
   return { asset, colorways, extras };
 }
 
-/** Physical merch is inquiry-only: no price, no buy button, until fulfilment is set up. */
-export function MerchCard({ product }: { product: Product }) {
-  const { asset, colorways, extras } = merchGallery(product);
+/**
+ * Physical merch is inquiry-only: no price, no buy button, until fulfilment is set up.
+ * The card is a swipe strip (hero colorway's views, then the other colorways' fronts); tapping it opens the product.
+ */
+export function MerchCard({ product, priority = false }: { product: Product; priority?: boolean }) {
+  const { asset, colorways } = merchGallery(product);
   const href = `/shop/merch/${merchSlug(product)}`;
   return (
     <article className="group relative flex flex-col" data-product={product.id} data-merch="inquire-only">
       {colorways.length ? (
-        <ColorwayGallery productId={product.id} title={product.title} colorways={colorways} extras={extras} />
+        <MerchCardCarousel productId={product.id} title={product.title} href={href} colorways={colorways} priority={priority} />
       ) : (
-        <div className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-surface ring-1 ring-line">
-          {asset && <MediaImage asset={asset} sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" className="absolute inset-0" imgClassName="transition-transform duration-700 group-hover:scale-[1.03]" />}
-          <div className="absolute right-3 bottom-3">
-            <Badge tone="upcoming">Coming soon</Badge>
-          </div>
-        </div>
+        <Link href={href} className="relative block aspect-square overflow-hidden rounded-2xl bg-surface ring-1 ring-line" aria-label={product.title}>
+          {asset && <MediaImage asset={asset} sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" priority={priority} className="absolute inset-0" />}
+          <ComingSoonTag />
+        </Link>
       )}
-      <div className="flex flex-1 flex-col gap-1 pt-4">
-        <h3 className="text-lg leading-snug font-semibold">
-          <Link href={href} className="hover:underline" data-product-link>
+      <div className="flex flex-1 flex-col gap-1 pt-3">
+        <h3 className="text-base leading-snug font-semibold">
+          <Link href={href} className="hover:underline" tabIndex={-1}>
             {product.title}
           </Link>
         </h3>
-        <p className="text-sm text-cream-dim">{product.summary}</p>
-        <p className="mt-auto pt-3 text-sm">
-          <Link href={`/contact/?type=business&ref=${product.id}`} className="underline decoration-line-strong underline-offset-4 hover:text-cream">
-            Ask about it
-          </Link>
-          <span className="text-muted"> · not on sale yet</span>
-        </p>
+        <p className="line-clamp-2 text-sm text-cream-dim">{product.summary}</p>
       </div>
     </article>
   );
@@ -69,8 +67,8 @@ export function MerchGrid({ items }: { items: Product[] }) {
   return (
     <div className="grid items-start gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
       {videos.map((v) => v && <VideoPlayer key={v.id} asset={v} sizes="(min-width:1024px) 25vw, (min-width:640px) 50vw, 100vw" />)}
-      {items.map((p) => (
-        <MerchCard key={p.id} product={p} />
+      {items.map((p, i) => (
+        <MerchCard key={p.id} product={p} priority={i < 4} />
       ))}
       {photos.map((a) => a && <MediaImage key={a.id} asset={a} sizes="(min-width:1024px) 25vw, 50vw" className="aspect-[3/4] rounded-2xl ring-1 ring-line" />)}
     </div>
@@ -91,7 +89,9 @@ export function MerchByBrand({ only }: { only?: string | null }) {
           <MerchGrid items={g.items} />
         </div>
       ))}
-      <p className="text-sm text-muted">Merch isn&apos;t on sale yet. Physical orders open once printing and shipping are set up. Ask about any piece and we&apos;ll let you know.</p>
+      <p className="text-sm text-muted">
+        Not on sale yet. <Link href="/contact/?type=business" className="underline decoration-line-strong underline-offset-4 hover:text-cream">Ask about any piece</Link>.
+      </p>
     </div>
   );
 }

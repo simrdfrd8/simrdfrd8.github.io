@@ -99,13 +99,32 @@ export function MobileMenu({ primary, secondary }: { primary: Item[]; secondary:
 /** Pay-what-you-want support always one tap away on phones. */
 export function MobileSupportButton() {
   const path = usePathname();
+  // Product pages: tuck the heart away while scrolling down so it never sits on top of the text; it comes back on scroll-up.
+  const autoHide = /^\/shop\/merch\/[^/]+\/?$/.test(path);
+  const [hidden, setHidden] = useState(false);
+  useEffect(() => {
+    setHidden(false);
+    if (!autoHide) return;
+    let last = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      if (Math.abs(y - last) < 8) return;
+      setHidden(y > last && y > 80);
+      last = y;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [autoHide, path]);
   if (path.startsWith("/support")) return null;
   return (
     <Link
       href="/support"
       data-mobile-support
+      data-hidden={hidden ? "true" : undefined}
       aria-label="Support"
-      className="fixed right-3 bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-40 inline-flex size-11 items-center justify-center rounded-full bg-hot text-ink shadow-[0_8px_22px_-8px_rgba(255,122,89,0.7)] md:hidden"
+      aria-hidden={hidden || undefined}
+      tabIndex={hidden ? -1 : undefined}
+      className="transition-[transform,opacity] duration-200 data-[hidden=true]:pointer-events-none data-[hidden=true]:translate-y-16 data-[hidden=true]:opacity-0 fixed right-3 bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-40 inline-flex size-11 items-center justify-center rounded-full bg-hot text-ink shadow-[0_8px_22px_-8px_rgba(255,122,89,0.7)] md:hidden"
     >
       <Heart />
     </Link>

@@ -2,10 +2,13 @@ import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { validateCatalog } from "@/lib/catalog/validate";
-import { visibleProducts } from "@/lib/catalog/filters";
+import { visibleProducts, isAssetVisible } from "@/lib/catalog/filters";
 import { AssetsFile, ProductsFile, SoundCloudFile, ArtistsFile, ProductTemplatesSchema, SamplePacksFile, BeatsFile, CATEGORIES } from "@/lib/catalog/schema";
 import { resolveViews, heroColorwayOf, type ColorwayRef } from "@/lib/merch";
 import { withPreviewCopy } from "@/lib/catalog";
+
+const V2_IDS = ["merch-feelings-notice-tee", "merch-heartbeat-triangle-tee", "merch-heartbeat-croissant-pocket-tee", "merch-taco-slu-t-pocket-tee", "merch-no-thanks-tee", "merch-taco-slu-t-pixel-patch-tee", "merch-hotdog-tee-white", "merch-redwood-lif-e-heartbeat-tee", "merch-redwood-lif-e-grove-tee", "merch-make-art-with-friends-tee"];
+const TANK_IDS = ["merch-santa-cruz-sun-tank", "merch-santa-cruz-dipper-tank", "merch-santa-cruz-redwoods-tank", "merch-santa-cruz-sunset-tank"];
 
 /** Owner rule: no adjectives before the categories (spelled in pieces so this guard doesn't trip the repo leak scan). */
 const BANNED_WORDS = new RegExp(["ed" + "gy", "heart" + "felt", "dis" + "torted", "under" + "neath it all"].join("|"), "i");
@@ -160,8 +163,8 @@ describe("content catalog", () => {
   it("keeps physical merch inquiry-only (no price, no checkout)", () => {
     const products = ProductsFile.parse(load("products"));
     const merch = products.filter((p) => p.type === "merch");
-    // public build: only the HOTDO G Tee is in the merch store
-    expect(merch.map((p) => p.id)).toEqual(["merch-hotdog-tee-white"]);
+    // public build: exactly the 14 approved designs, nothing else (no concept sketches, no Baylingual apparel)
+    expect(merch.map((p) => p.id).sort()).toEqual([...V2_IDS, ...TANK_IDS].sort());
     for (const p of merch) {
       expect(p.inquireOnly).toBe(true);
       expect(p.price).toBeNull();
@@ -173,22 +176,51 @@ describe("content catalog", () => {
     expect(JSON.stringify([products, AssetsFile.parse(load("assets"))])).not.toMatch(/bay-merch-|baylingual-frog-(crewneck|tee)/);
   });
 
-  it("public products are exactly what production shows; HOTDO G uses the approved copy and cover", () => {
+  it("shows the full merch lineup in production too (owner: live to browse, Oct 21, 2026), still not on sale", () => {
     const products = ProductsFile.parse(load("products"));
     const assets = AssetsFile.parse(load("assets"));
-    expect(visibleProducts(products, "production", assets).map((p) => p.id).sort()).toEqual(products.filter((p) => p.status !== "draft").map((p) => p.id).sort());
-    expect(products.filter((p) => p.type === "merch" && p.listed).map((p) => p.id)).toEqual(["merch-hotdog-tee-white"]);
-    const hot = products.find((p) => p.id === "merch-hotdog-tee-white")!;
-    expect(hot.title).toBe("HOTDO G Tee");
-    expect(hot.summary).toBe("Is it a Hotdo? Is it a g? Yes. One bold box, one awkward space. A term we can all agree on.");
-    expect(hot.previewTitle).toBeUndefined();
-    expect(withPreviewCopy(hot, "preview").title).toBe("HOTDO G Tee");
-    const ids = new Set(assets.map((a) => a.id));
-    expect(ids.has(hot.assetId!)).toBe(true); // cover is an approved asset
-    for (const p of products) {
-      for (const id of [p.assetId, ...p.galleryAssetIds, ...p.lifestyleAssetIds].filter(Boolean)) expect(ids.has(id!)).toBe(true);
-      for (const c of p.colorways) for (const id of [c.assetId, c.backAssetId, c.modelFrontAssetId, c.modelBackAssetId].filter(Boolean)) expect(ids.has(id!)).toBe(true);
+    const storeMerch = (mode: "production" | "preview") => visibleProducts(products, mode, assets).filter((p) => p.type === "merch" && p.listed).map((p) => p.id);
+    expect(storeMerch("production").sort()).toEqual([...V2_IDS, ...TANK_IDS].sort());
+    expect(storeMerch("preview").sort()).toEqual([...V2_IDS, ...TANK_IDS].sort());
+    const byId = new Map(assets.map((a) => [a.id, a]));
+    for (const p of products.filter((x) => x.colorways.length)) {
+      expect(p.price).toBeNull();
+      expect(p.checkoutUrl).toBeNull();
+      expect(p.status).toBe("upcoming");
+      // every view of every colorway is approved, so production galleries are complete (no gaps in the swipe strip)
+      for (const id of [...p.colorways.flatMap((c) => [c.assetId, c.backAssetId, c.modelFrontAssetId, c.modelBackAssetId, c.blankBackAssetId, c.blankModelBackAssetId, ...(c.modelExtras ?? []).map((x) => x.assetId)].filter((x): x is string => !!x)), ...p.lifestyleAssetIds]) {
+        expect(byId.get(id)?.publishApproved, id).toBe(true);
+        expect(isAssetVisible(byId.get(id)!, "production")).toBe(true);
+      }
     }
+  });
+
+  it("merges the CSV HOTDO G tee into the existing product instead of duplicating it", () => {
+    const products = ProductsFile.parse(load("products"));
+    const assets = AssetsFile.parse(load("assets"));
+    const hot = products.filter((p) => /hotdo/.test(p.id));
+    expect(hot.map((p) => p.id)).toEqual(["merch-hotdog-tee-white"]);
+    expect(hot[0].title).toBe("HOTDO G Tee");
+    expect(hot[0].assetId).toBe("merch-hotdo-g-tee-white-taco-red");
+    expect(hot[0].listed).toBe(true);
+    // beach photo retired (shows the old "HOTDO G." name): unapproved, so the public export leaves it out
+    expect(assets.find((a) => a.id === "merch-hotdog-tee-white")).toBeUndefined();
+    // the whole white-taco-red set is approved (front since Oct 20; back and model shots with the lineup, Oct 21)
+    const wtr = (k: string) => assets.find((a) => a.id === `merch-hotdo-g-tee-white-taco-red${k}`)?.publishApproved;
+    expect([wtr(""), wtr("-back"), wtr("-model-front"), wtr("-model-back")]).toEqual([true, true, true, true]);
+    // v2 flats/colorways swapped in; the approved photo stays the cover so production never goes blank
+    expect(hot[0].summary).toBe("Is it a Hotdo? Is it a g? Yes. One bold box, one awkward space. A term we can all agree on.");
+    expect(hot[0].colorways).toHaveLength(3);
+    expect(hot[0].colorways[0].slug).toBe("white-taco-red");
+    // owner approved the CSV copy for production (Oct 20, 2026): no preview-only overrides left
+    expect(hot[0].previewTitle).toBeUndefined();
+    expect(hot[0].previewSummary).toBeUndefined();
+    expect(withPreviewCopy(hot[0], "production").title).toBe("HOTDO G Tee");
+    expect(withPreviewCopy(hot[0], "preview").title).toBe("HOTDO G Tee");
+    expect(hot[0].heroColorway).toBe("white-taco-red");
+    const prod = visibleProducts(products, "production", assets).find((p) => p.id === "merch-hotdog-tee-white")!;
+    expect(prod.assetId).toBe("merch-hotdo-g-tee-white-taco-red");
+    expect(isAssetVisible(assets.find((a) => a.id === prod.assetId)!, "production")).toBe(true);
   });
 
   it("models the Dan Perales umbrella and owner uploads", () => {
@@ -226,5 +258,76 @@ describe("content catalog", () => {
     }
     expect(t.map((x) => x.displayTitle)).not.toEqual(expect.arrayContaining(["olecropduster", "Big Smile", "elaphantzx"]));
     expect(t.find((x) => x.id === "deltaluvtwo-x-ricky")?.description).toBeUndefined();
+  });
+});
+
+describe("merch v4 lineup", () => {
+  it("10 grid heroes are 10 different shirt colours; the 3 new tees are unapproved drafts", () => {
+    const products = ProductsFile.parse(load("products"));
+    const assets = AssetsFile.parse(load("assets"));
+    const merch = products.filter((p) => V2_IDS.includes(p.id));
+    const heroes = merch.map((p) => p.colorways.find((c) => c.slug === p.heroColorway)!.name.split(" / ")[0]);
+    expect(new Set(heroes)).toEqual(new Set(["True Navy", "Violet", "Burnt Orange", "Ivory", "Graphite", "Black", "White", "Washed Denim", "Blue Spruce", "Chalky Mint"]));
+    for (const id of ["merch-redwood-lif-e-heartbeat-tee", "merch-redwood-lif-e-grove-tee", "merch-make-art-with-friends-tee"]) {
+      const p = merch.find((x) => x.id === id)!;
+      expect(p.status).toBe("upcoming");
+      expect(p.price).toBeNull();
+      for (const a of assets.filter((x) => x.id.startsWith(id))) expect(a.publishApproved).toBe(true); // approved with the lineup, Oct 21, 2026
+    }
+  });
+});
+
+describe("merch colorway counts", () => {
+  it("every tee has exactly 3 colorways, except Make Art With Friends (4, hero Chalky Mint)", () => {
+    const products = ProductsFile.parse(load("products"));
+    for (const p of products.filter((x) => V2_IDS.includes(x.id))) {
+      expect(p.colorways.length, p.id).toBe(p.id === "merch-make-art-with-friends-tee" ? 4 : 3);
+    }
+    const ma = products.find((p) => p.id === "merch-make-art-with-friends-tee")!;
+    expect(ma.colorways.map((c) => c.slug)).toEqual(["chalky-mint-plum", "butter-plum", "grape-acid-green", "grape-black"]);
+    expect(ma.heroColorway).toBe("chalky-mint-plum");
+  });
+});
+
+describe("merch final cast", () => {
+  const products = ProductsFile.parse(load("products"));
+  const assets = AssetsFile.parse(load("assets"));
+  const merch = products.filter((p) => [...V2_IDS, ...TANK_IDS].includes(p.id));
+  const modelIds = (c: (typeof merch)[number]["colorways"][number]) =>
+    [c.modelFrontAssetId, c.modelBackAssetId, c.blankModelBackAssetId, ...(c.modelExtras ?? []).map((x) => x.assetId)].filter((x): x is string => !!x);
+
+  it("every colorway has its own on-model front and back; every tank colorway also has a blank-back model shot", () => {
+    for (const p of merch)
+      for (const c of p.colorways) {
+        expect(c.modelFrontAssetId, `${p.id}/${c.slug}`).toBeTruthy();
+        expect(c.modelBackAssetId, `${p.id}/${c.slug}`).toBeTruthy();
+        if (TANK_IDS.includes(p.id)) expect(c.blankModelBackAssetId, `${p.id}/${c.slug}`).toBeTruthy();
+      }
+  });
+
+  it("118 on-model photos in all, each used once, each with a full set of web sizes", () => {
+    const ids = merch.flatMap((p) => p.colorways.flatMap(modelIds));
+    expect(ids).toHaveLength(118);
+    expect(new Set(ids).size).toBe(118);
+    const byId = new Map(assets.map((a) => [a.id, a]));
+    for (const id of ids) {
+      const a = byId.get(id)!;
+      expect(a, id).toBeDefined();
+      expect(a.previews.map((x) => `${x.format}${x.width}`).sort(), id).toEqual(["avif1500", "avif480", "avif960", "webp1500", "webp160", "webp480", "webp960"]);
+    }
+    // no stray on-model records left over from the earlier shoot
+    expect(assets.filter((a) => a.id.startsWith("merch-") && /-model-/.test(a.id)).map((a) => a.id).sort()).toEqual([...ids].sort());
+  });
+
+  it("every Santa Cruz tank carries the full cast; extra shots are numbered by side", () => {
+    const counts = Object.fromEntries(merch.filter((p) => TANK_IDS.includes(p.id)).map((p) => [p.id, p.colorways.flatMap(modelIds).length]));
+    expect(counts).toEqual({ "merch-santa-cruz-sun-tank": 13, "merch-santa-cruz-dipper-tank": 16, "merch-santa-cruz-redwoods-tank": 14, "merch-santa-cruz-sunset-tank": 13 });
+    for (const p of merch) for (const c of p.colorways) for (const x of c.modelExtras ?? []) expect(x.assetId).toMatch(new RegExp(`-model-${x.side}-\\d+$`));
+  });
+
+  it("Dipper Tank uses the Reflection copy", () => {
+    const d = products.find((p) => p.id === "merch-santa-cruz-dipper-tank")!;
+    expect(d.summary).toContain("hiding in the water below");
+    expect(d.summary).not.toContain("built into the woodwork");
   });
 });

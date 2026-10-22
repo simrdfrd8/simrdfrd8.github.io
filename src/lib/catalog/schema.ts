@@ -300,6 +300,11 @@ export const ProductSchema = z.object({
         backAssetId: z.string().optional(),
         modelFrontAssetId: z.string().optional(),
         modelBackAssetId: z.string().optional(),
+        /** Optional "blank back" option (no back print, neck print only): replaces back + model-back when the buyer picks Back: Blank. */
+        blankBackAssetId: z.string().optional(),
+        blankModelBackAssetId: z.string().optional(),
+        /** More on-model photos of this colorway (other people from the cast), in display order after the main model front/back. */
+        modelExtras: z.array(z.object({ assetId: z.string(), side: z.enum(["front", "back"]) })).optional(),
         /** Shirt colour (CSV shirt_hex) for the swatch, and the print/ink colour (ink_hex). */
         swatch: hex.optional(),
         ink: hex.optional(),

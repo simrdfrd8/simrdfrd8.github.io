@@ -189,7 +189,7 @@ test("productions lanes: DJs, Rappers, Producers with one primary CTA", async ({
   await expect(page.locator("[data-packs-soon]:visible")).toHaveText("Sample packs coming soon.");
 });
 
-test("Baylingual apparel is hidden from the public build (only the HOTDO G Tee is in the store)", async ({ page }) => {
+test("Baylingual apparel is hidden from the public build (the 14 approved designs are the whole store)", async ({ page }) => {
   await page.goto("/artists/baylingual-entertainment");
   await expect(page.locator("[data-apparel-art]")).toHaveCount(0);
   expect(await page.content()).not.toMatch(/bay-merch-|baylingual-frog-(tee|crewneck)/);
@@ -502,9 +502,140 @@ test("artist titles never break mid-word and fit the viewport", async ({ page })
   await expect(page.locator("main, body").first()).toContainText("Production · EDM & hip-hop");
 });
 
-test("HOTDO G shows the approved copy in the shop", async ({ page }) => {
+const MERCH_COUNT = 14;
+
+test("merch store lists every piece as a swipe card, display-only, no prices or buy buttons", async ({ page }) => {
+  await page.goto("/shop/merch");
+  const cards = page.locator('[data-merch="inquire-only"]');
+  await expect(cards).toHaveCount(MERCH_COUNT);
+  await expect(page.locator("[data-card-carousel]")).toHaveCount(MERCH_COUNT);
+  const hot = page.locator('[data-product="merch-hotdog-tee-white"]');
+  await expect(hot).toHaveCount(1);
+  await expect(hot.locator("h3")).toHaveText("HOTDO G Tee");
+  await expect(hot).toContainText("Is it a Hotdo? Is it a g? Yes. One bold box, one awkward space. A term we can all agree on.");
+  // hero views (front, back, model front, model back) + the other 2 colorways' fronts; the front flat is the thumbnail
+  await expect(hot.locator("[data-slide]")).toHaveCount(6);
+  await expect(hot.locator("[data-slide='0'] img")).toHaveAttribute("src", /merch-hotdo-g-tee\/white-taco-red-\d/);
+  // no text buttons to browse: no swatches / view toggles on the card
+  await expect(hot.locator("[role=radio], [data-merch-views], [data-extra-photo]")).toHaveCount(0);
+  for (const gone of ["merch-heartbeat-triangle-pocket-tee", "merch-taco-slu-t-tee", "merch-taco-slu-t-taqueria-tee"]) await expect(page.locator(`[data-product="${gone}"]`)).toHaveCount(0);
+  await expect(page.locator('[data-brand="baylingual-entertainment"]')).toHaveCount(0);
+  await expect(page.locator("main [data-checkout]")).toHaveCount(0);
+  await expect(page.locator("main")).not.toContainText("$");
+  // a small corner tag on every card instead of big badges
+  await expect(page.locator("[data-coming-soon]")).toHaveCount(MERCH_COUNT);
+  await page.goto("/shop");
+  await page.locator("#all").getByRole("button", { name: /Merch/ }).click();
+  await expect(page.locator('#all [data-merch="inquire-only"]:visible')).toHaveCount(MERCH_COUNT);
+});
+
+test("merch card: arrow keys / Home / End move through the photos, tap opens the product on that colorway", async ({ page }) => {
+  await page.goto("/shop/merch");
+  const card = page.locator('[data-card-carousel="merch-feelings-notice-tee"]');
+  const link = card.locator("a[data-product-link]");
+  await expect(card).toHaveAttribute("data-index", "0");
+  await link.focus();
+  await page.keyboard.press("ArrowRight");
+  await expect(card).toHaveAttribute("data-index", "1");
+  await expect(card.locator("[data-slide='1'] img")).toHaveAttribute("src", /true-navy-cream-back-/);
+  await page.keyboard.press("ArrowDown"); // vertical keys are left to the page
+  await expect(card).toHaveAttribute("data-index", "1");
+  await page.keyboard.press("End");
+  await expect(card).toHaveAttribute("data-index", "5");
+  await expect(link).toHaveAttribute("href", /\/shop\/merch\/feelings-notice-tee\/?#cw-/);
+  const cw = (await link.getAttribute("href"))!.split("#cw-")[1];
+  await page.keyboard.press("Home");
+  await expect(card).toHaveAttribute("data-index", "0");
+  await expect(link).toHaveAttribute("href", /^\/shop\/merch\/feelings-notice-tee\/?$/);
+  await page.goto(`/shop/merch/feelings-notice-tee#cw-${cw}`);
+  await expect(page.locator("[data-gallery-variant=page]")).toHaveAttribute("data-selected-colorway", cw);
+});
+
+test("merch product page: one swipe gallery; moving into a colorway selects it; swatches and back choice still work", async ({ page }) => {
+  await page.goto("/shop/merch");
+  await page.locator('[data-product="merch-no-thanks-tee"] h3 a').click();
+  await expect(page).toHaveURL(/\/shop\/merch\/no-thanks-tee\/?$/);
+  await expect(page.locator("h1")).toHaveText(/no thanks Tee/i);
+  const gallery = page.locator('[data-gallery-variant="page"]');
+  const car = gallery.locator("[data-carousel]");
+  // default selection = first CSV row
+  await expect(gallery).toHaveAttribute("data-selected-colorway", "graphite-cream");
+  await expect(gallery.locator("[role=radio][aria-checked=true]")).toHaveAttribute("data-colorway", "graphite-cream");
+  await gallery.locator("[data-carousel] [tabindex='0']").focus();
+  for (const [i, re] of [[1, /-back-/], [2, /-model-front-/], [3, /-model-back-/]] as const) {
+    await page.keyboard.press("ArrowRight");
+    await expect(car).toHaveAttribute("data-index", String(i));
+    await expect(car.locator(`[data-slide='${i}'] img`)).toHaveAttribute("src", re);
+  }
+  // next slide is the second colorway's front: the colorway follows the gallery
+  await page.keyboard.press("ArrowRight");
+  const second = (await gallery.locator("[role=radio]").nth(1).getAttribute("data-colorway"))!;
+  await expect(gallery).toHaveAttribute("data-selected-colorway", second);
+  await expect(gallery.locator("[role=radio]").nth(1)).toHaveAttribute("aria-checked", "true");
+  // swatch tap jumps back to that colorway's front
+  await gallery.locator("[role=radio]").nth(0).click();
+  await expect(car).toHaveAttribute("data-index", "0");
+  await expect(page.locator("main [data-checkout]")).toHaveCount(0);
+  await expect(page.locator("main")).not.toContainText("$");
+  await expect(page.locator("[data-coming-soon]")).toHaveCount(1);
+  await page.goto("/shop/merch/feelings-notice-tee");
+  await expect(page.locator("[role=radio][aria-checked=true]")).toHaveAttribute("data-colorway", "true-navy-cream");
+});
+
+test("merch product page: printed / blank back keeps the captions right", async ({ page }) => {
+  await page.goto("/shop/merch/santa-cruz-dipper-tank");
+  const gallery = page.locator('[data-gallery-variant="page"]');
+  const car = gallery.locator("[data-carousel]");
+  await expect(gallery.locator("[data-colorway-name]")).toHaveText("Chambray / Navy · Printed back");
+  await gallery.locator("[data-back-option=blank]").click();
+  await expect(car).toHaveAttribute("data-index", "1");
+  await expect(gallery.locator("[data-colorway-name]")).toHaveText("Chambray / Navy · Back (blank)");
+  await expect(car.locator("[data-slide='1'] img")).toHaveAttribute("src", /chambray-navy-back-blank-/);
+  await gallery.locator("[data-back-option=printed]").click();
+  await expect(gallery.locator("[data-colorway-name]")).toHaveText("Chambray / Navy · Back (printed)");
+});
+
+test("Santa Cruz Sun Tank: the product page shows the whole cast after the main shots; the shop card stays short", async ({ page }) => {
+  await page.goto("/shop/merch/santa-cruz-sun-tank");
+  const gallery = page.locator('[data-gallery-variant="page"]');
+  const car = gallery.locator("[data-carousel]");
+  // 2 flats + 12 on-model photos (6 people; the 13th, the blank-back shot, swaps in with Back: Blank)
+  await expect(car.locator("[data-slide]")).toHaveCount(14);
+  await gallery.locator("[data-carousel] [tabindex='0']").focus();
+  await page.keyboard.press("End");
+  await expect(car).toHaveAttribute("data-index", "13");
+  await expect(car.locator("[data-slide='13'] img")).toHaveAttribute("src", /butter-plum-model-back-\d+-\d+\./);
+  await expect(gallery.locator("[data-colorway-name]")).toHaveText("Butter / Plum · On model, back (printed)");
+  await page.goto("/shop/merch");
+  await expect(page.locator('[data-card-carousel="merch-santa-cruz-sun-tank"] [data-slide]')).toHaveCount(4);
+});
+
+test("Make Art With Friends card swipes through 4 colorways (hero Chalky Mint first)", async ({ page }) => {
+  await page.goto("/shop/merch");
+  const card = page.locator('[data-card-carousel="merch-make-art-with-friends-tee"]');
+  // hero views (4) + the other 3 colorways' fronts
+  await expect(card.locator("[data-slide]")).toHaveCount(7);
+  await expect(card.locator("[data-slide='0'] img")).toHaveAttribute("src", /chalky-mint-plum-\d/);
+  await expect(card).toHaveAttribute("aria-label", /4 colorways/);
+  await card.locator("a[data-product-link]").focus();
+  await page.keyboard.press("End");
+  await expect(card.locator("a[data-product-link]")).toHaveAttribute("href", /#cw-grape-black$/);
+});
+
+test("phone (390px): touch-swiping a merch card moves to the next photo; the Dipper front is the SANTA CRUZ print", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/shop/merch/");
-  await expect(page.locator('[data-product="merch-hotdog-tee-white"] h3')).toHaveText("HOTDO G Tee");
+  const card = page.locator('[data-card-carousel="merch-santa-cruz-dipper-tank"]');
+  await card.scrollIntoViewIfNeeded();
+  await expect(card).toHaveAttribute("data-index", "0");
+  const strip = card.locator("[data-carousel-strip]");
+  const box = (await strip.boundingBox())!;
+  expect(box.width).toBeLessThanOrEqual(390);
+  await strip.evaluate((el) => el.scrollTo({ left: el.clientWidth, behavior: "instant" as ScrollBehavior }));
+  await expect(card).toHaveAttribute("data-index", "1");
+  await expect(card.locator("[data-coming-soon]")).toBeVisible();
+  await expect(page.locator("main")).not.toContainText("$");
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
 });
 
 test("global player: plays down the list, active row, keyboard, survives route changes", async ({ page }) => {
@@ -622,4 +753,15 @@ test("contact page carries the plain label line (Spotify for Artists verificatio
   await expect(page.locator("main [data-label-line] p").last()).toHaveText("Flavorful Music is an independent record label, a DBA of Baylingue LLC, San Diego, CA. Contact: ricky@flavorfulmusic.com");
   await expect(page.locator("main [data-label-line] a")).toHaveAttribute("href", "mailto:ricky@flavorfulmusic.com");
   expect(await page.content()).not.toMatch(new RegExp(["band" + "zoogle", "zoogle" + "tools"].join("|"), "i")); // old hosting site
+});
+
+test("phone: the Support heart tucks away while scrolling down a product page and comes back on scroll-up", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/shop/merch/no-thanks-tee/");
+  const heart = page.locator("[data-mobile-support]");
+  await expect(heart).toBeVisible();
+  await page.mouse.wheel(0, 600);
+  await expect(heart).toHaveAttribute("data-hidden", "true");
+  await page.mouse.wheel(0, -300);
+  await expect(heart).not.toHaveAttribute("data-hidden", "true");
 });

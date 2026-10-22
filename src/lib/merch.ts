@@ -5,11 +5,28 @@
  * - Model shots fall back to the hero colorway's when a colorway has none (model photos are usually shot in one colour).
  * Pure function so it can be unit tested without the catalog.
  */
-export type ColorwayRef = { name: string; slug: string; assetId: string; backAssetId?: string; modelFrontAssetId?: string; modelBackAssetId?: string };
-export type ViewKind = "front" | "back" | "model-front" | "model-back";
-export type ResolvedView = { kind: ViewKind; assetId: string; label: string; fromHero: boolean };
+export type ColorwayRef = { name: string; slug: string; assetId: string; backAssetId?: string; modelFrontAssetId?: string; modelBackAssetId?: string; blankBackAssetId?: string; blankModelBackAssetId?: string; modelExtras?: { assetId: string; side: "front" | "back" }[] };
+export type ViewKind = "front" | "back" | "model-front" | "model-back" | "model-front-extra" | "model-back-extra";
+/** key: unique within the colorway (extras share a kind, so their key carries the asset id). */
+export type ResolvedView = { kind: ViewKind; assetId: string; label: string; fromHero: boolean; key?: string };
 
-export const VIEW_LABEL: Record<ViewKind, string> = { front: "Front", back: "Back", "model-front": "On model", "model-back": "On model (back)" };
+export const VIEW_LABEL: Record<ViewKind, string> = { front: "Front", back: "Back", "model-front": "On model", "model-back": "On model (back)", "model-front-extra": "On model", "model-back-extra": "On model (back)" };
+
+/** Extra on-model shots (more people in the same colorway): product page only, never on the shop card. */
+export const isExtraView = (kind: string) => kind.endsWith("-extra");
+
+/**
+ * "Back: Blank" option: the same view set with the back and model-back swapped for the blank-back shots.
+ * Returns undefined when the colorway has no blank-back option (no back choice is shown then).
+ */
+export function blankBackViews(c: ColorwayRef, views: ResolvedView[], exists: (id: string) => boolean = () => true): ResolvedView[] | undefined {
+  const back = c.blankBackAssetId && exists(c.blankBackAssetId) ? c.blankBackAssetId : undefined;
+  const mback = c.blankModelBackAssetId && exists(c.blankModelBackAssetId) ? c.blankModelBackAssetId : undefined;
+  if (!back && !mback) return undefined;
+  return views.map((v) =>
+    v.kind === "back" && back ? { ...v, assetId: back, fromHero: false } : v.kind === "model-back" && mback ? { ...v, assetId: mback, label: VIEW_LABEL["model-back"], fromHero: false } : v,
+  );
+}
 
 export function heroColorwayOf<T extends ColorwayRef>(colorways: T[], heroSlug?: string): T | undefined {
   return colorways.find((c) => c.slug === heroSlug) ?? colorways.find((c) => c.modelFrontAssetId || c.modelBackAssetId) ?? colorways[0];
@@ -27,6 +44,10 @@ export function resolveViews(colorways: ColorwayRef[], heroSlug: string | undefi
       const fallback = hero && hero !== c ? hero[key] : undefined;
       if (ok(own)) out.push({ kind, assetId: own, label: VIEW_LABEL[kind], fromHero: false });
       else if (ok(fallback)) out.push({ kind, assetId: fallback, label: `${VIEW_LABEL[kind]} · shown in ${hero!.name}`, fromHero: true });
+    }
+    for (const x of c.modelExtras ?? []) {
+      const kind = x.side === "front" ? "model-front-extra" : "model-back-extra";
+      if (ok(x.assetId)) out.push({ kind, assetId: x.assetId, label: VIEW_LABEL[kind], fromHero: false, key: `${kind}:${x.assetId}` });
     }
     return out;
   });
