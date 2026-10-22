@@ -581,7 +581,7 @@ test("merch categories: All plus a tab per category in use; linkable with ?categ
   }
 });
 
-test("women's Dipper rib tank page: XS-XL, 3 colourways, each colourway is its front flat then its back flat, no models, no back choice", async ({ page }) => {
+test("women's Dipper rib tank page: XS-XL, 3 colourways, each colourway is its Golden Hour front + fine-line back flat, then Tessa front + back, no back choice", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.goto("/shop/merch/santa-cruz-dipper-womens-rib-tank/");
   await expect(page.locator("h1")).toHaveText("Santa Cruz Dipper Women's Rib Tank");
@@ -590,13 +590,21 @@ test("women's Dipper rib tank page: XS-XL, 3 colourways, each colourway is its f
   const g = page.locator('[data-colorway-picker="merch-santa-cruz-dipper-womens-rib-tank"]');
   await expect(g.locator("[role=radio][data-colorway]")).toHaveCount(3);
   await expect(g.locator("[data-back-choice]")).toHaveCount(0);
-  // 3 colourways x (front, back); slides away from the current one load lazily, so check each colourway's pair after picking it
-  await expect(g.locator("[data-slide]")).toHaveCount(6);
+  // 3 colourways x (front, back, Tessa front, Tessa back); slides away from the current one load lazily, so check each set after picking it
+  await expect(g.locator("[data-slide]")).toHaveCount(12);
   for (const [i, cw] of ["powder-navy", "orchid-navy", "white-navy"].entries()) {
     await g.locator(`[role=radio][data-colorway="${cw}"]`).click();
     await expect(g).toHaveAttribute("data-selected-colorway", cw);
-    await expect(g.locator(`[data-slide='${2 * i}'] img`)).toHaveAttribute("src", new RegExp(`merch-santa-cruz-dipper-womens-rib-tank/${cw}-\\d`));
-    await expect(g.locator(`[data-slide='${2 * i + 1}'] img`)).toHaveAttribute("src", new RegExp(`merch-santa-cruz-dipper-womens-rib-tank/${cw}-back-\\d`));
+    const at = (k: number) => g.locator(`[data-slide='${4 * i + k}'] img`);
+    await expect(at(0)).toHaveAttribute("src", new RegExp(`merch-santa-cruz-dipper-womens-rib-tank/${cw}-gh-\\d`));
+    await expect(at(1)).toHaveAttribute("src", new RegExp(`merch-santa-cruz-dipper-womens-rib-tank/${cw}-gh-back-\\d`));
+  }
+  // then Tessa (the model slides load as the gallery reaches them)
+  await g.locator('[role=radio][data-colorway="powder-navy"]').click();
+  await g.locator("[data-carousel] [tabindex='0']").focus();
+  for (const [k, re] of [[1, /powder-navy-gh-back-\d/], [2, /powder-navy-model-front-tessa-\d/], [3, /powder-navy-model-back-tessa-\d/]] as const) {
+    await page.keyboard.press("ArrowRight");
+    await expect(g.locator(`[data-slide='${k}'] img`)).toHaveAttribute("src", re);
   }
   await expect(page.locator("main")).not.toContainText("$");
 });
@@ -678,40 +686,36 @@ test("merch product page: one swipe gallery; moving into a colorway selects it; 
   await expect(page.locator("[role=radio][aria-checked=true]")).toHaveAttribute("data-colorway", "true-navy-cream");
 });
 
-test("merch product page: printed / blank back keeps the captions right", async ({ page }) => {
+test("merch product page: printed / blank back keeps the captions right (Golden Hour Dipper on Kai)", async ({ page }) => {
   await page.goto("/shop/merch/santa-cruz-dipper-tank");
   const gallery = page.locator('[data-gallery-variant="page"]');
   const car = gallery.locator("[data-carousel]");
   await expect(gallery.locator("[data-colorway-name]")).toHaveText("Chambray / Navy · Printed back");
+  await expect(car.locator("[data-slide='0'] img")).toHaveAttribute("src", /chambray-navy-gh-\d/);
   await gallery.locator("[data-back-option=blank]").click();
   await expect(car).toHaveAttribute("data-index", "1");
   await expect(gallery.locator("[data-colorway-name]")).toHaveText("Chambray / Navy · Back (blank)");
   await expect(car.locator("[data-slide='1'] img")).toHaveAttribute("src", /chambray-navy-back-blank-/);
-  // the model's back shot swaps to the blank back too (slide 3); the fronts stay
   // 5 colorways x 4 (Chambray, Blossom, Butter, White, Grape; Ivory and Crimson are gone)
   await expect(car.locator("[data-slide]")).toHaveCount(20);
   await expect(gallery.locator("[role=radio][data-colorway]")).toHaveCount(5);
   await expect(gallery.locator("[data-colorway=ivory-navy], [data-colorway=crimson-cream]")).toHaveCount(0);
   await gallery.locator("[data-carousel] [tabindex='0']").focus();
-  for (const [i, re, cap] of [
-    [2, /chambray-navy-model-front-2-\d/, "On model (front) · Blank back"],
-    [3, /chambray-navy-model-back-4-blank-/, "On model, back (blank)"],
-  ] as const) {
-    await page.keyboard.press("ArrowRight");
-    await expect(car).toHaveAttribute("data-index", String(i));
-    await expect(car.locator(`[data-slide='${i}'] img`)).toHaveAttribute("src", re);
-    await expect(gallery.locator("[data-colorway-name]")).toHaveText(`Chambray / Navy · ${cap}`);
-  }
+  // Kai has no blank-back shot yet, so his front and (printed) back stay
+  await page.keyboard.press("ArrowRight");
+  await expect(car).toHaveAttribute("data-index", "2");
+  await expect(car.locator("[data-slide='2'] img")).toHaveAttribute("src", /chambray-navy-model-front-kai-\d/);
+  await page.keyboard.press("ArrowRight");
+  await expect(car.locator("[data-slide='3'] img")).toHaveAttribute("src", /chambray-navy-model-back-kai-\d/);
   await gallery.locator("[data-back-option=printed]").click();
-  await expect(car.locator("[data-slide='3'] img")).toHaveAttribute("src", /chambray-navy-model-back-4-\d+\./);
-  await expect(gallery.locator("[data-colorway-name]")).toHaveText("Chambray / Navy · On model, back (printed)");
+  await expect(car.locator("[data-slide='1'] img")).toHaveAttribute("src", /chambray-navy-gh-back-\d/);
   await gallery.locator("[data-carousel] [tabindex='0']").focus();
   await page.keyboard.press("Home");
   await expect(car).toHaveAttribute("data-index", "0");
   await page.keyboard.press("ArrowRight");
   await expect(gallery.locator("[data-colorway-name]")).toHaveText("Chambray / Navy · Back (printed)");
   await page.keyboard.press("End");
-  await expect(car.locator("[data-slide='19'] img")).toHaveAttribute("src", /grape-cream-model-back-\d+\./);
+  await expect(car.locator("[data-slide='19'] img")).toHaveAttribute("src", /grape-cream-model-back-kai-\d+\./);
   await expect(gallery.locator("[data-colorway-name]")).toHaveText("Grape / Cream · On model, back (printed)");
 });
 
@@ -939,7 +943,13 @@ test("phone: the Support heart tucks away while scrolling down a product page an
 });
 
 test("closer look on the merch shop and a product page", async ({ page }) => {
-  for (const [route, count] of [["/shop/merch", 3], ["/shop/merch/heartbeat-triangle-tee", 3], ["/shop/merch/santa-cruz-dipper-womens-rib-tank", 2]] as const) {
+  // the shop band is shown on Make Art With Friends (public); the Dipper's tiles are the Golden Hour renders
+  await page.goto("/shop/merch", { waitUntil: "load" });
+  expect(await page.locator("[data-closer-look] img").evaluateAll((els) => els.map((e) => (e as HTMLImageElement).getAttribute("src") ?? ""))).toEqual(
+    expect.arrayContaining([expect.stringMatching(/cotton-make-art-with-friends-tee-/), expect.stringMatching(/print-make-art-with-friends-tee-/)]),
+  );
+  await expect(page.locator("[data-closer-look]")).not.toContainText(/Heartbeat Triangle/);
+  for (const [route, count] of [["/shop/merch", 3], ["/shop/merch/make-art-with-friends-tee", 3], ["/shop/merch/santa-cruz-dipper-womens-rib-tank", 2]] as const) {
     await page.goto(route, { waitUntil: "load" });
     const block = page.locator("[data-closer-look]");
     await expect(block).toHaveCount(1);

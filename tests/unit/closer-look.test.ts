@@ -35,6 +35,12 @@ describe("closer look", () => {
     for (const t of all) expect(`${t.title} ${t.body} ${t.spec ?? ""} ${t.alt}`).not.toMatch(/\bdome\b/i);
   });
 
+  it("the shop band shows a public product (Make Art With Friends), never an admin-only one", () => {
+    const files = closerLookShop().map((t) => t.file);
+    expect(files).toEqual(["label", "cotton-make-art-with-friends-tee", "print-make-art-with-friends-tee"]);
+    expect(files.join(" ")).not.toMatch(/heartbeat-triangle|no-thanks/);
+  });
+
   it("the woven label tile only appears where the spec sheet has a label row", () => {
     const withLabel = listed.filter((p) => closerLookFor(p.id, p.title).some((t) => t.id === "label")).map((p) => p.id);
     expect(withLabel.every((id) => !/womens/.test(id))).toBe(true);

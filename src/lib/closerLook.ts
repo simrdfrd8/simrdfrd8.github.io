@@ -110,12 +110,12 @@ export function closerLookFor(productId: string, title: string): CloserLookTile[
   ];
 }
 
-/** Tiles for the shop page: the label, the tee cotton and a print, all shown on the Heartbeat Triangle Tee. */
+/** Tiles for the shop page: the label, the tee cotton and a print, the last two shown on the Make Art With Friends Tee (public, both cuts). */
 export function closerLookShop(): CloserLookTile[] {
   return [
     { ...LABEL, file: "label" },
-    { ...COTTON.cc1717, spec: "Comfort Colors 1717 tees · 9360 tank · 3023CL boxy tees", file: "cotton-heartbeat-triangle-tee", alt: "Close-up of the Heartbeat Triangle Tee collar and garment-dyed cotton" },
-    { ...PRINT, file: "print-heartbeat-triangle-tee", alt: "Close-up of the Heartbeat Triangle print, its fine lines and dots on violet cotton" },
+    { ...COTTON.cc1717, spec: "Comfort Colors 1717 tees · 9360 tank · 3023CL boxy tees", file: "cotton-make-art-with-friends-tee", alt: "Close-up of the Make Art With Friends Tee collar and garment-dyed cotton" },
+    { ...PRINT, file: "print-make-art-with-friends-tee", alt: "Close-up of the Make Art With Friends print, its fine lines on garment-dyed cotton" },
   ];
 }
 

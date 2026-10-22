@@ -233,9 +233,9 @@ describe("content catalog", () => {
     expect(hot[0].listed).toBe(true);
     // beach photo retired (shows the old "HOTDO G." name): unapproved, so the public export leaves it out
     expect(assets.find((a) => a.id === "merch-hotdog-tee-white")).toBeUndefined();
-    // the whole white-taco-red set is approved (front since Oct 20; back and model shots with the lineup, Oct 21)
+    // the whole white-taco-red set is approved (flats since Oct 20; Kai model shots with the Men/Women reshoot, Oct 22)
     const wtr = (k: string) => assets.find((a) => a.id === `merch-hotdo-g-tee-white-taco-red${k}`)?.publishApproved;
-    expect([wtr(""), wtr("-back"), wtr("-model-front"), wtr("-model-back")]).toEqual([true, true, true, true]);
+    expect([wtr(""), wtr("-back"), wtr("-model-front-kai"), wtr("-model-back-kai")]).toEqual([true, true, true, true]);
     // v2 flats/colorways swapped in; the approved photo stays the cover so production never goes blank
     expect(hot[0].summary).toBe("Is it a Hotdo? Is it a g? Yes. One bold box, one awkward space. A term we can all agree on.");
     expect(hot[0].colorways).toHaveLength(3);
@@ -326,47 +326,34 @@ describe("merch final cast", () => {
       .filter((x): x is string => !!x)
       .filter((x, i, all) => all.indexOf(x) === i);
 
-  // Make Art Chambray / Plum replaced Grape / Black (Ricky, Oct 22 2026). Its model shot is not in yet, so it borrows the hero's
-  // (labelled "shown in Chalky Mint / Plum"). Remove the entry once Brandy's Chambray / Plum shots are imported.
-  const PENDING_MODEL_SHOTS = new Set(["merch-make-art-with-friends-tee/chambray-plum"]);
+  // Colourways whose model shots aren't in yet borrow the hero's (labelled "shown in <hero>"). None since the Kai / Tessa import (Oct 22 2026).
+  const PENDING_MODEL_SHOTS = new Set<string>();
+  /** The public set reshot on two models (owner, Oct 22 2026: "only m/f and only those two models ... for everything"). */
+  const KAI_IDS = ["merch-hotdog-tee-white", "merch-feelings-notice-tee", "merch-make-art-with-friends-tee", "merch-heartbeat-croissant-pocket-tee", "merch-santa-cruz-dipper-tank"];
   it("every colorway has its own on-model front and back; every tank colorway also has a blank-back model shot", () => {
     for (const p of merch)
       for (const c of p.colorways) {
         if (PENDING_MODEL_SHOTS.has(`${p.id}/${c.slug}`)) continue;
         expect(c.modelFrontAssetId, `${p.id}/${c.slug}`).toBeTruthy();
         expect(c.modelBackAssetId, `${p.id}/${c.slug}`).toBeTruthy();
-        if (TANK_IDS.includes(p.id)) expect(c.blankModelBackAssetId, `${p.id}/${c.slug}`).toBeTruthy();
+        // the older cast had a blank-back shot per tank; Kai's Dipper has none yet (Back: Blank swaps the flat back only)
+        if (TANK_IDS.includes(p.id) && !KAI_IDS.includes(p.id)) expect(c.blankModelBackAssetId, `${p.id}/${c.slug}`).toBeTruthy();
       }
   });
 
-  // Dipper Ivory / Navy and Crimson / Cream were dropped from the line (Oct 22, 2026); their records and files are kept, just not shown.
+  // Dipper Ivory / Navy and Crimson / Cream were dropped from the line (Oct 22, 2026); their records and files went with the Golden Hour swap.
   const RETIRED = /^merch-santa-cruz-dipper-tank-(ivory-navy|crimson-cream)(-|$)/;
-  // head-turned shots replaced by true backs on Oct 22, 2026 (round 3): kept on file, no longer shown
+  // head-turned shots replaced by true backs on Oct 22, 2026 (round 3): kept on file, no longer shown (admin-only products; the public set's
+  // stand-in shots and the old Dipper art were deleted with the Kai / Tessa reshoot)
   const SUPERSEDED = new Set([
-    "merch-hotdo-g-tee-black-white-model-back-2",
-    "merch-feelings-notice-tee-true-navy-cream-model-back-2",
-    "merch-feelings-notice-tee-ivory-plum-model-back-2",
     "merch-heartbeat-triangle-tee-graphite-electric-orange-model-back-2",
     "merch-no-thanks-tee-burnt-orange-plum-model-back-2",
-    "merch-make-art-with-friends-tee-butter-plum-model-back-2",
-    "merch-make-art-with-friends-tee-grape-acid-green-model-front-2",
-    "merch-make-art-with-friends-tee-butter-plum-model-front-2",
-    "merch-santa-cruz-dipper-tank-chambray-navy-model-back-2",
-    "merch-santa-cruz-dipper-tank-chambray-navy-model-back-2-blank",
-    "merch-santa-cruz-dipper-tank-blossom-navy-model-back-2",
-    "merch-santa-cruz-dipper-tank-blossom-navy-model-back-2-blank",
-    "merch-santa-cruz-dipper-tank-butter-navy-model-back-2",
-    "merch-santa-cruz-dipper-tank-butter-navy-model-back-2-blank",
-    "merch-santa-cruz-dipper-tank-white-navy-model-back-2",
-    "merch-santa-cruz-dipper-tank-white-navy-model-back-2-blank",
-    "merch-santa-cruz-dipper-tank-grape-cream-model-back-2",
-    "merch-santa-cruz-dipper-tank-grape-cream-model-back-2-blank",
   ]);
 
-  it("171 on-model photos in all (177 before the 6 Grape / Black shots were retired, Oct 22 2026), each used once, each with a full set of web sizes", () => {
+  it("126 on-model photos in all (36 Kai shots on the public set + the older cast on the off-line pieces; 171 before the Kai / Tessa reshoot), each used once, each with a full set of web sizes", () => {
     const ids = merch.flatMap((p) => p.colorways.flatMap(modelIds));
-    expect(ids).toHaveLength(171);
-    expect(new Set(ids).size).toBe(171);
+    expect(ids).toHaveLength(126);
+    expect(new Set(ids).size).toBe(126);
     const byId = new Map(assets.map((a) => [a.id, a]));
     for (const id of ids) {
       const a = byId.get(id)!;
@@ -374,8 +361,11 @@ describe("merch final cast", () => {
       expect(a.previews.map((x) => `${x.format}${x.width}`).sort(), id).toEqual(["avif1500", "avif480", "avif960", "webp1500", "webp160", "webp480", "webp960"]);
     }
     // no stray on-model records left over from the earlier shoot
-    expect(assets.filter((a) => a.id.startsWith("merch-") && /-model-/.test(a.id) && !RETIRED.test(a.id) && !SUPERSEDED.has(a.id)).map((a) => a.id).sort()).toEqual([...ids].sort());
-    expect(assets.filter((a) => RETIRED.test(a.id))).toHaveLength(22); // 6 flats + 16 on-model, kept on file
+    // (+ the 16 Tessa shots on the women's cuts)
+    const tessa = products.filter((p) => WOMENS_IDS.includes(p.id)).flatMap((p) => p.colorways.flatMap(modelIds));
+    expect(tessa).toHaveLength(16);
+    expect(assets.filter((a) => a.id.startsWith("merch-") && /-model-/.test(a.id) && !RETIRED.test(a.id) && !SUPERSEDED.has(a.id)).map((a) => a.id).sort()).toEqual([...ids, ...tessa].sort());
+    expect(assets.filter((a) => RETIRED.test(a.id))).toHaveLength(0);
     for (const id of SUPERSEDED) {
       expect(byId.has(id), id).toBe(true);
       expect(ids).not.toContain(id);
@@ -384,7 +374,7 @@ describe("merch final cast", () => {
 
   it("every Santa Cruz tank carries the full cast; extra shots are numbered by side", () => {
     const counts = Object.fromEntries(merch.filter((p) => TANK_IDS.includes(p.id)).map((p) => [p.id, p.colorways.flatMap(modelIds).length]));
-    expect(counts).toEqual({ "merch-santa-cruz-sun-tank": 13, "merch-santa-cruz-dipper-tank": 34, "merch-santa-cruz-redwoods-tank": 14, "merch-santa-cruz-sunset-tank": 13 });
+    expect(counts).toEqual({ "merch-santa-cruz-sun-tank": 13, "merch-santa-cruz-dipper-tank": 10, "merch-santa-cruz-redwoods-tank": 14, "merch-santa-cruz-sunset-tank": 13 });
     for (const p of merch) for (const c of p.colorways) for (const x of c.modelExtras ?? []) expect(x.assetId).toMatch(new RegExp(`-model-${x.side}-\\d+$`));
   });
 
@@ -396,6 +386,8 @@ describe("merch final cast", () => {
       for (const cat of ["men", "women"] as const) {
         const views = resolveViews(p.colorways, p.heroColorway, (x) => byId.has(x), cat);
         p.colorways.forEach((c, i) => {
+          // a one-model colourway (Kai) only has its own cut to test; the older pairs are checked for both
+          if (c.models?.length === 1 && cat !== p.category) return;
           expect(views[i].map((v) => v.kind), `${id}/${c.slug}/${cat}`).toEqual(["front", "back", "model-front", "model-back"]);
           if (PENDING_MODEL_SHOTS.has(`${id}/${c.slug}`)) {
             // own flats, hero's model shots until this colorway's are shot
@@ -409,10 +401,11 @@ describe("merch final cast", () => {
           const m = pickModel(c.models, cat)!;
           expect(m.gender).toBe(cat === "men" ? "male" : "female");
           expect(views[i].slice(2).map((v) => v.assetId)).toEqual([m.frontAssetId, m.backAssetId]);
-          for (const v of views[i].slice(2)) expect(v.assetId.startsWith(`${c.assetId}-model-`), v.assetId).toBe(true);
+          for (const v of views[i].slice(2)) expect(v.assetId.startsWith(`${c.assetId.replace(/-gh$/, "")}-model-`), v.assetId).toBe(true);
           if (TANK_IDS.includes(id)) {
+            // Back: Blank swaps the flat back; Kai has no blank-back shot, so his back shot stays
             const blank = blankBackViews(c, views[i], (x) => byId.has(x))!;
-            expect(blank.map((v) => v.assetId)).toEqual(views[i].map((v) => (v.kind === "back" || v.kind === "model-back" ? v.assetId.replace(/-back(-\d+)?$/, "-back$1-blank") : v.assetId)));
+            expect(blank.map((v) => v.assetId)).toEqual(views[i].map((v) => (v.kind === "back" ? c.blankBackAssetId : v.assetId)));
           }
         });
       }
@@ -429,7 +422,7 @@ describe("merch final cast", () => {
     expect(merchAll.filter((p) => !p.shopListed).map((p) => p.id).sort()).toEqual([...V2_IDS, ...TANK_IDS].filter((id) => !LAUNCH_IDS.includes(id)).sort());
   });
 
-  it("women's boxy tees: Women category, S-2XL, front + back flats only (no models yet), HOTDO G copy word for word", () => {
+  it("women's boxy tees: Women category, S-2XL, front + back flats then Tessa front + back, HOTDO G copy word for word", () => {
     const hot = products.find((p) => p.id === "merch-hotdog-tee-white")!;
     for (const id of WOMENS_BOXY_IDS) {
       const p = products.find((x) => x.id === id)!;
@@ -438,9 +431,9 @@ describe("merch final cast", () => {
       expect(p.price).toBeNull();
       expect(p.sizes).toEqual(["S", "M", "L", "XL", "2XL"]);
       expect(p.colorways).toHaveLength(id === "merch-hotdo-g-womens-boxy-tee" ? 3 : 1);
-      for (const c of p.colorways) expect(c.models).toBeUndefined();
+      for (const c of p.colorways) expect(c.models?.map((m) => [m.gender, m.frontAssetId, m.backAssetId])).toEqual([["female", `${p.id}-${c.slug}-model-front-tessa`, `${p.id}-${c.slug}-model-back-tessa`]]);
       const views = resolveViews(p.colorways, p.heroColorway, (x) => assets.some((a) => a.id === x), p.category);
-      for (const v of views) expect(v.map((x) => x.kind)).toEqual(["front", "back"]);
+      for (const v of views) expect(v.map((x) => x.kind)).toEqual(["front", "back", "model-front", "model-back"]);
     }
     // HOTDO G women's: Black / White (hero) + Ivory / Taco Red + Butter / Taco Red (Ricky, Oct 22 2026), all on 3023CL stock colours
     const hw = products.find((p) => p.id === "merch-hotdo-g-womens-boxy-tee")!;
@@ -450,7 +443,7 @@ describe("merch final cast", () => {
     expect(products.find((p) => p.id === "merch-hotdo-g-womens-boxy-tee")!.summary).toBe(hot.summary);
   });
 
-  it("women's Dipper rib tank: Women category, XS-XL, Powder (hero) / Orchid / White in navy, front then back flat, no models", () => {
+  it("women's Dipper rib tank: Women category, XS-XL, Powder (hero) / Orchid / White, Golden Hour front + fine-line back flats, then Tessa", () => {
     const p = products.find((x) => x.id === WOMENS_TANK_ID)!;
     expect(p.title).toBe("Santa Cruz Dipper Women's Rib Tank");
     expect(p.category).toBe("women");
@@ -464,9 +457,11 @@ describe("merch final cast", () => {
     const has = (x: string) => assets.some((a) => a.id === x);
     const views = resolveViews(p.colorways, p.heroColorway, has, p.category);
     p.colorways.forEach((c, i) => {
-      expect(c.models).toBeUndefined();
       expect(c.blankBackAssetId).toBeUndefined();
-      expect(views[i].map((v) => [v.kind, v.assetId])).toEqual([["front", `${WOMENS_TANK_ID}-${c.slug}`], ["back", `${WOMENS_TANK_ID}-${c.slug}-back`]]);
+      expect(views[i].map((v) => [v.kind, v.assetId])).toEqual([
+        ["front", `${WOMENS_TANK_ID}-${c.slug}-gh`], ["back", `${WOMENS_TANK_ID}-${c.slug}-gh-back`],
+        ["model-front", `${WOMENS_TANK_ID}-${c.slug}-model-front-tessa`], ["model-back", `${WOMENS_TANK_ID}-${c.slug}-model-back-tessa`],
+      ]);
     });
   });
 
@@ -483,34 +478,37 @@ describe("merch follow-ups, Oct 22, 2026", () => {
   const byId = new Map(assets.map((a) => [a.id, a]));
   const find = (id: string) => products.find((p) => p.id === id)!;
   const cw = (id: string, slug: string) => find(id).colorways.find((c) => c.slug === slug)!;
+  const KAI = ["merch-hotdog-tee-white", "merch-feelings-notice-tee", "merch-make-art-with-friends-tee", "merch-heartbeat-croissant-pocket-tee", "merch-santa-cruz-dipper-tank"];
 
   it("Dipper Tank is on the CC 9360 in exactly 5 colorways, Chambray first (hero and thumbnail)", () => {
     const d = find("merch-santa-cruz-dipper-tank");
     expect(d.colorways.map((c) => c.slug)).toEqual(["chambray-navy", "blossom-navy", "butter-navy", "white-navy", "grape-cream"]);
     expect(d.heroColorway).toBe("chambray-navy");
-    expect(d.assetId).toBe("merch-santa-cruz-dipper-tank-chambray-navy");
+    expect(d.assetId).toBe("merch-santa-cruz-dipper-tank-chambray-navy-gh");
     expect(cw(d.id, "grape-cream").ink).toBe("#F8E8D2");
-    // dropped colorways keep their records on file, but nothing points at them
-    expect(byId.has("merch-santa-cruz-dipper-tank-ivory-navy")).toBe(true);
+    // dropped colorways (old art) are gone with the Golden Hour swap
+    expect(byId.has("merch-santa-cruz-dipper-tank-ivory-navy")).toBe(false);
     expect(JSON.stringify(d)).not.toMatch(/ivory-navy|crimson-cream/);
   });
 
-  it("new Dipper colorways have both people, with a blank-back version of each back shot", () => {
-    for (const slug of ["butter-navy", "white-navy", "grape-cream"]) {
-      const c = cw("merch-santa-cruz-dipper-tank", slug);
-      expect(c.models?.map((m) => m.gender)).toEqual(["male", "female"]);
-      for (const m of c.models!) for (const id of [m.frontAssetId, m.backAssetId, m.blankBackAssetId!]) expect(byId.has(id), id).toBe(true);
+  it("Dipper is Golden Hour everywhere: -gh front + fine-line back flats on both cuts, Kai (Men) / Tessa (Women), no old art left", () => {
+    for (const id of ["merch-santa-cruz-dipper-tank", WOMENS_TANK_ID]) {
+      const p = find(id);
+      const who = p.category === "women" ? ["female", "tessa"] : ["male", "kai"];
+      for (const c of p.colorways) {
+        expect([c.assetId, c.backAssetId]).toEqual([`${id}-${c.slug}-gh`, `${id}-${c.slug}-gh-back`]);
+        expect(c.models?.map((m) => [m.gender, m.frontAssetId, m.backAssetId])).toEqual([[who[0], `${id}-${c.slug}-model-front-${who[1]}`, `${id}-${c.slug}-model-back-${who[1]}`]]);
+        for (const x of [c.assetId, c.backAssetId!, c.modelFrontAssetId!, c.modelBackAssetId!]) expect(byId.has(x), x).toBe(true);
+      }
     }
+    // every Dipper image on file is a Golden Hour flat, a Kai / Tessa shot or the unprinted blank back
+    const dipper = assets.filter((a) => /^merch-santa-cruz-dipper-/.test(a.id)).map((a) => a.id);
+    expect(dipper.filter((x) => !/-gh(-back)?$|-model-(front|back)-(kai|tessa)$|-back-blank$/.test(x))).toEqual([]);
   });
 
-  it("over-the-shoulder backs are replaced by true-back shots (old files kept, no longer shown)", () => {
+  it("over-the-shoulder backs are replaced by true-back shots (old files kept, no longer shown; admin-only no thanks, the public set was reshot)", () => {
     const swaps: [string, string, "male" | "female", string][] = [
-      ["merch-hotdog-tee-white", "white-taco-red", "female", "merch-hotdo-g-tee-white-taco-red-model-back-3"],
-      ["merch-hotdog-tee-white", "black-white", "male", "merch-hotdo-g-tee-black-white-model-back-3"],
       ["merch-no-thanks-tee", "graphite-cream", "female", "merch-no-thanks-tee-graphite-cream-model-back-3"],
-      ["merch-make-art-with-friends-tee", "chalky-mint-plum", "female", "merch-make-art-with-friends-tee-chalky-mint-plum-model-back-3"],
-      ["merch-make-art-with-friends-tee", "grape-acid-green", "male", "merch-make-art-with-friends-tee-grape-acid-green-model-back-3"],
-      ["merch-santa-cruz-dipper-tank", "chambray-navy", "female", "merch-santa-cruz-dipper-tank-chambray-navy-model-back-3"],
     ];
     for (const [id, slug, g, back] of swaps) {
       const p = find(id);
@@ -520,31 +518,17 @@ describe("merch follow-ups, Oct 22, 2026", () => {
       expect(shown).toContain(back);
       expect(shown).not.toContain(back.replace(/-3$/, ""));
     }
-    expect(cw("merch-santa-cruz-dipper-tank", "chambray-navy").models!.find((m) => m.gender === "female")!.blankBackAssetId).toBe("merch-santa-cruz-dipper-tank-chambray-navy-model-back-3-blank");
   });
 
-  it("Make Art Chambray / Plum (replaced Grape / Black): no model shots of its own yet", () => {
-    expect(cw("merch-make-art-with-friends-tee", "chambray-plum").models).toBeUndefined();
+  it("Make Art Chambray / Plum (replaced Grape / Black): Kai front and back", () => {
+    expect(cw("merch-make-art-with-friends-tee", "chambray-plum").models).toEqual([{ gender: "male", frontAssetId: "merch-make-art-with-friends-tee-chambray-plum-model-front-kai", backAssetId: "merch-make-art-with-friends-tee-chambray-plum-model-back-kai" }]);
     expect(products.find((p) => p.id === "merch-make-art-with-friends-tee")!.colorways.some((c) => c.slug === "grape-black")).toBe(false);
   });
-  it("round 3: every displayed back is a true back; Carmen wears her hair down throughout Make Art", () => {
+  it("round 3: every displayed back is a true back; (admin-only Heartbeat Triangle and no thanks; the public set was reshot on Kai / Tessa)", () => {
     const swaps: [string, string, "male" | "female", "backAssetId" | "frontAssetId", string][] = [
-      ["merch-hotdog-tee-white", "black-white", "female", "backAssetId", "merch-hotdo-g-tee-black-white-model-back-4"],
-      ["merch-feelings-notice-tee", "true-navy-cream", "male", "backAssetId", "merch-feelings-notice-tee-true-navy-cream-model-back-3"],
-      ["merch-feelings-notice-tee", "true-navy-cream", "female", "backAssetId", "merch-feelings-notice-tee-true-navy-cream-model-back-4"],
-      ["merch-feelings-notice-tee", "ivory-plum", "male", "backAssetId", "merch-feelings-notice-tee-ivory-plum-model-back-3"],
       ["merch-heartbeat-triangle-tee", "graphite-electric-orange", "female", "backAssetId", "merch-heartbeat-triangle-tee-graphite-electric-orange-model-back-3"],
       ["merch-heartbeat-triangle-tee", "true-navy-cream", "female", "backAssetId", "merch-heartbeat-triangle-tee-true-navy-cream-model-back-3"],
       ["merch-no-thanks-tee", "burnt-orange-plum", "female", "backAssetId", "merch-no-thanks-tee-burnt-orange-plum-model-back-3"],
-      ["merch-make-art-with-friends-tee", "butter-plum", "female", "backAssetId", "merch-make-art-with-friends-tee-butter-plum-model-back-3"],
-      ["merch-make-art-with-friends-tee", "butter-plum", "female", "frontAssetId", "merch-make-art-with-friends-tee-butter-plum-model-front-3"],
-      ["merch-make-art-with-friends-tee", "grape-acid-green", "female", "frontAssetId", "merch-make-art-with-friends-tee-grape-acid-green-model-front-3"],
-      ["merch-santa-cruz-dipper-tank", "chambray-navy", "male", "backAssetId", "merch-santa-cruz-dipper-tank-chambray-navy-model-back-4"],
-      ["merch-santa-cruz-dipper-tank", "blossom-navy", "male", "backAssetId", "merch-santa-cruz-dipper-tank-blossom-navy-model-back-3"],
-      ["merch-santa-cruz-dipper-tank", "blossom-navy", "female", "backAssetId", "merch-santa-cruz-dipper-tank-blossom-navy-model-back-4"],
-      ["merch-santa-cruz-dipper-tank", "butter-navy", "female", "backAssetId", "merch-santa-cruz-dipper-tank-butter-navy-model-back-3"],
-      ["merch-santa-cruz-dipper-tank", "white-navy", "female", "backAssetId", "merch-santa-cruz-dipper-tank-white-navy-model-back-3"],
-      ["merch-santa-cruz-dipper-tank", "grape-cream", "female", "backAssetId", "merch-santa-cruz-dipper-tank-grape-cream-model-back-3"],
     ];
     for (const [id, slug, g, key, want] of swaps) {
       const p = find(id);
@@ -555,6 +539,20 @@ describe("merch follow-ups, Oct 22, 2026", () => {
       expect(resolveViews(p.colorways, p.heroColorway, (x) => byId.has(x), g === "male" ? "men" : "women")[i].map((v) => v.assetId)).toContain(want);
       if (id === "merch-santa-cruz-dipper-tank") expect(m.blankBackAssetId).toBe(`${want}-blank`);
     }
+  });
+
+  it("Men / Women reshoot: every public colourway shows only Kai (Men) or Tessa (Women), front and back", () => {
+    for (const p of products.filter((x) => KAI.includes(x.id) || WOMENS_IDS.includes(x.id))) {
+      const who = p.category === "women" ? "tessa" : "kai";
+      for (const [i, c] of p.colorways.entries()) {
+        expect(c.models, `${p.id}/${c.slug}`).toHaveLength(1);
+        const shown = resolveViews(p.colorways, p.heroColorway, (x) => byId.has(x), p.category)[i];
+        expect(shown.map((v) => v.kind), `${p.id}/${c.slug}`).toEqual(["front", "back", "model-front", "model-back"]);
+        for (const v of shown.slice(2)) expect(v.assetId, `${p.id}/${c.slug}`).toMatch(new RegExp(`-model-(front|back)-${who}$`));
+        expect(JSON.stringify(c)).not.toMatch(/-model-(front|back)(-\d+)?(-blank)?"/);
+      }
+    }
+    expect(find("merch-heartbeat-croissant-pocket-tee")).toMatchObject({ category: "men", design: "heartbeat-croissant-pocket" });
   });
 
   it("Dipper White / Navy uses Mandy's off-white (#F7F6F2) flats", () => {

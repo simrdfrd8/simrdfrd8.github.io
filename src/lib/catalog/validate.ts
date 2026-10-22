@@ -36,7 +36,11 @@ export function validateCatalog(raw: Raw): string[] {
     for (const c of p.colorways) if (!assetIds.has(c.assetId)) out.push(`products.${p.id}: colorway ${c.slug} has unknown asset ${c.assetId}`);
     for (const c of p.colorways) {
       const genders = (c.models ?? []).map((m) => m.gender);
-      if (c.models && (genders.length !== 2 || !genders.includes("male") || !genders.includes("female"))) out.push(`products.${p.id}: colorway ${c.slug} models must be one man and one woman`);
+      // the cast: one model who matches the cut (Men: the man, Women: the woman), or the older pair (one man and one woman)
+      const own = p.category === "women" ? "female" : "male";
+      const solo = genders.length === 1 && genders[0] === own;
+      const pair = genders.length === 2 && genders.includes("male") && genders.includes("female");
+      if (c.models && !solo && !pair) out.push(`products.${p.id}: colorway ${c.slug} models must be the ${p.category === "women" ? "woman" : "man"} (or one man and one woman)`);
       for (const m of c.models ?? []) for (const id of [m.frontAssetId, m.backAssetId, m.blankBackAssetId]) if (id && !assetIds.has(id)) out.push(`products.${p.id}: colorway ${c.slug} has unknown model asset ${id}`);
     }
     if (p.type !== "merch" && !p.shopListed) out.push(`products.${p.id}: shopListed is for merch only (use listed)`);
