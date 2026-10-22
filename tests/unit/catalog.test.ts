@@ -437,12 +437,16 @@ describe("merch final cast", () => {
       expect(p.shopListed).toBe(true);
       expect(p.price).toBeNull();
       expect(p.sizes).toEqual(["S", "M", "L", "XL", "2XL"]);
-      expect(p.colorways).toHaveLength(1);
-      const c = p.colorways[0];
-      expect(c.models).toBeUndefined();
+      expect(p.colorways).toHaveLength(id === "merch-hotdo-g-womens-boxy-tee" ? 3 : 1);
+      for (const c of p.colorways) expect(c.models).toBeUndefined();
       const views = resolveViews(p.colorways, p.heroColorway, (x) => assets.some((a) => a.id === x), p.category);
-      expect(views[0].map((v) => v.kind)).toEqual(["front", "back"]);
+      for (const v of views) expect(v.map((x) => x.kind)).toEqual(["front", "back"]);
     }
+    // HOTDO G women's: Black / White (hero) + Ivory / Taco Red + Butter / Taco Red (Ricky, Oct 22 2026), all on 3023CL stock colours
+    const hw = products.find((p) => p.id === "merch-hotdo-g-womens-boxy-tee")!;
+    expect(hw.colorways.map((c) => c.slug)).toEqual(["black-white", "ivory-taco-red", "butter-taco-red"]);
+    expect(hw.heroColorway).toBe("black-white");
+    expect(hw.design).toBe("hotdo-g");
     expect(products.find((p) => p.id === "merch-hotdo-g-womens-boxy-tee")!.summary).toBe(hot.summary);
   });
 

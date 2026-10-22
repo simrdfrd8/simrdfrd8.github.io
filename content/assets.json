@@ -22330,6 +22330,286 @@
     "dominantColor": "#f8e8e8"
   },
   {
+    "id": "merch-hotdo-g-womens-boxy-tee-ivory-taco-red",
+    "title": "HOTDO G Women's Boxy Tee (Ivory / Taco Red)",
+    "artist": null,
+    "artistInferred": false,
+    "project": null,
+    "source": "owner-upload",
+    "license": "owned",
+    "publishApproved": true,
+    "alt": "HOTDO G Women's Boxy Tee in Ivory / Taco Red",
+    "tags": [
+      "merch",
+      "apparel",
+      "front"
+    ],
+    "collaborators": [],
+    "artists": [],
+    "featured": false,
+    "type": "merch-design",
+    "width": 2000,
+    "height": 2000,
+    "orientation": "square",
+    "previews": [
+      {
+        "format": "webp",
+        "width": 160,
+        "height": 160,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee/ivory-taco-red-160.webp"
+      },
+      {
+        "format": "avif",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee/ivory-taco-red-480.avif"
+      },
+      {
+        "format": "webp",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee/ivory-taco-red-480.webp"
+      },
+      {
+        "format": "avif",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee/ivory-taco-red-960.avif"
+      },
+      {
+        "format": "webp",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee/ivory-taco-red-960.webp"
+      },
+      {
+        "format": "avif",
+        "width": 1500,
+        "height": 1500,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee/ivory-taco-red-1500.avif"
+      },
+      {
+        "format": "webp",
+        "width": 1500,
+        "height": 1500,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee/ivory-taco-red-1500.webp"
+      }
+    ],
+    "poster": [],
+    "lqip": "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAABQAQCdASoQABAAA4BaJQBOgCgAAP7yT6tGTK8HxP2j/DOg6uy87v+hl3lhWmpbo2FpOuhAAAA=",
+    "dominantColor": "#f8e8e8"
+  },
+  {
+    "id": "merch-hotdo-g-womens-boxy-tee-ivory-taco-red-back",
+    "title": "HOTDO G Women's Boxy Tee (Ivory / Taco Red) (back)",
+    "artist": null,
+    "artistInferred": false,
+    "project": null,
+    "source": "owner-upload",
+    "license": "owned",
+    "publishApproved": true,
+    "alt": "HOTDO G Women's Boxy Tee in Ivory / Taco Red (back)",
+    "tags": [
+      "merch",
+      "apparel",
+      "back"
+    ],
+    "collaborators": [],
+    "artists": [],
+    "featured": false,
+    "type": "merch-design",
+    "width": 2000,
+    "height": 2000,
+    "orientation": "square",
+    "previews": [
+      {
+        "format": "webp",
+        "width": 160,
+        "height": 160,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee/ivory-taco-red-back-160.webp"
+      },
+      {
+        "format": "avif",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee/ivory-taco-red-back-480.avif"
+      },
+      {
+        "format": "webp",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee/ivory-taco-red-back-480.webp"
+      },
+      {
+        "format": "avif",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee/ivory-taco-red-back-960.avif"
+      },
+      {
+        "format": "webp",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee/ivory-taco-red-back-960.webp"
+      },
+      {
+        "format": "avif",
+        "width": 1500,
+        "height": 1500,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee/ivory-taco-red-back-1500.avif"
+      },
+      {
+        "format": "webp",
+        "width": 1500,
+        "height": 1500,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee/ivory-taco-red-back-1500.webp"
+      }
+    ],
+    "poster": [],
+    "lqip": "data:image/webp;base64,UklGRjAAAABXRUJQVlA4ICQAAABwAQCdASoQABAAA4BaJYwC7AGIQAD+8tkcy3O+IRRi6ODiAAA=",
+    "dominantColor": "#f8e8e8"
+  },
+  {
+    "id": "merch-hotdo-g-womens-boxy-tee-butter-taco-red",
+    "title": "HOTDO G Women's Boxy Tee (Butter / Taco Red)",
+    "artist": null,
+    "artistInferred": false,
+    "project": null,
+    "source": "owner-upload",
+    "license": "owned",
+    "publishApproved": true,
+    "alt": "HOTDO G Women's Boxy Tee in Butter / Taco Red",
+    "tags": [
+      "merch",
+      "apparel",
+      "front"
+    ],
+    "collaborators": [],
+    "artists": [],
+    "featured": false,
+    "type": "merch-design",
+    "width": 2000,
+    "height": 2000,
+    "orientation": "square",
+    "previews": [
+      {
+        "format": "webp",
+        "width": 160,
+        "height": 160,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee/butter-taco-red-160.webp"
+      },
+      {
+        "format": "avif",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee/butter-taco-red-480.avif"
+      },
+      {
+        "format": "webp",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee/butter-taco-red-480.webp"
+      },
+      {
+        "format": "avif",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee/butter-taco-red-960.avif"
+      },
+      {
+        "format": "webp",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee/butter-taco-red-960.webp"
+      },
+      {
+        "format": "avif",
+        "width": 1500,
+        "height": 1500,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee/butter-taco-red-1500.avif"
+      },
+      {
+        "format": "webp",
+        "width": 1500,
+        "height": 1500,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee/butter-taco-red-1500.webp"
+      }
+    ],
+    "poster": [],
+    "lqip": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAACQAQCdASoQABAAA4BaJamDrRgAiwAA/vF9mj5N9shhr1vWYsL+GdB1dj4dtYmoa0Zw+PucHoW2YgXxFfU0rKjYHQ8cwAAA",
+    "dominantColor": "#f8e8e8"
+  },
+  {
+    "id": "merch-hotdo-g-womens-boxy-tee-butter-taco-red-back",
+    "title": "HOTDO G Women's Boxy Tee (Butter / Taco Red) (back)",
+    "artist": null,
+    "artistInferred": false,
+    "project": null,
+    "source": "owner-upload",
+    "license": "owned",
+    "publishApproved": true,
+    "alt": "HOTDO G Women's Boxy Tee in Butter / Taco Red (back)",
+    "tags": [
+      "merch",
+      "apparel",
+      "back"
+    ],
+    "collaborators": [],
+    "artists": [],
+    "featured": false,
+    "type": "merch-design",
+    "width": 2000,
+    "height": 2000,
+    "orientation": "square",
+    "previews": [
+      {
+        "format": "webp",
+        "width": 160,
+        "height": 160,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee/butter-taco-red-back-160.webp"
+      },
+      {
+        "format": "avif",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee/butter-taco-red-back-480.avif"
+      },
+      {
+        "format": "webp",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee/butter-taco-red-back-480.webp"
+      },
+      {
+        "format": "avif",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee/butter-taco-red-back-960.avif"
+      },
+      {
+        "format": "webp",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee/butter-taco-red-back-960.webp"
+      },
+      {
+        "format": "avif",
+        "width": 1500,
+        "height": 1500,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee/butter-taco-red-back-1500.avif"
+      },
+      {
+        "format": "webp",
+        "width": 1500,
+        "height": 1500,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee/butter-taco-red-back-1500.webp"
+      }
+    ],
+    "poster": [],
+    "lqip": "data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAABwAQCdASoQABAAA4BaJaACdAFAAAD+8g/j2XYiTXnFZzbpFDRs6FtmIF8RX1NKsMo5AAAA",
+    "dominantColor": "#f8e8e8"
+  },
+  {
     "id": "merch-santa-cruz-dipper-womens-rib-tank-powder-navy",
     "title": "Santa Cruz Dipper Women's Rib Tank (Powder / Navy)",
     "artist": null,

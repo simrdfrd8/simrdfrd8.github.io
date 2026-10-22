@@ -788,7 +788,8 @@ test("All tab: one card per design with a Men / Women cut selector (no Unisex); 
     await expect(hot.locator("[data-design-link]")).toHaveAttribute("href", /\/shop\/merch\/hotdo-g-womens-boxy-tee\/?$/);
     await expect(hot.locator("[data-design-carousel] a[data-product-link]")).toHaveAttribute("href", /\/shop\/merch\/hotdo-g-womens-boxy-tee\/?$/);
     await expect(hot.locator("[data-slide='0'] img")).toHaveAttribute("src", /merch-hotdo-g-womens-boxy-tee\//);
-    await expect(hot.locator("[data-design-colorways]")).toHaveAttribute("data-design-colorways", "1");
+    // women's HOTDO G: Black / White + Ivory / Taco Red + Butter / Taco Red (Oct 22 2026)
+    await expect(hot.locator("[data-design-colorways]")).toHaveAttribute("data-design-colorways", "3");
     await expect(hot.locator("[data-design-sizes]")).toHaveText("Sizes S–2XL");
     // arrow keys move between the cuts (wrapping)
     await hot.locator("[data-cut-option=women]").focus();

@@ -1301,6 +1301,22 @@
         "ink": "#FFFFFF",
         "assetId": "merch-hotdo-g-womens-boxy-tee-black-white",
         "backAssetId": "merch-hotdo-g-womens-boxy-tee-black-white-back"
+      },
+      {
+        "name": "Ivory / Taco Red",
+        "slug": "ivory-taco-red",
+        "swatch": "#FFF4D9",
+        "ink": "#C83A22",
+        "assetId": "merch-hotdo-g-womens-boxy-tee-ivory-taco-red",
+        "backAssetId": "merch-hotdo-g-womens-boxy-tee-ivory-taco-red-back"
+      },
+      {
+        "name": "Butter / Taco Red",
+        "slug": "butter-taco-red",
+        "swatch": "#FFE09E",
+        "ink": "#C83A22",
+        "assetId": "merch-hotdo-g-womens-boxy-tee-butter-taco-red",
+        "backAssetId": "merch-hotdo-g-womens-boxy-tee-butter-taco-red-back"
       }
     ],
     "lifestyleAssetIds": [],
