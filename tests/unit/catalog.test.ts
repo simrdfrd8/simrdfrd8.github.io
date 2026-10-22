@@ -312,7 +312,7 @@ describe("merch colorway counts", () => {
       expect(p.colorways.length, p.id).toBe(p.id === "merch-make-art-with-friends-tee" ? 4 : 3);
     }
     const ma = products.find((p) => p.id === "merch-make-art-with-friends-tee")!;
-    expect(ma.colorways.map((c) => c.slug)).toEqual(["chalky-mint-plum", "butter-plum", "grape-acid-green", "grape-black"]);
+    expect(ma.colorways.map((c) => c.slug)).toEqual(["chalky-mint-plum", "butter-plum", "grape-acid-green", "chambray-plum"]);
     expect(ma.heroColorway).toBe("chalky-mint-plum");
   });
 });
@@ -326,9 +326,13 @@ describe("merch final cast", () => {
       .filter((x): x is string => !!x)
       .filter((x, i, all) => all.indexOf(x) === i);
 
+  // Make Art Chambray / Plum replaced Grape / Black (Ricky, Oct 22 2026). Its model shot is not in yet, so it borrows the hero's
+  // (labelled "shown in Chalky Mint / Plum"). Remove the entry once Brandy's Chambray / Plum shots are imported.
+  const PENDING_MODEL_SHOTS = new Set(["merch-make-art-with-friends-tee/chambray-plum"]);
   it("every colorway has its own on-model front and back; every tank colorway also has a blank-back model shot", () => {
     for (const p of merch)
       for (const c of p.colorways) {
+        if (PENDING_MODEL_SHOTS.has(`${p.id}/${c.slug}`)) continue;
         expect(c.modelFrontAssetId, `${p.id}/${c.slug}`).toBeTruthy();
         expect(c.modelBackAssetId, `${p.id}/${c.slug}`).toBeTruthy();
         if (TANK_IDS.includes(p.id)) expect(c.blankModelBackAssetId, `${p.id}/${c.slug}`).toBeTruthy();
@@ -359,10 +363,10 @@ describe("merch final cast", () => {
     "merch-santa-cruz-dipper-tank-grape-cream-model-back-2-blank",
   ]);
 
-  it("177 on-model photos in all, each used once, each with a full set of web sizes", () => {
+  it("171 on-model photos in all (177 before the 6 Grape / Black shots were retired, Oct 22 2026), each used once, each with a full set of web sizes", () => {
     const ids = merch.flatMap((p) => p.colorways.flatMap(modelIds));
-    expect(ids).toHaveLength(177);
-    expect(new Set(ids).size).toBe(177);
+    expect(ids).toHaveLength(171);
+    expect(new Set(ids).size).toBe(171);
     const byId = new Map(assets.map((a) => [a.id, a]));
     for (const id of ids) {
       const a = byId.get(id)!;
@@ -393,6 +397,12 @@ describe("merch final cast", () => {
         const views = resolveViews(p.colorways, p.heroColorway, (x) => byId.has(x), cat);
         p.colorways.forEach((c, i) => {
           expect(views[i].map((v) => v.kind), `${id}/${c.slug}/${cat}`).toEqual(["front", "back", "model-front", "model-back"]);
+          if (PENDING_MODEL_SHOTS.has(`${id}/${c.slug}`)) {
+            // own flats, hero's model shots until this colorway's are shot
+            expect(views[i].slice(0, 2).map((v) => v.assetId)).toEqual([c.assetId, c.backAssetId]);
+            expect(views[i].slice(2).every((v) => v.fromHero)).toBe(true);
+            return;
+          }
           expect(views[i].map((v) => v.label)).toEqual(["Front", "Back", "On model (front)", "On model (back)"]);
           expect(views[i].every((v) => !v.fromHero)).toBe(true);
           // the model's shots are this colorway's own photos, front and back of the same person
@@ -509,9 +519,9 @@ describe("merch follow-ups, Oct 22, 2026", () => {
     expect(cw("merch-santa-cruz-dipper-tank", "chambray-navy").models!.find((m) => m.gender === "female")!.blankBackAssetId).toBe("merch-santa-cruz-dipper-tank-chambray-navy-model-back-3-blank");
   });
 
-  it("Make Art Grape / Black: Carmen (front and back) is the woman", () => {
-    const w = cw("merch-make-art-with-friends-tee", "grape-black").models!.find((m) => m.gender === "female")!;
-    expect([w.frontAssetId, w.backAssetId]).toEqual(["merch-make-art-with-friends-tee-grape-black-model-front-3", "merch-make-art-with-friends-tee-grape-black-model-back-3"]);
+  it("Make Art Chambray / Plum (replaced Grape / Black): no model shots of its own yet", () => {
+    expect(cw("merch-make-art-with-friends-tee", "chambray-plum").models).toBeUndefined();
+    expect(products.find((p) => p.id === "merch-make-art-with-friends-tee")!.colorways.some((c) => c.slug === "grape-black")).toBe(false);
   });
   it("round 3: every displayed back is a true back; Carmen wears her hair down throughout Make Art", () => {
     const swaps: [string, string, "male" | "female", "backAssetId" | "frontAssetId", string][] = [

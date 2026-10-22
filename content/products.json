@@ -915,26 +915,12 @@
         ]
       },
       {
-        "name": "Grape / Black",
-        "slug": "grape-black",
-        "swatch": "#644E6D",
-        "ink": "#111111",
-        "assetId": "merch-make-art-with-friends-tee-grape-black",
-        "backAssetId": "merch-make-art-with-friends-tee-grape-black-back",
-        "modelFrontAssetId": "merch-make-art-with-friends-tee-grape-black-model-front",
-        "modelBackAssetId": "merch-make-art-with-friends-tee-grape-black-model-back",
-        "models": [
-          {
-            "gender": "male",
-            "frontAssetId": "merch-make-art-with-friends-tee-grape-black-model-front-2",
-            "backAssetId": "merch-make-art-with-friends-tee-grape-black-model-back-2"
-          },
-          {
-            "gender": "female",
-            "frontAssetId": "merch-make-art-with-friends-tee-grape-black-model-front-3",
-            "backAssetId": "merch-make-art-with-friends-tee-grape-black-model-back-3"
-          }
-        ]
+        "name": "Chambray / Plum",
+        "slug": "chambray-plum",
+        "swatch": "#D9F3FF",
+        "ink": "#2B1E35",
+        "assetId": "merch-make-art-with-friends-tee-chambray-plum",
+        "backAssetId": "merch-make-art-with-friends-tee-chambray-plum-back"
       }
     ],
     "heroColorway": "chalky-mint-plum",

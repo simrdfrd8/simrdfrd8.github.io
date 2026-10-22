@@ -739,7 +739,7 @@ test("Make Art With Friends card swipes through 4 colorways (hero Chalky Mint fi
   await expect(card).toHaveAttribute("aria-label", /4 colorways/);
   await card.locator("a[data-product-link]").focus();
   await page.keyboard.press("End");
-  await expect(card.locator("a[data-product-link]")).toHaveAttribute("href", /#cw-grape-black$/);
+  await expect(card.locator("a[data-product-link]")).toHaveAttribute("href", /#cw-chambray-plum$/);
 });
 
 test("phone (390px): touch-swiping a merch card moves to the next photo; the Dipper front is the SANTA CRUZ print", async ({ page }) => {
