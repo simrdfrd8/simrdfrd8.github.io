@@ -6,8 +6,8 @@ import { OPT_IN_LABELS, accountsOn, deleteAccount, fmtDate, getMe, setOptIns, si
 import { buttonClass } from "@/components/ui";
 import { cardClass } from "./AccountShell";
 
-const LISTS = ["raffles", "newsletter"] as const;
-const LIST_TITLE = { raffles: "Raffles and giveaways", newsletter: "Newsletter" } as const;
+const LISTS = ["giveaways", "newsletter"] as const;
+const LIST_TITLE = { giveaways: "Giveaways", newsletter: "Newsletter" } as const;
 const ITEM_LABEL = { merch: "Merch", beat: "Beat", song: "Song", sample: "Sample pack" } as const;
 
 export function AccountDashboard() {
@@ -17,6 +17,7 @@ export function AccountDashboard() {
   const [saving, setSaving] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const [devConfirmLink, setDevConfirmLink] = useState<string | null>(null);
 
   useEffect(() => {
     if (!accountsOn()) return;
@@ -40,9 +41,11 @@ export function AccountDashboard() {
     setError(null);
     const before = user;
     // optimistic: the box flips right away, the saved state (with the consent time) replaces it
-    setUser((u) => (u ? { ...u, optIns: { ...u.optIns, [list]: { ...u.optIns[list], subscribed: on } } } : u));
+    setUser((u) => (u ? { ...u, optIns: { ...u.optIns, [list]: { ...u.optIns[list], ...(on ? { pending: true, status: "pending" } : { subscribed: false, pending: false, status: "unsubscribed" }) } } } : u));
     try {
-      setUser((await setOptIns({ [list]: on })).user);
+      const r = await setOptIns({ [list]: on });
+      setUser(r.user);
+      if (r.confirmLink) setDevConfirmLink(r.confirmLink);
     } catch (e) {
       setUser(before);
       setError(e instanceof Error ? e.message : "Couldn't save that.");
@@ -83,22 +86,32 @@ export function AccountDashboard() {
         <h2 id="optins-title" className="text-xl font-semibold">
           Email and giveaways
         </h2>
-        <p className="mt-1 text-sm text-muted">Both are off unless you tick them. Untick any time.</p>
+        <p className="mt-1 text-sm text-muted">Both are off unless you tick them. We&rsquo;ll email you a link to confirm first. Untick any time.</p>
         <div className="mt-4 space-y-4">
           {LISTS.map((l) => {
             const o = user.optIns[l];
             return (
               <label key={l} className="flex cursor-pointer items-start gap-3" data-optin={l}>
-                <input type="checkbox" className="mt-1 size-5 accent-[#FF7A59]" checked={o.subscribed} aria-busy={saving === l} disabled={saving !== null && saving !== l} onChange={(e) => toggle(l, e.target.checked)} />
+                <input type="checkbox" className="mt-1 size-5 accent-[#FF7A59]" checked={o.subscribed || o.pending} aria-busy={saving === l} disabled={saving !== null && saving !== l} onChange={(e) => toggle(l, e.target.checked)} />
                 <span>
                   <span className="block font-semibold">{LIST_TITLE[l]}</span>
                   <span className="block text-cream-dim">{OPT_IN_LABELS[l]}</span>
-                  {o.subscribed && o.consentedAt && <span className="block text-sm text-muted">Opted in {fmtDate(o.consentedAt)}</span>}
+                  {o.pending && (
+                    <span className="block text-sm text-gold" data-pending>
+                      Check your email and tap the link to confirm.
+                    </span>
+                  )}
+                  {o.subscribed && <span className="block text-sm text-muted">Confirmed {fmtDate(o.confirmedAt ?? o.consentedAt ?? Date.now())}</span>}
                 </span>
               </label>
             );
           })}
         </div>
+        {devConfirmLink && (
+          <p className="mt-4 rounded-xl border border-gold/50 p-4 text-sm text-cream-dim" data-dev-confirm-link>
+            Email sending is off for now, so here is the confirm link: <a href={devConfirmLink} className="break-all text-cream underline underline-offset-4">Confirm</a>
+          </p>
+        )}
       </section>
 
       <section className={cardClass} aria-labelledby="purchases-title">

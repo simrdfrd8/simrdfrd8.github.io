@@ -92,7 +92,7 @@ export function SignInForm() {
       )}
 
       <p className="text-cream-dim">
-        You don&rsquo;t need an account to buy anything. Guest checkout works the same. An account keeps your purchase and listening history, and lets you opt in to raffles, giveaways and the newsletter.{" "}
+        You don&rsquo;t need an account to buy anything. Guest checkout works the same. An account keeps your purchase and listening history, and lets you opt in to giveaways (free entry, no purchase necessary) and the newsletter.{" "}
         <Link href="/shop/merch" className="text-cream underline underline-offset-4">
           Back to the shop
         </Link>

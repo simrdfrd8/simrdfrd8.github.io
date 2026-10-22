@@ -11,7 +11,9 @@ describe("accounts client", () => {
     expect(parseLinkFragment("#token=abc&next=https%3A%2F%2Fevil.test")).toEqual({ token: "abc", next: "/account/" });
     expect(parseLinkFragment("")).toEqual({ token: null, next: "/account/" });
   });
-  it("has two separate opt-ins with plain wording", () => {
-    expect(Object.keys(OPT_IN_LABELS)).toEqual(["raffles", "newsletter"]);
+  it("has two separate opt-ins with plain wording: Giveaways (free entry, no purchase necessary) and Newsletter", () => {
+    expect(Object.keys(OPT_IN_LABELS)).toEqual(["giveaways", "newsletter"]);
+    expect(OPT_IN_LABELS.giveaways).toMatch(/free entry, no purchase necessary/i);
+    expect(Object.values(OPT_IN_LABELS).join(" ")).not.toMatch(/raffle/i);
   });
 });
