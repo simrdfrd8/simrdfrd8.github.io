@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import { Heart } from "./ui";
+import { AccountNavLink } from "./account/AccountNav";
+import { accountsOn } from "@/lib/accounts";
 
 type Item = { label: string; href: string };
 
@@ -89,6 +91,11 @@ export function MobileMenu({ primary, secondary }: { primary: Item[]; secondary:
                 </Link>
               </li>
             ))}
+            {accountsOn() && (
+              <li>
+                <AccountNavLink variant="mobile" />
+              </li>
+            )}
           </ul>
         </nav>
       </div>

@@ -4,6 +4,7 @@ import "./globals.css";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { MobileSupportButton } from "@/components/NavClient";
+import { AdminShopExtras } from "@/components/account/AdminShopExtras";
 import { Analytics } from "@/components/Analytics";
 import { PlayerProvider } from "@/components/player/PlayerProvider";
 import { MiniPlayer } from "@/components/player/MiniPlayer";
@@ -42,6 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SiteHeader />
         <main id="main" tabIndex={-1} className="outline-none">
           {children}
+          <AdminShopExtras />
         </main>
         <SiteFooter />
         <MobileSupportButton />

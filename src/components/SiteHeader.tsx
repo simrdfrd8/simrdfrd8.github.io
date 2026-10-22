@@ -2,6 +2,7 @@ import { Wordmark } from "./Wordmark";
 import { primaryNav, secondaryNav } from "@/lib/brand";
 import { NavLinks, MobileMenu } from "./NavClient";
 import { ButtonLink, Heart } from "./ui";
+import { AccountNavLink } from "./account/AccountNav";
 
 export function SiteHeader() {
   return (
@@ -12,6 +13,7 @@ export function SiteHeader() {
         <Wordmark />
         <nav aria-label="Primary" className="hidden items-center lg:gap-1 md:flex">
           <NavLinks items={[...primaryNav]} />
+          <AccountNavLink />
           <ButtonLink href="/support" size="sm" variant="accent" className="ml-1 lg:ml-3">
             <Heart /> Support
           </ButtonLink>
