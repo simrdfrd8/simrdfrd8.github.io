@@ -505,7 +505,7 @@ test("artist titles never break mid-word and fit the viewport", async ({ page })
 /** The curated launch line, in shop order (owner, 2026-10-22); the other 8 pieces keep their pages but are off the grids. */
 const UNISEX_LAUNCH = ["merch-hotdog-tee-white", "merch-heartbeat-triangle-tee", "merch-no-thanks-tee", "merch-feelings-notice-tee", "merch-make-art-with-friends-tee", "merch-santa-cruz-dipper-tank"];
 /** Women's Comfort Colors 3023CL boxy cut (owner pick, 2026-10-22): front + back flats only until the cast is approved. */
-const WOMENS = ["merch-make-art-with-friends-womens-boxy-tee", "merch-feelings-notice-womens-boxy-tee", "merch-hotdo-g-womens-boxy-tee"];
+const WOMENS = ["merch-make-art-with-friends-womens-boxy-tee", "merch-feelings-notice-womens-boxy-tee", "merch-hotdo-g-womens-boxy-tee", "merch-santa-cruz-dipper-womens-rib-tank"];
 const LAUNCH = [...UNISEX_LAUNCH, ...WOMENS];
 const MERCH_COUNT = LAUNCH.length;
 
@@ -565,6 +565,26 @@ test("merch categories: All plus a tab per category in use; linkable with ?categ
     await expect(page.locator("[data-category-tab=all]")).toHaveAttribute("aria-selected", "true");
     await expect(page.locator('[data-merch="inquire-only"]:visible')).toHaveCount(MERCH_COUNT);
   }
+});
+
+test("women's Dipper rib tank page: XS-XL, 3 colourways, each colourway is its front flat then its back flat, no models, no back choice", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.goto("/shop/merch/santa-cruz-dipper-womens-rib-tank/");
+  await expect(page.locator("h1")).toHaveText("Santa Cruz Dipper Women's Rib Tank");
+  await expect(page.locator("[data-sizes]")).toHaveText("Sizes XS–XL");
+  await expect(page.locator("main")).toContainText("organic cotton rib");
+  const g = page.locator('[data-colorway-picker="merch-santa-cruz-dipper-womens-rib-tank"]');
+  await expect(g.locator("[role=radio][data-colorway]")).toHaveCount(3);
+  await expect(g.locator("[data-back-choice]")).toHaveCount(0);
+  // 3 colourways x (front, back); slides away from the current one load lazily, so check each colourway's pair after picking it
+  await expect(g.locator("[data-slide]")).toHaveCount(6);
+  for (const [i, cw] of ["powder-navy", "orchid-navy", "white-navy"].entries()) {
+    await g.locator(`[role=radio][data-colorway="${cw}"]`).click();
+    await expect(g).toHaveAttribute("data-selected-colorway", cw);
+    await expect(g.locator(`[data-slide='${2 * i}'] img`)).toHaveAttribute("src", new RegExp(`merch-santa-cruz-dipper-womens-rib-tank/${cw}-\\d`));
+    await expect(g.locator(`[data-slide='${2 * i + 1}'] img`)).toHaveAttribute("src", new RegExp(`merch-santa-cruz-dipper-womens-rib-tank/${cw}-back-\\d`));
+  }
+  await expect(page.locator("main")).not.toContainText("$");
 });
 
 test("merch off the launch line: hidden from the grids, but its page still resolves (noindex) and stays out of the sitemap", async ({ page, request }) => {

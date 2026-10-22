@@ -12,7 +12,10 @@ const TANK_IDS = ["merch-santa-cruz-sun-tank", "merch-santa-cruz-dipper-tank", "
 /** The curated launch line (owner, 2026-10-22), in shop order. */
 const UNISEX_LAUNCH_IDS = ["merch-hotdog-tee-white", "merch-heartbeat-triangle-tee", "merch-no-thanks-tee", "merch-feelings-notice-tee", "merch-make-art-with-friends-tee", "merch-santa-cruz-dipper-tank"];
 /** Women's Comfort Colors 3023CL boxy cut (owner pick, 2026-10-22): flats only until the cast is approved. */
-const WOMENS_IDS = ["merch-make-art-with-friends-womens-boxy-tee", "merch-feelings-notice-womens-boxy-tee", "merch-hotdo-g-womens-boxy-tee"];
+const WOMENS_BOXY_IDS = ["merch-make-art-with-friends-womens-boxy-tee", "merch-feelings-notice-womens-boxy-tee", "merch-hotdo-g-womens-boxy-tee"];
+/** Women's Santa Cruz Dipper on the AS Colour 4063G rib tank (owner pick, 2026-10-22): Powder, Orchid, White; flats only. */
+const WOMENS_TANK_ID = "merch-santa-cruz-dipper-womens-rib-tank";
+const WOMENS_IDS = [...WOMENS_BOXY_IDS, WOMENS_TANK_ID];
 const LAUNCH_IDS = [...UNISEX_LAUNCH_IDS, ...WOMENS_IDS];
 
 /** Owner rule: no adjectives before the categories (spelled in pieces so this guard doesn't trip the repo leak scan). */
@@ -415,7 +418,7 @@ describe("merch final cast", () => {
 
   it("women's boxy tees: Women category, S-2XL, front + back flats only (no models yet), HOTDO G copy word for word", () => {
     const hot = products.find((p) => p.id === "merch-hotdog-tee-white")!;
-    for (const id of WOMENS_IDS) {
+    for (const id of WOMENS_BOXY_IDS) {
       const p = products.find((x) => x.id === id)!;
       expect(p.category).toBe("women");
       expect(p.shopListed).toBe(true);
@@ -428,6 +431,26 @@ describe("merch final cast", () => {
       expect(views[0].map((v) => v.kind)).toEqual(["front", "back"]);
     }
     expect(products.find((p) => p.id === "merch-hotdo-g-womens-boxy-tee")!.summary).toBe(hot.summary);
+  });
+
+  it("women's Dipper rib tank: Women category, XS-XL, Powder (hero) / Orchid / White in navy, front then back flat, no models", () => {
+    const p = products.find((x) => x.id === WOMENS_TANK_ID)!;
+    expect(p.title).toBe("Santa Cruz Dipper Women's Rib Tank");
+    expect(p.category).toBe("women");
+    expect(p.shopListed).toBe(true);
+    expect(p.price).toBeNull();
+    expect(p.sizes).toEqual(["XS", "S", "M", "L", "XL"]);
+    expect(p.heroColorway).toBe("powder-navy");
+    expect(p.colorways.map((c) => c.name)).toEqual(["Powder / Navy", "Orchid / Navy", "White / Navy"]);
+    expect(p.summary).toMatch(/slim/);
+    expect(p.summary).toMatch(/organic cotton rib/);
+    const has = (x: string) => assets.some((a) => a.id === x);
+    const views = resolveViews(p.colorways, p.heroColorway, has, p.category);
+    p.colorways.forEach((c, i) => {
+      expect(c.models).toBeUndefined();
+      expect(c.blankBackAssetId).toBeUndefined();
+      expect(views[i].map((v) => [v.kind, v.assetId])).toEqual([["front", `${WOMENS_TANK_ID}-${c.slug}`], ["back", `${WOMENS_TANK_ID}-${c.slug}-back`]]);
+    });
   });
 
   it("Dipper Tank uses the Reflection copy", () => {

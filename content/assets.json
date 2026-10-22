@@ -22754,5 +22754,425 @@
     "poster": [],
     "lqip": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAADQAQCdASoQABAAA4BaJZwAApQDKVI3AAD+9hOCXVAkT65LxMIzX4VlNc4hR9ubrtthJtVhzv2UbGMS2RjBGK0Si5/zxY0hfgUaq2rVocAAAA==",
     "dominantColor": "#f8e8e8"
+  },
+  {
+    "id": "merch-santa-cruz-dipper-womens-rib-tank-powder-navy",
+    "title": "Santa Cruz Dipper Women's Rib Tank (Powder / Navy)",
+    "artist": null,
+    "artistInferred": false,
+    "project": null,
+    "source": "owner-upload",
+    "license": "owned",
+    "publishApproved": true,
+    "alt": "Santa Cruz Dipper Women's Rib Tank in Powder / Navy",
+    "tags": [
+      "merch",
+      "apparel",
+      "front"
+    ],
+    "collaborators": [],
+    "artists": [],
+    "featured": false,
+    "type": "merch-design",
+    "width": 2000,
+    "height": 2000,
+    "orientation": "square",
+    "previews": [
+      {
+        "format": "webp",
+        "width": 160,
+        "height": 160,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/powder-navy-160.webp"
+      },
+      {
+        "format": "avif",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/powder-navy-480.avif"
+      },
+      {
+        "format": "webp",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/powder-navy-480.webp"
+      },
+      {
+        "format": "avif",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/powder-navy-960.avif"
+      },
+      {
+        "format": "webp",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/powder-navy-960.webp"
+      },
+      {
+        "format": "avif",
+        "width": 1500,
+        "height": 1500,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/powder-navy-1500.avif"
+      },
+      {
+        "format": "webp",
+        "width": 1500,
+        "height": 1500,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/powder-navy-1500.webp"
+      }
+    ],
+    "poster": [],
+    "lqip": "data:image/webp;base64,UklGRj4AAABXRUJQVlA4IDIAAAAwAQCdASoQABAAA4BaJZwAA3AA/vF4//Cb9Hx39ore7uv+fyaLtXO0XESLWF3V/gAAAA==",
+    "dominantColor": "#f8e8e8"
+  },
+  {
+    "id": "merch-santa-cruz-dipper-womens-rib-tank-powder-navy-back",
+    "title": "Santa Cruz Dipper Women's Rib Tank (Powder / Navy) (back)",
+    "artist": null,
+    "artistInferred": false,
+    "project": null,
+    "source": "owner-upload",
+    "license": "owned",
+    "publishApproved": true,
+    "alt": "Santa Cruz Dipper Women's Rib Tank in Powder / Navy (back)",
+    "tags": [
+      "merch",
+      "apparel",
+      "back"
+    ],
+    "collaborators": [],
+    "artists": [],
+    "featured": false,
+    "type": "merch-design",
+    "width": 2000,
+    "height": 2000,
+    "orientation": "square",
+    "previews": [
+      {
+        "format": "webp",
+        "width": 160,
+        "height": 160,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/powder-navy-back-160.webp"
+      },
+      {
+        "format": "avif",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/powder-navy-back-480.avif"
+      },
+      {
+        "format": "webp",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/powder-navy-back-480.webp"
+      },
+      {
+        "format": "avif",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/powder-navy-back-960.avif"
+      },
+      {
+        "format": "webp",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/powder-navy-back-960.webp"
+      },
+      {
+        "format": "avif",
+        "width": 1500,
+        "height": 1500,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/powder-navy-back-1500.avif"
+      },
+      {
+        "format": "webp",
+        "width": 1500,
+        "height": 1500,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/powder-navy-back-1500.webp"
+      }
+    ],
+    "poster": [],
+    "lqip": "data:image/webp;base64,UklGRjgAAABXRUJQVlA4ICwAAAAwAQCdASoQABAAA4BaJZwAA3AA/vF4/+5+9tIX6Ou93bsUfd3uQ78Lur/AAA==",
+    "dominantColor": "#f8e8e8"
+  },
+  {
+    "id": "merch-santa-cruz-dipper-womens-rib-tank-orchid-navy",
+    "title": "Santa Cruz Dipper Women's Rib Tank (Orchid / Navy)",
+    "artist": null,
+    "artistInferred": false,
+    "project": null,
+    "source": "owner-upload",
+    "license": "owned",
+    "publishApproved": true,
+    "alt": "Santa Cruz Dipper Women's Rib Tank in Orchid / Navy",
+    "tags": [
+      "merch",
+      "apparel",
+      "front"
+    ],
+    "collaborators": [],
+    "artists": [],
+    "featured": false,
+    "type": "merch-design",
+    "width": 2000,
+    "height": 2000,
+    "orientation": "square",
+    "previews": [
+      {
+        "format": "webp",
+        "width": 160,
+        "height": 160,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/orchid-navy-160.webp"
+      },
+      {
+        "format": "avif",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/orchid-navy-480.avif"
+      },
+      {
+        "format": "webp",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/orchid-navy-480.webp"
+      },
+      {
+        "format": "avif",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/orchid-navy-960.avif"
+      },
+      {
+        "format": "webp",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/orchid-navy-960.webp"
+      },
+      {
+        "format": "avif",
+        "width": 1500,
+        "height": 1500,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/orchid-navy-1500.avif"
+      },
+      {
+        "format": "webp",
+        "width": 1500,
+        "height": 1500,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/orchid-navy-1500.webp"
+      }
+    ],
+    "poster": [],
+    "lqip": "data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAABwAQCdASoQABAAA4BaJZwC7AGIQAD+8Xj/8Jv0fHf2iqWy4NXfMZvwzB/dfwZkwAA=",
+    "dominantColor": "#f8e8e8"
+  },
+  {
+    "id": "merch-santa-cruz-dipper-womens-rib-tank-orchid-navy-back",
+    "title": "Santa Cruz Dipper Women's Rib Tank (Orchid / Navy) (back)",
+    "artist": null,
+    "artistInferred": false,
+    "project": null,
+    "source": "owner-upload",
+    "license": "owned",
+    "publishApproved": true,
+    "alt": "Santa Cruz Dipper Women's Rib Tank in Orchid / Navy (back)",
+    "tags": [
+      "merch",
+      "apparel",
+      "back"
+    ],
+    "collaborators": [],
+    "artists": [],
+    "featured": false,
+    "type": "merch-design",
+    "width": 2000,
+    "height": 2000,
+    "orientation": "square",
+    "previews": [
+      {
+        "format": "webp",
+        "width": 160,
+        "height": 160,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/orchid-navy-back-160.webp"
+      },
+      {
+        "format": "avif",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/orchid-navy-back-480.avif"
+      },
+      {
+        "format": "webp",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/orchid-navy-back-480.webp"
+      },
+      {
+        "format": "avif",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/orchid-navy-back-960.avif"
+      },
+      {
+        "format": "webp",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/orchid-navy-back-960.webp"
+      },
+      {
+        "format": "avif",
+        "width": 1500,
+        "height": 1500,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/orchid-navy-back-1500.avif"
+      },
+      {
+        "format": "webp",
+        "width": 1500,
+        "height": 1500,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/orchid-navy-back-1500.webp"
+      }
+    ],
+    "poster": [],
+    "lqip": "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAABwAQCdASoQABAAA4BaJZwC7AGIQAD+8b//7n7wu1/VNxvaTaOEItha73MtAAAA",
+    "dominantColor": "#f8e8e8"
+  },
+  {
+    "id": "merch-santa-cruz-dipper-womens-rib-tank-white-navy",
+    "title": "Santa Cruz Dipper Women's Rib Tank (White / Navy)",
+    "artist": null,
+    "artistInferred": false,
+    "project": null,
+    "source": "owner-upload",
+    "license": "owned",
+    "publishApproved": true,
+    "alt": "Santa Cruz Dipper Women's Rib Tank in White / Navy",
+    "tags": [
+      "merch",
+      "apparel",
+      "front"
+    ],
+    "collaborators": [],
+    "artists": [],
+    "featured": false,
+    "type": "merch-design",
+    "width": 2000,
+    "height": 2000,
+    "orientation": "square",
+    "previews": [
+      {
+        "format": "webp",
+        "width": 160,
+        "height": 160,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/white-navy-160.webp"
+      },
+      {
+        "format": "avif",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/white-navy-480.avif"
+      },
+      {
+        "format": "webp",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/white-navy-480.webp"
+      },
+      {
+        "format": "avif",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/white-navy-960.avif"
+      },
+      {
+        "format": "webp",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/white-navy-960.webp"
+      },
+      {
+        "format": "avif",
+        "width": 1500,
+        "height": 1500,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/white-navy-1500.avif"
+      },
+      {
+        "format": "webp",
+        "width": 1500,
+        "height": 1500,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/white-navy-1500.webp"
+      }
+    ],
+    "poster": [],
+    "lqip": "data:image/webp;base64,UklGRjAAAABXRUJQVlA4ICQAAABQAQCdASoQABAAA4BaJZwABDOAAP7zEcgEXM72KDz+mfxVtgA=",
+    "dominantColor": "#f8e8e8"
+  },
+  {
+    "id": "merch-santa-cruz-dipper-womens-rib-tank-white-navy-back",
+    "title": "Santa Cruz Dipper Women's Rib Tank (White / Navy) (back)",
+    "artist": null,
+    "artistInferred": false,
+    "project": null,
+    "source": "owner-upload",
+    "license": "owned",
+    "publishApproved": true,
+    "alt": "Santa Cruz Dipper Women's Rib Tank in White / Navy (back)",
+    "tags": [
+      "merch",
+      "apparel",
+      "back"
+    ],
+    "collaborators": [],
+    "artists": [],
+    "featured": false,
+    "type": "merch-design",
+    "width": 2000,
+    "height": 2000,
+    "orientation": "square",
+    "previews": [
+      {
+        "format": "webp",
+        "width": 160,
+        "height": 160,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/white-navy-back-160.webp"
+      },
+      {
+        "format": "avif",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/white-navy-back-480.avif"
+      },
+      {
+        "format": "webp",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/white-navy-back-480.webp"
+      },
+      {
+        "format": "avif",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/white-navy-back-960.avif"
+      },
+      {
+        "format": "webp",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/white-navy-back-960.webp"
+      },
+      {
+        "format": "avif",
+        "width": 1500,
+        "height": 1500,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/white-navy-back-1500.avif"
+      },
+      {
+        "format": "webp",
+        "width": 1500,
+        "height": 1500,
+        "src": "/media/merch-santa-cruz-dipper-womens-rib-tank/white-navy-back-1500.webp"
+      }
+    ],
+    "poster": [],
+    "lqip": "data:image/webp;base64,UklGRiwAAABXRUJQVlA4ICAAAABQAQCdASoQABAAA4BaJZwABDOAAP7zE29pZSf9D4AAAA==",
+    "dominantColor": "#f8e8e8"
   }
 ]

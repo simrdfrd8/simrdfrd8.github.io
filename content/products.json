@@ -1313,6 +1313,67 @@
     "_note": "Comfort Colors 3023CL Women's Boxy Tee at Apliiq (transfer print). Sizes per Apliiq stock table S-2XL (2XL +$2.50). Model slots empty until the cast is approved. Flats are concept renders (no photo of the real blank yet)."
   },
   {
+    "id": "merch-santa-cruz-dipper-womens-rib-tank",
+    "title": "Santa Cruz Dipper Women's Rib Tank",
+    "assetId": "merch-santa-cruz-dipper-womens-rib-tank-powder-navy",
+    "artist": null,
+    "brand": null,
+    "type": "merch",
+    "price": null,
+    "currency": "USD",
+    "payWhatYouWant": false,
+    "priceApproved": false,
+    "status": "upcoming",
+    "category": "women",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "checkoutProvider": "none",
+    "checkoutUrl": null,
+    "licenseTerms": null,
+    "summary": "The Giant Dipper in one tidy line drawing, with Santa Cruz underneath and an honest review of every coaster and most weeks on the back. Cut slim in a heavyweight organic cotton rib with a little stretch.",
+    "includes": [],
+    "inquireOnly": true,
+    "galleryAssetIds": [],
+    "featured": false,
+    "order": 79,
+    "listed": true,
+    "shopListed": true,
+    "colorways": [
+      {
+        "name": "Powder / Navy",
+        "slug": "powder-navy",
+        "swatch": "#CBD2EB",
+        "ink": "#1E2C4A",
+        "assetId": "merch-santa-cruz-dipper-womens-rib-tank-powder-navy",
+        "backAssetId": "merch-santa-cruz-dipper-womens-rib-tank-powder-navy-back"
+      },
+      {
+        "name": "Orchid / Navy",
+        "slug": "orchid-navy",
+        "swatch": "#E0CCE7",
+        "ink": "#1E2C4A",
+        "assetId": "merch-santa-cruz-dipper-womens-rib-tank-orchid-navy",
+        "backAssetId": "merch-santa-cruz-dipper-womens-rib-tank-orchid-navy-back"
+      },
+      {
+        "name": "White / Navy",
+        "slug": "white-navy",
+        "swatch": "#F7F6F2",
+        "ink": "#1E2C4A",
+        "assetId": "merch-santa-cruz-dipper-womens-rib-tank-white-navy",
+        "backAssetId": "merch-santa-cruz-dipper-womens-rib-tank-white-navy-back"
+      }
+    ],
+    "lifestyleAssetIds": [],
+    "heroColorway": "powder-navy",
+    "_note": "AS Colour 4063G Wo's Organic Rib Tank (transfer print), owner pick 2026-10-22: Powder, Orchid, White. Sizes XS-XL. No models. Front print is a placeholder (the Dipper front scaled to the 8in print box) until the bolder 8in front is ready. Flats are concept renders reshaped from a photo of the blank."
+  },
+  {
     "id": "merch-santa-cruz-redwoods-tank",
     "title": "Santa Cruz Redwoods Tank",
     "assetId": "merch-santa-cruz-redwoods-tank-light-green-cream",
