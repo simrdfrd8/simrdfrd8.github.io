@@ -334,7 +334,7 @@ export function ArtistPage({ artist, intro }: { artist: Artist; intro?: React.Re
                 </p>
               )}
             </div>
-            <InquiryForm defaultType={artist.slug === "baylingual-entertainment" ? "service" : "booking"} who={artist.name} />
+            <InquiryForm defaultType={artist.slug === "baylingual-entertainment" ? "commission" : "booking"} who={artist.name} />
           </div>
         </Section>
       )}

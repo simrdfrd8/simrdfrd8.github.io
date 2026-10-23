@@ -1,7 +1,7 @@
 /** Contact is a plain mailto: link (the public site is a static export, so there is no form backend). */
 /** Customer-service address (spelled h-a-l-l-o on purpose): orders, support, licensing, bookings, business. */
 export const CONTACT_EMAIL = "hallo@flavorfulmusic.com";
-/** Production, mixing and artist mail (studio services, collabs) goes to Ricky directly. */
+/** Personal studio work (mixing, mastering, recording, production) and collabs go to Ricky directly. */
 export const STUDIO_EMAIL = "ricky@flavorfulmusic.com";
 
 export const INQUIRY_TYPES = ["booking", "business", "collab", "licensing", "commission", "service"] as const;
@@ -13,7 +13,7 @@ export const INQUIRY_LABELS: Record<InquiryType, string> = {
   collab: "Collab",
   licensing: "Licensing",
   commission: "Commission",
-  service: "Studio service",
+  service: "Mixing / recording",
 };
 
 const SUBJECTS: Record<InquiryType, string> = {
@@ -22,7 +22,7 @@ const SUBJECTS: Record<InquiryType, string> = {
   collab: "Collab idea",
   licensing: "License request",
   commission: "Commission inquiry",
-  service: "Studio service inquiry",
+  service: "Mixing / recording inquiry",
 };
 
 /** Which inbox each topic opens a new email to. */

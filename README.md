@@ -28,7 +28,7 @@ NEXT_PUBLIC_MEDIA_BASE=https://media.flavorfulmusic.com npm run build   # static
 - **Lossless masters** (`.wav`, `.aif`, `.aiff`, `.flac`) are delivered only by the checkout provider after purchase.
   They are never committed or served: `scripts/check-no-wav.mjs` runs before every build and in the unit tests,
   and the Pages workflow fails if one appears.
-- Contact is a `mailto:` link with a prefilled subject per inquiry type: hallo@flavorfulmusic.com (customer service) for most topics, ricky@flavorfulmusic.com for studio services and collabs (`src/lib/inquiry.ts`).
+- Contact is a `mailto:` link with a prefilled subject per inquiry type: hallo@flavorfulmusic.com (customer service) for most topics, ricky@flavorfulmusic.com for personal studio work (mixing / recording, i.e. mixing, mastering, recording, production, sound design) and collabs (`src/lib/inquiry.ts`; visual services in `content/services.json` use the `commission` topic so they go to hallo@).
 - Checkout is off: every buy button reads "Coming soon" and nothing links to a checkout provider. To switch it on,
   give each beat a `payhipUrl` (public `payhip.com/b/…` product page) in `content/beats.json` and build with
   `NEXT_PUBLIC_CHECKOUT_LIVE=1`; the MP3 and WAV lease buttons then open that Payhip product. Stems and Exclusive

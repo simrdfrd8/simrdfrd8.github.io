@@ -78,7 +78,8 @@
       "Shoot + edit",
       "Vertical cutdowns"
     ],
-    "startingAt": "Quoted per project"
+    "startingAt": "Quoted per project",
+    "inquiryType": "commission"
   },
   {
     "slug": "animation",
@@ -89,7 +90,8 @@
       "Animated video",
       "Loopable visualiser"
     ],
-    "startingAt": "Quoted per project"
+    "startingAt": "Quoted per project",
+    "inquiryType": "commission"
   },
   {
     "slug": "design",
@@ -100,7 +102,8 @@
       "Cover art",
       "Social kit"
     ],
-    "startingAt": "Quoted per project"
+    "startingAt": "Quoted per project",
+    "inquiryType": "commission"
   },
   {
     "slug": "photography",
@@ -110,7 +113,8 @@
     "deliverables": [
       "Edited selects"
     ],
-    "startingAt": "Quoted per session"
+    "startingAt": "Quoted per session",
+    "inquiryType": "commission"
   },
   {
     "slug": "commissions",

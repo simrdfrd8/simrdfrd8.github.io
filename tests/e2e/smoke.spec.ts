@@ -458,6 +458,16 @@ test("contact is a mailto link with a prefilled subject per inquiry type", async
   for (const t of ["service", "collab"]) expect((await page.locator(`[data-inquiry-type="${t}"]`).getAttribute("href"))!.startsWith("mailto:ricky@flavorfulmusic.com?subject=")).toBe(true);
 });
 
+test("only Mixing / recording and Collab open ricky@; every artist page defaults to a hallo@ topic", async ({ page }) => {
+  for (const route of ["/artists/baylingual-entertainment/", "/artists/ookie/"]) {
+    await page.goto(route);
+    await expect(page.locator("[data-inquiry-email]")).toHaveText("hallo@flavorfulmusic.com");
+    expect((await page.locator("[data-inquiry-primary]").getAttribute("href"))!.startsWith("mailto:hallo@flavorfulmusic.com?subject=")).toBe(true);
+    const ricky = await page.locator('a[href^="mailto:ricky@"]').evaluateAll((as) => as.map((a) => a.getAttribute("data-inquiry-type")));
+    expect(ricky.sort()).toEqual(["collab", "service"]);
+  }
+});
+
 test("beat audio loads from the external media base, never from the site", async ({ page }) => {
   await page.goto("/music/");
   await page.locator("#buy-beats [data-beat-card=deserts] [data-row-play]").click();
