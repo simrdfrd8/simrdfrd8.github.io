@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import clsx from "clsx";
-import { CONTACT_EMAIL, INQUIRY_LABELS, INQUIRY_TYPES, inquiryMailto, isInquiryType, type InquiryType } from "@/lib/inquiry";
+import { INQUIRY_EMAILS, INQUIRY_LABELS, INQUIRY_TYPES, inquiryMailto, isInquiryType, type InquiryType } from "@/lib/inquiry";
 import { buttonClass } from "./ui";
 import { track } from "@/lib/analytics";
 
@@ -39,7 +39,7 @@ export function InquiryForm({ defaultType = "booking", who, compact }: { default
         ))}
       </div>
       <p className="text-cream-dim">
-        Each topic opens a new email to <span className="text-cream">{CONTACT_EMAIL}</span> with the subject filled in. Tell us who it&apos;s for, dates, a rough budget and what you have in mind.
+        This opens a new email to <span className="text-cream" data-inquiry-email>{INQUIRY_EMAILS[type]}</span> with the subject filled in. Tell us who it&apos;s for, dates, a rough budget and what you have in mind.
       </p>
       <div>
         <a href={inquiryMailto(type, { who, ref })} className={buttonClass("accent", "lg")} onClick={() => track("inquiry_click", { type })} data-inquiry-primary>

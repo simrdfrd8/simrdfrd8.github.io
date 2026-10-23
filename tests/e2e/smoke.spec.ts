@@ -453,7 +453,9 @@ test("contact is a mailto link with a prefilled subject per inquiry type", async
   expect(decodeURIComponent((await page.locator('[data-inquiry-type="booking"]').getAttribute("href"))!.split("subject=")[1])).toBe("Booking inquiry");
   expect(await page.locator("form").count()).toBe(0);
   const mails = await page.locator('a[href^="mailto:"]').evaluateAll((as) => as.map((a) => a.getAttribute("href")!.split("?")[0]));
-  expect(new Set(mails)).toEqual(new Set(["mailto:hallo@flavorfulmusic.com"]));
+  expect(new Set(mails)).toEqual(new Set(["mailto:hallo@flavorfulmusic.com", "mailto:ricky@flavorfulmusic.com"]));
+  await expect(page.locator("[data-inquiry-email]")).toHaveText("hallo@flavorfulmusic.com");
+  for (const t of ["service", "collab"]) expect((await page.locator(`[data-inquiry-type="${t}"]`).getAttribute("href"))!.startsWith("mailto:ricky@flavorfulmusic.com?subject=")).toBe(true);
 });
 
 test("beat audio loads from the external media base, never from the site", async ({ page }) => {
