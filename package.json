@@ -13,7 +13,7 @@
     "test:e2e": "playwright test",
     "check:masters": "node scripts/check-no-wav.mjs",
     "stage:r2": "node scripts/stage-r2.mjs",
-    "postbuild": "node scripts/prune-admin-only-media.mjs"
+    "postbuild": "node scripts/prune-admin-only-media.mjs && node scripts/check-beats-public.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",
