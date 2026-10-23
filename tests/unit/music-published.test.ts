@@ -4,7 +4,7 @@ import songs from "@content/songs.json";
 import releases from "@content/releases.json";
 import templates from "@content/product-templates.json";
 import snapJson from "@content/music-published.json";
-import { applyBeatFilter, publishedReleaseIds, publishedSongIds, songBuyable, type PublishedMusic } from "@/lib/music-visibility";
+import { applyBeatFilter, publishedReleaseIds, publishedSongIds, songBuyable, songsArtistOrder, type PublishedMusic } from "@/lib/music-visibility";
 import { checkMusicSnapshot, privateBeatNeedles } from "../../scripts/check-beats-public.mjs";
 
 const snap = snapJson as unknown as PublishedMusic;
@@ -41,5 +41,12 @@ describe("published music snapshot (content/music-published.json)", () => {
     const needles = privateBeatNeedles(snap, beats);
     expect(needles.some((n: { beat: string; needle: string }) => n.needle === "media/beat-name-of-water/")).toBe(true);
     expect(needles.some((n: { beat: string; needle: string }) => n.beat === "deserts")).toBe(false);
+  });
+});
+
+describe("Songs page artist order", () => {
+  it("puts Flavorful Croissants, 720M, Dan Perales first, then the rest in roster order", () => {
+    const roster = ["720m", "dan-perales", "andrew-bigs", "not-daf", "flavorful-croissants", "baylingual-entertainment"].map((slug) => ({ slug }));
+    expect(songsArtistOrder(roster).map((a) => a.slug)).toEqual(["flavorful-croissants", "720m", "dan-perales", "andrew-bigs", "not-daf", "baylingual-entertainment"]);
   });
 });

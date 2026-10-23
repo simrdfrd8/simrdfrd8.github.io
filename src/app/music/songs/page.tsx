@@ -5,7 +5,7 @@ import { PageHeader } from "@/components/PageHeader";
 import { SongList, songsFor } from "@/components/SongList";
 import { SpotifyEmbed } from "@/components/SpotifyEmbed";
 import { ButtonLink, Section } from "@/components/ui";
-import { publishedReleaseIds, publishedSongIds, songBuyable } from "@/lib/music-visibility";
+import { publishedReleaseIds, publishedSongIds, songBuyable, songsArtistOrder } from "@/lib/music-visibility";
 
 export const metadata: Metadata = {
   title: "Songs",
@@ -24,8 +24,8 @@ export default function SongsPage() {
   const releases = getReleases().filter((r) => relIds.has(r.id));
   const sc = catalog.site.socials.find((s) => s.platform === "soundcloud")?.url;
   const scArtists = new Set(catalog.soundcloud.flatMap((t) => [t.artist, ...(t.artists ?? [])]));
-  // artist order: the roster order, only artists with something to play here
-  const artists = catalog.artists.filter((a) => songsFor(a.slug).some((s) => songIds.has(s.id)) || releases.some((r) => r.artist === a.slug));
+  // artist order (Ricky, Oct 23): Flavorful Croissants, 720M, Dan Perales, then the rest in roster order; only artists with something to play here
+  const artists = songsArtistOrder(catalog.artists).filter((a) => songsFor(a.slug).some((s) => songIds.has(s.id)) || releases.some((r) => r.artist === a.slug));
 
   return (
     <>

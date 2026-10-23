@@ -29,3 +29,13 @@ export const publishedSongIds = (src: PublishedMusic = publishedMusic) => new Se
 export const publishedReleaseIds = (src: PublishedMusic = publishedMusic) => new Set(src.albums.map((a) => a.id));
 /** Songs can't be bought until music rights are cleared; the snapshot says so per item (false for all today). */
 export const songBuyable = (id: string, src: PublishedMusic = publishedMusic) => src.songs.some((s) => s.id === id && s.buy) || src.albums.some((a) => a.id === id && a.buy);
+
+/** Songs page artist order (Ricky, Oct 23, 2026): Flavorful Croissants, 720M, Dan Perales first, then everyone else in roster order. */
+export const SONGS_ARTISTS_FIRST = ["flavorful-croissants", "720m", "dan-perales"] as const;
+export function songsArtistOrder<T extends { slug: string }>(artists: T[]): T[] {
+  const rank = (slug: string) => {
+    const i = (SONGS_ARTISTS_FIRST as readonly string[]).indexOf(slug);
+    return i === -1 ? SONGS_ARTISTS_FIRST.length : i;
+  };
+  return artists.map((a, i) => ({ a, i })).sort((x, y) => rank(x.a.slug) - rank(y.a.slug) || x.i - y.i).map((x) => x.a);
+}
