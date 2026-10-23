@@ -6,11 +6,12 @@ import { listedArtists, CATEGORIES } from "@/lib/catalog";
 import { isPreview } from "@/lib/env";
 import { BrandFilm, type FilmSource } from "@/components/BrandFilm";
 import { CategoryFold } from "@/components/CategoryFold";
+import { SurfMapZoom } from "@/components/SurfMapZoom";
 import film from "../../content/film.json";
 
 /**
  * Landing page, kept extremely simple: mark + one line, three plain categories that fold open to their artists,
- * one path to merch and beats (Merch first, matching the nav), and a Films placeholder (poster only; the brand film is not final).
+ * one path to merch and beats (Merch first, matching the nav), the zoomable San Diego surf map (right after Merch, before the film), and the brand film.
  */
 const ROLE: Record<string, string> = { "hip-hop": "Rapper", edm: "DJ", production: "Producer" };
 
@@ -104,6 +105,17 @@ export default function Home() {
             </span>
             <span aria-hidden="true" className="text-2xl text-[var(--shade-text)] transition-transform group-hover:translate-x-1">→</span>
           </Link>
+        </div>
+      </section>
+
+      <section id="surf-map" aria-labelledby="surf-map-title" className="px-5 pb-20 sm:px-8" data-home-surf-map>
+        <div className="mx-auto grid max-w-[1120px] items-center gap-8 md:grid-cols-[1fr_420px] md:gap-10">
+          <div className="text-center md:text-left">
+            <p className="text-xs font-bold tracking-[2px] text-muted uppercase">Map</p>
+            <h2 id="surf-map-title" className="brand-h mt-3 text-[clamp(2rem,6vw,44px)] tracking-[2px]">San Diego surf map</h2>
+            <p className="mt-4 text-cream-dim">Tap or click the map, then pinch or scroll to zoom in and look around.</p>
+          </div>
+          <SurfMapZoom alt="Illustrated map of the San Diego coastline and its surf spots" />
         </div>
       </section>
 
