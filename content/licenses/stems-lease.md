@@ -7,7 +7,7 @@
 - **Files:** One untagged WAV of the Beat plus the individual track stems
 
 ## 1. Parties and start date
-This agreement is between Baylingue LLC, doing business as Flavorful Music (flavorfulmusic.com, ricky@flavorfulmusic.com) ("Licensor"), and the person whose name and email address are entered at checkout ("Licensee"). The license starts when payment is completed through Licensor's online store (the "Effective Date"). It is personal to Licensee and tied to the name and email address on the order. The order receipt forms part of this agreement.
+This agreement is between Baylingue LLC, doing business as Flavorful Music (flavorfulmusic.com, hallo@flavorfulmusic.com) ("Licensor"), and the person whose name and email address are entered at checkout ("Licensee"). The license starts when payment is completed through Licensor's online store (the "Effective Date"). It is personal to Licensee and tied to the name and email address on the order. The order receipt forms part of this agreement.
 
 ## 2. Definitions
 - **Beat:** the instrumental musical composition and sound recording identified in the order, produced by Flavorful Croissants ("Producer").
@@ -68,7 +68,7 @@ Licensor confirms that it has the right to grant this license. Otherwise, the Be
 ## 13. General
 - **Acceptance.** Completing checkout means Licensee has read and agreed to this agreement. Electronic acceptance and records are binding.
 - **Governing law and venue.** This agreement is governed by the laws of the State of California. Any dispute will be brought only in the state or federal courts located in San Diego County, California, and both parties consent to that venue.
-- **Notices.** Notices to Licensor go to ricky@flavorfulmusic.com. Notices to Licensee go to the email address used at checkout.
+- **Notices.** Notices to Licensor go to hallo@flavorfulmusic.com. Notices to Licensee go to the email address used at checkout.
 - **Assignment.** Licensor may assign this agreement. Licensee may not assign it without Licensor's written consent.
 - **Entire agreement.** This agreement and the order receipt are the entire agreement about the Beat and replace any prior discussions. Changes must be in writing (email is enough) and agreed by Licensor.
 - **Severability.** If any part of this agreement is unenforceable, the rest stays in effect.

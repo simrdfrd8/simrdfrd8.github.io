@@ -3,8 +3,8 @@ import { CONTACT_EMAIL, INQUIRY_TYPES, inquiryMailto, isInquiryType } from "@/li
 
 describe("mailto inquiries", () => {
   it("goes to the one public address", () => {
-    expect(CONTACT_EMAIL).toBe("ricky@flavorfulmusic.com");
-    for (const t of INQUIRY_TYPES) expect(inquiryMailto(t).startsWith("mailto:ricky@flavorfulmusic.com?subject=")).toBe(true);
+    expect(CONTACT_EMAIL).toBe("hallo@flavorfulmusic.com");
+    for (const t of INQUIRY_TYPES) expect(inquiryMailto(t).startsWith("mailto:hallo@flavorfulmusic.com?subject=")).toBe(true);
   });
   it("prefills a subject per type, with optional artist and reference", () => {
     expect(decodeURIComponent(inquiryMailto("booking").split("subject=")[1])).toBe("Booking inquiry");

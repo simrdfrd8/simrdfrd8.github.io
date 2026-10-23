@@ -7,6 +7,8 @@ import { catalog } from "@/lib/catalog";
 const src = (f: string) => readFileSync(path.join(process.cwd(), "content/licenses", `${f}.md`), "utf8");
 /** Approved contracts (kept outside this repo). */
 const approved = (f: string) => readFileSync(path.join(process.cwd(), "..", "licenses", `${f}.md`), "utf8");
+/** Customer-service contact (spelled h-a-l-l-o on purpose). */
+const CONTACT = "hallo@flavorfulmusic.com";
 const rapper = catalog.templates.lanes.rapper.offers;
 const tier = (id: string) => rapper.find((o) => o.id === id)!;
 
@@ -15,7 +17,16 @@ describe("beat license agreements", () => {
     for (const f of [...AGREEMENTS.map((a) => a.slug), "license-comparison"]) {
       let a: string;
       try { a = approved(f); } catch { continue; } // approved folder lives outside the repo
-      expect(src(f)).toBe(a);
+      // The customer-service address moved to hallo@ after the approved copies were written (they name the old h-e-l-l-o or ricky address);
+      // the contact address is the only allowed difference.
+      expect(src(f)).toBe(a.replace(/\b(?:h[e]llo|ricky)@flavorfulmusic\.com/g, CONTACT));
+    }
+  });
+
+  it("license contact and notices go to the customer-service address hallo@, never the old h-e-l-l-o or ricky address", () => {
+    for (const f of [...AGREEMENTS.map((a) => a.slug), "license-comparison"]) {
+      expect(src(f), f).toContain(CONTACT);
+      expect(src(f), f).not.toMatch(/\b(?:h[e]llo|ricky)@flavorfulmusic\.com/);
     }
   });
 

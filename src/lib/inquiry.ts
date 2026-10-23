@@ -1,5 +1,5 @@
 /** Contact is a plain mailto: link (the public site is a static export, so there is no form backend). */
-export const CONTACT_EMAIL = "ricky@flavorfulmusic.com";
+export const CONTACT_EMAIL = "hallo@flavorfulmusic.com";
 
 export const INQUIRY_TYPES = ["booking", "business", "collab", "licensing", "commission", "service"] as const;
 export type InquiryType = (typeof INQUIRY_TYPES)[number];
