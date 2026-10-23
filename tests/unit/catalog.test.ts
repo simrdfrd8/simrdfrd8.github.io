@@ -465,9 +465,10 @@ describe("merch final cast", () => {
     });
   });
 
-  it("Dipper Tank uses the Reflection copy", () => {
+  it("Dipper Tank uses the Reflection copy (ca beside the hills, Oct 23)", () => {
     const d = products.find((p) => p.id === "merch-santa-cruz-dipper-tank")!;
-    expect(d.summary).toContain("hiding in the water below");
+    expect(d.summary).toContain("a tiny ca tucked in beside the hills, for anyone who looks twice");
+    expect(d.summary).not.toContain("hiding in the water below");
     expect(d.summary).not.toContain("built into the woodwork");
   });
 });
