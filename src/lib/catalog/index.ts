@@ -38,6 +38,7 @@ import { isPreview } from "@/lib/env";
 import { getSiteMode } from "../env";
 import { isAssetVisible, sortByOrder, visibleProducts, visibleReleases, visibleTracks } from "./filters";
 import { isPubliclyVisible, withPublicSetListing, withPublishedColorways } from "../merch-visibility";
+import { applyBeatFilter } from "../music-visibility";
 
 export * from "./schema";
 export * from "./filters";
@@ -67,9 +68,12 @@ export const catalog = {
   beats: parse("beats", BeatsFile, beatsJson),
 };
 
-/** Real beats for sale. Production builds show only publishApproved ones. */
+/**
+ * Real beats for sale. Production builds show only publishApproved ones. With BEATS_PUBLIC_SET=1 only the beats in the
+ * published music snapshot (content/music-published.json), in its order; off by default (all beats, featured first).
+ */
 export const getBeats = (audience?: Beat["audience"]) =>
-  catalog.beats.filter((b) => b.status !== "draft" && (isPreview() || b.publishApproved) && (!audience || b.audience === audience)).sort((a, b) => Number(b.featured) - Number(a.featured) || a.order - b.order);
+  applyBeatFilter(catalog.beats.filter((b) => b.status !== "draft" && (isPreview() || b.publishApproved) && (!audience || b.audience === audience)).sort((a, b) => Number(b.featured) - Number(a.featured) || a.order - b.order));
 
 export const getCollection = (id: string) => catalog.collections.collections.find((c) => c.id === id);
 /** Tracks tagged with a collection, in the song order from collections.json. */

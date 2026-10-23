@@ -15,14 +15,14 @@ const credit = (s: Song) => {
 };
 
 /** Released, self-hosted full-length songs on the shared list + global player. No autoplay. */
-export function songsFor(artist?: string): TrackRow[] {
+export function songsFor(artist?: string, only?: string[]): TrackRow[] {
   return (songs.songs as Song[])
-    .filter((s) => !artist || s.artist === artist)
+    .filter((s) => (!artist || s.artist === artist) && (!only || only.includes(s.id)))
     .map((s) => ({ id: s.id, title: s.title, src: mediaUrl(s.src), durationSec: s.durationSec, audience: "listener", subtitle: credit(s), badge: s.genre }));
 }
 
-export function SongList({ id, artist }: { id: string; artist?: string }) {
-  const rows = songsFor(artist);
+export function SongList({ id, artist, only }: { id: string; artist?: string; only?: string[] }) {
+  const rows = songsFor(artist, only);
   if (!rows.length) return null;
   return <TrackList id={id} tracks={rows} label="Songs" noun="songs" pageSize={50} />;
 }

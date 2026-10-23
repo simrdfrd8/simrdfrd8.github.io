@@ -36,6 +36,7 @@ jobs:
       NEXT_PUBLIC_MEDIA_BASE: ${{ vars.NEXT_PUBLIC_MEDIA_BASE }}
       NEXT_PUBLIC_SITE_URL: https://flavorfulmusic.com
       MERCH_PUBLIC_SET: "1" # public merch filter: admin-only products are pruned from the public build
+      BEATS_PUBLIC_SET: "1" # public beat filter: only the beats in content/music-published.json, in that order (postbuild leak check)
       # Checkout switch: unset or 0 = every buy button reads "Coming soon". See README before setting it to 1.
       NEXT_PUBLIC_CHECKOUT_LIVE: ${{ vars.NEXT_PUBLIC_CHECKOUT_LIVE }}
       NEXT_TELEMETRY_DISABLED: "1"

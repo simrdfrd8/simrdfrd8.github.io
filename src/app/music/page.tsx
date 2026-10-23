@@ -48,7 +48,7 @@ export default async function MusicPage() {
         Every song plays in full, free, right here. Press play and it keeps going while you browse.
       </PageHeader>
 
-      <Section id="songs" kicker="Full length · free" title="Songs">
+      <Section id="songs" kicker="Full length · free" title="Songs" action={<ButtonLink href="/music/songs" variant="secondary">Songs by artist</ButtonLink>}>
         <SongList id="music-songs" />
       </Section>
 
