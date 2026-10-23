@@ -15,7 +15,7 @@ export function BeatStore({ id = "beats" }: { id?: string }) {
     <div data-beat-store style={{ ["--tl-accent" as string]: "#FF7A59" }}>
       <TrackList id={id} tracks={rows} offerTemplate={tpl} search sort label="Beats" noun="beats" />
       <p className="mt-6 text-xs text-muted">
-        Every beat: {tpl.map((o) => `${o.title.replace("__title__: ", "")} ${o.priceLabel}`).join(" · ")}. BPM and key are shown only where they could be measured reliably.
+        Every beat: {tpl.map((o) => { const t = o.title.replace("__title__: ", ""); return `${t} ${o.priceLabel}${/^(Stems lease|Exclusive rights)$/.test(t) ? " (coming soon)" : ""}`; }).join(" · ")}. BPM and key are shown only where they could be measured reliably.
       </p>
     </div>
   );
