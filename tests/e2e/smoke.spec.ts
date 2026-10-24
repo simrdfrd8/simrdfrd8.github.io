@@ -250,7 +250,7 @@ test("site-wide footer: Make art with friends + Friends row", async ({ page }) =
     await page.goto(route);
     const footer = page.locator("footer[data-site-footer]");
     await expect(footer).toContainText("Make art with friends.");
-    await expect(footer.locator("[data-label-line]")).toHaveText("Flavorful Music is an independent record label, a DBA of Baylingue LLC, San Diego, CA. Contact: hallo@flavorfulmusic.com");
+    await expect(footer.locator("[data-label-line]")).toHaveText("Flavorful Music, a Baylingue LLC company. San Diego, CA. Contact: hallo@flavorfulmusic.com");
     const friends = footer.getByRole("navigation", { name: "Friends" });
     await expect(friends.locator(".fr-name")).toHaveText(["James Eagle"]);
     const ext = friends.locator("a.fr-link");
@@ -964,7 +964,7 @@ test("songs: the three 720M songs live on 720M's page, not Flavorful Croissants'
 
 test("contact page carries the plain label line (Spotify for Artists verification)", async ({ page }) => {
   await page.goto("/contact/");
-  await expect(page.locator("main [data-label-line] p").last()).toHaveText("Flavorful Music is an independent record label, a DBA of Baylingue LLC, San Diego, CA. Contact: hallo@flavorfulmusic.com");
+  await expect(page.locator("main [data-label-line] p").last()).toHaveText("Flavorful Music, a Baylingue LLC company. San Diego, CA. Contact: hallo@flavorfulmusic.com");
   await expect(page.locator("main [data-label-line] a")).toHaveAttribute("href", "mailto:hallo@flavorfulmusic.com");
   expect(await page.content()).not.toMatch(new RegExp(["band" + "zoogle", "zoogle" + "tools"].join("|"), "i")); // old hosting site
 });

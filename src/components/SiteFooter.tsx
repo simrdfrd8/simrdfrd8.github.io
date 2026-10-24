@@ -48,7 +48,7 @@ export function SiteFooter() {
       <div className="mx-auto mt-16 flex max-w-[1440px] flex-wrap justify-between gap-4 border-t border-line pt-6 text-sm text-muted">
         <div className="space-y-1">
           <p data-label-line>
-            Flavorful Music is an independent record label, a DBA of Baylingue LLC, San Diego, CA. Contact:{" "}
+            Flavorful Music, a Baylingue LLC company. San Diego, CA. Contact:{" "}
             <a href="mailto:hallo@flavorfulmusic.com" className="underline underline-offset-4 hover:text-cream">hallo@flavorfulmusic.com</a>
           </p>
           <p>
@@ -58,7 +58,7 @@ export function SiteFooter() {
             </Link>
             .
           </p>
-          <p>© 2026 Baylingue LLC. All rights reserved.</p>
+          <p>© 2026 Flavorful Music, a Baylingue LLC company. All rights reserved.</p>
         </div>
         {isPreview() && <p className="kicker self-end text-gold">Local preview build</p>}
       </div>

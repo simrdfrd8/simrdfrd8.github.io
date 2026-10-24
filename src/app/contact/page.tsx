@@ -24,7 +24,7 @@ export default function ContactPage() {
             <div data-label-line>
               <p className="kicker text-muted">The label</p>
               <p className="mt-1 text-cream-dim">
-                Flavorful Music is an independent record label, a DBA of Baylingue LLC, San Diego, CA. Contact:{" "}
+                Flavorful Music, a Baylingue LLC company. San Diego, CA. Contact:{" "}
                 <a href="mailto:hallo@flavorfulmusic.com" className="text-cream underline underline-offset-4">hallo@flavorfulmusic.com</a>
               </p>
             </div>
