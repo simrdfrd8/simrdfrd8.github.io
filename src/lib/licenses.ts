@@ -14,15 +14,39 @@ export const AGREEMENTS = [
 ] as const;
 export type AgreementSlug = (typeof AGREEMENTS)[number]["slug"];
 
-export const agreementPath = (slug: string) => `/licensing/${slug}`;
-export const agreementDownloadPath = (slug: string) => `/licensing/${slug}/agreement.md`;
-export const agreementFileName = (slug: string) => `flavorful-music-${slug}-agreement.md`;
+/**
+ * Global switch for ALL tiers: stays false while the Stems Lease and Exclusive Rights agreements are drafts.
+ * The MP3/WAV leases are final through FINAL_TERMS_SLUGS (Beat Lease License v1.0, approved 23 Oct 2026).
+ */
+export const LICENSE_TERMS_FINAL = false;
+
+/**
+ * MP3 and WAV leases are covered by one owner-approved document, the Flavorful Music Beat Lease License (v1.0),
+ * at /licensing/beat-lease with a PDF download. Stems Lease and Exclusive Rights are not on sale yet ("Coming soon")
+ * and keep their draft agreements behind the draft-terms notice.
+ */
+export const BEAT_LEASE = {
+  slug: "beat-lease",
+  path: "/licensing/beat-lease",
+  pdfPath: "/licensing/flavorful-music-beat-lease-license.pdf",
+  title: "Flavorful Music Beat Lease License",
+  version: "1.0",
+} as const;
+/** Tiers whose terms are final (the Beat Lease License). Everything else is still draft / coming soon. */
+export const FINAL_TERMS_SLUGS: readonly string[] = ["mp3-lease", "wav-lease"];
+export const isTermsFinal = (slug: string) => LICENSE_TERMS_FINAL || FINAL_TERMS_SLUGS.includes(slug);
+export const isComingSoon = (slug: string) => !isTermsFinal(slug);
+
+export const agreementPath = (slug: string) => (FINAL_TERMS_SLUGS.includes(slug) ? BEAT_LEASE.path : `/licensing/${slug}`);
+export const agreementDownloadPath = (slug: string) => (FINAL_TERMS_SLUGS.includes(slug) ? BEAT_LEASE.pdfPath : `/licensing/${slug}/agreement.md`);
+export const agreementFileName = (slug: string) => (FINAL_TERMS_SLUGS.includes(slug) ? "flavorful-music-beat-lease-license.pdf" : `flavorful-music-${slug}-agreement.md`);
 export const agreementForTier = (tierId?: string) => AGREEMENTS.find((a) => a.tierId === tierId);
 
 const DIR = path.join(process.cwd(), "content", "licenses");
 
 /** Raw Markdown with the internal leading DRAFT blockquote removed. */
 export function publicMarkdown(file: string): string {
+  if (FINAL_TERMS_SLUGS.includes(file)) return readFileSync(path.join(DIR, "beat-lease.md"), "utf8");
   const md = readFileSync(path.join(DIR, `${file}.md`), "utf8");
   return md.replace(/^(?:>[^\n]*\n)+\s*/, "");
 }
@@ -56,5 +80,11 @@ export function comparisonRestHtml(): string {
   return marked.parse(md, { async: false }) as string;
 }
 
-/** Flip to true once the owner approves the final legal wording; hides the draft-terms notice. */
-export const LICENSE_TERMS_FINAL = false;
+
+/** The approved Beat Lease License (content/licenses/beat-lease.md, no draft banner), without its H1. */
+export function beatLeaseMarkdown(): string {
+  return readFileSync(path.join(DIR, "beat-lease.md"), "utf8");
+}
+export function beatLeaseHtml(): string {
+  return marked.parse(beatLeaseMarkdown().replace(/^#\s+.+\n+/m, ""), { async: false }) as string;
+}

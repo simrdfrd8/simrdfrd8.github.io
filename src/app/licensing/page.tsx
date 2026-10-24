@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { catalog } from "@/lib/catalog";
-import { AGREEMENTS, agreementDownloadPath, agreementFileName, agreementPath, comparisonRestHtml, comparisonTable } from "@/lib/licenses";
+import { AGREEMENTS, BEAT_LEASE, agreementDownloadPath, agreementFileName, agreementPath, comparisonRestHtml, comparisonTable, isTermsFinal } from "@/lib/licenses";
 import { PageHeader } from "@/components/PageHeader";
 import { InquiryForm } from "@/components/InquiryForm";
 import { Section } from "@/components/ui";
@@ -31,7 +31,15 @@ export default function LicensingPage() {
       </PageHeader>
 
       <Section id="compare" kicker="Plain English" title="Beat license options">
-        <DraftTermsNotice />
+        <div className="mb-8 flex flex-col gap-2 rounded-3xl bg-raised p-6 ring-1 ring-line sm:flex-row sm:items-center sm:justify-between" data-beat-lease-callout>
+          <p className="text-[0.95rem]">
+            <span className="font-semibold">MP3 and WAV leases</span> are covered by the {BEAT_LEASE.title} (version {BEAT_LEASE.version}). Stems and Exclusive are coming soon.
+          </p>
+          <div className="flex shrink-0 gap-4 text-sm">
+            <Link href={BEAT_LEASE.path} className="font-semibold underline underline-offset-4 hover:text-cream">Read the license</Link>
+            <a href={BEAT_LEASE.pdfPath} download="flavorful-music-beat-lease-license.pdf" className="underline underline-offset-4 hover:text-cream" data-beat-lease-pdf>Download (PDF)</a>
+          </div>
+        </div>
         {/* Desktop / tablet: the full comparison table */}
         <div className="legal legal-scroll hidden md:block">
           <table aria-label="Beat license comparison" data-license-comparison>
@@ -60,6 +68,7 @@ export default function LicensingPage() {
           {AGREEMENTS.map((a, i) => (
             <li key={a.slug} className="flex flex-col gap-3 rounded-3xl bg-raised p-6 ring-1 ring-line" data-agreement-card={a.slug}>
               <p className="display text-3xl">{tiers[i] ?? a.name}</p>
+              {!isTermsFinal(a.slug) && <DraftTermsNotice slug={a.slug} />}
               <dl className="legal grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 text-sm md:hidden" data-tier-terms>
                 {rows.map((r) => (
                   <div key={r.label} className="contents">
@@ -71,10 +80,10 @@ export default function LicensingPage() {
               <p className="hidden text-xl font-semibold md:block">${a.price}</p>
               <div className="mt-auto flex flex-col gap-1.5 pt-2 text-sm">
                 <Link href={agreementPath(a.slug)} className="font-semibold underline underline-offset-4 hover:text-cream">
-                  Read the full agreement
+                  {isTermsFinal(a.slug) ? "Read the license" : "Read the draft agreement"}
                 </Link>
                 <a href={agreementDownloadPath(a.slug)} download={agreementFileName(a.slug)} className="text-cream-dim underline underline-offset-4 hover:text-cream">
-                  Download (.md)
+                  {isTermsFinal(a.slug) ? "Download (PDF)" : "Download (.md)"}
                 </a>
               </div>
             </li>

@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
-import { AGREEMENTS, LICENSE_TERMS_FINAL, agreementHtml, comparisonRestHtml, comparisonTable, publicMarkdown } from "@/lib/licenses";
+import { AGREEMENTS, BEAT_LEASE, LICENSE_TERMS_FINAL, agreementPath, beatLeaseHtml, isTermsFinal, agreementHtml, comparisonRestHtml, comparisonTable, publicMarkdown } from "@/lib/licenses";
 import { catalog } from "@/lib/catalog";
 
 const src = (f: string) => readFileSync(path.join(process.cwd(), "content/licenses", `${f}.md`), "utf8");
@@ -86,5 +86,22 @@ describe("beat license agreements", () => {
     expect(comparisonTable().rows.find((r) => r.label === "Files")?.values[0]).toBe("320 kbps MP3 (untagged)");
     for (const f of ["content/product-templates.json", "content/licenses.json"]) expect(readFileSync(f, "utf8")).not.toMatch(/tagged or untagged/i);
     expect(tier("mp3-lease").summary).toContain("320 kbps MP3 (untagged)");
+  });
+
+  it("Beat Lease License v1.0 (MP3/WAV) is the approved final text, with no draft notes or open placeholders", () => {
+    const md = src("beat-lease");
+    let approvedFinal: string | null = null;
+    try { approvedFinal = readFileSync("/workspace/legal/beats/beat-lease-license-v1.0.md", "utf8"); } catch { /* lives outside the repo */ }
+    if (approvedFinal) expect(md).toBe(approvedFinal);
+    expect(md).toContain("**Version:** 1.0 · **Effective for purchases from:** October 23, 2026");
+    expect(md).toContain("Producer owns **50%** of the writer's share");
+    expect(md).toContain("Completing checkout and ticking the license checkbox means Licensee has read and agreed to this license.");
+    expect(md).toContain(CONTACT);
+    expect(md).not.toMatch(/DRAFT|NOT YET FOR USE|attorney|Ricky to confirm|\[[^\]]*\](?!\()/i);
+    expect(beatLeaseHtml()).not.toMatch(/DRAFT/);
+    expect(isTermsFinal("mp3-lease") && isTermsFinal("wav-lease")).toBe(true);
+    expect(isTermsFinal("stems-lease") || isTermsFinal("exclusive-rights")).toBe(false);
+    expect(agreementPath("mp3-lease")).toBe(BEAT_LEASE.path);
+    expect(readFileSync(path.join("public", BEAT_LEASE.pdfPath)).subarray(0, 5).toString()).toBe("%PDF-");
   });
 });

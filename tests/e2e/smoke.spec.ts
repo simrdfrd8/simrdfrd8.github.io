@@ -13,7 +13,7 @@ const PUBLIC_SET = process.env.MERCH_PUBLIC_SET === "1";
 
 const ROUTES = [
   "/", "/music", "/artists", "/artists/flavorful-croissants", "/artists/not-daf", "/artists/720m", "/artists/andrew-bigs", "/artists/ricky",
-  "/artists/dan-perales", "/artists/baylingual-entertainment", "/video", "/art", "/shop", "/shop/merch", "/services", "/support", "/contact", "/licensing", "/licensing/mp3-lease", "/licensing/wav-lease", "/licensing/stems-lease", "/licensing/exclusive-rights",
+  "/artists/dan-perales", "/artists/baylingual-entertainment", "/video", "/art", "/shop", "/shop/merch", "/services", "/support", "/contact", "/licensing", "/licensing/beat-lease", "/licensing/mp3-lease", "/licensing/wav-lease", "/licensing/stems-lease", "/licensing/exclusive-rights",
 ];
 
 function watchErrors(page: Page) {
@@ -408,13 +408,16 @@ test("license page: comparison table matches the contracts, each tier links to i
   }
   await expect(page.locator("main")).toContainText("50% of the writer's share");
   await expect(page.locator("main")).toContainText('"Prod. Flavorful Croissants"');
-  // internal banner never renders; the visible "Draft terms" notice does while LICENSE_TERMS_FINAL is false
+  // internal banner never renders; MP3/WAV are final (Beat Lease License v1.0), Stems/Exclusive keep the "Coming soon" draft notice
   await expect(page.locator("main")).not.toContainText(/NOT YET FOR USE|attorney|\b(10|100|500)k streams/i);
-  await expect(page.locator("[data-draft-terms-notice]")).toHaveText("Draft terms. Final wording coming soon.");
-  for (const slug of ["mp3-lease", "wav-lease", "stems-lease", "exclusive-rights"]) {
-    await expect(page.locator(`[data-agreement-card=${slug}] a[href="/licensing/${slug}/"]`)).toBeVisible();
-  }
-  await page.locator("[data-agreement-card=exclusive-rights]").getByRole("link", { name: "Read the full agreement" }).click();
+  await expect(page.locator("[data-draft-terms-notice]")).toHaveCount(2);
+  await expect(page.locator("[data-agreement-card=stems-lease] [data-draft-terms-notice]")).toHaveText(/Coming soon/);
+  await expect(page.locator("[data-agreement-card=exclusive-rights] [data-draft-terms-notice]")).toHaveText(/Coming soon/);
+  await expect(page.locator("[data-agreement-card=mp3-lease] [data-draft-terms-notice]")).toHaveCount(0);
+  for (const slug of ["mp3-lease", "wav-lease"]) await expect(page.locator(`[data-agreement-card=${slug}] a[href="/licensing/beat-lease/"]`)).toBeVisible();
+  for (const slug of ["stems-lease", "exclusive-rights"]) await expect(page.locator(`[data-agreement-card=${slug}] a[href="/licensing/${slug}/"]`)).toBeVisible();
+  await expect(page.locator("[data-beat-lease-pdf]")).toHaveAttribute("href", "/licensing/flavorful-music-beat-lease-license.pdf");
+  await page.locator("[data-agreement-card=exclusive-rights]").getByRole("link", { name: "Read the draft agreement" }).click();
   await expect(page).toHaveURL(/\/licensing\/exclusive-rights\/$/);
   const doc = page.locator("[data-agreement=exclusive-rights]");
   await expect(doc).toContainText("Within 3 business days");
@@ -422,15 +425,15 @@ test("license page: comparison table matches the contracts, each tier links to i
   await expect(doc).toContainText("not a transfer of copyright");
   await expect(page.locator("main")).not.toContainText(/NOT YET FOR USE|attorney/i);
   await expect(page.locator("[data-draft-terms-notice]")).toBeVisible();
-  await page.goto("/licensing/mp3-lease");
-  await expect(page.locator("a[data-agreement-download]")).toHaveAttribute("href", "/licensing/mp3-lease/agreement.md");
-  await expect(page.locator("a[data-agreement-download]")).toHaveAttribute("download", "flavorful-music-mp3-lease-agreement.md");
-  const dl = await request.get("/licensing/mp3-lease/agreement.md");
-  expect(dl.status()).toBe(200);
-  expect(dl.headers()["content-type"]).toContain("text/markdown");
-  const body = await dl.text();
-  expect(body).toContain("# Flavorful Music – MP3 Lease Agreement");
-  expect(body).not.toMatch(/DRAFT|NOT YET FOR USE|attorney/);
+  await page.goto("/licensing/beat-lease");
+  await expect(page.locator("[data-agreement=beat-lease]")).toContainText("Producer owns 50% of the writer's share");
+  await expect(page.locator("[data-agreement=beat-lease]")).toContainText("Version: 1.0");
+  await expect(page.locator("main")).not.toContainText(/DRAFT|NOT YET FOR USE|attorney|\[/);
+  await expect(page.locator("[data-draft-terms-notice]")).toHaveCount(0);
+  await expect(page.locator("a[data-agreement-download]")).toHaveAttribute("href", "/licensing/flavorful-music-beat-lease-license.pdf");
+  const pdf = await request.get("/licensing/flavorful-music-beat-lease-license.pdf");
+  expect(pdf.status()).toBe(200);
+  expect((await pdf.body()).subarray(0, 5).toString()).toBe("%PDF-");
 });
 
 test("beat tiers link to their agreements", async ({ page }) => {
@@ -440,7 +443,7 @@ test("beat tiers link to their agreements", async ({ page }) => {
   await expect(dialog).toContainText("2 years · 50,000 streams");
   const links = dialog.locator("a[data-agreement-link]");
   await expect(links).toHaveCount(4);
-  expect(await links.evaluateAll((as) => as.map((a) => a.getAttribute("href")))).toEqual(["/licensing/mp3-lease/", "/licensing/wav-lease/", "/licensing/stems-lease/", "/licensing/exclusive-rights/"]);
+  expect(await links.evaluateAll((as) => as.map((a) => a.getAttribute("href")))).toEqual(["/licensing/beat-lease/", "/licensing/beat-lease/", "/licensing/stems-lease/", "/licensing/exclusive-rights/"]);
 });
 
 test("contact is a mailto link with a prefilled subject per inquiry type", async ({ page }) => {

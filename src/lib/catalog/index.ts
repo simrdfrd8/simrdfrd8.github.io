@@ -103,7 +103,7 @@ export function laneOffers(track: Pick<SoundCloudTrack, "id" | "title" | "displa
       price: o.price, currency: "USD" as const, payWhatYouWant: false, priceApproved: o.priceApproved, status: o.status,
       checkoutProvider: o.price === null ? ("none" as const) : ("payhip" as const), checkoutUrl: null, licenseTerms: o.terms,
       summary: o.summary, artworkUrl: track.artworkUrl, includes: [], inquireOnly: false, listed: true, shopListed: true, category: "men" as const, brand: null, galleryAssetIds: [], colorways: [], lifestyleAssetIds: [], featured: false, order: i, terms: o.terms, licenseTierId: o.licenseTierId,
-      agreementUrl: o.agreement ? `/licensing/${o.agreement}` : undefined,
+      agreementUrl: o.agreement ? (o.agreement === "mp3-lease" || o.agreement === "wav-lease" ? "/licensing/beat-lease" : `/licensing/${o.agreement}`) : undefined, // MP3/WAV: the final Beat Lease License
     }));
 }
 export const laneInfo = (lane: Lane) => catalog.templates.lanes[lane];
