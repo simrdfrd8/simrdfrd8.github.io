@@ -150,86 +150,6 @@
     "lifestyleAssetIds": []
   },
   {
-    "id": "merch-hotdog-tee-white",
-    "title": "HOTDO G Tee",
-    "assetId": "merch-hotdo-g-tee-white-taco-red",
-    "artist": null,
-    "brand": null,
-    "type": "merch",
-    "price": null,
-    "currency": "USD",
-    "payWhatYouWant": false,
-    "priceApproved": false,
-    "status": "upcoming",
-    "category": "men",
-    "design": "hotdo-g",
-    "checkoutProvider": "none",
-    "checkoutUrl": null,
-    "licenseTerms": null,
-    "summary": "Is it a Hotdo? Is it a g? Yes. One bold box, one awkward space. A term we can all agree on.",
-    "includes": [],
-    "inquireOnly": true,
-    "galleryAssetIds": [],
-    "featured": false,
-    "order": 70,
-    "listed": true,
-    "colorways": [
-      {
-        "name": "White / Taco Red",
-        "slug": "white-taco-red",
-        "swatch": "#F7F6F2",
-        "ink": "#C83A22",
-        "assetId": "merch-hotdo-g-tee-white-taco-red",
-        "backAssetId": "merch-hotdo-g-tee-white-taco-red-back",
-        "modelFrontAssetId": "merch-hotdo-g-tee-white-taco-red-model-front-kai",
-        "modelBackAssetId": "merch-hotdo-g-tee-white-taco-red-model-back-kai",
-        "models": [
-          {
-            "gender": "male",
-            "frontAssetId": "merch-hotdo-g-tee-white-taco-red-model-front-kai",
-            "backAssetId": "merch-hotdo-g-tee-white-taco-red-model-back-kai"
-          }
-        ]
-      },
-      {
-        "name": "Black / White",
-        "slug": "black-white",
-        "swatch": "#1B1B1C",
-        "ink": "#FFFFFF",
-        "assetId": "merch-hotdo-g-tee-black-white",
-        "backAssetId": "merch-hotdo-g-tee-black-white-back",
-        "modelFrontAssetId": "merch-hotdo-g-tee-black-white-model-front-kai",
-        "modelBackAssetId": "merch-hotdo-g-tee-black-white-model-back-kai",
-        "models": [
-          {
-            "gender": "male",
-            "frontAssetId": "merch-hotdo-g-tee-black-white-model-front-kai",
-            "backAssetId": "merch-hotdo-g-tee-black-white-model-back-kai"
-          }
-        ]
-      },
-      {
-        "name": "Graphite / Electric Orange",
-        "slug": "graphite-electric-orange",
-        "swatch": "#3E3737",
-        "ink": "#FF7A00",
-        "assetId": "merch-hotdo-g-tee-graphite-electric-orange",
-        "backAssetId": "merch-hotdo-g-tee-graphite-electric-orange-back",
-        "modelFrontAssetId": "merch-hotdo-g-tee-graphite-electric-orange-model-front-kai",
-        "modelBackAssetId": "merch-hotdo-g-tee-graphite-electric-orange-model-back-kai",
-        "models": [
-          {
-            "gender": "male",
-            "frontAssetId": "merch-hotdo-g-tee-graphite-electric-orange-model-front-kai",
-            "backAssetId": "merch-hotdo-g-tee-graphite-electric-orange-model-back-kai"
-          }
-        ]
-      }
-    ],
-    "lifestyleAssetIds": [],
-    "heroColorway": "white-taco-red"
-  },
-  {
     "id": "merch-feelings-notice-tee",
     "title": "Feelings Notice Tee",
     "assetId": "merch-feelings-notice-tee-true-navy-cream",
@@ -251,7 +171,7 @@
     "inquireOnly": true,
     "galleryAssetIds": [],
     "featured": false,
-    "order": 73,
+    "order": 5,
     "listed": true,
     "colorways": [
       {
@@ -426,7 +346,7 @@
     "inquireOnly": true,
     "galleryAssetIds": [],
     "featured": false,
-    "order": 90,
+    "order": 11,
     "listed": true,
     "colorways": [
       {
@@ -838,7 +758,7 @@
     "inquireOnly": true,
     "galleryAssetIds": [],
     "featured": false,
-    "order": 74,
+    "order": 3,
     "listed": true,
     "colorways": [
       {
@@ -998,125 +918,6 @@
     "shopListed": false
   },
   {
-    "id": "merch-santa-cruz-dipper-tank",
-    "title": "Santa Cruz Dipper Tank",
-    "assetId": "merch-santa-cruz-dipper-tank-chambray-navy-gh",
-    "artist": null,
-    "brand": null,
-    "type": "merch",
-    "price": null,
-    "currency": "USD",
-    "payWhatYouWant": false,
-    "priceApproved": false,
-    "status": "upcoming",
-    "category": "men",
-    "design": "santa-cruz-dipper",
-    "checkoutProvider": "none",
-    "checkoutUrl": null,
-    "licenseTerms": null,
-    "summary": "The Giant Dipper in one tidy line drawing, and a tiny ca tucked in beside the hills, for anyone who looks twice. Choose the printed back for an honest review of every coaster and most weeks, or keep the back blank.",
-    "includes": [],
-    "inquireOnly": true,
-    "galleryAssetIds": [],
-    "featured": false,
-    "order": 75,
-    "listed": true,
-    "colorways": [
-      {
-        "name": "Chambray / Navy",
-        "slug": "chambray-navy",
-        "swatch": "#D9F3FF",
-        "ink": "#1E2C4A",
-        "assetId": "merch-santa-cruz-dipper-tank-chambray-navy-gh",
-        "backAssetId": "merch-santa-cruz-dipper-tank-chambray-navy-gh-back",
-        "blankBackAssetId": "merch-santa-cruz-dipper-tank-chambray-navy-back-blank",
-        "modelFrontAssetId": "merch-santa-cruz-dipper-tank-chambray-navy-model-front-kai",
-        "modelBackAssetId": "merch-santa-cruz-dipper-tank-chambray-navy-model-back-kai",
-        "models": [
-          {
-            "gender": "male",
-            "frontAssetId": "merch-santa-cruz-dipper-tank-chambray-navy-model-front-kai",
-            "backAssetId": "merch-santa-cruz-dipper-tank-chambray-navy-model-back-kai"
-          }
-        ]
-      },
-      {
-        "name": "Blossom / Navy",
-        "slug": "blossom-navy",
-        "swatch": "#FFD1D5",
-        "ink": "#1E2C4A",
-        "assetId": "merch-santa-cruz-dipper-tank-blossom-navy-gh",
-        "backAssetId": "merch-santa-cruz-dipper-tank-blossom-navy-gh-back",
-        "blankBackAssetId": "merch-santa-cruz-dipper-tank-blossom-navy-back-blank",
-        "modelFrontAssetId": "merch-santa-cruz-dipper-tank-blossom-navy-model-front-kai",
-        "modelBackAssetId": "merch-santa-cruz-dipper-tank-blossom-navy-model-back-kai",
-        "models": [
-          {
-            "gender": "male",
-            "frontAssetId": "merch-santa-cruz-dipper-tank-blossom-navy-model-front-kai",
-            "backAssetId": "merch-santa-cruz-dipper-tank-blossom-navy-model-back-kai"
-          }
-        ]
-      },
-      {
-        "name": "Butter / Navy",
-        "slug": "butter-navy",
-        "swatch": "#FFE09E",
-        "ink": "#1E2C4A",
-        "assetId": "merch-santa-cruz-dipper-tank-butter-navy-gh",
-        "backAssetId": "merch-santa-cruz-dipper-tank-butter-navy-gh-back",
-        "blankBackAssetId": "merch-santa-cruz-dipper-tank-butter-navy-back-blank",
-        "modelFrontAssetId": "merch-santa-cruz-dipper-tank-butter-navy-model-front-kai",
-        "modelBackAssetId": "merch-santa-cruz-dipper-tank-butter-navy-model-back-kai",
-        "models": [
-          {
-            "gender": "male",
-            "frontAssetId": "merch-santa-cruz-dipper-tank-butter-navy-model-front-kai",
-            "backAssetId": "merch-santa-cruz-dipper-tank-butter-navy-model-back-kai"
-          }
-        ]
-      },
-      {
-        "name": "White / Navy",
-        "slug": "white-navy",
-        "swatch": "#F7F6F2",
-        "ink": "#1E2C4A",
-        "assetId": "merch-santa-cruz-dipper-tank-white-navy-gh",
-        "backAssetId": "merch-santa-cruz-dipper-tank-white-navy-gh-back",
-        "blankBackAssetId": "merch-santa-cruz-dipper-tank-white-navy-back-blank",
-        "modelFrontAssetId": "merch-santa-cruz-dipper-tank-white-navy-model-front-kai",
-        "modelBackAssetId": "merch-santa-cruz-dipper-tank-white-navy-model-back-kai",
-        "models": [
-          {
-            "gender": "male",
-            "frontAssetId": "merch-santa-cruz-dipper-tank-white-navy-model-front-kai",
-            "backAssetId": "merch-santa-cruz-dipper-tank-white-navy-model-back-kai"
-          }
-        ]
-      },
-      {
-        "name": "Grape / Cream",
-        "slug": "grape-cream",
-        "swatch": "#644E6D",
-        "ink": "#F8E8D2",
-        "assetId": "merch-santa-cruz-dipper-tank-grape-cream-gh",
-        "backAssetId": "merch-santa-cruz-dipper-tank-grape-cream-gh-back",
-        "blankBackAssetId": "merch-santa-cruz-dipper-tank-grape-cream-back-blank",
-        "modelFrontAssetId": "merch-santa-cruz-dipper-tank-grape-cream-model-front-kai",
-        "modelBackAssetId": "merch-santa-cruz-dipper-tank-grape-cream-model-back-kai",
-        "models": [
-          {
-            "gender": "male",
-            "frontAssetId": "merch-santa-cruz-dipper-tank-grape-cream-model-front-kai",
-            "backAssetId": "merch-santa-cruz-dipper-tank-grape-cream-model-back-kai"
-          }
-        ]
-      }
-    ],
-    "heroColorway": "chambray-navy",
-    "lifestyleAssetIds": []
-  },
-  {
     "id": "merch-make-art-with-friends-womens-boxy-tee",
     "title": "Make Art With Friends Women's Boxy Tee",
     "assetId": "merch-make-art-with-friends-womens-boxy-tee-butter-plum",
@@ -1145,7 +946,7 @@
     "inquireOnly": true,
     "galleryAssetIds": [],
     "featured": false,
-    "order": 76,
+    "order": 4,
     "listed": true,
     "shopListed": true,
     "colorways": [
@@ -1200,7 +1001,7 @@
     "inquireOnly": true,
     "galleryAssetIds": [],
     "featured": false,
-    "order": 77,
+    "order": 6,
     "listed": true,
     "shopListed": true,
     "colorways": [
@@ -1225,184 +1026,6 @@
     "lifestyleAssetIds": [],
     "heroColorway": "ivory-plum",
     "_note": "Comfort Colors 3023CL Women's Boxy Tee at Apliiq (transfer print). Sizes per Apliiq stock table S-2XL (2XL +$2.50). Model slots empty until the cast is approved. Flats are concept renders (no photo of the real blank yet)."
-  },
-  {
-    "id": "merch-hotdo-g-womens-boxy-tee",
-    "title": "HOTDO G Women's Boxy Tee",
-    "assetId": "merch-hotdo-g-womens-boxy-tee-black-white",
-    "artist": null,
-    "brand": null,
-    "type": "merch",
-    "price": null,
-    "currency": "USD",
-    "payWhatYouWant": false,
-    "priceApproved": false,
-    "status": "upcoming",
-    "category": "women",
-    "design": "hotdo-g",
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "2XL"
-    ],
-    "checkoutProvider": "none",
-    "checkoutUrl": null,
-    "licenseTerms": null,
-    "summary": "Is it a Hotdo? Is it a g? Yes. One bold box, one awkward space. A term we can all agree on.",
-    "includes": [],
-    "inquireOnly": true,
-    "galleryAssetIds": [],
-    "featured": false,
-    "order": 78,
-    "listed": true,
-    "shopListed": true,
-    "colorways": [
-      {
-        "name": "Black / White",
-        "slug": "black-white",
-        "swatch": "#1B1B1C",
-        "ink": "#FFFFFF",
-        "assetId": "merch-hotdo-g-womens-boxy-tee-black-white",
-        "backAssetId": "merch-hotdo-g-womens-boxy-tee-black-white-back",
-        "modelFrontAssetId": "merch-hotdo-g-womens-boxy-tee-black-white-model-front-tessa",
-        "modelBackAssetId": "merch-hotdo-g-womens-boxy-tee-black-white-model-back-tessa",
-        "models": [
-          {
-            "gender": "female",
-            "frontAssetId": "merch-hotdo-g-womens-boxy-tee-black-white-model-front-tessa",
-            "backAssetId": "merch-hotdo-g-womens-boxy-tee-black-white-model-back-tessa"
-          }
-        ]
-      },
-      {
-        "name": "Ivory / Taco Red",
-        "slug": "ivory-taco-red",
-        "swatch": "#FFF4D9",
-        "ink": "#C83A22",
-        "assetId": "merch-hotdo-g-womens-boxy-tee-ivory-taco-red",
-        "backAssetId": "merch-hotdo-g-womens-boxy-tee-ivory-taco-red-back",
-        "modelFrontAssetId": "merch-hotdo-g-womens-boxy-tee-ivory-taco-red-model-front-tessa",
-        "modelBackAssetId": "merch-hotdo-g-womens-boxy-tee-ivory-taco-red-model-back-tessa",
-        "models": [
-          {
-            "gender": "female",
-            "frontAssetId": "merch-hotdo-g-womens-boxy-tee-ivory-taco-red-model-front-tessa",
-            "backAssetId": "merch-hotdo-g-womens-boxy-tee-ivory-taco-red-model-back-tessa"
-          }
-        ]
-      },
-      {
-        "name": "Butter / Taco Red",
-        "slug": "butter-taco-red",
-        "swatch": "#FFE09E",
-        "ink": "#C83A22",
-        "assetId": "merch-hotdo-g-womens-boxy-tee-butter-taco-red",
-        "backAssetId": "merch-hotdo-g-womens-boxy-tee-butter-taco-red-back",
-        "modelFrontAssetId": "merch-hotdo-g-womens-boxy-tee-butter-taco-red-model-front-tessa",
-        "modelBackAssetId": "merch-hotdo-g-womens-boxy-tee-butter-taco-red-model-back-tessa",
-        "models": [
-          {
-            "gender": "female",
-            "frontAssetId": "merch-hotdo-g-womens-boxy-tee-butter-taco-red-model-front-tessa",
-            "backAssetId": "merch-hotdo-g-womens-boxy-tee-butter-taco-red-model-back-tessa"
-          }
-        ]
-      }
-    ],
-    "lifestyleAssetIds": [],
-    "heroColorway": "black-white",
-    "_note": "Comfort Colors 3023CL Women's Boxy Tee at Apliiq (transfer print). Sizes per Apliiq stock table S-2XL (2XL +$2.50). Model slots empty until the cast is approved. Flats are concept renders (no photo of the real blank yet)."
-  },
-  {
-    "id": "merch-santa-cruz-dipper-womens-rib-tank",
-    "title": "Santa Cruz Dipper Women's Rib Tank",
-    "assetId": "merch-santa-cruz-dipper-womens-rib-tank-powder-navy-gh",
-    "artist": null,
-    "brand": null,
-    "type": "merch",
-    "price": null,
-    "currency": "USD",
-    "payWhatYouWant": false,
-    "priceApproved": false,
-    "status": "upcoming",
-    "category": "women",
-    "design": "santa-cruz-dipper",
-    "sizes": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "checkoutProvider": "none",
-    "checkoutUrl": null,
-    "licenseTerms": null,
-    "summary": "The Giant Dipper in one tidy line drawing, with Santa Cruz underneath and an honest review of every coaster and most weeks on the back. Cut slim in a heavyweight organic cotton rib with a little stretch.",
-    "includes": [],
-    "inquireOnly": true,
-    "galleryAssetIds": [],
-    "featured": false,
-    "order": 79,
-    "listed": true,
-    "shopListed": true,
-    "colorways": [
-      {
-        "name": "Powder / Navy",
-        "slug": "powder-navy",
-        "swatch": "#CBD2EB",
-        "ink": "#1E2C4A",
-        "assetId": "merch-santa-cruz-dipper-womens-rib-tank-powder-navy-gh",
-        "backAssetId": "merch-santa-cruz-dipper-womens-rib-tank-powder-navy-gh-back",
-        "modelFrontAssetId": "merch-santa-cruz-dipper-womens-rib-tank-powder-navy-model-front-tessa",
-        "modelBackAssetId": "merch-santa-cruz-dipper-womens-rib-tank-powder-navy-model-back-tessa",
-        "models": [
-          {
-            "gender": "female",
-            "frontAssetId": "merch-santa-cruz-dipper-womens-rib-tank-powder-navy-model-front-tessa",
-            "backAssetId": "merch-santa-cruz-dipper-womens-rib-tank-powder-navy-model-back-tessa"
-          }
-        ]
-      },
-      {
-        "name": "Orchid / Navy",
-        "slug": "orchid-navy",
-        "swatch": "#E0CCE7",
-        "ink": "#1E2C4A",
-        "assetId": "merch-santa-cruz-dipper-womens-rib-tank-orchid-navy-gh",
-        "backAssetId": "merch-santa-cruz-dipper-womens-rib-tank-orchid-navy-gh-back",
-        "modelFrontAssetId": "merch-santa-cruz-dipper-womens-rib-tank-orchid-navy-model-front-tessa",
-        "modelBackAssetId": "merch-santa-cruz-dipper-womens-rib-tank-orchid-navy-model-back-tessa",
-        "models": [
-          {
-            "gender": "female",
-            "frontAssetId": "merch-santa-cruz-dipper-womens-rib-tank-orchid-navy-model-front-tessa",
-            "backAssetId": "merch-santa-cruz-dipper-womens-rib-tank-orchid-navy-model-back-tessa"
-          }
-        ]
-      },
-      {
-        "name": "White / Navy",
-        "slug": "white-navy",
-        "swatch": "#F7F6F2",
-        "ink": "#1E2C4A",
-        "assetId": "merch-santa-cruz-dipper-womens-rib-tank-white-navy-gh",
-        "backAssetId": "merch-santa-cruz-dipper-womens-rib-tank-white-navy-gh-back",
-        "modelFrontAssetId": "merch-santa-cruz-dipper-womens-rib-tank-white-navy-model-front-tessa",
-        "modelBackAssetId": "merch-santa-cruz-dipper-womens-rib-tank-white-navy-model-back-tessa",
-        "models": [
-          {
-            "gender": "female",
-            "frontAssetId": "merch-santa-cruz-dipper-womens-rib-tank-white-navy-model-front-tessa",
-            "backAssetId": "merch-santa-cruz-dipper-womens-rib-tank-white-navy-model-back-tessa"
-          }
-        ]
-      }
-    ],
-    "lifestyleAssetIds": [],
-    "heroColorway": "powder-navy",
-    "_note": "AS Colour 4063G Wo's Organic Rib Tank (transfer print), owner pick 2026-10-22: Powder, Orchid, White. Sizes XS-XL. No models. Front print is a placeholder (the Dipper front scaled to the 8in print box) until the bolder 8in front is ready. Flats are concept renders reshaped from a photo of the blank."
   },
   {
     "id": "merch-santa-cruz-redwoods-tank",
@@ -1573,5 +1196,637 @@
     "heroColorway": "lagoon-blue-plum",
     "lifestyleAssetIds": [],
     "shopListed": false
+  },
+  {
+    "id": "merch-hotdo-g-tee-in-the-bun",
+    "title": "HOTDO G Tee (In the Bun)",
+    "assetId": "merch-hotdo-g-tee-in-the-bun-black-white",
+    "artist": null,
+    "brand": null,
+    "type": "merch",
+    "price": null,
+    "currency": "USD",
+    "payWhatYouWant": false,
+    "priceApproved": false,
+    "status": "upcoming",
+    "category": "men",
+    "design": "hotdo-g-in-the-bun",
+    "checkoutProvider": "none",
+    "checkoutUrl": null,
+    "licenseTerms": null,
+    "summary": "Is it a Hotdo? Is it a g? Yes. This time the awkward space is the hot dog itself, tucked in its bun, and the squiggle on top keeps a steady beat.",
+    "includes": [],
+    "inquireOnly": true,
+    "galleryAssetIds": [],
+    "featured": false,
+    "order": 1,
+    "listed": true,
+    "shopListed": true,
+    "colorways": [
+      {
+        "name": "Black / White",
+        "slug": "black-white",
+        "swatch": "#1B1B1C",
+        "ink": "#FFFFFF",
+        "assetId": "merch-hotdo-g-tee-in-the-bun-black-white",
+        "backAssetId": "merch-hotdo-g-tee-in-the-bun-black-white-back"
+      },
+      {
+        "name": "Ivory / Taco Red",
+        "slug": "ivory-taco-red",
+        "swatch": "#FFF4D9",
+        "ink": "#C83A22",
+        "assetId": "merch-hotdo-g-tee-in-the-bun-ivory-taco-red",
+        "backAssetId": "merch-hotdo-g-tee-in-the-bun-ivory-taco-red-back"
+      },
+      {
+        "name": "Butter / Taco Red",
+        "slug": "butter-taco-red",
+        "swatch": "#FFE09E",
+        "ink": "#C83A22",
+        "assetId": "merch-hotdo-g-tee-in-the-bun-butter-taco-red",
+        "backAssetId": "merch-hotdo-g-tee-in-the-bun-butter-taco-red-back"
+      }
+    ],
+    "lifestyleAssetIds": [],
+    "heroColorway": "black-white"
+  },
+  {
+    "id": "merch-hotdo-g-womens-boxy-tee-in-the-bun",
+    "title": "HOTDO G Women's Boxy Tee (In the Bun)",
+    "assetId": "merch-hotdo-g-womens-boxy-tee-in-the-bun-black-white",
+    "artist": null,
+    "brand": null,
+    "type": "merch",
+    "price": null,
+    "currency": "USD",
+    "payWhatYouWant": false,
+    "priceApproved": false,
+    "status": "upcoming",
+    "category": "women",
+    "design": "hotdo-g-in-the-bun",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL"
+    ],
+    "checkoutProvider": "none",
+    "checkoutUrl": null,
+    "licenseTerms": null,
+    "summary": "Is it a Hotdo? Is it a g? Yes. This time the awkward space is the hot dog itself, tucked in its bun, and the squiggle on top keeps a steady beat.",
+    "includes": [],
+    "inquireOnly": true,
+    "galleryAssetIds": [],
+    "featured": false,
+    "order": 2,
+    "listed": true,
+    "shopListed": true,
+    "colorways": [
+      {
+        "name": "Black / White",
+        "slug": "black-white",
+        "swatch": "#1B1B1C",
+        "ink": "#FFFFFF",
+        "assetId": "merch-hotdo-g-womens-boxy-tee-in-the-bun-black-white",
+        "backAssetId": "merch-hotdo-g-womens-boxy-tee-in-the-bun-black-white-back"
+      },
+      {
+        "name": "Ivory / Taco Red",
+        "slug": "ivory-taco-red",
+        "swatch": "#FFF4D9",
+        "ink": "#C83A22",
+        "assetId": "merch-hotdo-g-womens-boxy-tee-in-the-bun-ivory-taco-red",
+        "backAssetId": "merch-hotdo-g-womens-boxy-tee-in-the-bun-ivory-taco-red-back"
+      },
+      {
+        "name": "Butter / Taco Red",
+        "slug": "butter-taco-red",
+        "swatch": "#FFE09E",
+        "ink": "#C83A22",
+        "assetId": "merch-hotdo-g-womens-boxy-tee-in-the-bun-butter-taco-red",
+        "backAssetId": "merch-hotdo-g-womens-boxy-tee-in-the-bun-butter-taco-red-back"
+      }
+    ],
+    "lifestyleAssetIds": [],
+    "heroColorway": "black-white"
+  },
+  {
+    "id": "merch-triangle-surfer-tee",
+    "title": "Triangle Surfer Tee",
+    "assetId": "merch-triangle-surfer-tee-black-acid-green",
+    "artist": null,
+    "brand": null,
+    "type": "merch",
+    "price": null,
+    "currency": "USD",
+    "payWhatYouWant": false,
+    "priceApproved": false,
+    "status": "upcoming",
+    "category": "men",
+    "design": "triangle-surfer",
+    "checkoutProvider": "none",
+    "checkoutUrl": null,
+    "licenseTerms": null,
+    "summary": "Three triangles, one barrel. Our little triangle surfer, drawn in a few simple lines and tucked into a wave that never quite closes.",
+    "includes": [],
+    "inquireOnly": true,
+    "galleryAssetIds": [],
+    "featured": false,
+    "order": 7,
+    "listed": true,
+    "shopListed": true,
+    "colorways": [
+      {
+        "name": "Black / Acid Green",
+        "slug": "black-acid-green",
+        "swatch": "#1B1B1C",
+        "ink": "#B6FF3B",
+        "assetId": "merch-triangle-surfer-tee-black-acid-green",
+        "backAssetId": "merch-triangle-surfer-tee-black-acid-green-back"
+      },
+      {
+        "name": "True Navy / Coral",
+        "slug": "true-navy-coral",
+        "swatch": "#2A2A41",
+        "ink": "#FF7A59",
+        "assetId": "merch-triangle-surfer-tee-true-navy-coral",
+        "backAssetId": "merch-triangle-surfer-tee-true-navy-coral-back"
+      },
+      {
+        "name": "Ivory / Violet",
+        "slug": "ivory-violet",
+        "swatch": "#F1E7DD",
+        "ink": "#8C7CFF",
+        "assetId": "merch-triangle-surfer-tee-ivory-violet",
+        "backAssetId": "merch-triangle-surfer-tee-ivory-violet-back"
+      },
+      {
+        "name": "Blue Spruce / Cream",
+        "slug": "blue-spruce-cream",
+        "swatch": "#4A5A51",
+        "ink": "#F8E8D2",
+        "assetId": "merch-triangle-surfer-tee-blue-spruce-cream",
+        "backAssetId": "merch-triangle-surfer-tee-blue-spruce-cream-back"
+      },
+      {
+        "name": "Butter / Taco Red",
+        "slug": "butter-taco-red",
+        "swatch": "#F8D690",
+        "ink": "#C83A22",
+        "assetId": "merch-triangle-surfer-tee-butter-taco-red",
+        "backAssetId": "merch-triangle-surfer-tee-butter-taco-red-back"
+      }
+    ],
+    "lifestyleAssetIds": [],
+    "heroColorway": "black-acid-green"
+  },
+  {
+    "id": "merch-never-ending-set-ribbon-tank",
+    "title": "Never-Ending Set Tank",
+    "assetId": "merch-never-ending-set-ribbon-tank-black-acid-bloom",
+    "artist": null,
+    "brand": null,
+    "type": "merch",
+    "price": null,
+    "currency": "USD",
+    "payWhatYouWant": false,
+    "priceApproved": false,
+    "status": "upcoming",
+    "category": "men",
+    "design": "never-ending-set",
+    "checkoutProvider": "none",
+    "checkoutUrl": null,
+    "licenseTerms": null,
+    "summary": "Three thin lines fold over and under each other and never find an end. One side peels away and curls into a wave, the bottom keeps rolling on as the swell, and a surfer rides out through the gap. Follow a line around once and see where you end up.",
+    "includes": [],
+    "inquireOnly": true,
+    "galleryAssetIds": [],
+    "featured": false,
+    "order": 8,
+    "listed": true,
+    "shopListed": true,
+    "colorways": [
+      {
+        "name": "Black / Acid Bloom",
+        "slug": "black-acid-bloom",
+        "swatch": "#2D2B2C",
+        "ink": "#B6FF3B",
+        "assetId": "merch-never-ending-set-ribbon-tank-black-acid-bloom"
+      },
+      {
+        "name": "White / Bruise Violet",
+        "slug": "white-bruise-violet",
+        "swatch": "#F7F6F2",
+        "ink": "#8C7CFF",
+        "assetId": "merch-never-ending-set-ribbon-tank-white-bruise-violet"
+      },
+      {
+        "name": "Ivory / Coral Heat",
+        "slug": "ivory-coral-heat",
+        "swatch": "#EEE7D5",
+        "ink": "#FF7A59",
+        "assetId": "merch-never-ending-set-ribbon-tank-ivory-coral-heat"
+      }
+    ],
+    "lifestyleAssetIds": [],
+    "heroColorway": "black-acid-bloom",
+    "details": [
+      "Front only: \"THE SET THAT NEVER ENDS\" with \"SANTA CRUZ · CALIF.\" under the art. No back print.",
+      "Original artwork inspired by the California coast. Not affiliated with any park, attraction or brand."
+    ]
+  },
+  {
+    "id": "merch-never-ending-set-ribbon-womens-tank",
+    "title": "Never-Ending Set Women's Tank",
+    "assetId": "merch-never-ending-set-ribbon-womens-tank-black-acid-bloom",
+    "artist": null,
+    "brand": null,
+    "type": "merch",
+    "price": null,
+    "currency": "USD",
+    "payWhatYouWant": false,
+    "priceApproved": false,
+    "status": "upcoming",
+    "category": "women",
+    "design": "never-ending-set",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "checkoutProvider": "none",
+    "checkoutUrl": null,
+    "licenseTerms": null,
+    "summary": "Three thin lines fold over and under each other and never find an end. One side peels away and curls into a wave, the bottom keeps rolling on as the swell, and a surfer rides out through the gap. Follow a line around once and see where you end up.",
+    "includes": [],
+    "inquireOnly": true,
+    "galleryAssetIds": [],
+    "featured": false,
+    "order": 9,
+    "listed": true,
+    "shopListed": true,
+    "colorways": [
+      {
+        "name": "Black / Acid Bloom",
+        "slug": "black-acid-bloom",
+        "swatch": "#1E1E1E",
+        "ink": "#B6FF3B",
+        "assetId": "merch-never-ending-set-ribbon-womens-tank-black-acid-bloom"
+      },
+      {
+        "name": "White / Bruise Violet",
+        "slug": "white-bruise-violet",
+        "swatch": "#F7F6F2",
+        "ink": "#8C7CFF",
+        "assetId": "merch-never-ending-set-ribbon-womens-tank-white-bruise-violet"
+      },
+      {
+        "name": "Bone / Coral Heat",
+        "slug": "bone-coral-heat",
+        "swatch": "#E9E2D2",
+        "ink": "#FF7A59",
+        "assetId": "merch-never-ending-set-ribbon-womens-tank-bone-coral-heat"
+      }
+    ],
+    "lifestyleAssetIds": [],
+    "heroColorway": "black-acid-bloom",
+    "details": [
+      "Front only: \"THE SET THAT NEVER ENDS\" with \"SANTA CRUZ · CALIF.\" under the art. No back print.",
+      "Original artwork inspired by the California coast. Not affiliated with any park, attraction or brand."
+    ]
+  },
+  {
+    "id": "merch-melt-wave-tee-inverse",
+    "title": "Melt Wave Tee (Inverse)",
+    "assetId": "merch-melt-wave-tee-inverse-black",
+    "artist": null,
+    "brand": null,
+    "type": "merch",
+    "price": null,
+    "currency": "USD",
+    "payWhatYouWant": false,
+    "priceApproved": false,
+    "status": "upcoming",
+    "category": "men",
+    "design": "melt-wave-inverse",
+    "checkoutProvider": "none",
+    "checkoutUrl": null,
+    "licenseTerms": null,
+    "summary": "Same sunrise, other direction: the barrel breaks the other way while that faraway mushroom keeps melting into the sea. The surfer never looks back, but you should, because the reflection keeps its own little secret.",
+    "includes": [],
+    "inquireOnly": true,
+    "galleryAssetIds": [],
+    "featured": false,
+    "order": 10,
+    "listed": true,
+    "shopListed": true,
+    "colorways": [
+      {
+        "name": "Black",
+        "slug": "black",
+        "swatch": "#1F1D21",
+        "ink": "#F3E7CF",
+        "assetId": "merch-melt-wave-tee-inverse-black",
+        "backAssetId": "merch-melt-wave-tee-inverse-black-back"
+      }
+    ],
+    "lifestyleAssetIds": [],
+    "heroColorway": "black"
+  },
+  {
+    "id": "merch-paddle-back-round-tank",
+    "title": "Paddle Back Round Tank",
+    "assetId": "merch-paddle-back-round-tank-ivory-coral-violet",
+    "artist": null,
+    "brand": null,
+    "type": "merch",
+    "price": null,
+    "currency": "USD",
+    "payWhatYouWant": false,
+    "priceApproved": false,
+    "status": "upcoming",
+    "category": "men",
+    "design": "paddle-back-round",
+    "checkoutProvider": "none",
+    "checkoutUrl": null,
+    "licenseTerms": null,
+    "summary": "Fat 70s racing stripes rise to a peak, then one side peels away and rolls out to sea as the swell. A striped half-sun sits low on the horizon and the swell cuts right through the stripes. Missed that one? Paddle back round and wait for the next.",
+    "includes": [],
+    "inquireOnly": true,
+    "galleryAssetIds": [],
+    "featured": false,
+    "order": 12,
+    "listed": true,
+    "shopListed": true,
+    "colorways": [
+      {
+        "name": "Ivory / Coral Heat + Bruise Violet",
+        "slug": "ivory-coral-violet",
+        "swatch": "#EEE7D5",
+        "ink": "#FF7A59",
+        "assetId": "merch-paddle-back-round-tank-ivory-coral-violet"
+      },
+      {
+        "name": "White / Coral Heat + Bruise Violet",
+        "slug": "white-coral-violet",
+        "swatch": "#F7F6F2",
+        "ink": "#FF7A59",
+        "assetId": "merch-paddle-back-round-tank-white-coral-violet"
+      },
+      {
+        "name": "Black / Coral Heat + Cream",
+        "slug": "black-coral-cream",
+        "swatch": "#2D2B2C",
+        "ink": "#FF7A59",
+        "assetId": "merch-paddle-back-round-tank-black-coral-cream"
+      }
+    ],
+    "lifestyleAssetIds": [],
+    "heroColorway": "ivory-coral-violet",
+    "details": [
+      "Front only: \"PADDLE BACK ROUND\" with \"SANTA CRUZ · CALIF.\" under the art. No back print.",
+      "Original artwork inspired by the California coast. Not affiliated with any park, attraction or brand."
+    ]
+  },
+  {
+    "id": "merch-paddle-back-round-womens-tank",
+    "title": "Paddle Back Round Women's Tank",
+    "assetId": "merch-paddle-back-round-womens-tank-bone-coral-violet",
+    "artist": null,
+    "brand": null,
+    "type": "merch",
+    "price": null,
+    "currency": "USD",
+    "payWhatYouWant": false,
+    "priceApproved": false,
+    "status": "upcoming",
+    "category": "women",
+    "design": "paddle-back-round",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "checkoutProvider": "none",
+    "checkoutUrl": null,
+    "licenseTerms": null,
+    "summary": "Fat 70s racing stripes rise to a peak, then one side peels away and rolls out to sea as the swell. A striped half-sun sits low on the horizon and the swell cuts right through the stripes. Missed that one? Paddle back round and wait for the next.",
+    "includes": [],
+    "inquireOnly": true,
+    "galleryAssetIds": [],
+    "featured": false,
+    "order": 13,
+    "listed": true,
+    "shopListed": true,
+    "colorways": [
+      {
+        "name": "Bone / Coral Heat + Bruise Violet",
+        "slug": "bone-coral-violet",
+        "swatch": "#E9E2D2",
+        "ink": "#FF7A59",
+        "assetId": "merch-paddle-back-round-womens-tank-bone-coral-violet"
+      },
+      {
+        "name": "White / Coral Heat + Bruise Violet",
+        "slug": "white-coral-violet",
+        "swatch": "#F7F6F2",
+        "ink": "#FF7A59",
+        "assetId": "merch-paddle-back-round-womens-tank-white-coral-violet"
+      },
+      {
+        "name": "Black / Coral Heat + Cream",
+        "slug": "black-coral-cream",
+        "swatch": "#1E1E1E",
+        "ink": "#FF7A59",
+        "assetId": "merch-paddle-back-round-womens-tank-black-coral-cream"
+      }
+    ],
+    "lifestyleAssetIds": [],
+    "heroColorway": "bone-coral-violet",
+    "details": [
+      "Front only: \"PADDLE BACK ROUND\" with \"SANTA CRUZ · CALIF.\" under the art. No back print.",
+      "Original artwork inspired by the California coast. Not affiliated with any park, attraction or brand."
+    ]
+  },
+  {
+    "id": "merch-last-one-i-swear-tank",
+    "title": "Last One, I Swear Tank",
+    "assetId": "merch-last-one-i-swear-tank-black-acid-violet",
+    "artist": null,
+    "brand": null,
+    "type": "merch",
+    "price": null,
+    "currency": "USD",
+    "payWhatYouWant": false,
+    "priceApproved": false,
+    "status": "upcoming",
+    "category": "men",
+    "design": "last-one-i-swear",
+    "checkoutProvider": "none",
+    "checkoutUrl": null,
+    "licenseTerms": null,
+    "summary": "A single line coils inward like a set wrapping a point, and leaves a gap on one side. Swell lines bend around it and open up, and a surfer rides out through the gap for one more. It is never the last one.",
+    "includes": [],
+    "inquireOnly": true,
+    "galleryAssetIds": [],
+    "featured": false,
+    "order": 14,
+    "listed": true,
+    "shopListed": true,
+    "colorways": [
+      {
+        "name": "Black / Acid Bloom + Bruise Violet",
+        "slug": "black-acid-violet",
+        "swatch": "#2D2B2C",
+        "ink": "#B6FF3B",
+        "assetId": "merch-last-one-i-swear-tank-black-acid-violet"
+      },
+      {
+        "name": "Pepper / Acid Bloom + Bruise Violet",
+        "slug": "pepper-acid-violet",
+        "swatch": "#5B5856",
+        "ink": "#B6FF3B",
+        "assetId": "merch-last-one-i-swear-tank-pepper-acid-violet"
+      },
+      {
+        "name": "White / Bruise Violet + Coral Heat",
+        "slug": "white-violet-coral",
+        "swatch": "#F7F6F2",
+        "ink": "#8C7CFF",
+        "assetId": "merch-last-one-i-swear-tank-white-violet-coral"
+      }
+    ],
+    "lifestyleAssetIds": [],
+    "heroColorway": "black-acid-violet",
+    "details": [
+      "Front only: \"LAST ONE, I SWEAR\" with \"SANTA CRUZ · CALIF.\" under the art. No back print.",
+      "Original artwork inspired by the California coast. Not affiliated with any park, attraction or brand."
+    ]
+  },
+  {
+    "id": "merch-last-one-i-swear-womens-tank",
+    "title": "Last One, I Swear Women's Tank",
+    "assetId": "merch-last-one-i-swear-womens-tank-black-acid-violet",
+    "artist": null,
+    "brand": null,
+    "type": "merch",
+    "price": null,
+    "currency": "USD",
+    "payWhatYouWant": false,
+    "priceApproved": false,
+    "status": "upcoming",
+    "category": "women",
+    "design": "last-one-i-swear",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "checkoutProvider": "none",
+    "checkoutUrl": null,
+    "licenseTerms": null,
+    "summary": "A single line coils inward like a set wrapping a point, and leaves a gap on one side. Swell lines bend around it and open up, and a surfer rides out through the gap for one more. It is never the last one.",
+    "includes": [],
+    "inquireOnly": true,
+    "galleryAssetIds": [],
+    "featured": false,
+    "order": 15,
+    "listed": true,
+    "shopListed": true,
+    "colorways": [
+      {
+        "name": "Black / Acid Bloom + Bruise Violet",
+        "slug": "black-acid-violet",
+        "swatch": "#1E1E1E",
+        "ink": "#B6FF3B",
+        "assetId": "merch-last-one-i-swear-womens-tank-black-acid-violet"
+      },
+      {
+        "name": "White / Bruise Violet + Coral Heat",
+        "slug": "white-violet-coral",
+        "swatch": "#F7F6F2",
+        "ink": "#8C7CFF",
+        "assetId": "merch-last-one-i-swear-womens-tank-white-violet-coral"
+      }
+    ],
+    "lifestyleAssetIds": [],
+    "heroColorway": "black-acid-violet",
+    "details": [
+      "Front only: \"LAST ONE, I SWEAR\" with \"SANTA CRUZ · CALIF.\" under the art. No back print.",
+      "Original artwork inspired by the California coast. Not affiliated with any park, attraction or brand."
+    ]
+  },
+  {
+    "id": "merch-triangle-surfer-pocket-tee",
+    "title": "Triangle Surfer Pocket Tee",
+    "assetId": "merch-triangle-surfer-pocket-tee-graphite-violet",
+    "artist": null,
+    "brand": null,
+    "type": "merch",
+    "price": null,
+    "currency": "USD",
+    "payWhatYouWant": false,
+    "priceApproved": false,
+    "status": "upcoming",
+    "category": "men",
+    "design": "triangle-surfer-pocket",
+    "checkoutProvider": "none",
+    "checkoutUrl": null,
+    "licenseTerms": null,
+    "summary": "The triangle surfer, stitched right onto the pocket, riding a barrel that never quite closes.",
+    "includes": [],
+    "inquireOnly": true,
+    "galleryAssetIds": [],
+    "featured": false,
+    "order": 16,
+    "listed": true,
+    "shopListed": true,
+    "colorways": [
+      {
+        "name": "Graphite / Violet",
+        "slug": "graphite-violet",
+        "swatch": "#1D252D",
+        "ink": "#8C7CFF",
+        "assetId": "merch-triangle-surfer-pocket-tee-graphite-violet"
+      },
+      {
+        "name": "True Navy / Cream + Coral",
+        "slug": "true-navy-cream-coral",
+        "swatch": "#2A2A41",
+        "ink": "#F8E8D2",
+        "assetId": "merch-triangle-surfer-pocket-tee-true-navy-cream-coral"
+      },
+      {
+        "name": "Moss / Coral + Cream",
+        "slug": "moss-coral-cream",
+        "swatch": "#646A54",
+        "ink": "#FF7A59",
+        "assetId": "merch-triangle-surfer-pocket-tee-moss-coral-cream"
+      },
+      {
+        "name": "Pepper / Acid Green",
+        "slug": "pepper-acid-green",
+        "swatch": "#454545",
+        "ink": "#B6FF3B",
+        "assetId": "merch-triangle-surfer-pocket-tee-pepper-acid-green"
+      },
+      {
+        "name": "Bay / Plum + Taco Red",
+        "slug": "bay-plum-taco-red",
+        "swatch": "#BDC5B8",
+        "ink": "#2B1E35",
+        "assetId": "merch-triangle-surfer-pocket-tee-bay-plum-taco-red"
+      }
+    ],
+    "lifestyleAssetIds": [],
+    "heroColorway": "graphite-violet"
   }
 ]

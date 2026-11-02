@@ -1,33 +1,24 @@
 {
  "schema": "fm-catalog-published/1",
- "release": 0,
- "exportedAt": "2026-10-22T18:00:00.000Z",
+ "release": 1,
+ "exportedAt": "2026-11-02T20:30:00.000Z",
  "merch": {
-  "hotdog-tee-white": {
+  "hotdo-g-tee-in-the-bun": {
    "price_cents": null,
    "sale": null,
    "colorways": {
-    "white-taco-red": {},
     "black-white": {},
-    "graphite-electric-orange": {}
+    "ivory-taco-red": {},
+    "butter-taco-red": {}
    }
   },
-  "feelings-notice-tee": {
+  "hotdo-g-womens-boxy-tee-in-the-bun": {
    "price_cents": null,
    "sale": null,
    "colorways": {
-    "true-navy-cream": {},
-    "graphite-cream": {},
-    "ivory-plum": {}
-   }
-  },
-  "heartbeat-croissant-pocket-tee": {
-   "price_cents": null,
-   "sale": null,
-   "colorways": {
-    "burnt-orange-plum": {},
-    "ivory-plum": {},
-    "graphite-coral": {}
+    "black-white": {},
+    "ivory-taco-red": {},
+    "butter-taco-red": {}
    }
   },
   "make-art-with-friends-tee": {
@@ -40,22 +31,20 @@
     "chambray-plum": {}
    }
   },
-  "santa-cruz-dipper-tank": {
-   "price_cents": null,
-   "sale": null,
-   "colorways": {
-    "chambray-navy": {},
-    "blossom-navy": {},
-    "butter-navy": {},
-    "white-navy": {},
-    "grape-cream": {}
-   }
-  },
   "make-art-with-friends-womens-boxy-tee": {
    "price_cents": null,
    "sale": null,
    "colorways": {
     "butter-plum": {}
+   }
+  },
+  "feelings-notice-tee": {
+   "price_cents": null,
+   "sale": null,
+   "colorways": {
+    "true-navy-cream": {},
+    "graphite-cream": {},
+    "ivory-plum": {}
    }
   },
   "feelings-notice-womens-boxy-tee": {
@@ -65,22 +54,95 @@
     "ivory-plum": {}
    }
   },
-  "hotdo-g-womens-boxy-tee": {
+  "triangle-surfer-tee": {
    "price_cents": null,
    "sale": null,
    "colorways": {
-    "black-white": {},
-    "ivory-taco-red": {},
+    "black-acid-green": {},
+    "true-navy-coral": {},
+    "ivory-violet": {},
+    "blue-spruce-cream": {},
     "butter-taco-red": {}
    }
   },
-  "santa-cruz-dipper-womens-rib-tank": {
+  "never-ending-set-ribbon-tank": {
    "price_cents": null,
    "sale": null,
    "colorways": {
-    "powder-navy": {},
-    "orchid-navy": {},
-    "white-navy": {}
+    "black-acid-bloom": {},
+    "white-bruise-violet": {},
+    "ivory-coral-heat": {}
+   }
+  },
+  "never-ending-set-ribbon-womens-tank": {
+   "price_cents": null,
+   "sale": null,
+   "colorways": {
+    "black-acid-bloom": {},
+    "white-bruise-violet": {},
+    "bone-coral-heat": {}
+   }
+  },
+  "melt-wave-tee-inverse": {
+   "price_cents": null,
+   "sale": null,
+   "colorways": {
+    "black": {}
+   }
+  },
+  "heartbeat-croissant-pocket-tee": {
+   "price_cents": null,
+   "sale": null,
+   "colorways": {
+    "burnt-orange-plum": {},
+    "ivory-plum": {},
+    "graphite-coral": {}
+   }
+  },
+  "paddle-back-round-tank": {
+   "price_cents": null,
+   "sale": null,
+   "colorways": {
+    "ivory-coral-violet": {},
+    "white-coral-violet": {},
+    "black-coral-cream": {}
+   }
+  },
+  "paddle-back-round-womens-tank": {
+   "price_cents": null,
+   "sale": null,
+   "colorways": {
+    "bone-coral-violet": {},
+    "white-coral-violet": {},
+    "black-coral-cream": {}
+   }
+  },
+  "last-one-i-swear-tank": {
+   "price_cents": null,
+   "sale": null,
+   "colorways": {
+    "black-acid-violet": {},
+    "pepper-acid-violet": {},
+    "white-violet-coral": {}
+   }
+  },
+  "last-one-i-swear-womens-tank": {
+   "price_cents": null,
+   "sale": null,
+   "colorways": {
+    "black-acid-violet": {},
+    "white-violet-coral": {}
+   }
+  },
+  "triangle-surfer-pocket-tee": {
+   "price_cents": null,
+   "sale": null,
+   "colorways": {
+    "graphite-violet": {},
+    "true-navy-cream-coral": {},
+    "moss-coral-cream": {},
+    "pepper-acid-green": {},
+    "bay-plum-taco-red": {}
    }
   }
  },

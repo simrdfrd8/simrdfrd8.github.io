@@ -52,6 +52,13 @@ export default async function MerchProductPage({ params }: { params: Promise<{ s
                 Sizes {product.sizes.length > 1 ? `${product.sizes[0]}–${product.sizes[product.sizes.length - 1]}` : product.sizes[0]}
               </p>
             ) : null}
+            {product.details?.length ? (
+              <ul className="mt-4 space-y-1 text-sm text-muted" data-details>
+                {product.details.map((d) => (
+                  <li key={d}>{d}</li>
+                ))}
+              </ul>
+            ) : null}
             <p className="mt-6 text-sm text-muted">
               Not on sale yet.{" "}
               <Link href={`/contact/?type=business&ref=${product.id}`} className="underline decoration-line-strong underline-offset-4 hover:text-cream" data-ask>

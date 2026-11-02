@@ -295,6 +295,8 @@ export const ProductSchema = z.object({
   design: slug.optional(),
   /** Merch only: sizes the supplier's blank comes in (e.g. ["S","M","L","XL","2XL"]). Shown on the product page when set. */
   sizes: z.array(z.string()).optional(),
+  /** Merch only: short product-detail lines shown on the product page (e.g. print placement, a required disclaimer). */
+  details: z.array(z.string()).optional(),
   /** Merch brand line (artist slug, e.g. "baylingual-entertainment"); null = general Flavorful Music. */
   brand: slug.nullable().default(null),
   /** Extra assets shown with the product (lifestyle photos, videos). */

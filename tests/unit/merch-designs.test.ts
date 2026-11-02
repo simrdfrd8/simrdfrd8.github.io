@@ -35,16 +35,21 @@ describe("All tab: one card per design with a Men / Women cut selector (no Unise
     expect(cutsOf(d).women).toBe("one");
   });
 
-  it("the launch line groups into 6 designs; the 4 with a women's cut get Men + Women, the rest Men only", () => {
+  it("the shop line groups by design; the 5 with a women's cut get Men + Women, the rest Men only", () => {
     const products = visibleProducts(ProductsFile.parse(load("products")), "production", AssetsFile.parse(load("assets"))).filter((x) => x.type === "merch" && x.listed && x.shopListed);
     const designs = groupByDesign([...products].sort((x, y) => x.order - y.order));
     expect(designs.map((d) => [d.design, cutsOf(d)])).toEqual([
-      ["hotdo-g", { men: "merch-hotdog-tee-white", women: "merch-hotdo-g-womens-boxy-tee" }],
+      ["hotdo-g-in-the-bun", { men: "merch-hotdo-g-tee-in-the-bun", women: "merch-hotdo-g-womens-boxy-tee-in-the-bun" }],
+      ["make-art-with-friends", { men: "merch-make-art-with-friends-tee", women: "merch-make-art-with-friends-womens-boxy-tee" }],
+      ["feelings-notice", { men: "merch-feelings-notice-tee", women: "merch-feelings-notice-womens-boxy-tee" }],
+      ["triangle-surfer", { men: "merch-triangle-surfer-tee" }],
+      ["never-ending-set", { men: "merch-never-ending-set-ribbon-tank", women: "merch-never-ending-set-ribbon-womens-tank" }],
+      ["melt-wave-inverse", { men: "merch-melt-wave-tee-inverse" }],
+      ["paddle-back-round", { men: "merch-paddle-back-round-tank", women: "merch-paddle-back-round-womens-tank" }],
+      ["last-one-i-swear", { men: "merch-last-one-i-swear-tank", women: "merch-last-one-i-swear-womens-tank" }],
+      ["triangle-surfer-pocket", { men: "merch-triangle-surfer-pocket-tee" }],
       ["heartbeat-triangle", { men: "merch-heartbeat-triangle-tee" }],
       ["no-thanks", { men: "merch-no-thanks-tee" }],
-      ["feelings-notice", { men: "merch-feelings-notice-tee", women: "merch-feelings-notice-womens-boxy-tee" }],
-      ["make-art-with-friends", { men: "merch-make-art-with-friends-tee", women: "merch-make-art-with-friends-womens-boxy-tee" }],
-      ["santa-cruz-dipper", { men: "merch-santa-cruz-dipper-tank", women: "merch-santa-cruz-dipper-womens-rib-tank" }],
     ]);
     for (const d of designs) expect(d.defaultCut).toBe("men");
     for (const d of designs) expect(d.cuts.map((c) => c.label)).not.toContain("Unisex");
@@ -56,7 +61,7 @@ describe("All tab: one card per design with a Men / Women cut selector (no Unise
       products: load("products"), services: load("services"), licenses: load("licenses"), site: load("site"), collaborators: load("collaborators"), samplePacks: load("sample-packs"),
     };
     expect(validateCatalog(raw).filter((e) => e.includes("design/cut"))).toEqual([]);
-    raw.products = raw.products.map((x: { id: string; design?: string }) => (x.id === "merch-no-thanks-tee" ? { ...x, design: "hotdo-g" } : x));
-    expect(validateCatalog(raw)).toContain("products: two shop-listed merch pieces share design/cut hotdo-g/men");
+    raw.products = raw.products.map((x: { id: string; design?: string }) => (x.id === "merch-no-thanks-tee" ? { ...x, design: "feelings-notice" } : x));
+    expect(validateCatalog(raw)).toContain("products: two shop-listed merch pieces share design/cut feelings-notice/men");
   });
 });

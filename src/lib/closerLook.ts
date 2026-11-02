@@ -31,16 +31,12 @@ type Garment = "cc1717" | "cc3023cl" | "cc9360" | "as4063g";
 /** Launch line only. Products not listed here get no Closer look block. */
 const PRODUCTS: Record<string, { garment: Garment; label: boolean }> = {
   // label: the 1.5" woven label row exists in the spec sheet only for these 6 non-women's-cut pieces (04-spec-sheet/spec-sheet.csv)
-  "merch-hotdog-tee-white": { garment: "cc1717", label: true },
   "merch-feelings-notice-tee": { garment: "cc1717", label: true },
   "merch-heartbeat-triangle-tee": { garment: "cc1717", label: true },
   "merch-no-thanks-tee": { garment: "cc1717", label: true },
   "merch-make-art-with-friends-tee": { garment: "cc1717", label: true },
-  "merch-santa-cruz-dipper-tank": { garment: "cc9360", label: true },
   "merch-make-art-with-friends-womens-boxy-tee": { garment: "cc3023cl", label: false },
   "merch-feelings-notice-womens-boxy-tee": { garment: "cc3023cl", label: false },
-  "merch-hotdo-g-womens-boxy-tee": { garment: "cc3023cl", label: false },
-  "merch-santa-cruz-dipper-womens-rib-tank": { garment: "as4063g", label: false },
 };
 
 // Label: 01-woven-label/README.md (v1 mark, a croissant; packet files call it "dome"; 1.5" decided Oct 22, woven, two flat colours, thinnest line 1.10 mm,
