@@ -1198,9 +1198,9 @@
     "shopListed": false
   },
   {
-    "id": "merch-hotdo-g-tee-in-the-bun",
-    "title": "HOTDO G Tee (In the Bun)",
-    "assetId": "merch-hotdo-g-tee-in-the-bun-black-white",
+    "id": "merch-hotdo-g-tee-g-dog",
+    "title": "HOTDO G Tee (G Dog)",
+    "assetId": "merch-hotdo-g-tee-g-dog-black-white",
     "artist": null,
     "brand": null,
     "type": "merch",
@@ -1210,11 +1210,11 @@
     "priceApproved": false,
     "status": "upcoming",
     "category": "men",
-    "design": "hotdo-g-in-the-bun",
+    "design": "hotdo-g-g-dog",
     "checkoutProvider": "none",
     "checkoutUrl": null,
     "licenseTerms": null,
-    "summary": "Is it a Hotdo? Is it a g? Yes. This time the awkward space is the hot dog itself, tucked in its bun, and the squiggle on top keeps a steady beat.",
+    "summary": "Is it a Hotdo? Is it a g? Yes. One awkward space, and a G bent out of a single sausage. Look closely at the squiggle on top: it has a pulse.",
     "includes": [],
     "inquireOnly": true,
     "galleryAssetIds": [],
@@ -1228,33 +1228,33 @@
         "slug": "black-white",
         "swatch": "#1B1B1C",
         "ink": "#FFFFFF",
-        "assetId": "merch-hotdo-g-tee-in-the-bun-black-white",
-        "backAssetId": "merch-hotdo-g-tee-in-the-bun-black-white-back"
+        "assetId": "merch-hotdo-g-tee-g-dog-black-white",
+        "backAssetId": "merch-hotdo-g-tee-g-dog-black-white-back"
       },
       {
         "name": "Ivory / Taco Red",
         "slug": "ivory-taco-red",
         "swatch": "#FFF4D9",
         "ink": "#C83A22",
-        "assetId": "merch-hotdo-g-tee-in-the-bun-ivory-taco-red",
-        "backAssetId": "merch-hotdo-g-tee-in-the-bun-ivory-taco-red-back"
+        "assetId": "merch-hotdo-g-tee-g-dog-ivory-taco-red",
+        "backAssetId": "merch-hotdo-g-tee-g-dog-ivory-taco-red-back"
       },
       {
         "name": "Butter / Taco Red",
         "slug": "butter-taco-red",
         "swatch": "#FFE09E",
         "ink": "#C83A22",
-        "assetId": "merch-hotdo-g-tee-in-the-bun-butter-taco-red",
-        "backAssetId": "merch-hotdo-g-tee-in-the-bun-butter-taco-red-back"
+        "assetId": "merch-hotdo-g-tee-g-dog-butter-taco-red",
+        "backAssetId": "merch-hotdo-g-tee-g-dog-butter-taco-red-back"
       }
     ],
     "lifestyleAssetIds": [],
     "heroColorway": "black-white"
   },
   {
-    "id": "merch-hotdo-g-womens-boxy-tee-in-the-bun",
-    "title": "HOTDO G Women's Boxy Tee (In the Bun)",
-    "assetId": "merch-hotdo-g-womens-boxy-tee-in-the-bun-black-white",
+    "id": "merch-hotdo-g-womens-boxy-tee-g-dog",
+    "title": "HOTDO G Women's Boxy Tee (G Dog)",
+    "assetId": "merch-hotdo-g-womens-boxy-tee-g-dog-black-white",
     "artist": null,
     "brand": null,
     "type": "merch",
@@ -1264,7 +1264,7 @@
     "priceApproved": false,
     "status": "upcoming",
     "category": "women",
-    "design": "hotdo-g-in-the-bun",
+    "design": "hotdo-g-g-dog",
     "sizes": [
       "S",
       "M",
@@ -1275,7 +1275,7 @@
     "checkoutProvider": "none",
     "checkoutUrl": null,
     "licenseTerms": null,
-    "summary": "Is it a Hotdo? Is it a g? Yes. This time the awkward space is the hot dog itself, tucked in its bun, and the squiggle on top keeps a steady beat.",
+    "summary": "Is it a Hotdo? Is it a g? Yes. One awkward space, and a G bent out of a single sausage. Look closely at the squiggle on top: it has a pulse.",
     "includes": [],
     "inquireOnly": true,
     "galleryAssetIds": [],
@@ -1289,24 +1289,24 @@
         "slug": "black-white",
         "swatch": "#1B1B1C",
         "ink": "#FFFFFF",
-        "assetId": "merch-hotdo-g-womens-boxy-tee-in-the-bun-black-white",
-        "backAssetId": "merch-hotdo-g-womens-boxy-tee-in-the-bun-black-white-back"
+        "assetId": "merch-hotdo-g-womens-boxy-tee-g-dog-black-white",
+        "backAssetId": "merch-hotdo-g-womens-boxy-tee-g-dog-black-white-back"
       },
       {
         "name": "Ivory / Taco Red",
         "slug": "ivory-taco-red",
         "swatch": "#FFF4D9",
         "ink": "#C83A22",
-        "assetId": "merch-hotdo-g-womens-boxy-tee-in-the-bun-ivory-taco-red",
-        "backAssetId": "merch-hotdo-g-womens-boxy-tee-in-the-bun-ivory-taco-red-back"
+        "assetId": "merch-hotdo-g-womens-boxy-tee-g-dog-ivory-taco-red",
+        "backAssetId": "merch-hotdo-g-womens-boxy-tee-g-dog-ivory-taco-red-back"
       },
       {
         "name": "Butter / Taco Red",
         "slug": "butter-taco-red",
         "swatch": "#FFE09E",
         "ink": "#C83A22",
-        "assetId": "merch-hotdo-g-womens-boxy-tee-in-the-bun-butter-taco-red",
-        "backAssetId": "merch-hotdo-g-womens-boxy-tee-in-the-bun-butter-taco-red-back"
+        "assetId": "merch-hotdo-g-womens-boxy-tee-g-dog-butter-taco-red",
+        "backAssetId": "merch-hotdo-g-womens-boxy-tee-g-dog-butter-taco-red-back"
       }
     ],
     "lifestyleAssetIds": [],

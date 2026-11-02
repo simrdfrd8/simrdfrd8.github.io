@@ -1,9 +1,9 @@
 {
  "schema": "fm-catalog-published/1",
  "release": 1,
- "exportedAt": "2026-11-02T20:30:00.000Z",
+ "exportedAt": "2026-11-02T22:45:00.000Z",
  "merch": {
-  "hotdo-g-tee-in-the-bun": {
+  "hotdo-g-tee-g-dog": {
    "price_cents": null,
    "sale": null,
    "colorways": {
@@ -12,7 +12,7 @@
     "butter-taco-red": {}
    }
   },
-  "hotdo-g-womens-boxy-tee-in-the-bun": {
+  "hotdo-g-womens-boxy-tee-g-dog": {
    "price_cents": null,
    "sale": null,
    "colorways": {

@@ -39,7 +39,7 @@ describe("All tab: one card per design with a Men / Women cut selector (no Unise
     const products = visibleProducts(ProductsFile.parse(load("products")), "production", AssetsFile.parse(load("assets"))).filter((x) => x.type === "merch" && x.listed && x.shopListed);
     const designs = groupByDesign([...products].sort((x, y) => x.order - y.order));
     expect(designs.map((d) => [d.design, cutsOf(d)])).toEqual([
-      ["hotdo-g-in-the-bun", { men: "merch-hotdo-g-tee-in-the-bun", women: "merch-hotdo-g-womens-boxy-tee-in-the-bun" }],
+      ["hotdo-g-g-dog", { men: "merch-hotdo-g-tee-g-dog", women: "merch-hotdo-g-womens-boxy-tee-g-dog" }],
       ["make-art-with-friends", { men: "merch-make-art-with-friends-tee", women: "merch-make-art-with-friends-womens-boxy-tee" }],
       ["feelings-notice", { men: "merch-feelings-notice-tee", women: "merch-feelings-notice-womens-boxy-tee" }],
       ["triangle-surfer", { men: "merch-triangle-surfer-tee" }],

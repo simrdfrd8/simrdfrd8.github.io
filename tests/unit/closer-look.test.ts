@@ -11,7 +11,7 @@ describe("closer look", () => {
   const listed = merchProducts().filter((p) => p.shopListed);
   // Not in the Apliiq production packet yet (no sourced fabric/print facts), so they get no Closer look until they are.
   const NOT_IN_PACKET = new Set([
-    "merch-heartbeat-croissant-pocket-tee", "merch-hotdo-g-tee-in-the-bun", "merch-hotdo-g-womens-boxy-tee-in-the-bun", "merch-triangle-surfer-tee", "merch-never-ending-set-ribbon-tank",
+    "merch-heartbeat-croissant-pocket-tee", "merch-hotdo-g-tee-g-dog", "merch-hotdo-g-womens-boxy-tee-g-dog", "merch-triangle-surfer-tee", "merch-never-ending-set-ribbon-tank",
     "merch-never-ending-set-ribbon-womens-tank", "merch-melt-wave-tee-inverse", "merch-paddle-back-round-tank", "merch-paddle-back-round-womens-tank", "merch-last-one-i-swear-tank",
     "merch-last-one-i-swear-womens-tank", "merch-triangle-surfer-pocket-tee",
   ]);

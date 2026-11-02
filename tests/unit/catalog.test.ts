@@ -14,13 +14,13 @@ const MENS_LAUNCH_IDS = ["merch-heartbeat-triangle-tee", "merch-no-thanks-tee", 
 const WOMENS_BOXY_IDS = ["merch-make-art-with-friends-womens-boxy-tee", "merch-feelings-notice-womens-boxy-tee"];
 /** Public top ten (owner-approved Nov 2, 2026): the new pieces show front (and back, where printed) flats only, no model shots. */
 const FLAT_ONLY_IDS = [
-  "merch-hotdo-g-tee-in-the-bun", "merch-hotdo-g-womens-boxy-tee-in-the-bun", "merch-triangle-surfer-tee", "merch-never-ending-set-ribbon-tank", "merch-never-ending-set-ribbon-womens-tank",
+  "merch-hotdo-g-tee-g-dog", "merch-hotdo-g-womens-boxy-tee-g-dog", "merch-triangle-surfer-tee", "merch-never-ending-set-ribbon-tank", "merch-never-ending-set-ribbon-womens-tank",
   "merch-melt-wave-tee-inverse", "merch-paddle-back-round-tank", "merch-paddle-back-round-womens-tank", "merch-last-one-i-swear-tank", "merch-last-one-i-swear-womens-tank", "merch-triangle-surfer-pocket-tee",
 ];
 const WOMENS_IDS = [...WOMENS_BOXY_IDS, ...FLAT_ONLY_IDS.filter((id) => /womens/.test(id))];
 /** Shop grid order without the public filter (production build sets MERCH_PUBLIC_SET=1, which also drops Heartbeat Triangle and no thanks). */
 const LAUNCH_IDS = [
-  "merch-hotdo-g-tee-in-the-bun", "merch-hotdo-g-womens-boxy-tee-in-the-bun", "merch-make-art-with-friends-tee", "merch-make-art-with-friends-womens-boxy-tee", "merch-feelings-notice-tee", "merch-feelings-notice-womens-boxy-tee",
+  "merch-hotdo-g-tee-g-dog", "merch-hotdo-g-womens-boxy-tee-g-dog", "merch-make-art-with-friends-tee", "merch-make-art-with-friends-womens-boxy-tee", "merch-feelings-notice-tee", "merch-feelings-notice-womens-boxy-tee",
   "merch-triangle-surfer-tee", "merch-never-ending-set-ribbon-tank", "merch-never-ending-set-ribbon-womens-tank", "merch-melt-wave-tee-inverse", "merch-paddle-back-round-tank", "merch-paddle-back-round-womens-tank",
   "merch-last-one-i-swear-tank", "merch-last-one-i-swear-womens-tank", "merch-triangle-surfer-pocket-tee", "merch-heartbeat-triangle-tee", "merch-no-thanks-tee",
 ];
@@ -207,7 +207,7 @@ describe("content catalog", () => {
       expect(p.checkoutUrl).toBeNull();
       expect(p.status).not.toBe("available");
     }
-    expect(products.find((p) => p.id === "merch-hotdo-g-tee-in-the-bun")?.brand).toBeNull();
+    expect(products.find((p) => p.id === "merch-hotdo-g-tee-g-dog")?.brand).toBeNull();
     // owner: Baylingual apparel stays out of the public build (products and photos)
     expect(JSON.stringify([products, AssetsFile.parse(load("assets"))])).not.toMatch(/bay-merch-|baylingual-frog-(crewneck|tee)/);
   });
@@ -231,18 +231,18 @@ describe("content catalog", () => {
     }
   });
 
-  it("HOTDO G (In the Bun) replaced the box version on both cuts: cleared copy, flats only, no box art left", () => {
+  it("HOTDO G (G Dog) holds the HOTDO G slot on both cuts (swap 1, Nov 2): cleared copy, flats only, no box art left", () => {
     const products = ProductsFile.parse(load("products"));
     const assets = AssetsFile.parse(load("assets"));
     const hot = products.filter((p) => /hotdo/.test(p.id));
-    expect(hot.map((p) => p.id)).toEqual(["merch-hotdo-g-tee-in-the-bun", "merch-hotdo-g-womens-boxy-tee-in-the-bun"]);
+    expect(hot.map((p) => p.id)).toEqual(["merch-hotdo-g-tee-g-dog", "merch-hotdo-g-womens-boxy-tee-g-dog"]);
     expect(hot.map((p) => p.category)).toEqual(["men", "women"]);
     for (const p of hot) {
-      expect(p.design).toBe("hotdo-g-in-the-bun");
-      expect(p.summary).toBe("Is it a Hotdo? Is it a g? Yes. This time the awkward space is the hot dog itself, tucked in its bun, and the squiggle on top keeps a steady beat.");
+      expect(p.design).toBe("hotdo-g-g-dog");
+      expect(p.summary).toBe("Is it a Hotdo? Is it a g? Yes. One awkward space, and a G bent out of a single sausage. Look closely at the squiggle on top: it has a pulse.");
       expect(p.colorways.map((c) => c.slug)).toEqual(["black-white", "ivory-taco-red", "butter-taco-red"]);
     }
-    expect(assets.filter((a) => /^merch-hotdo-?g-/.test(a.id) && !/in-the-bun/.test(a.id))).toEqual([]);
+    expect(assets.filter((a) => /^merch-hotdo-?g-/.test(a.id) && !/g-dog/.test(a.id))).toEqual([]);
     expect(JSON.stringify([products, assets])).not.toMatch(/bold box|hotdog-tee-white|gap-dog/i);
   });
 

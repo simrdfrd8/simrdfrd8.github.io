@@ -521,12 +521,12 @@ test("artist titles never break mid-word and fit the viewport", async ({ page })
 
 /** The public top ten (owner-approved Nov 2, 2026), in shop order; without the public filter the two parked tees follow. */
 const MENS = PUBLIC_SET
-  ? ["merch-hotdo-g-tee-in-the-bun", "merch-make-art-with-friends-tee", "merch-feelings-notice-tee", "merch-triangle-surfer-tee", "merch-never-ending-set-ribbon-tank", "merch-melt-wave-tee-inverse", "merch-heartbeat-croissant-pocket-tee", "merch-paddle-back-round-tank", "merch-last-one-i-swear-tank", "merch-triangle-surfer-pocket-tee"]
-  : ["merch-hotdo-g-tee-in-the-bun", "merch-make-art-with-friends-tee", "merch-feelings-notice-tee", "merch-triangle-surfer-tee", "merch-never-ending-set-ribbon-tank", "merch-melt-wave-tee-inverse", "merch-paddle-back-round-tank", "merch-last-one-i-swear-tank", "merch-triangle-surfer-pocket-tee", "merch-heartbeat-triangle-tee", "merch-no-thanks-tee"];
-const WOMENS = ["merch-hotdo-g-womens-boxy-tee-in-the-bun", "merch-make-art-with-friends-womens-boxy-tee", "merch-feelings-notice-womens-boxy-tee", "merch-never-ending-set-ribbon-womens-tank", "merch-paddle-back-round-womens-tank", "merch-last-one-i-swear-womens-tank"];
+  ? ["merch-hotdo-g-tee-g-dog", "merch-make-art-with-friends-tee", "merch-feelings-notice-tee", "merch-triangle-surfer-tee", "merch-never-ending-set-ribbon-tank", "merch-melt-wave-tee-inverse", "merch-heartbeat-croissant-pocket-tee", "merch-paddle-back-round-tank", "merch-last-one-i-swear-tank", "merch-triangle-surfer-pocket-tee"]
+  : ["merch-hotdo-g-tee-g-dog", "merch-make-art-with-friends-tee", "merch-feelings-notice-tee", "merch-triangle-surfer-tee", "merch-never-ending-set-ribbon-tank", "merch-melt-wave-tee-inverse", "merch-paddle-back-round-tank", "merch-last-one-i-swear-tank", "merch-triangle-surfer-pocket-tee", "merch-heartbeat-triangle-tee", "merch-no-thanks-tee"];
+const WOMENS = ["merch-hotdo-g-womens-boxy-tee-g-dog", "merch-make-art-with-friends-womens-boxy-tee", "merch-feelings-notice-womens-boxy-tee", "merch-never-ending-set-ribbon-womens-tank", "merch-paddle-back-round-womens-tank", "merch-last-one-i-swear-womens-tank"];
 /** Grid (DOM) order follows each product's `order`. */
 const ORDER = [
-  "merch-hotdo-g-tee-in-the-bun", "merch-hotdo-g-womens-boxy-tee-in-the-bun", "merch-make-art-with-friends-tee", "merch-make-art-with-friends-womens-boxy-tee", "merch-feelings-notice-tee", "merch-feelings-notice-womens-boxy-tee",
+  "merch-hotdo-g-tee-g-dog", "merch-hotdo-g-womens-boxy-tee-g-dog", "merch-make-art-with-friends-tee", "merch-make-art-with-friends-womens-boxy-tee", "merch-feelings-notice-tee", "merch-feelings-notice-womens-boxy-tee",
   "merch-triangle-surfer-tee", "merch-never-ending-set-ribbon-tank", "merch-never-ending-set-ribbon-womens-tank", "merch-melt-wave-tee-inverse", "merch-heartbeat-croissant-pocket-tee", "merch-paddle-back-round-tank", "merch-paddle-back-round-womens-tank",
   "merch-last-one-i-swear-tank", "merch-last-one-i-swear-womens-tank", "merch-triangle-surfer-pocket-tee", "merch-heartbeat-triangle-tee", "merch-no-thanks-tee",
 ];
@@ -534,9 +534,9 @@ const LAUNCH = ORDER.filter((id) => MENS.includes(id) || WOMENS.includes(id));
 const MERCH_COUNT = LAUNCH.length;
 /** All tab: one card per design, in shop order. Owner, 2026-10-22: "only m/f ... No unisex category visible" (unisex-fit cuts list as Men). */
 const DESIGNS = PUBLIC_SET
-  ? ["hotdo-g-in-the-bun", "make-art-with-friends", "feelings-notice", "triangle-surfer", "never-ending-set", "melt-wave-inverse", "heartbeat-croissant-pocket", "paddle-back-round", "last-one-i-swear", "triangle-surfer-pocket"]
-  : ["hotdo-g-in-the-bun", "make-art-with-friends", "feelings-notice", "triangle-surfer", "never-ending-set", "melt-wave-inverse", "paddle-back-round", "last-one-i-swear", "triangle-surfer-pocket", "heartbeat-triangle", "no-thanks"];
-const WITH_WOMENS = ["hotdo-g-in-the-bun", "make-art-with-friends", "feelings-notice", "never-ending-set", "paddle-back-round", "last-one-i-swear"];
+  ? ["hotdo-g-g-dog", "make-art-with-friends", "feelings-notice", "triangle-surfer", "never-ending-set", "melt-wave-inverse", "heartbeat-croissant-pocket", "paddle-back-round", "last-one-i-swear", "triangle-surfer-pocket"]
+  : ["hotdo-g-g-dog", "make-art-with-friends", "feelings-notice", "triangle-surfer", "never-ending-set", "melt-wave-inverse", "paddle-back-round", "last-one-i-swear", "triangle-surfer-pocket", "heartbeat-triangle", "no-thanks"];
+const WITH_WOMENS = ["hotdo-g-g-dog", "make-art-with-friends", "feelings-notice", "never-ending-set", "paddle-back-round", "last-one-i-swear"];
 
 test("merch store lists every piece as a swipe card, display-only, no prices or buy buttons", async ({ page }) => {
   await page.goto("/shop/merch");
@@ -544,13 +544,13 @@ test("merch store lists every piece as a swipe card, display-only, no prices or 
   await expect(cards).toHaveCount(MERCH_COUNT);
   expect(await cards.evaluateAll((els) => els.map((e) => e.getAttribute("data-product")))).toEqual(LAUNCH);
   await expect(page.locator("[data-card-carousel]")).toHaveCount(MERCH_COUNT);
-  const hot = page.locator('[data-product="merch-hotdo-g-tee-in-the-bun"]');
+  const hot = page.locator('[data-product="merch-hotdo-g-tee-g-dog"]');
   await expect(hot).toHaveCount(1);
-  await expect(hot.locator("h3")).toHaveText("HOTDO G Tee (In the Bun)");
+  await expect(hot.locator("h3")).toHaveText("HOTDO G Tee (G Dog)");
   await expect(hot).toContainText("Is it a Hotdo? Is it a g? Yes. This time the awkward space is the hot dog itself, tucked in its bun");
   // hero views (front, back flats; no model shots) + the other 2 colorways' fronts; the front flat is the thumbnail
   await expect(hot.locator("[data-slide]")).toHaveCount(4);
-  await expect(hot.locator("[data-slide='0'] img")).toHaveAttribute("src", /merch-hotdo-g-tee-in-the-bun\/black-white-\d/);
+  await expect(hot.locator("[data-slide='0'] img")).toHaveAttribute("src", /merch-hotdo-g-tee-g-dog\/black-white-\d/);
   // no text buttons to browse: no swatches / view toggles on the card
   await expect(hot.locator("[role=radio], [data-merch-views], [data-extra-photo]")).toHaveCount(0);
   for (const gone of ["merch-heartbeat-triangle-pocket-tee", "merch-taco-slu-t-tee", "merch-taco-slu-t-taqueria-tee"]) await expect(page.locator(`[data-product="${gone}"]`)).toHaveCount(0);
@@ -730,8 +730,8 @@ test("Make Art With Friends card swipes through 4 colorways (hero Chalky Mint fi
 test("phone (390px): touch-swiping a merch card moves to the next photo", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/shop/merch/");
-  // All tab: the HOTDO G (In the Bun) design card, on its default Men cut
-  const card = page.locator('[data-design-carousel="hotdo-g-in-the-bun"]');
+  // All tab: the HOTDO G (G Dog) design card, on its default Men cut
+  const card = page.locator('[data-design-carousel="hotdo-g-g-dog"]');
   await card.scrollIntoViewIfNeeded();
   await expect(card).toHaveAttribute("data-index", "0");
   const strip = card.locator("[data-carousel-strip]");
@@ -758,20 +758,20 @@ test("All tab: one card per design with a Men / Women cut selector (no Unisex); 
       await expect(card.locator("[data-cut-option=men]")).toHaveAttribute("aria-checked", "true");
       await expect(card).toHaveAttribute("data-cut", "men");
     }
-    const hot = page.locator('[data-merch-design="hotdo-g-in-the-bun"]');
-    await expect(hot).toHaveAttribute("data-design-product", "merch-hotdo-g-tee-in-the-bun");
-    await expect(hot.locator("h3")).toHaveText("HOTDO G Tee (In the Bun)");
-    await expect(hot.locator("[data-design-link]")).toHaveAttribute("href", /\/shop\/merch\/hotdo-g-tee-in-the-bun\/?$/);
-    await expect(hot.locator("[data-slide='0'] img")).toHaveAttribute("src", /merch-hotdo-g-tee-in-the-bun\/black-white-\d/);
+    const hot = page.locator('[data-merch-design="hotdo-g-g-dog"]');
+    await expect(hot).toHaveAttribute("data-design-product", "merch-hotdo-g-tee-g-dog");
+    await expect(hot.locator("h3")).toHaveText("HOTDO G Tee (G Dog)");
+    await expect(hot.locator("[data-design-link]")).toHaveAttribute("href", /\/shop\/merch\/hotdo-g-tee-g-dog\/?$/);
+    await expect(hot.locator("[data-slide='0'] img")).toHaveAttribute("src", /merch-hotdo-g-tee-g-dog\/black-white-\d/);
     await expect(hot.locator("[data-design-colorways]")).toHaveAttribute("data-design-colorways", "3");
     await expect(hot.locator("[data-design-sizes]")).toHaveCount(0); // no size run on the Comfort Colors tee in the catalog yet
     await hot.locator("[data-cut-option=women]").click();
     await expect(hot).toHaveAttribute("data-cut", "women");
     await expect(hot.locator("[data-cut-option=women]")).toHaveAttribute("aria-checked", "true");
-    await expect(hot).toHaveAttribute("data-design-product", "merch-hotdo-g-womens-boxy-tee-in-the-bun");
-    await expect(hot.locator("h3")).toHaveText("HOTDO G Women's Boxy Tee (In the Bun)");
-    await expect(hot.locator("[data-design-link]")).toHaveAttribute("href", /\/shop\/merch\/hotdo-g-womens-boxy-tee-in-the-bun\/?$/);
-    await expect(hot.locator("[data-slide='0'] img")).toHaveAttribute("src", /merch-hotdo-g-womens-boxy-tee-in-the-bun\//);
+    await expect(hot).toHaveAttribute("data-design-product", "merch-hotdo-g-womens-boxy-tee-g-dog");
+    await expect(hot.locator("h3")).toHaveText("HOTDO G Women's Boxy Tee (G Dog)");
+    await expect(hot.locator("[data-design-link]")).toHaveAttribute("href", /\/shop\/merch\/hotdo-g-womens-boxy-tee-g-dog\/?$/);
+    await expect(hot.locator("[data-slide='0'] img")).toHaveAttribute("src", /merch-hotdo-g-womens-boxy-tee-g-dog\//);
     await expect(hot.locator("[data-design-colorways]")).toHaveAttribute("data-design-colorways", "3");
     await expect(hot.locator("[data-design-sizes]")).toHaveText("Sizes S–2XL");
     // arrow keys move between the cuts (wrapping)
@@ -779,7 +779,7 @@ test("All tab: one card per design with a Men / Women cut selector (no Unisex); 
     await page.keyboard.press("ArrowRight");
     await expect(hot).toHaveAttribute("data-cut", "men");
     await expect(hot.locator("[data-cut-option=men]")).toBeFocused();
-    await expect(hot).toHaveAttribute("data-design-product", "merch-hotdo-g-tee-in-the-bun");
+    await expect(hot).toHaveAttribute("data-design-product", "merch-hotdo-g-tee-g-dog");
     // the women's tanks are the AS Colour 4063G, XS-XL
     const nes = page.locator('[data-merch-design="never-ending-set"]');
     await nes.locator("[data-cut-option=women]").click();

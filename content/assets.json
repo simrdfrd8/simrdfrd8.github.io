@@ -13980,846 +13980,6 @@
     "dominantColor": "#d8d8c8"
   },
   {
-    "id": "merch-hotdo-g-tee-in-the-bun-black-white",
-    "title": "HOTDO G Tee (In the Bun) (Black / White)",
-    "artist": null,
-    "artistInferred": false,
-    "project": null,
-    "source": "owner-upload",
-    "license": "owned",
-    "publishApproved": true,
-    "alt": "HOTDO G Tee (In the Bun) in Black / White, front",
-    "tags": [
-      "merch",
-      "apparel",
-      "front"
-    ],
-    "collaborators": [],
-    "artists": [],
-    "featured": false,
-    "type": "merch-design",
-    "width": 1200,
-    "height": 1200,
-    "orientation": "square",
-    "previews": [
-      {
-        "format": "webp",
-        "width": 160,
-        "height": 160,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/black-white-160.webp"
-      },
-      {
-        "format": "avif",
-        "width": 480,
-        "height": 480,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/black-white-480.avif"
-      },
-      {
-        "format": "webp",
-        "width": 480,
-        "height": 480,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/black-white-480.webp"
-      },
-      {
-        "format": "avif",
-        "width": 960,
-        "height": 960,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/black-white-960.avif"
-      },
-      {
-        "format": "webp",
-        "width": 960,
-        "height": 960,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/black-white-960.webp"
-      },
-      {
-        "format": "avif",
-        "width": 1200,
-        "height": 1200,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/black-white-1200.avif"
-      },
-      {
-        "format": "webp",
-        "width": 1200,
-        "height": 1200,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/black-white-1200.webp"
-      }
-    ],
-    "poster": [],
-    "lqip": "data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAADwAQCdASoQABAAA4BaJaQAApQUQaGxJIAA/vZGsxzS7xucfRZY1MvamnL3NrfShaYfUv0u24AZvQS4nl3Dq41wdh7t46ZgnNXZiQ5BykamRIK3JGNz/sVzWZ9mUhtHQAywgAAA",
-    "dominantColor": "#888684"
-  },
-  {
-    "id": "merch-hotdo-g-tee-in-the-bun-black-white-back",
-    "title": "HOTDO G Tee (In the Bun) (Black / White) (back)",
-    "artist": null,
-    "artistInferred": false,
-    "project": null,
-    "source": "owner-upload",
-    "license": "owned",
-    "publishApproved": true,
-    "alt": "HOTDO G Tee (In the Bun) in Black / White, back",
-    "tags": [
-      "merch",
-      "apparel",
-      "back"
-    ],
-    "collaborators": [],
-    "artists": [],
-    "featured": false,
-    "type": "merch-design",
-    "width": 1200,
-    "height": 1200,
-    "orientation": "square",
-    "previews": [
-      {
-        "format": "webp",
-        "width": 160,
-        "height": 160,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/black-white-back-160.webp"
-      },
-      {
-        "format": "avif",
-        "width": 480,
-        "height": 480,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/black-white-back-480.avif"
-      },
-      {
-        "format": "webp",
-        "width": 480,
-        "height": 480,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/black-white-back-480.webp"
-      },
-      {
-        "format": "avif",
-        "width": 960,
-        "height": 960,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/black-white-back-960.avif"
-      },
-      {
-        "format": "webp",
-        "width": 960,
-        "height": 960,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/black-white-back-960.webp"
-      },
-      {
-        "format": "avif",
-        "width": 1200,
-        "height": 1200,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/black-white-back-1200.avif"
-      },
-      {
-        "format": "webp",
-        "width": 1200,
-        "height": 1200,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/black-white-back-1200.webp"
-      }
-    ],
-    "poster": [],
-    "lqip": "data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAADQAQCdASoQABAAA4BaJaQAAp/+ULarcAD+9kazHLFEEfjVceQIyZgRTvvUrQ+0dYVR1+Q8QQ7vwThU772wNvjtakYtWTJzMzP8XODxb//5zM7NwzESmhGEAAA=",
-    "dominantColor": "#888784"
-  },
-  {
-    "id": "merch-hotdo-g-tee-in-the-bun-ivory-taco-red",
-    "title": "HOTDO G Tee (In the Bun) (Ivory / Taco Red)",
-    "artist": null,
-    "artistInferred": false,
-    "project": null,
-    "source": "owner-upload",
-    "license": "owned",
-    "publishApproved": true,
-    "alt": "HOTDO G Tee (In the Bun) in Ivory / Taco Red, front",
-    "tags": [
-      "merch",
-      "apparel",
-      "front"
-    ],
-    "collaborators": [],
-    "artists": [],
-    "featured": false,
-    "type": "merch-design",
-    "width": 1200,
-    "height": 1200,
-    "orientation": "square",
-    "previews": [
-      {
-        "format": "webp",
-        "width": 160,
-        "height": 160,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/ivory-taco-red-160.webp"
-      },
-      {
-        "format": "avif",
-        "width": 480,
-        "height": 480,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/ivory-taco-red-480.avif"
-      },
-      {
-        "format": "webp",
-        "width": 480,
-        "height": 480,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/ivory-taco-red-480.webp"
-      },
-      {
-        "format": "avif",
-        "width": 960,
-        "height": 960,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/ivory-taco-red-960.avif"
-      },
-      {
-        "format": "webp",
-        "width": 960,
-        "height": 960,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/ivory-taco-red-960.webp"
-      },
-      {
-        "format": "avif",
-        "width": 1200,
-        "height": 1200,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/ivory-taco-red-1200.avif"
-      },
-      {
-        "format": "webp",
-        "width": 1200,
-        "height": 1200,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/ivory-taco-red-1200.webp"
-      }
-    ],
-    "poster": [],
-    "lqip": "data:image/webp;base64,UklGRjYAAABXRUJQVlA4ICoAAABwAQCdASoQABAAA4BaJYwCdAF1AAD+8pWP+4kIUqrNKxWqAerjr8N2AAA=",
-    "dominantColor": "#f4eedf"
-  },
-  {
-    "id": "merch-hotdo-g-tee-in-the-bun-ivory-taco-red-back",
-    "title": "HOTDO G Tee (In the Bun) (Ivory / Taco Red) (back)",
-    "artist": null,
-    "artistInferred": false,
-    "project": null,
-    "source": "owner-upload",
-    "license": "owned",
-    "publishApproved": true,
-    "alt": "HOTDO G Tee (In the Bun) in Ivory / Taco Red, back",
-    "tags": [
-      "merch",
-      "apparel",
-      "back"
-    ],
-    "collaborators": [],
-    "artists": [],
-    "featured": false,
-    "type": "merch-design",
-    "width": 1200,
-    "height": 1200,
-    "orientation": "square",
-    "previews": [
-      {
-        "format": "webp",
-        "width": 160,
-        "height": 160,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/ivory-taco-red-back-160.webp"
-      },
-      {
-        "format": "avif",
-        "width": 480,
-        "height": 480,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/ivory-taco-red-back-480.avif"
-      },
-      {
-        "format": "webp",
-        "width": 480,
-        "height": 480,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/ivory-taco-red-back-480.webp"
-      },
-      {
-        "format": "avif",
-        "width": 960,
-        "height": 960,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/ivory-taco-red-back-960.avif"
-      },
-      {
-        "format": "webp",
-        "width": 960,
-        "height": 960,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/ivory-taco-red-back-960.webp"
-      },
-      {
-        "format": "avif",
-        "width": 1200,
-        "height": 1200,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/ivory-taco-red-back-1200.avif"
-      },
-      {
-        "format": "webp",
-        "width": 1200,
-        "height": 1200,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/ivory-taco-red-back-1200.webp"
-      }
-    ],
-    "poster": [],
-    "lqip": "data:image/webp;base64,UklGRjAAAABXRUJQVlA4ICQAAABwAQCdASoQABAAA4BaJYwCdAF1AAD+8tjhev/EGqUQxNvAAAA=",
-    "dominantColor": "#f5f0e0"
-  },
-  {
-    "id": "merch-hotdo-g-tee-in-the-bun-butter-taco-red",
-    "title": "HOTDO G Tee (In the Bun) (Butter / Taco Red)",
-    "artist": null,
-    "artistInferred": false,
-    "project": null,
-    "source": "owner-upload",
-    "license": "owned",
-    "publishApproved": true,
-    "alt": "HOTDO G Tee (In the Bun) in Butter / Taco Red, front",
-    "tags": [
-      "merch",
-      "apparel",
-      "front"
-    ],
-    "collaborators": [],
-    "artists": [],
-    "featured": false,
-    "type": "merch-design",
-    "width": 1200,
-    "height": 1200,
-    "orientation": "square",
-    "previews": [
-      {
-        "format": "webp",
-        "width": 160,
-        "height": 160,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/butter-taco-red-160.webp"
-      },
-      {
-        "format": "avif",
-        "width": 480,
-        "height": 480,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/butter-taco-red-480.avif"
-      },
-      {
-        "format": "webp",
-        "width": 480,
-        "height": 480,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/butter-taco-red-480.webp"
-      },
-      {
-        "format": "avif",
-        "width": 960,
-        "height": 960,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/butter-taco-red-960.avif"
-      },
-      {
-        "format": "webp",
-        "width": 960,
-        "height": 960,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/butter-taco-red-960.webp"
-      },
-      {
-        "format": "avif",
-        "width": 1200,
-        "height": 1200,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/butter-taco-red-1200.avif"
-      },
-      {
-        "format": "webp",
-        "width": 1200,
-        "height": 1200,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/butter-taco-red-1200.webp"
-      }
-    ],
-    "poster": [],
-    "lqip": "data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAACQAQCdASoQABAAA4BaJbFnyRgAiwAA/vF49q+2EM03du0g/jaUV1/24eX8O2QxQX+94xlFQbvyAAAA",
-    "dominantColor": "#f4e5c2"
-  },
-  {
-    "id": "merch-hotdo-g-tee-in-the-bun-butter-taco-red-back",
-    "title": "HOTDO G Tee (In the Bun) (Butter / Taco Red) (back)",
-    "artist": null,
-    "artistInferred": false,
-    "project": null,
-    "source": "owner-upload",
-    "license": "owned",
-    "publishApproved": true,
-    "alt": "HOTDO G Tee (In the Bun) in Butter / Taco Red, back",
-    "tags": [
-      "merch",
-      "apparel",
-      "back"
-    ],
-    "collaborators": [],
-    "artists": [],
-    "featured": false,
-    "type": "merch-design",
-    "width": 1200,
-    "height": 1200,
-    "orientation": "square",
-    "previews": [
-      {
-        "format": "webp",
-        "width": 160,
-        "height": 160,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/butter-taco-red-back-160.webp"
-      },
-      {
-        "format": "avif",
-        "width": 480,
-        "height": 480,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/butter-taco-red-back-480.avif"
-      },
-      {
-        "format": "webp",
-        "width": 480,
-        "height": 480,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/butter-taco-red-back-480.webp"
-      },
-      {
-        "format": "avif",
-        "width": 960,
-        "height": 960,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/butter-taco-red-back-960.avif"
-      },
-      {
-        "format": "webp",
-        "width": 960,
-        "height": 960,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/butter-taco-red-back-960.webp"
-      },
-      {
-        "format": "avif",
-        "width": 1200,
-        "height": 1200,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/butter-taco-red-back-1200.avif"
-      },
-      {
-        "format": "webp",
-        "width": 1200,
-        "height": 1200,
-        "src": "/media/merch-hotdo-g-tee-in-the-bun/butter-taco-red-back-1200.webp"
-      }
-    ],
-    "poster": [],
-    "lqip": "data:image/webp;base64,UklGRj4AAABXRUJQVlA4IDIAAACQAQCdASoQABAAA4BaJbFsKRgAiwAA/vGB3orncCDw8mEDHdKZofAZOloe7deKNiXAAA==",
-    "dominantColor": "#f5e7c4"
-  },
-  {
-    "id": "merch-hotdo-g-womens-boxy-tee-in-the-bun-black-white",
-    "title": "HOTDO G Women's Boxy Tee (In the Bun) (Black / White)",
-    "artist": null,
-    "artistInferred": false,
-    "project": null,
-    "source": "owner-upload",
-    "license": "owned",
-    "publishApproved": true,
-    "alt": "HOTDO G Women's Boxy Tee (In the Bun) in Black / White, front",
-    "tags": [
-      "merch",
-      "apparel",
-      "front"
-    ],
-    "collaborators": [],
-    "artists": [],
-    "featured": false,
-    "type": "merch-design",
-    "width": 1200,
-    "height": 1200,
-    "orientation": "square",
-    "previews": [
-      {
-        "format": "webp",
-        "width": 160,
-        "height": 160,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/black-white-160.webp"
-      },
-      {
-        "format": "avif",
-        "width": 480,
-        "height": 480,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/black-white-480.avif"
-      },
-      {
-        "format": "webp",
-        "width": 480,
-        "height": 480,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/black-white-480.webp"
-      },
-      {
-        "format": "avif",
-        "width": 960,
-        "height": 960,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/black-white-960.avif"
-      },
-      {
-        "format": "webp",
-        "width": 960,
-        "height": 960,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/black-white-960.webp"
-      },
-      {
-        "format": "avif",
-        "width": 1200,
-        "height": 1200,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/black-white-1200.avif"
-      },
-      {
-        "format": "webp",
-        "width": 1200,
-        "height": 1200,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/black-white-1200.webp"
-      }
-    ],
-    "poster": [],
-    "lqip": "data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAADQAQCdASoQABAAA4BaJZwAApQDJlmwAAD+9hO/0zUonCY1MHhaT2GdKtuXVtScJeVsCSxyqqqVWR7gTxglqlYnUWV61Nf7a/KMC/jOEmqsZ1ad2QkwjUA4AAA=",
-    "dominantColor": "#a4a29f"
-  },
-  {
-    "id": "merch-hotdo-g-womens-boxy-tee-in-the-bun-black-white-back",
-    "title": "HOTDO G Women's Boxy Tee (In the Bun) (Black / White) (back)",
-    "artist": null,
-    "artistInferred": false,
-    "project": null,
-    "source": "owner-upload",
-    "license": "owned",
-    "publishApproved": true,
-    "alt": "HOTDO G Women's Boxy Tee (In the Bun) in Black / White, back",
-    "tags": [
-      "merch",
-      "apparel",
-      "back"
-    ],
-    "collaborators": [],
-    "artists": [],
-    "featured": false,
-    "type": "merch-design",
-    "width": 1200,
-    "height": 1200,
-    "orientation": "square",
-    "previews": [
-      {
-        "format": "webp",
-        "width": 160,
-        "height": 160,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/black-white-back-160.webp"
-      },
-      {
-        "format": "avif",
-        "width": 480,
-        "height": 480,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/black-white-back-480.avif"
-      },
-      {
-        "format": "webp",
-        "width": 480,
-        "height": 480,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/black-white-back-480.webp"
-      },
-      {
-        "format": "avif",
-        "width": 960,
-        "height": 960,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/black-white-back-960.avif"
-      },
-      {
-        "format": "webp",
-        "width": 960,
-        "height": 960,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/black-white-back-960.webp"
-      },
-      {
-        "format": "avif",
-        "width": 1200,
-        "height": 1200,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/black-white-back-1200.avif"
-      },
-      {
-        "format": "webp",
-        "width": 1200,
-        "height": 1200,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/black-white-back-1200.webp"
-      }
-    ],
-    "poster": [],
-    "lqip": "data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAADQAQCdASoQABAAA4BaJZwAApQDJvl5AAD+9hLjGNWgrKYgOzBAR+Fgbb5xCt9gpXcXfc26nLriNsY6syUEiav5/J9rL+PZUXoiaSFAAAA=",
-    "dominantColor": "#a5a3a0"
-  },
-  {
-    "id": "merch-hotdo-g-womens-boxy-tee-in-the-bun-ivory-taco-red",
-    "title": "HOTDO G Women's Boxy Tee (In the Bun) (Ivory / Taco Red)",
-    "artist": null,
-    "artistInferred": false,
-    "project": null,
-    "source": "owner-upload",
-    "license": "owned",
-    "publishApproved": true,
-    "alt": "HOTDO G Women's Boxy Tee (In the Bun) in Ivory / Taco Red, front",
-    "tags": [
-      "merch",
-      "apparel",
-      "front"
-    ],
-    "collaborators": [],
-    "artists": [],
-    "featured": false,
-    "type": "merch-design",
-    "width": 1200,
-    "height": 1200,
-    "orientation": "square",
-    "previews": [
-      {
-        "format": "webp",
-        "width": 160,
-        "height": 160,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/ivory-taco-red-160.webp"
-      },
-      {
-        "format": "avif",
-        "width": 480,
-        "height": 480,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/ivory-taco-red-480.avif"
-      },
-      {
-        "format": "webp",
-        "width": 480,
-        "height": 480,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/ivory-taco-red-480.webp"
-      },
-      {
-        "format": "avif",
-        "width": 960,
-        "height": 960,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/ivory-taco-red-960.avif"
-      },
-      {
-        "format": "webp",
-        "width": 960,
-        "height": 960,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/ivory-taco-red-960.webp"
-      },
-      {
-        "format": "avif",
-        "width": 1200,
-        "height": 1200,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/ivory-taco-red-1200.avif"
-      },
-      {
-        "format": "webp",
-        "width": 1200,
-        "height": 1200,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/ivory-taco-red-1200.webp"
-      }
-    ],
-    "poster": [],
-    "lqip": "data:image/webp;base64,UklGRjIAAABXRUJQVlA4ICYAAABwAQCdASoQABAAA4BaJYwCdAF1AAD+8tBGT1QgK/QP1bTxPzKwAA==",
-    "dominantColor": "#f4eee1"
-  },
-  {
-    "id": "merch-hotdo-g-womens-boxy-tee-in-the-bun-ivory-taco-red-back",
-    "title": "HOTDO G Women's Boxy Tee (In the Bun) (Ivory / Taco Red) (back)",
-    "artist": null,
-    "artistInferred": false,
-    "project": null,
-    "source": "owner-upload",
-    "license": "owned",
-    "publishApproved": true,
-    "alt": "HOTDO G Women's Boxy Tee (In the Bun) in Ivory / Taco Red, back",
-    "tags": [
-      "merch",
-      "apparel",
-      "back"
-    ],
-    "collaborators": [],
-    "artists": [],
-    "featured": false,
-    "type": "merch-design",
-    "width": 1200,
-    "height": 1200,
-    "orientation": "square",
-    "previews": [
-      {
-        "format": "webp",
-        "width": 160,
-        "height": 160,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/ivory-taco-red-back-160.webp"
-      },
-      {
-        "format": "avif",
-        "width": 480,
-        "height": 480,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/ivory-taco-red-back-480.avif"
-      },
-      {
-        "format": "webp",
-        "width": 480,
-        "height": 480,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/ivory-taco-red-back-480.webp"
-      },
-      {
-        "format": "avif",
-        "width": 960,
-        "height": 960,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/ivory-taco-red-back-960.avif"
-      },
-      {
-        "format": "webp",
-        "width": 960,
-        "height": 960,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/ivory-taco-red-back-960.webp"
-      },
-      {
-        "format": "avif",
-        "width": 1200,
-        "height": 1200,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/ivory-taco-red-back-1200.avif"
-      },
-      {
-        "format": "webp",
-        "width": 1200,
-        "height": 1200,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/ivory-taco-red-back-1200.webp"
-      }
-    ],
-    "poster": [],
-    "lqip": "data:image/webp;base64,UklGRi4AAABXRUJQVlA4ICIAAABwAQCdASoQABAAA4BaJZQC7AGIQAD+8tjg6uTpP/MVFuwA",
-    "dominantColor": "#f4f0e3"
-  },
-  {
-    "id": "merch-hotdo-g-womens-boxy-tee-in-the-bun-butter-taco-red",
-    "title": "HOTDO G Women's Boxy Tee (In the Bun) (Butter / Taco Red)",
-    "artist": null,
-    "artistInferred": false,
-    "project": null,
-    "source": "owner-upload",
-    "license": "owned",
-    "publishApproved": true,
-    "alt": "HOTDO G Women's Boxy Tee (In the Bun) in Butter / Taco Red, front",
-    "tags": [
-      "merch",
-      "apparel",
-      "front"
-    ],
-    "collaborators": [],
-    "artists": [],
-    "featured": false,
-    "type": "merch-design",
-    "width": 1200,
-    "height": 1200,
-    "orientation": "square",
-    "previews": [
-      {
-        "format": "webp",
-        "width": 160,
-        "height": 160,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/butter-taco-red-160.webp"
-      },
-      {
-        "format": "avif",
-        "width": 480,
-        "height": 480,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/butter-taco-red-480.avif"
-      },
-      {
-        "format": "webp",
-        "width": 480,
-        "height": 480,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/butter-taco-red-480.webp"
-      },
-      {
-        "format": "avif",
-        "width": 960,
-        "height": 960,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/butter-taco-red-960.avif"
-      },
-      {
-        "format": "webp",
-        "width": 960,
-        "height": 960,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/butter-taco-red-960.webp"
-      },
-      {
-        "format": "avif",
-        "width": 1200,
-        "height": 1200,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/butter-taco-red-1200.avif"
-      },
-      {
-        "format": "webp",
-        "width": 1200,
-        "height": 1200,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/butter-taco-red-1200.webp"
-      }
-    ],
-    "poster": [],
-    "lqip": "data:image/webp;base64,UklGRkQAAABXRUJQVlA4IDgAAACQAQCdASoQABAAA4BaJaGDrRgAqkAA/vHEL/N7nrqaDz4eV8jOE6utOClC2zEC+Ir6mlWWmmYAAA==",
-    "dominantColor": "#f4e7cc"
-  },
-  {
-    "id": "merch-hotdo-g-womens-boxy-tee-in-the-bun-butter-taco-red-back",
-    "title": "HOTDO G Women's Boxy Tee (In the Bun) (Butter / Taco Red) (back)",
-    "artist": null,
-    "artistInferred": false,
-    "project": null,
-    "source": "owner-upload",
-    "license": "owned",
-    "publishApproved": true,
-    "alt": "HOTDO G Women's Boxy Tee (In the Bun) in Butter / Taco Red, back",
-    "tags": [
-      "merch",
-      "apparel",
-      "back"
-    ],
-    "collaborators": [],
-    "artists": [],
-    "featured": false,
-    "type": "merch-design",
-    "width": 1200,
-    "height": 1200,
-    "orientation": "square",
-    "previews": [
-      {
-        "format": "webp",
-        "width": 160,
-        "height": 160,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/butter-taco-red-back-160.webp"
-      },
-      {
-        "format": "avif",
-        "width": 480,
-        "height": 480,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/butter-taco-red-back-480.avif"
-      },
-      {
-        "format": "webp",
-        "width": 480,
-        "height": 480,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/butter-taco-red-back-480.webp"
-      },
-      {
-        "format": "avif",
-        "width": 960,
-        "height": 960,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/butter-taco-red-back-960.avif"
-      },
-      {
-        "format": "webp",
-        "width": 960,
-        "height": 960,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/butter-taco-red-back-960.webp"
-      },
-      {
-        "format": "avif",
-        "width": 1200,
-        "height": 1200,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/butter-taco-red-back-1200.avif"
-      },
-      {
-        "format": "webp",
-        "width": 1200,
-        "height": 1200,
-        "src": "/media/merch-hotdo-g-womens-boxy-tee-in-the-bun/butter-taco-red-back-1200.webp"
-      }
-    ],
-    "poster": [],
-    "lqip": "data:image/webp;base64,UklGRj4AAABXRUJQVlA4IDIAAACQAQCdASoQABAAA4BaJaGDrRgAiwAA/vIP49l2IkyKj7XXD8tLfyWi7ZPplQdQJmW0AA==",
-    "dominantColor": "#f4e9ce"
-  },
-  {
     "id": "merch-triangle-surfer-tee-black-acid-green",
     "title": "Triangle Surfer Tee (Black / Acid Green)",
     "artist": null,
@@ -17198,5 +16358,845 @@
     "poster": [],
     "lqip": "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAACwAQCdASoQABAAA4BaJZwAAuRlPAAAAP72ErBy7kTReYXlzxwV1EcO8GXywaoKu7IT6HwAAAA=",
     "dominantColor": "#d7d9d1"
+  },
+  {
+    "id": "merch-hotdo-g-tee-g-dog-black-white",
+    "title": "HOTDO G Tee (G Dog) (Black / White)",
+    "artist": null,
+    "artistInferred": false,
+    "project": null,
+    "source": "owner-upload",
+    "license": "owned",
+    "publishApproved": true,
+    "alt": "HOTDO G Tee (G Dog) in Black / White, front",
+    "tags": [
+      "merch",
+      "apparel",
+      "front"
+    ],
+    "collaborators": [],
+    "artists": [],
+    "featured": false,
+    "type": "merch-design",
+    "width": 1200,
+    "height": 1200,
+    "orientation": "square",
+    "previews": [
+      {
+        "format": "webp",
+        "width": 160,
+        "height": 160,
+        "src": "/media/merch-hotdo-g-tee-g-dog/black-white-160.webp"
+      },
+      {
+        "format": "avif",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-hotdo-g-tee-g-dog/black-white-480.avif"
+      },
+      {
+        "format": "webp",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-hotdo-g-tee-g-dog/black-white-480.webp"
+      },
+      {
+        "format": "avif",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-hotdo-g-tee-g-dog/black-white-960.avif"
+      },
+      {
+        "format": "webp",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-hotdo-g-tee-g-dog/black-white-960.webp"
+      },
+      {
+        "format": "avif",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-hotdo-g-tee-g-dog/black-white-1200.avif"
+      },
+      {
+        "format": "webp",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-hotdo-g-tee-g-dog/black-white-1200.webp"
+      }
+    ],
+    "poster": [],
+    "lqip": "data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAAAwAgCdASoQABAAA4BaJaQAD5Pun063G+yyQAD+9kawHgpyM+ajE0iUm36NuIMI6CPJjPP4PFF65JQD4kp2cIAp5Gq4HLC83TWVwhe84ZXBotqGDxJ+ewH+BIaVK3h/Hxt41YQA",
+    "dominantColor": "#898785"
+  },
+  {
+    "id": "merch-hotdo-g-tee-g-dog-black-white-back",
+    "title": "HOTDO G Tee (G Dog) (Black / White) (back)",
+    "artist": null,
+    "artistInferred": false,
+    "project": null,
+    "source": "owner-upload",
+    "license": "owned",
+    "publishApproved": true,
+    "alt": "HOTDO G Tee (G Dog) in Black / White, back",
+    "tags": [
+      "merch",
+      "apparel",
+      "back"
+    ],
+    "collaborators": [],
+    "artists": [],
+    "featured": false,
+    "type": "merch-design",
+    "width": 1200,
+    "height": 1200,
+    "orientation": "square",
+    "previews": [
+      {
+        "format": "webp",
+        "width": 160,
+        "height": 160,
+        "src": "/media/merch-hotdo-g-tee-g-dog/black-white-back-160.webp"
+      },
+      {
+        "format": "avif",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-hotdo-g-tee-g-dog/black-white-back-480.avif"
+      },
+      {
+        "format": "webp",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-hotdo-g-tee-g-dog/black-white-back-480.webp"
+      },
+      {
+        "format": "avif",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-hotdo-g-tee-g-dog/black-white-back-960.avif"
+      },
+      {
+        "format": "webp",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-hotdo-g-tee-g-dog/black-white-back-960.webp"
+      },
+      {
+        "format": "avif",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-hotdo-g-tee-g-dog/black-white-back-1200.avif"
+      },
+      {
+        "format": "webp",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-hotdo-g-tee-g-dog/black-white-back-1200.webp"
+      }
+    ],
+    "poster": [],
+    "lqip": "data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAADQAQCdASoQABAAA4BaJaQAAp/+ULarcAD+9kazHLFEEfjVceQIyZgRTvvUrQ+0dYVR1+Q8QQ7vwThU772wNvjtakYtWTJzMzP8XODxb//5zM7NwzESmhGEAAA=",
+    "dominantColor": "#888784"
+  },
+  {
+    "id": "merch-hotdo-g-tee-g-dog-ivory-taco-red",
+    "title": "HOTDO G Tee (G Dog) (Ivory / Taco Red)",
+    "artist": null,
+    "artistInferred": false,
+    "project": null,
+    "source": "owner-upload",
+    "license": "owned",
+    "publishApproved": true,
+    "alt": "HOTDO G Tee (G Dog) in Ivory / Taco Red, front",
+    "tags": [
+      "merch",
+      "apparel",
+      "front"
+    ],
+    "collaborators": [],
+    "artists": [],
+    "featured": false,
+    "type": "merch-design",
+    "width": 1200,
+    "height": 1200,
+    "orientation": "square",
+    "previews": [
+      {
+        "format": "webp",
+        "width": 160,
+        "height": 160,
+        "src": "/media/merch-hotdo-g-tee-g-dog/ivory-taco-red-160.webp"
+      },
+      {
+        "format": "avif",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-hotdo-g-tee-g-dog/ivory-taco-red-480.avif"
+      },
+      {
+        "format": "webp",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-hotdo-g-tee-g-dog/ivory-taco-red-480.webp"
+      },
+      {
+        "format": "avif",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-hotdo-g-tee-g-dog/ivory-taco-red-960.avif"
+      },
+      {
+        "format": "webp",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-hotdo-g-tee-g-dog/ivory-taco-red-960.webp"
+      },
+      {
+        "format": "avif",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-hotdo-g-tee-g-dog/ivory-taco-red-1200.avif"
+      },
+      {
+        "format": "webp",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-hotdo-g-tee-g-dog/ivory-taco-red-1200.webp"
+      }
+    ],
+    "poster": [],
+    "lqip": "data:image/webp;base64,UklGRjYAAABXRUJQVlA4ICoAAABwAQCdASoQABAAA4BaJYwCdAF1AAD+8ovdB7mG5Oc0mBofQLnq49PhVAA=",
+    "dominantColor": "#f4edde"
+  },
+  {
+    "id": "merch-hotdo-g-tee-g-dog-ivory-taco-red-back",
+    "title": "HOTDO G Tee (G Dog) (Ivory / Taco Red) (back)",
+    "artist": null,
+    "artistInferred": false,
+    "project": null,
+    "source": "owner-upload",
+    "license": "owned",
+    "publishApproved": true,
+    "alt": "HOTDO G Tee (G Dog) in Ivory / Taco Red, back",
+    "tags": [
+      "merch",
+      "apparel",
+      "back"
+    ],
+    "collaborators": [],
+    "artists": [],
+    "featured": false,
+    "type": "merch-design",
+    "width": 1200,
+    "height": 1200,
+    "orientation": "square",
+    "previews": [
+      {
+        "format": "webp",
+        "width": 160,
+        "height": 160,
+        "src": "/media/merch-hotdo-g-tee-g-dog/ivory-taco-red-back-160.webp"
+      },
+      {
+        "format": "avif",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-hotdo-g-tee-g-dog/ivory-taco-red-back-480.avif"
+      },
+      {
+        "format": "webp",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-hotdo-g-tee-g-dog/ivory-taco-red-back-480.webp"
+      },
+      {
+        "format": "avif",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-hotdo-g-tee-g-dog/ivory-taco-red-back-960.avif"
+      },
+      {
+        "format": "webp",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-hotdo-g-tee-g-dog/ivory-taco-red-back-960.webp"
+      },
+      {
+        "format": "avif",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-hotdo-g-tee-g-dog/ivory-taco-red-back-1200.avif"
+      },
+      {
+        "format": "webp",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-hotdo-g-tee-g-dog/ivory-taco-red-back-1200.webp"
+      }
+    ],
+    "poster": [],
+    "lqip": "data:image/webp;base64,UklGRjAAAABXRUJQVlA4ICQAAABwAQCdASoQABAAA4BaJYwCdAF1AAD+8tjhev/EGqUQxNvAAAA=",
+    "dominantColor": "#f5f0e0"
+  },
+  {
+    "id": "merch-hotdo-g-tee-g-dog-butter-taco-red",
+    "title": "HOTDO G Tee (G Dog) (Butter / Taco Red)",
+    "artist": null,
+    "artistInferred": false,
+    "project": null,
+    "source": "owner-upload",
+    "license": "owned",
+    "publishApproved": true,
+    "alt": "HOTDO G Tee (G Dog) in Butter / Taco Red, front",
+    "tags": [
+      "merch",
+      "apparel",
+      "front"
+    ],
+    "collaborators": [],
+    "artists": [],
+    "featured": false,
+    "type": "merch-design",
+    "width": 1200,
+    "height": 1200,
+    "orientation": "square",
+    "previews": [
+      {
+        "format": "webp",
+        "width": 160,
+        "height": 160,
+        "src": "/media/merch-hotdo-g-tee-g-dog/butter-taco-red-160.webp"
+      },
+      {
+        "format": "avif",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-hotdo-g-tee-g-dog/butter-taco-red-480.avif"
+      },
+      {
+        "format": "webp",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-hotdo-g-tee-g-dog/butter-taco-red-480.webp"
+      },
+      {
+        "format": "avif",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-hotdo-g-tee-g-dog/butter-taco-red-960.avif"
+      },
+      {
+        "format": "webp",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-hotdo-g-tee-g-dog/butter-taco-red-960.webp"
+      },
+      {
+        "format": "avif",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-hotdo-g-tee-g-dog/butter-taco-red-1200.avif"
+      },
+      {
+        "format": "webp",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-hotdo-g-tee-g-dog/butter-taco-red-1200.webp"
+      }
+    ],
+    "poster": [],
+    "lqip": "data:image/webp;base64,UklGRkgAAABXRUJQVlA4IDwAAACQAQCdASoQABAAA4BaJbFnyRgAiwAA/vE0p4Q8L8eaOqkIExW7BOGupUQHl/DtkMUF/veMZrR3wQLgAAA=",
+    "dominantColor": "#f4e4c2"
+  },
+  {
+    "id": "merch-hotdo-g-tee-g-dog-butter-taco-red-back",
+    "title": "HOTDO G Tee (G Dog) (Butter / Taco Red) (back)",
+    "artist": null,
+    "artistInferred": false,
+    "project": null,
+    "source": "owner-upload",
+    "license": "owned",
+    "publishApproved": true,
+    "alt": "HOTDO G Tee (G Dog) in Butter / Taco Red, back",
+    "tags": [
+      "merch",
+      "apparel",
+      "back"
+    ],
+    "collaborators": [],
+    "artists": [],
+    "featured": false,
+    "type": "merch-design",
+    "width": 1200,
+    "height": 1200,
+    "orientation": "square",
+    "previews": [
+      {
+        "format": "webp",
+        "width": 160,
+        "height": 160,
+        "src": "/media/merch-hotdo-g-tee-g-dog/butter-taco-red-back-160.webp"
+      },
+      {
+        "format": "avif",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-hotdo-g-tee-g-dog/butter-taco-red-back-480.avif"
+      },
+      {
+        "format": "webp",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-hotdo-g-tee-g-dog/butter-taco-red-back-480.webp"
+      },
+      {
+        "format": "avif",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-hotdo-g-tee-g-dog/butter-taco-red-back-960.avif"
+      },
+      {
+        "format": "webp",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-hotdo-g-tee-g-dog/butter-taco-red-back-960.webp"
+      },
+      {
+        "format": "avif",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-hotdo-g-tee-g-dog/butter-taco-red-back-1200.avif"
+      },
+      {
+        "format": "webp",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-hotdo-g-tee-g-dog/butter-taco-red-back-1200.webp"
+      }
+    ],
+    "poster": [],
+    "lqip": "data:image/webp;base64,UklGRj4AAABXRUJQVlA4IDIAAACQAQCdASoQABAAA4BaJbFsKRgAiwAA/vGB3orncCDw8mEDHdKZofAZOloe7deKNiXAAA==",
+    "dominantColor": "#f5e7c4"
+  },
+  {
+    "id": "merch-hotdo-g-womens-boxy-tee-g-dog-black-white",
+    "title": "HOTDO G Women's Boxy Tee (G Dog) (Black / White)",
+    "artist": null,
+    "artistInferred": false,
+    "project": null,
+    "source": "owner-upload",
+    "license": "owned",
+    "publishApproved": true,
+    "alt": "HOTDO G Women's Boxy Tee (G Dog) in Black / White, front",
+    "tags": [
+      "merch",
+      "apparel",
+      "front"
+    ],
+    "collaborators": [],
+    "artists": [],
+    "featured": false,
+    "type": "merch-design",
+    "width": 1200,
+    "height": 1200,
+    "orientation": "square",
+    "previews": [
+      {
+        "format": "webp",
+        "width": 160,
+        "height": 160,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/black-white-160.webp"
+      },
+      {
+        "format": "avif",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/black-white-480.avif"
+      },
+      {
+        "format": "webp",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/black-white-480.webp"
+      },
+      {
+        "format": "avif",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/black-white-960.avif"
+      },
+      {
+        "format": "webp",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/black-white-960.webp"
+      },
+      {
+        "format": "avif",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/black-white-1200.avif"
+      },
+      {
+        "format": "webp",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/black-white-1200.webp"
+      }
+    ],
+    "poster": [],
+    "lqip": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAADwAQCdASoQABAAA4BaJZwAApQPh+zaVwAA/vYTv9M1KJwmNTB4Wk9hnSrbl1bUnCXla/fyTd/e9ghy1XBJL9SdNfbYxtFkDp5xP43ep7+wqFzPu2lJiiX1AOAAAA==",
+    "dominantColor": "#a5a3a0"
+  },
+  {
+    "id": "merch-hotdo-g-womens-boxy-tee-g-dog-black-white-back",
+    "title": "HOTDO G Women's Boxy Tee (G Dog) (Black / White) (back)",
+    "artist": null,
+    "artistInferred": false,
+    "project": null,
+    "source": "owner-upload",
+    "license": "owned",
+    "publishApproved": true,
+    "alt": "HOTDO G Women's Boxy Tee (G Dog) in Black / White, back",
+    "tags": [
+      "merch",
+      "apparel",
+      "back"
+    ],
+    "collaborators": [],
+    "artists": [],
+    "featured": false,
+    "type": "merch-design",
+    "width": 1200,
+    "height": 1200,
+    "orientation": "square",
+    "previews": [
+      {
+        "format": "webp",
+        "width": 160,
+        "height": 160,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/black-white-back-160.webp"
+      },
+      {
+        "format": "avif",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/black-white-back-480.avif"
+      },
+      {
+        "format": "webp",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/black-white-back-480.webp"
+      },
+      {
+        "format": "avif",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/black-white-back-960.avif"
+      },
+      {
+        "format": "webp",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/black-white-back-960.webp"
+      },
+      {
+        "format": "avif",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/black-white-back-1200.avif"
+      },
+      {
+        "format": "webp",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/black-white-back-1200.webp"
+      }
+    ],
+    "poster": [],
+    "lqip": "data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAADQAQCdASoQABAAA4BaJZwAApQDJvl5AAD+9hLjGNWgrKYgOzBAR+Fgbb5xCt9gpXcXfc26nLriNsY6syUEiav5/J9rL+PZUXoiaSFAAAA=",
+    "dominantColor": "#a5a3a0"
+  },
+  {
+    "id": "merch-hotdo-g-womens-boxy-tee-g-dog-ivory-taco-red",
+    "title": "HOTDO G Women's Boxy Tee (G Dog) (Ivory / Taco Red)",
+    "artist": null,
+    "artistInferred": false,
+    "project": null,
+    "source": "owner-upload",
+    "license": "owned",
+    "publishApproved": true,
+    "alt": "HOTDO G Women's Boxy Tee (G Dog) in Ivory / Taco Red, front",
+    "tags": [
+      "merch",
+      "apparel",
+      "front"
+    ],
+    "collaborators": [],
+    "artists": [],
+    "featured": false,
+    "type": "merch-design",
+    "width": 1200,
+    "height": 1200,
+    "orientation": "square",
+    "previews": [
+      {
+        "format": "webp",
+        "width": 160,
+        "height": 160,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/ivory-taco-red-160.webp"
+      },
+      {
+        "format": "avif",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/ivory-taco-red-480.avif"
+      },
+      {
+        "format": "webp",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/ivory-taco-red-480.webp"
+      },
+      {
+        "format": "avif",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/ivory-taco-red-960.avif"
+      },
+      {
+        "format": "webp",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/ivory-taco-red-960.webp"
+      },
+      {
+        "format": "avif",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/ivory-taco-red-1200.avif"
+      },
+      {
+        "format": "webp",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/ivory-taco-red-1200.webp"
+      }
+    ],
+    "poster": [],
+    "lqip": "data:image/webp;base64,UklGRjYAAABXRUJQVlA4ICoAAABwAQCdASoQABAAA4BaJYwCdAFAAAD+8o7nu4G7E0rr1J3aC/Txco9CAAA=",
+    "dominantColor": "#f3ede0"
+  },
+  {
+    "id": "merch-hotdo-g-womens-boxy-tee-g-dog-ivory-taco-red-back",
+    "title": "HOTDO G Women's Boxy Tee (G Dog) (Ivory / Taco Red) (back)",
+    "artist": null,
+    "artistInferred": false,
+    "project": null,
+    "source": "owner-upload",
+    "license": "owned",
+    "publishApproved": true,
+    "alt": "HOTDO G Women's Boxy Tee (G Dog) in Ivory / Taco Red, back",
+    "tags": [
+      "merch",
+      "apparel",
+      "back"
+    ],
+    "collaborators": [],
+    "artists": [],
+    "featured": false,
+    "type": "merch-design",
+    "width": 1200,
+    "height": 1200,
+    "orientation": "square",
+    "previews": [
+      {
+        "format": "webp",
+        "width": 160,
+        "height": 160,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/ivory-taco-red-back-160.webp"
+      },
+      {
+        "format": "avif",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/ivory-taco-red-back-480.avif"
+      },
+      {
+        "format": "webp",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/ivory-taco-red-back-480.webp"
+      },
+      {
+        "format": "avif",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/ivory-taco-red-back-960.avif"
+      },
+      {
+        "format": "webp",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/ivory-taco-red-back-960.webp"
+      },
+      {
+        "format": "avif",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/ivory-taco-red-back-1200.avif"
+      },
+      {
+        "format": "webp",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/ivory-taco-red-back-1200.webp"
+      }
+    ],
+    "poster": [],
+    "lqip": "data:image/webp;base64,UklGRi4AAABXRUJQVlA4ICIAAABwAQCdASoQABAAA4BaJZQC7AGIQAD+8tjg6uTpP/MVFuwA",
+    "dominantColor": "#f4f0e3"
+  },
+  {
+    "id": "merch-hotdo-g-womens-boxy-tee-g-dog-butter-taco-red",
+    "title": "HOTDO G Women's Boxy Tee (G Dog) (Butter / Taco Red)",
+    "artist": null,
+    "artistInferred": false,
+    "project": null,
+    "source": "owner-upload",
+    "license": "owned",
+    "publishApproved": true,
+    "alt": "HOTDO G Women's Boxy Tee (G Dog) in Butter / Taco Red, front",
+    "tags": [
+      "merch",
+      "apparel",
+      "front"
+    ],
+    "collaborators": [],
+    "artists": [],
+    "featured": false,
+    "type": "merch-design",
+    "width": 1200,
+    "height": 1200,
+    "orientation": "square",
+    "previews": [
+      {
+        "format": "webp",
+        "width": 160,
+        "height": 160,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/butter-taco-red-160.webp"
+      },
+      {
+        "format": "avif",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/butter-taco-red-480.avif"
+      },
+      {
+        "format": "webp",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/butter-taco-red-480.webp"
+      },
+      {
+        "format": "avif",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/butter-taco-red-960.avif"
+      },
+      {
+        "format": "webp",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/butter-taco-red-960.webp"
+      },
+      {
+        "format": "avif",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/butter-taco-red-1200.avif"
+      },
+      {
+        "format": "webp",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/butter-taco-red-1200.webp"
+      }
+    ],
+    "poster": [],
+    "lqip": "data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAACQAQCdASoQABAAA4BaJaGDrRgAqkAA/vHEi8jc4Q/Chr27WyVJEZwVkAFHS/ktF2yfTKg6gZeYrvAA",
+    "dominantColor": "#f3e7cc"
+  },
+  {
+    "id": "merch-hotdo-g-womens-boxy-tee-g-dog-butter-taco-red-back",
+    "title": "HOTDO G Women's Boxy Tee (G Dog) (Butter / Taco Red) (back)",
+    "artist": null,
+    "artistInferred": false,
+    "project": null,
+    "source": "owner-upload",
+    "license": "owned",
+    "publishApproved": true,
+    "alt": "HOTDO G Women's Boxy Tee (G Dog) in Butter / Taco Red, back",
+    "tags": [
+      "merch",
+      "apparel",
+      "back"
+    ],
+    "collaborators": [],
+    "artists": [],
+    "featured": false,
+    "type": "merch-design",
+    "width": 1200,
+    "height": 1200,
+    "orientation": "square",
+    "previews": [
+      {
+        "format": "webp",
+        "width": 160,
+        "height": 160,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/butter-taco-red-back-160.webp"
+      },
+      {
+        "format": "avif",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/butter-taco-red-back-480.avif"
+      },
+      {
+        "format": "webp",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/butter-taco-red-back-480.webp"
+      },
+      {
+        "format": "avif",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/butter-taco-red-back-960.avif"
+      },
+      {
+        "format": "webp",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/butter-taco-red-back-960.webp"
+      },
+      {
+        "format": "avif",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/butter-taco-red-back-1200.avif"
+      },
+      {
+        "format": "webp",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-hotdo-g-womens-boxy-tee-g-dog/butter-taco-red-back-1200.webp"
+      }
+    ],
+    "poster": [],
+    "lqip": "data:image/webp;base64,UklGRj4AAABXRUJQVlA4IDIAAACQAQCdASoQABAAA4BaJaGDrRgAiwAA/vIP49l2IkyKj7XXD8tLfyWi7ZPplQdQJmW0AA==",
+    "dominantColor": "#f4e9ce"
   }
 ]

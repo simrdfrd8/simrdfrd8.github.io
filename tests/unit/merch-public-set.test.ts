@@ -15,8 +15,8 @@ describe("public merch set", () => {
   });
   it("holds the owner-approved top ten (Nov 2, 2026), Men + Women cuts where they exist", () => {
     expect([...publicMerchSlugs(set)]).toEqual([
-      "hotdo-g-tee-in-the-bun",
-      "hotdo-g-womens-boxy-tee-in-the-bun",
+      "hotdo-g-tee-g-dog",
+      "hotdo-g-womens-boxy-tee-g-dog",
       "make-art-with-friends-tee",
       "make-art-with-friends-womens-boxy-tee",
       "feelings-notice-tee",
