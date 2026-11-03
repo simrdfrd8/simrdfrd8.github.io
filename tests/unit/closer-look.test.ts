@@ -14,6 +14,7 @@ describe("closer look", () => {
     "merch-heartbeat-croissant-pocket-tee", "merch-hotdo-g-tee-g-dog", "merch-hotdo-g-womens-boxy-tee-g-dog", "merch-triangle-surfer-tee", "merch-never-ending-set-ribbon-tank",
     "merch-never-ending-set-ribbon-womens-tank", "merch-melt-wave-tee-inverse", "merch-paddle-back-round-tank", "merch-paddle-back-round-womens-tank", "merch-last-one-i-swear-tank",
     "merch-last-one-i-swear-womens-tank", "merch-triangle-surfer-pocket-tee",
+    "merch-here-comes-another-one-tank", "merch-here-comes-another-one-womens-tank", "merch-lighthouse-point-tank", "merch-lighthouse-point-womens-tank", "merch-island-dusk-hoodie", "merch-melt-wave-tee",
   ]);
   const all = [...closerLookShop(), ...listed.flatMap((p) => closerLookFor(p.id, p.title))];
 

@@ -16,13 +16,17 @@ const WOMENS_BOXY_IDS = ["merch-make-art-with-friends-womens-boxy-tee", "merch-f
 const FLAT_ONLY_IDS = [
   "merch-hotdo-g-tee-g-dog", "merch-hotdo-g-womens-boxy-tee-g-dog", "merch-triangle-surfer-tee", "merch-never-ending-set-ribbon-tank", "merch-never-ending-set-ribbon-womens-tank",
   "merch-melt-wave-tee-inverse", "merch-paddle-back-round-tank", "merch-paddle-back-round-womens-tank", "merch-last-one-i-swear-tank", "merch-last-one-i-swear-womens-tank", "merch-triangle-surfer-pocket-tee",
+  // owner picks, Nov 2, 2026, 10:36 PM PT (Island Dusk: concept art; Melt Wave Mirror: v10 flats only)
+  "merch-here-comes-another-one-tank", "merch-here-comes-another-one-womens-tank", "merch-lighthouse-point-tank", "merch-lighthouse-point-womens-tank", "merch-island-dusk-hoodie", "merch-melt-wave-tee",
 ];
 const WOMENS_IDS = [...WOMENS_BOXY_IDS, ...FLAT_ONLY_IDS.filter((id) => /womens/.test(id))];
 /** Shop grid order without the public filter (production build sets MERCH_PUBLIC_SET=1, which also drops Heartbeat Triangle and no thanks). */
 const LAUNCH_IDS = [
   "merch-hotdo-g-tee-g-dog", "merch-hotdo-g-womens-boxy-tee-g-dog", "merch-make-art-with-friends-tee", "merch-make-art-with-friends-womens-boxy-tee", "merch-feelings-notice-tee", "merch-feelings-notice-womens-boxy-tee",
   "merch-triangle-surfer-tee", "merch-never-ending-set-ribbon-tank", "merch-never-ending-set-ribbon-womens-tank", "merch-melt-wave-tee-inverse", "merch-paddle-back-round-tank", "merch-paddle-back-round-womens-tank",
-  "merch-last-one-i-swear-tank", "merch-last-one-i-swear-womens-tank", "merch-triangle-surfer-pocket-tee", "merch-heartbeat-triangle-tee", "merch-no-thanks-tee",
+  "merch-last-one-i-swear-tank", "merch-last-one-i-swear-womens-tank", "merch-triangle-surfer-pocket-tee",
+  "merch-here-comes-another-one-tank", "merch-here-comes-another-one-womens-tank", "merch-lighthouse-point-tank", "merch-lighthouse-point-womens-tank", "merch-island-dusk-hoodie", "merch-melt-wave-tee",
+  "merch-heartbeat-triangle-tee", "merch-no-thanks-tee",
 ];
 const ALL_MERCH = [...V2_IDS, ...TANK_IDS, ...WOMENS_BOXY_IDS, ...FLAT_ONLY_IDS];
 
@@ -447,10 +451,15 @@ describe("merch final cast", () => {
         expect(p.colorways.every((c) => !c.backAssetId), id).toBe(true);
       }
     }
-    // Melt Wave: the Inverse only, black, flats only
+    // Lighthouse Point keeps the OpenStreetMap credit (ODbL) on both cuts
+    for (const id of ["merch-lighthouse-point-tank", "merch-lighthouse-point-womens-tank"]) expect(products.find((x) => x.id === id)!.details, id).toContain("Map data © OpenStreetMap contributors.");
+    // Island Dusk: concept art, front + back flats, never the superseded v1 record
+    expect(products.find((x) => x.id === "merch-island-dusk-hoodie")!.details).toEqual(["Concept art. The final print may change."]);
+    expect(JSON.stringify(products)).not.toMatch(/kaua/i);
+    // Melt Wave: Inverse (set aside) and Mirror (v10), black, flats only
     const mw = products.filter((p) => /melt-wave/.test(p.id));
-    expect(mw.map((p) => p.id)).toEqual(["merch-melt-wave-tee-inverse"]);
-    expect(mw[0].colorways.map((c) => c.slug)).toEqual(["black"]);
+    expect(mw.map((p) => p.id)).toEqual(["merch-melt-wave-tee-inverse", "merch-melt-wave-tee"]);
+    for (const m of mw) expect(m.colorways.map((c) => c.slug)).toEqual(["black"]);
   });
 });
 

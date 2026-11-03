@@ -11,6 +11,8 @@ import { closerLookFor } from "@/lib/closerLook";
 import { MerchPrice } from "@/components/price/MerchPrice";
 
 export const dynamicParams = false;
+/** ODbL attribution: linked to the OpenStreetMap copyright page wherever a detail line carries it. */
+const OSM = "OpenStreetMap contributors";
 export function generateStaticParams() {
   return merchProducts().map((p) => ({ slug: merchSlug(p) }));
 }
@@ -55,7 +57,19 @@ export default async function MerchProductPage({ params }: { params: Promise<{ s
             {product.details?.length ? (
               <ul className="mt-4 space-y-1 text-sm text-muted" data-details>
                 {product.details.map((d) => (
-                  <li key={d}>{d}</li>
+                  <li key={d}>
+                    {d.includes(OSM) ? (
+                      <>
+                        {d.slice(0, d.indexOf(OSM))}
+                        <a href="https://www.openstreetmap.org/copyright" className="underline decoration-line-strong underline-offset-4 hover:text-cream" rel="noopener" data-osm-credit>
+                          {OSM}
+                        </a>
+                        {d.slice(d.indexOf(OSM) + OSM.length)}
+                      </>
+                    ) : (
+                      d
+                    )}
+                  </li>
                 ))}
               </ul>
             ) : null}

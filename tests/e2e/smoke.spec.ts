@@ -519,24 +519,25 @@ test("artist titles never break mid-word and fit the viewport", async ({ page })
   await expect(page.locator("main, body").first()).toContainText("Production · EDM & hip-hop");
 });
 
-/** The public set (owner, Nov 2, 2026: six designs set aside at 10:02 PM PT, four left), in shop order; without the public filter every listed piece shows. */
+/** The public set (owner, Nov 2, 2026: six designs set aside at 10:02 PM PT, four left; four picks added at 10:36 PM PT), in shop order; without the public filter every listed piece shows. */
 const MENS = PUBLIC_SET
-  ? ["merch-make-art-with-friends-tee", "merch-heartbeat-croissant-pocket-tee", "merch-paddle-back-round-tank", "merch-triangle-surfer-pocket-tee"]
-  : ["merch-hotdo-g-tee-g-dog", "merch-make-art-with-friends-tee", "merch-feelings-notice-tee", "merch-triangle-surfer-tee", "merch-never-ending-set-ribbon-tank", "merch-melt-wave-tee-inverse", "merch-paddle-back-round-tank", "merch-last-one-i-swear-tank", "merch-triangle-surfer-pocket-tee", "merch-heartbeat-triangle-tee", "merch-no-thanks-tee"];
-const WOMENS = PUBLIC_SET ? ["merch-make-art-with-friends-womens-boxy-tee", "merch-paddle-back-round-womens-tank"] : ["merch-hotdo-g-womens-boxy-tee-g-dog", "merch-make-art-with-friends-womens-boxy-tee", "merch-feelings-notice-womens-boxy-tee", "merch-never-ending-set-ribbon-womens-tank", "merch-paddle-back-round-womens-tank", "merch-last-one-i-swear-womens-tank"];
+  ? ["merch-make-art-with-friends-tee", "merch-heartbeat-croissant-pocket-tee", "merch-paddle-back-round-tank", "merch-triangle-surfer-pocket-tee", "merch-here-comes-another-one-tank", "merch-lighthouse-point-tank", "merch-island-dusk-hoodie", "merch-melt-wave-tee"]
+  : ["merch-hotdo-g-tee-g-dog", "merch-make-art-with-friends-tee", "merch-feelings-notice-tee", "merch-triangle-surfer-tee", "merch-never-ending-set-ribbon-tank", "merch-melt-wave-tee-inverse", "merch-paddle-back-round-tank", "merch-last-one-i-swear-tank", "merch-triangle-surfer-pocket-tee", "merch-here-comes-another-one-tank", "merch-lighthouse-point-tank", "merch-island-dusk-hoodie", "merch-melt-wave-tee", "merch-heartbeat-triangle-tee", "merch-no-thanks-tee"];
+const WOMENS = PUBLIC_SET ? ["merch-make-art-with-friends-womens-boxy-tee", "merch-paddle-back-round-womens-tank", "merch-here-comes-another-one-womens-tank", "merch-lighthouse-point-womens-tank"] : ["merch-hotdo-g-womens-boxy-tee-g-dog", "merch-make-art-with-friends-womens-boxy-tee", "merch-feelings-notice-womens-boxy-tee", "merch-never-ending-set-ribbon-womens-tank", "merch-paddle-back-round-womens-tank", "merch-last-one-i-swear-womens-tank", "merch-here-comes-another-one-womens-tank", "merch-lighthouse-point-womens-tank"];
 /** Grid (DOM) order follows each product's `order`. */
 const ORDER = [
   "merch-hotdo-g-tee-g-dog", "merch-hotdo-g-womens-boxy-tee-g-dog", "merch-make-art-with-friends-tee", "merch-make-art-with-friends-womens-boxy-tee", "merch-feelings-notice-tee", "merch-feelings-notice-womens-boxy-tee",
   "merch-triangle-surfer-tee", "merch-never-ending-set-ribbon-tank", "merch-never-ending-set-ribbon-womens-tank", "merch-melt-wave-tee-inverse", "merch-heartbeat-croissant-pocket-tee", "merch-paddle-back-round-tank", "merch-paddle-back-round-womens-tank",
-  "merch-last-one-i-swear-tank", "merch-last-one-i-swear-womens-tank", "merch-triangle-surfer-pocket-tee", "merch-heartbeat-triangle-tee", "merch-no-thanks-tee",
+  "merch-last-one-i-swear-tank", "merch-last-one-i-swear-womens-tank", "merch-triangle-surfer-pocket-tee", "merch-here-comes-another-one-tank", "merch-here-comes-another-one-womens-tank",
+  "merch-lighthouse-point-tank", "merch-lighthouse-point-womens-tank", "merch-island-dusk-hoodie", "merch-melt-wave-tee", "merch-heartbeat-triangle-tee", "merch-no-thanks-tee",
 ];
 const LAUNCH = ORDER.filter((id) => MENS.includes(id) || WOMENS.includes(id));
 const MERCH_COUNT = LAUNCH.length;
 /** All tab: one card per design, in shop order. Owner, 2026-10-22: "only m/f ... No unisex category visible" (unisex-fit cuts list as Men). */
 const DESIGNS = PUBLIC_SET
-  ? ["make-art-with-friends", "heartbeat-croissant-pocket", "paddle-back-round", "triangle-surfer-pocket"]
-  : ["hotdo-g-g-dog", "make-art-with-friends", "feelings-notice", "triangle-surfer", "never-ending-set", "melt-wave-inverse", "paddle-back-round", "last-one-i-swear", "triangle-surfer-pocket", "heartbeat-triangle", "no-thanks"];
-const WITH_WOMENS = ["hotdo-g-g-dog", "make-art-with-friends", "feelings-notice", "never-ending-set", "paddle-back-round", "last-one-i-swear"];
+  ? ["make-art-with-friends", "heartbeat-croissant-pocket", "paddle-back-round", "triangle-surfer-pocket", "here-comes-another-one", "lighthouse-point", "island-dusk", "melt-wave-mirror"]
+  : ["hotdo-g-g-dog", "make-art-with-friends", "feelings-notice", "triangle-surfer", "never-ending-set", "melt-wave-inverse", "paddle-back-round", "last-one-i-swear", "triangle-surfer-pocket", "here-comes-another-one", "lighthouse-point", "island-dusk", "melt-wave-mirror", "heartbeat-triangle", "no-thanks"];
+const WITH_WOMENS = ["hotdo-g-g-dog", "make-art-with-friends", "feelings-notice", "never-ending-set", "paddle-back-round", "last-one-i-swear", "here-comes-another-one", "lighthouse-point"];
 
 test("merch store lists every piece as a swipe card, display-only, no prices or buy buttons", async ({ page }) => {
   await page.goto("/shop/merch");

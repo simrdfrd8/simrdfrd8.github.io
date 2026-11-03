@@ -1,7 +1,7 @@
 {
  "schema": "fm-catalog-published/1",
  "release": 1,
- "exportedAt": "2026-11-03T06:10:00.000Z",
+ "exportedAt": "2026-11-03T07:00:00.000Z",
  "merch": {
   "make-art-with-friends-tee": {
    "price_cents": null,
@@ -56,6 +56,60 @@
     "moss-coral-cream": {},
     "pepper-acid-green": {},
     "bay-plum-taco-red": {}
+   }
+  },
+  "here-comes-another-one-tank": {
+   "price_cents": null,
+   "sale": null,
+   "colorways": {
+    "ivory-coral-heat": {},
+    "pepper-cream": {},
+    "white-bruise-violet": {}
+   }
+  },
+  "here-comes-another-one-womens-tank": {
+   "price_cents": null,
+   "sale": null,
+   "colorways": {
+    "bone-coral-heat": {},
+    "black-cream": {},
+    "white-bruise-violet": {}
+   }
+  },
+  "lighthouse-point-tank": {
+   "price_cents": null,
+   "sale": null,
+   "colorways": {
+    "chambray-navy-gold": {},
+    "blossom-navy-gold": {},
+    "butter-navy": {},
+    "white-navy-gold": {},
+    "grape-cream-gold": {}
+   }
+  },
+  "lighthouse-point-womens-tank": {
+   "price_cents": null,
+   "sale": null,
+   "colorways": {
+    "powder-navy-gold": {},
+    "orchid-navy-gold": {},
+    "white-navy-gold": {}
+   }
+  },
+  "island-dusk-hoodie": {
+   "price_cents": null,
+   "sale": null,
+   "colorways": {
+    "flo-blue-plum-cream": {},
+    "true-navy-cream-coral": {},
+    "white-plum-coral": {}
+   }
+  },
+  "melt-wave-tee": {
+   "price_cents": null,
+   "sale": null,
+   "colorways": {
+    "black": {}
    }
   }
  },
