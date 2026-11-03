@@ -9,7 +9,7 @@ import { checkSnapshot, plan, productAssetIds } from "../../scripts/prune-admin-
 
 const snap = snapJson as unknown as PublishedCatalog;
 const set = setJson as unknown as MerchPublicSet;
-const tee = products.find((p) => p.id === "merch-hotdo-g-tee-g-dog")!;
+const tee = products.find((p) => p.id === "merch-make-art-with-friends-tee")!;
 
 describe("published snapshot (content/catalog-published.json)", () => {
   it("is valid, public-only, and publishes exactly Ricky's set today (no prices yet)", () => {
@@ -30,42 +30,43 @@ describe("published snapshot (content/catalog-published.json)", () => {
   });
   it("a private colourway of a public product: dropped from the page, its images become admin-only, hero moves", () => {
     const s: PublishedCatalog = JSON.parse(JSON.stringify(snap));
-    delete s.merch["hotdo-g-tee-g-dog"].colorways["black-white"]; // the hero colourway
+    delete s.merch["make-art-with-friends-tee"].colorways["chalky-mint-plum"]; // the hero colourway
     const p = withPublishedColorways(tee as never, true, s) as typeof tee;
-    expect(p.colorways.map((c) => c.slug)).toEqual(["ivory-taco-red", "butter-taco-red"]);
-    expect(p.heroColorway).toBe("ivory-taco-red");
+    expect(p.colorways.map((c) => c.slug)).toEqual(["butter-plum", "grape-acid-green", "chambray-plum"]);
+    expect(p.heroColorway).toBe("butter-plum");
     expect(p.assetId).toBe(tee.colorways[1].assetId);
     expect(withPublishedColorways(tee as never, false, s)).toBe(tee);
     const pl = plan(products, assets, s);
-    expect(pl.hiddenColorways).toEqual(["merch-hotdo-g-tee-g-dog/black-white"]);
+    expect(pl.hiddenColorways).toEqual(["merch-make-art-with-friends-tee/chalky-mint-plum"]);
     const hiddenIds = productAssetIds({ ...tee, assetId: null, galleryAssetIds: [], lifestyleAssetIds: [], colorways: [tee.colorways[0]] });
     for (const id of hiddenIds) expect(pl.adminOnlyAssetIds, id).toContain(id);
     for (const id of productAssetIds({ ...tee, assetId: null, colorways: tee.colorways.slice(1) })) expect(pl.adminOnlyAssetIds, id).not.toContain(id);
   });
   it("making a product private removes it everywhere", () => {
     const s: PublishedCatalog = JSON.parse(JSON.stringify(snap));
-    delete s.merch["hotdo-g-tee-g-dog"];
+    delete s.merch["make-art-with-friends-tee"];
     expect(isPubliclyVisible(tee, true, s)).toBe(false);
-    expect(plan(products, assets, s).adminIds).toContain("merch-hotdo-g-tee-g-dog");
+    expect(plan(products, assets, s).adminIds).toContain("merch-make-art-with-friends-tee");
   });
   it("rejects unsafe or broken snapshots", () => {
     const bad = JSON.parse(JSON.stringify(snap));
-    bad.merch["hotdo-g-tee-g-dog"].unit_cost_cents = 900;
+    bad.merch["make-art-with-friends-tee"].unit_cost_cents = 900;
     bad.merch["nope"] = { price_cents: 1, sale: null, colorways: {} };
-    bad.merch["feelings-notice-tee"].price_cents = 3000;
-    bad.merch["feelings-notice-tee"].sale = { price_cents: 3000, starts_at: null, ends_at: null };
+    bad.merch["paddle-back-round-tank"].price_cents = 3000;
+    bad.merch["paddle-back-round-tank"].sale = { price_cents: 3000, starts_at: null, ends_at: null };
     bad.bundles = [{ slug: "x1", title: "X", description: "", price_cents: 100, items: [{ product: "no-thanks-tee", colorway: null, qty: 1 }] }];
-    expect(checkSnapshot(bad, products)).toEqual(expect.arrayContaining(["snapshot must not contain unit_cost_cents", "snapshot names unknown product nope", "feelings-notice-tee: sale must be below the price", "bundle x1 holds a non-public product no-thanks-tee"]));
+    expect(checkSnapshot(bad, products)).toEqual(expect.arrayContaining(["snapshot must not contain unit_cost_cents", "snapshot names unknown product nope", "paddle-back-round-tank: sale must be below the price", "bundle x1 holds a non-public product no-thanks-tee"]));
   });
   it("prices: colourway override wins; a sale shows only below the price", () => {
     const s: PublishedCatalog = JSON.parse(JSON.stringify(snap));
-    s.merch["hotdo-g-tee-g-dog"].price_cents = 3000;
-    s.merch["hotdo-g-tee-g-dog"].sale = { price_cents: 2400, starts_at: null, ends_at: null };
-    s.merch["hotdo-g-tee-g-dog"].colorways["ivory-taco-red"] = { price_cents: 3200 };
-    expect(publishedPrice("hotdo-g-tee-g-dog", null, s)).toEqual({ price_cents: 3000, sale: { price_cents: 2400, starts_at: null, ends_at: null } });
-    expect(publishedPrice("hotdo-g-tee-g-dog", "ivory-taco-red", s)).toEqual({ price_cents: 3200, sale: null });
-    expect(publishedPrice("hotdo-g-tee-g-dog", "black-white", s)?.sale?.price_cents).toBe(2400);
+    s.merch["make-art-with-friends-tee"].price_cents = 3000;
+    s.merch["make-art-with-friends-tee"].sale = { price_cents: 2400, starts_at: null, ends_at: null };
+    s.merch["make-art-with-friends-tee"].colorways["butter-plum"] = { price_cents: 3200 };
+    expect(publishedPrice("make-art-with-friends-tee", null, s)).toEqual({ price_cents: 3000, sale: { price_cents: 2400, starts_at: null, ends_at: null } });
+    expect(publishedPrice("make-art-with-friends-tee", "butter-plum", s)).toEqual({ price_cents: 3200, sale: null });
+    expect(publishedPrice("make-art-with-friends-tee", "chalky-mint-plum", s)?.sale?.price_cents).toBe(2400);
     expect(publishedPrice("no-thanks-tee", null, s)).toBeNull();
-    expect(publishedPrice("feelings-notice-tee", null, s)).toBeNull();
+    expect(publishedPrice("feelings-notice-tee", null, s)).toBeNull(); // set aside Nov 2: not published
+    expect(publishedPrice("hotdo-g-tee-g-dog", null, s)).toBeNull();
   });
 });

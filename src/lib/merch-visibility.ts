@@ -1,7 +1,7 @@
 /**
  * Public merch (data-driven): which merch products and colourways public visitors and customer accounts see.
  * Source of truth: the PUBLISHED catalog snapshot (content/catalog-published.json, see lib/published-catalog), exported from the
- * admin catalog manager. content/merch-public-set.json is the slot list (the top ten designs) it mirrors;
+ * admin catalog manager. content/merch-public-set.json is the slot list (one slot per public design, up to ten) it mirrors;
  * every helper here still accepts it, so its tests keep guarding Ricky's picks.
  *
  * The filter is a BUILD-TIME switch, off by default: only `MERCH_PUBLIC_SET=1` at build time applies it.
@@ -24,10 +24,13 @@ export function publicMerchSlugs(src: PublicSource = publishedCatalog): Set<stri
   return new Set(src.slots.flatMap((s) => (s.products.length ? s.products : s.untilFilled ?? [])));
 }
 
-/** The public set is ten design slots (the top ten), each with at least one product. Returns problems (empty = fine). */
+/** Max design slots on the public shop (the owner is building a top ten; fewer is fine while slots are set aside). */
+export const MAX_PUBLIC_SLOTS = 10;
+
+/** The public set is 1 to ten design slots, each with at least one product. Returns problems (empty = fine). */
 export function checkPublicSet(set: MerchPublicSet, knownSlugs: string[]): string[] {
   const out: string[] = [];
-  if (set.slots.length !== 10) out.push(`expected 10 design slots, got ${set.slots.length}`);
+  if (set.slots.length < 1 || set.slots.length > MAX_PUBLIC_SLOTS) out.push(`expected 1 to ${MAX_PUBLIC_SLOTS} design slots, got ${set.slots.length}`);
   for (const [i, s] of set.slots.entries()) if (!s.products.length && !s.untilFilled?.length) out.push(`slot ${i + 1} is empty`);
   for (const s of publicMerchSlugs(set)) if (!knownSlugs.includes(s)) out.push(`unknown product slug: ${s}`);
   return out;

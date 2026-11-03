@@ -1,44 +1,11 @@
 {
-  "note": "Merch that public visitors and customer accounts see: the top ten (owner-approved Nov 2, 2026), one slot per design, in shop order. Each slot lists product slugs (the id without 'merch-'): the Men listing first, then the Women listing when that cut exists. Every colourway of a listed product stays public (the filter works per product, never per colour). The source of truth is content/catalog-published.json; this list mirrors it.",
+  "note": "Merch that public visitors and customer accounts see, one slot per design, in shop order. Owner-approved Nov 2, 2026; the owner set six designs aside the same night (kept in the admin catalog), so four designs show until replacements are picked. Each slot lists product slugs (the id without 'merch-'): the Men listing first, then the Women listing when that cut exists. Every colourway of a listed product stays public (the filter works per product, never per colour). The source of truth is content/catalog-published.json; this list mirrors it.",
   "slots": [
-    {
-      "slot": "shirt",
-      "products": [
-        "hotdo-g-tee-g-dog",
-        "hotdo-g-womens-boxy-tee-g-dog"
-      ]
-    },
     {
       "slot": "shirt",
       "products": [
         "make-art-with-friends-tee",
         "make-art-with-friends-womens-boxy-tee"
-      ]
-    },
-    {
-      "slot": "shirt",
-      "products": [
-        "feelings-notice-tee",
-        "feelings-notice-womens-boxy-tee"
-      ]
-    },
-    {
-      "slot": "shirt",
-      "products": [
-        "triangle-surfer-tee"
-      ]
-    },
-    {
-      "slot": "tank",
-      "products": [
-        "never-ending-set-ribbon-tank",
-        "never-ending-set-ribbon-womens-tank"
-      ]
-    },
-    {
-      "slot": "shirt",
-      "products": [
-        "melt-wave-tee-inverse"
       ]
     },
     {
@@ -52,13 +19,6 @@
       "products": [
         "paddle-back-round-tank",
         "paddle-back-round-womens-tank"
-      ]
-    },
-    {
-      "slot": "tank",
-      "products": [
-        "last-one-i-swear-tank",
-        "last-one-i-swear-womens-tank"
       ]
     },
     {
