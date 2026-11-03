@@ -1,7 +1,7 @@
 {
  "schema": "fm-catalog-published/1",
  "release": 1,
- "exportedAt": "2026-11-03T07:00:00.000Z",
+ "exportedAt": "2026-11-03T07:10:00.000Z",
  "merch": {
   "make-art-with-friends-tee": {
    "price_cents": null,
@@ -110,6 +110,26 @@
    "sale": null,
    "colorways": {
     "black": {}
+   }
+  },
+  "monarch-swell-tank": {
+   "price_cents": null,
+   "sale": null,
+   "colorways": {
+    "chambray-navy-gold": {},
+    "blossom-navy-gold": {},
+    "butter-navy": {},
+    "white-navy-gold": {},
+    "grape-cream-gold": {}
+   }
+  },
+  "monarch-swell-tank-womens": {
+   "price_cents": null,
+   "sale": null,
+   "colorways": {
+    "powder-navy-gold": {},
+    "orchid-navy-gold": {},
+    "white-navy-gold": {}
    }
   }
  },

@@ -10,11 +10,11 @@ const merch = products.filter((p) => p.type === "merch");
 const slugs = merch.map((p) => slugOfProductId(p.id));
 
 describe("public merch set", () => {
-  it("is at most ten design slots (eight: four kept after six were set aside, plus four owner picks), all real product slugs", () => {
+  it("is at most ten design slots (nine: four kept after six were set aside, four owner picks, plus Monarch Swell Tank), all real product slugs", () => {
     expect(checkPublicSet(set, slugs)).toEqual([]);
-    expect(set.slots.length).toBe(8);
+    expect(set.slots.length).toBe(9);
   });
-  it("holds the four designs left after the owner set six aside (Nov 2, 2026, 10:02 PM PT) plus his four picks (10:36 PM PT), Men + Women cuts where they exist", () => {
+  it("holds the four designs left after the owner set six aside (Nov 2, 2026, 10:02 PM PT) plus his four picks (10:36 PM PT) and Monarch Swell Tank, Men + Women cuts where they exist", () => {
     expect([...publicMerchSlugs(set)]).toEqual([
       "make-art-with-friends-tee",
       "make-art-with-friends-womens-boxy-tee",
@@ -28,12 +28,14 @@ describe("public merch set", () => {
       "lighthouse-point-womens-tank",
       "island-dusk-hoodie",
       "melt-wave-tee",
+      "monarch-swell-tank",
+      "monarch-swell-tank-womens",
     ]);
     expect(publicMerchSlugs({ slots: [{ slot: "hoodie", products: [], untilFilled: ["new-hoodie"] }] })).toEqual(new Set(["new-hoodie"]));
   });
   it("plain Heartbeat Triangle, no thanks and the six set-aside designs are admin-only", () => {
     const pub = publicMerchSlugs(set);
-    for (const s of ["hotdo-g-tee-g-dog", "hotdo-g-womens-boxy-tee-g-dog", "feelings-notice-tee", "feelings-notice-womens-boxy-tee", "triangle-surfer-tee", "last-one-i-swear-tank", "last-one-i-swear-womens-tank", "never-ending-set-ribbon-tank", "never-ending-set-ribbon-womens-tank", "melt-wave-tee-inverse", "monarch-swell-tank", "level-headed-tank", "hotdo-g-tee-in-the-bun"]) expect(pub.has(s), s).toBe(false);
+    for (const s of ["hotdo-g-tee-g-dog", "hotdo-g-womens-boxy-tee-g-dog", "feelings-notice-tee", "feelings-notice-womens-boxy-tee", "triangle-surfer-tee", "last-one-i-swear-tank", "last-one-i-swear-womens-tank", "never-ending-set-ribbon-tank", "never-ending-set-ribbon-womens-tank", "melt-wave-tee-inverse", "level-headed-tank", "hotdo-g-tee-in-the-bun"]) expect(pub.has(s), s).toBe(false);
     expect(pub.has("heartbeat-triangle-tee")).toBe(false);
     expect(pub.has("no-thanks-tee")).toBe(false);
   });

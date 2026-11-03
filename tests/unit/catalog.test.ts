@@ -17,7 +17,7 @@ const FLAT_ONLY_IDS = [
   "merch-hotdo-g-tee-g-dog", "merch-hotdo-g-womens-boxy-tee-g-dog", "merch-triangle-surfer-tee", "merch-never-ending-set-ribbon-tank", "merch-never-ending-set-ribbon-womens-tank",
   "merch-melt-wave-tee-inverse", "merch-paddle-back-round-tank", "merch-paddle-back-round-womens-tank", "merch-last-one-i-swear-tank", "merch-last-one-i-swear-womens-tank", "merch-triangle-surfer-pocket-tee",
   // owner picks, Nov 2, 2026, 10:36 PM PT (Island Dusk: concept art; Melt Wave Mirror: v10 flats only)
-  "merch-here-comes-another-one-tank", "merch-here-comes-another-one-womens-tank", "merch-lighthouse-point-tank", "merch-lighthouse-point-womens-tank", "merch-island-dusk-hoodie", "merch-melt-wave-tee",
+  "merch-here-comes-another-one-tank", "merch-here-comes-another-one-womens-tank", "merch-lighthouse-point-tank", "merch-lighthouse-point-womens-tank", "merch-island-dusk-hoodie", "merch-melt-wave-tee", "merch-monarch-swell-tank", "merch-monarch-swell-tank-womens",
 ];
 const WOMENS_IDS = [...WOMENS_BOXY_IDS, ...FLAT_ONLY_IDS.filter((id) => /womens/.test(id))];
 /** Shop grid order without the public filter (production build sets MERCH_PUBLIC_SET=1, which also drops Heartbeat Triangle and no thanks). */
@@ -25,7 +25,7 @@ const LAUNCH_IDS = [
   "merch-hotdo-g-tee-g-dog", "merch-hotdo-g-womens-boxy-tee-g-dog", "merch-make-art-with-friends-tee", "merch-make-art-with-friends-womens-boxy-tee", "merch-feelings-notice-tee", "merch-feelings-notice-womens-boxy-tee",
   "merch-triangle-surfer-tee", "merch-never-ending-set-ribbon-tank", "merch-never-ending-set-ribbon-womens-tank", "merch-melt-wave-tee-inverse", "merch-paddle-back-round-tank", "merch-paddle-back-round-womens-tank",
   "merch-last-one-i-swear-tank", "merch-last-one-i-swear-womens-tank", "merch-triangle-surfer-pocket-tee",
-  "merch-here-comes-another-one-tank", "merch-here-comes-another-one-womens-tank", "merch-lighthouse-point-tank", "merch-lighthouse-point-womens-tank", "merch-island-dusk-hoodie", "merch-melt-wave-tee",
+  "merch-here-comes-another-one-tank", "merch-here-comes-another-one-womens-tank", "merch-lighthouse-point-tank", "merch-lighthouse-point-womens-tank", "merch-island-dusk-hoodie", "merch-melt-wave-tee", "merch-monarch-swell-tank", "merch-monarch-swell-tank-womens",
   "merch-heartbeat-triangle-tee", "merch-no-thanks-tee",
 ];
 const ALL_MERCH = [...V2_IDS, ...TANK_IDS, ...WOMENS_BOXY_IDS, ...FLAT_ONLY_IDS];
@@ -447,7 +447,8 @@ describe("merch final cast", () => {
       }
       if (/tank/.test(id)) {
         expect(p.details?.at(-1), id).toBe(REQ);
-        expect(p.details?.[0], id).toMatch(/^Front only: .* No back print\.$/);
+        if (/monarch-swell/.test(id)) expect(p.details?.[0], id).toBe('Front: "WINTER GROVE / SANTA CRUZ · CALIF." under the art.');
+        else expect(p.details?.[0], id).toMatch(/^Front only: .* No back print\.$/);
         expect(p.colorways.every((c) => !c.backAssetId), id).toBe(true);
       }
     }
@@ -460,6 +461,14 @@ describe("merch final cast", () => {
     const mw = products.filter((p) => /melt-wave/.test(p.id));
     expect(mw.map((p) => p.id)).toEqual(["merch-melt-wave-tee-inverse", "merch-melt-wave-tee"]);
     for (const m of mw) expect(m.colorways.map((c) => c.slug)).toEqual(["black"]);
+    // Monarch Swell (both cuts): cleared chest line only, no back-print line, "Monarch" only inside the title
+    for (const id of ["merch-monarch-swell-tank", "merch-monarch-swell-tank-womens"]) {
+      const p = products.find((x) => x.id === id)!;
+      expect(p.details, id).toEqual(['Front: "WINTER GROVE / SANTA CRUZ · CALIF." under the art.', REQ]);
+      const rest = JSON.stringify(p).replace(/Monarch Swell Tank/g, "");
+      expect(rest, id).not.toMatch(/Monarch|MONARCH/);
+      expect(rest, id).not.toMatch(/back[- ]?(neck|print)|swell season|wings & tides|natural bridges|preserve|grove trail|pacific grove|butterfly town|laura|mandy|trademark|apliiq|\bv[23]\b/i);
+    }
   });
 });
 

@@ -35,7 +35,7 @@ describe("All tab: one card per design with a Men / Women cut selector (no Unise
     expect(cutsOf(d).women).toBe("one");
   });
 
-  it("the shop line groups by design; the 7 with a women's cut get Men + Women, the rest Men only", () => {
+  it("the shop line groups by design; the 8 with a women's cut get Men + Women, the rest Men only", () => {
     const products = visibleProducts(ProductsFile.parse(load("products")), "production", AssetsFile.parse(load("assets"))).filter((x) => x.type === "merch" && x.listed && x.shopListed);
     const designs = groupByDesign([...products].sort((x, y) => x.order - y.order));
     expect(designs.map((d) => [d.design, cutsOf(d)])).toEqual([
@@ -52,6 +52,7 @@ describe("All tab: one card per design with a Men / Women cut selector (no Unise
       ["lighthouse-point", { men: "merch-lighthouse-point-tank", women: "merch-lighthouse-point-womens-tank" }],
       ["island-dusk", { men: "merch-island-dusk-hoodie" }],
       ["melt-wave-mirror", { men: "merch-melt-wave-tee" }],
+      ["monarch-swell", { men: "merch-monarch-swell-tank", women: "merch-monarch-swell-tank-womens" }],
       ["heartbeat-triangle", { men: "merch-heartbeat-triangle-tee" }],
       ["no-thanks", { men: "merch-no-thanks-tee" }],
     ]);

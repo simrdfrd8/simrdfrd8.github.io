@@ -2173,5 +2173,136 @@
     ],
     "lifestyleAssetIds": [],
     "heroColorway": "black"
+  },
+  {
+    "id": "merch-monarch-swell-tank",
+    "title": "Monarch Swell Tank",
+    "assetId": "merch-monarch-swell-tank-chambray-navy-gold",
+    "artist": null,
+    "brand": null,
+    "type": "merch",
+    "price": null,
+    "currency": "USD",
+    "payWhatYouWant": false,
+    "priceApproved": false,
+    "status": "upcoming",
+    "category": "men",
+    "design": "monarch-swell",
+    "checkoutProvider": "none",
+    "checkoutUrl": null,
+    "licenseTerms": null,
+    "summary": "Every fall, monarchs come back to the Santa Cruz coast for the winter, right about when the swell does. Here the forewings curl over like breaking waves, the body is a surfboard, and the swell lines run out to sea on both sides. Look at it one way and you get a monarch. Look again and you get a double-up.",
+    "includes": [],
+    "inquireOnly": true,
+    "galleryAssetIds": [],
+    "featured": false,
+    "order": 23,
+    "listed": true,
+    "shopListed": true,
+    "colorways": [
+      {
+        "name": "Chambray / Navy + Gold",
+        "slug": "chambray-navy-gold",
+        "swatch": "#D9E6F2",
+        "ink": "#1E2C4A",
+        "assetId": "merch-monarch-swell-tank-chambray-navy-gold"
+      },
+      {
+        "name": "Blossom / Navy + Gold",
+        "slug": "blossom-navy-gold",
+        "swatch": "#F6D3DA",
+        "ink": "#1E2C4A",
+        "assetId": "merch-monarch-swell-tank-blossom-navy-gold"
+      },
+      {
+        "name": "Butter / Navy",
+        "slug": "butter-navy",
+        "swatch": "#FFE09E",
+        "ink": "#1E2C4A",
+        "assetId": "merch-monarch-swell-tank-butter-navy"
+      },
+      {
+        "name": "White / Navy + Gold",
+        "slug": "white-navy-gold",
+        "swatch": "#F7F6F2",
+        "ink": "#1E2C4A",
+        "assetId": "merch-monarch-swell-tank-white-navy-gold"
+      },
+      {
+        "name": "Grape / Cream + Gold",
+        "slug": "grape-cream-gold",
+        "swatch": "#644E6D",
+        "ink": "#F8E8D2",
+        "assetId": "merch-monarch-swell-tank-grape-cream-gold"
+      }
+    ],
+    "lifestyleAssetIds": [],
+    "heroColorway": "chambray-navy-gold",
+    "details": [
+      "Front: \"WINTER GROVE / SANTA CRUZ · CALIF.\" under the art.",
+      "Original artwork inspired by the California coast. Not affiliated with any park, attraction or brand."
+    ]
+  },
+  {
+    "id": "merch-monarch-swell-tank-womens",
+    "title": "Monarch Swell Tank (Women's)",
+    "assetId": "merch-monarch-swell-tank-womens-powder-navy-gold",
+    "artist": null,
+    "brand": null,
+    "type": "merch",
+    "price": null,
+    "currency": "USD",
+    "payWhatYouWant": false,
+    "priceApproved": false,
+    "status": "upcoming",
+    "category": "women",
+    "design": "monarch-swell",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "checkoutProvider": "none",
+    "checkoutUrl": null,
+    "licenseTerms": null,
+    "summary": "Every fall, monarchs come back to the Santa Cruz coast for the winter, right about when the swell does. Here the forewings curl over like breaking waves, the body is a surfboard, and the swell lines run out to sea on both sides. Look at it one way and you get a monarch. Look again and you get a double-up.",
+    "includes": [],
+    "inquireOnly": true,
+    "galleryAssetIds": [],
+    "featured": false,
+    "order": 24,
+    "listed": true,
+    "shopListed": true,
+    "colorways": [
+      {
+        "name": "Powder / Navy + Gold",
+        "slug": "powder-navy-gold",
+        "swatch": "#D6E4EE",
+        "ink": "#1E2C4A",
+        "assetId": "merch-monarch-swell-tank-womens-powder-navy-gold"
+      },
+      {
+        "name": "Orchid / Navy + Gold",
+        "slug": "orchid-navy-gold",
+        "swatch": "#D8C6E0",
+        "ink": "#1E2C4A",
+        "assetId": "merch-monarch-swell-tank-womens-orchid-navy-gold"
+      },
+      {
+        "name": "White / Navy + Gold",
+        "slug": "white-navy-gold",
+        "swatch": "#F7F6F2",
+        "ink": "#1E2C4A",
+        "assetId": "merch-monarch-swell-tank-womens-white-navy-gold"
+      }
+    ],
+    "lifestyleAssetIds": [],
+    "heroColorway": "powder-navy-gold",
+    "details": [
+      "Front: \"WINTER GROVE / SANTA CRUZ · CALIF.\" under the art.",
+      "Original artwork inspired by the California coast. Not affiliated with any park, attraction or brand."
+    ]
   }
 ]

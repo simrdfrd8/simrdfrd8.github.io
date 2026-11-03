@@ -18738,5 +18738,565 @@
     "poster": [],
     "lqip": "data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAADQAQCdASoQABAAA4BaJaQAAp/+ULarcAD+9kazHLFEEfjVceQIyZgRTvvUrQ+0dYVR1+Q8QQ7vwThU772wNvjtakYtWTJzMzP8XODxb//5zM7NwzESmhGEAAA=",
     "dominantColor": "#888784"
+  },
+  {
+    "id": "merch-monarch-swell-tank-chambray-navy-gold",
+    "title": "Monarch Swell Tank (Chambray / Navy + Gold)",
+    "artist": null,
+    "artistInferred": false,
+    "project": null,
+    "source": "owner-upload",
+    "license": "owned",
+    "publishApproved": true,
+    "alt": "Monarch Swell Tank in Chambray / Navy + Gold, front",
+    "tags": [
+      "merch",
+      "apparel",
+      "front"
+    ],
+    "collaborators": [],
+    "artists": [],
+    "featured": false,
+    "type": "merch-design",
+    "width": 1200,
+    "height": 1200,
+    "orientation": "square",
+    "previews": [
+      {
+        "format": "webp",
+        "width": 160,
+        "height": 160,
+        "src": "/media/merch-monarch-swell-tank/chambray-navy-gold-160.webp"
+      },
+      {
+        "format": "avif",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-monarch-swell-tank/chambray-navy-gold-480.avif"
+      },
+      {
+        "format": "webp",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-monarch-swell-tank/chambray-navy-gold-480.webp"
+      },
+      {
+        "format": "avif",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-monarch-swell-tank/chambray-navy-gold-960.avif"
+      },
+      {
+        "format": "webp",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-monarch-swell-tank/chambray-navy-gold-960.webp"
+      },
+      {
+        "format": "avif",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-monarch-swell-tank/chambray-navy-gold-1200.avif"
+      },
+      {
+        "format": "webp",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-monarch-swell-tank/chambray-navy-gold-1200.webp"
+      }
+    ],
+    "poster": [],
+    "lqip": "data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAAAwAgCdASoQABAAA4BaJZQC7H8AGBr5Pew0UAD+9gL2OvHNa+pRmwkWWfcac6NXgAA=",
+    "dominantColor": "#e3eced"
+  },
+  {
+    "id": "merch-monarch-swell-tank-blossom-navy-gold",
+    "title": "Monarch Swell Tank (Blossom / Navy + Gold)",
+    "artist": null,
+    "artistInferred": false,
+    "project": null,
+    "source": "owner-upload",
+    "license": "owned",
+    "publishApproved": true,
+    "alt": "Monarch Swell Tank in Blossom / Navy + Gold, front",
+    "tags": [
+      "merch",
+      "apparel",
+      "front"
+    ],
+    "collaborators": [],
+    "artists": [],
+    "featured": false,
+    "type": "merch-design",
+    "width": 1200,
+    "height": 1200,
+    "orientation": "square",
+    "previews": [
+      {
+        "format": "webp",
+        "width": 160,
+        "height": 160,
+        "src": "/media/merch-monarch-swell-tank/blossom-navy-gold-160.webp"
+      },
+      {
+        "format": "avif",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-monarch-swell-tank/blossom-navy-gold-480.avif"
+      },
+      {
+        "format": "webp",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-monarch-swell-tank/blossom-navy-gold-480.webp"
+      },
+      {
+        "format": "avif",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-monarch-swell-tank/blossom-navy-gold-960.avif"
+      },
+      {
+        "format": "webp",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-monarch-swell-tank/blossom-navy-gold-960.webp"
+      },
+      {
+        "format": "avif",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-monarch-swell-tank/blossom-navy-gold-1200.avif"
+      },
+      {
+        "format": "webp",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-monarch-swell-tank/blossom-navy-gold-1200.webp"
+      }
+    ],
+    "poster": [],
+    "lqip": "data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAAAQAgCdASoQABAAA4BaJYwCdAEO9tuPMwgAAP72EJ3IaauUNmeuifkbcVf8TmccARZhtIAA",
+    "dominantColor": "#f2dedc"
+  },
+  {
+    "id": "merch-monarch-swell-tank-butter-navy",
+    "title": "Monarch Swell Tank (Butter / Navy)",
+    "artist": null,
+    "artistInferred": false,
+    "project": null,
+    "source": "owner-upload",
+    "license": "owned",
+    "publishApproved": true,
+    "alt": "Monarch Swell Tank in Butter / Navy, front",
+    "tags": [
+      "merch",
+      "apparel",
+      "front"
+    ],
+    "collaborators": [],
+    "artists": [],
+    "featured": false,
+    "type": "merch-design",
+    "width": 1200,
+    "height": 1200,
+    "orientation": "square",
+    "previews": [
+      {
+        "format": "webp",
+        "width": 160,
+        "height": 160,
+        "src": "/media/merch-monarch-swell-tank/butter-navy-160.webp"
+      },
+      {
+        "format": "avif",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-monarch-swell-tank/butter-navy-480.avif"
+      },
+      {
+        "format": "webp",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-monarch-swell-tank/butter-navy-480.webp"
+      },
+      {
+        "format": "avif",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-monarch-swell-tank/butter-navy-960.avif"
+      },
+      {
+        "format": "webp",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-monarch-swell-tank/butter-navy-960.webp"
+      },
+      {
+        "format": "avif",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-monarch-swell-tank/butter-navy-1200.avif"
+      },
+      {
+        "format": "webp",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-monarch-swell-tank/butter-navy-1200.webp"
+      }
+    ],
+    "poster": [],
+    "lqip": "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAAAwAgCdASoQABAAA4BaJbACdAEO+XJLuL+QAAD+9hCdwIQ1YY5ZTLO1OLzaTKVDEnBTdR8HAAA=",
+    "dominantColor": "#f2e5c6"
+  },
+  {
+    "id": "merch-monarch-swell-tank-white-navy-gold",
+    "title": "Monarch Swell Tank (White / Navy + Gold)",
+    "artist": null,
+    "artistInferred": false,
+    "project": null,
+    "source": "owner-upload",
+    "license": "owned",
+    "publishApproved": true,
+    "alt": "Monarch Swell Tank in White / Navy + Gold, front",
+    "tags": [
+      "merch",
+      "apparel",
+      "front"
+    ],
+    "collaborators": [],
+    "artists": [],
+    "featured": false,
+    "type": "merch-design",
+    "width": 1200,
+    "height": 1200,
+    "orientation": "square",
+    "previews": [
+      {
+        "format": "webp",
+        "width": 160,
+        "height": 160,
+        "src": "/media/merch-monarch-swell-tank/white-navy-gold-160.webp"
+      },
+      {
+        "format": "avif",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-monarch-swell-tank/white-navy-gold-480.avif"
+      },
+      {
+        "format": "webp",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-monarch-swell-tank/white-navy-gold-480.webp"
+      },
+      {
+        "format": "avif",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-monarch-swell-tank/white-navy-gold-960.avif"
+      },
+      {
+        "format": "webp",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-monarch-swell-tank/white-navy-gold-960.webp"
+      },
+      {
+        "format": "avif",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-monarch-swell-tank/white-navy-gold-1200.avif"
+      },
+      {
+        "format": "webp",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-monarch-swell-tank/white-navy-gold-1200.webp"
+      }
+    ],
+    "poster": [],
+    "lqip": "data:image/webp;base64,UklGRjgAAABXRUJQVlA4ICwAAADwAQCdASoQABAAA4BaJZwAAudf/zAItwAA/vYC5gYs9xy0qc+Hl2mi7mQAAA==",
+    "dominantColor": "#f0eee9"
+  },
+  {
+    "id": "merch-monarch-swell-tank-grape-cream-gold",
+    "title": "Monarch Swell Tank (Grape / Cream + Gold)",
+    "artist": null,
+    "artistInferred": false,
+    "project": null,
+    "source": "owner-upload",
+    "license": "owned",
+    "publishApproved": true,
+    "alt": "Monarch Swell Tank in Grape / Cream + Gold, front",
+    "tags": [
+      "merch",
+      "apparel",
+      "front"
+    ],
+    "collaborators": [],
+    "artists": [],
+    "featured": false,
+    "type": "merch-design",
+    "width": 1200,
+    "height": 1200,
+    "orientation": "square",
+    "previews": [
+      {
+        "format": "webp",
+        "width": 160,
+        "height": 160,
+        "src": "/media/merch-monarch-swell-tank/grape-cream-gold-160.webp"
+      },
+      {
+        "format": "avif",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-monarch-swell-tank/grape-cream-gold-480.avif"
+      },
+      {
+        "format": "webp",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-monarch-swell-tank/grape-cream-gold-480.webp"
+      },
+      {
+        "format": "avif",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-monarch-swell-tank/grape-cream-gold-960.avif"
+      },
+      {
+        "format": "webp",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-monarch-swell-tank/grape-cream-gold-960.webp"
+      },
+      {
+        "format": "avif",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-monarch-swell-tank/grape-cream-gold-1200.avif"
+      },
+      {
+        "format": "webp",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-monarch-swell-tank/grape-cream-gold-1200.webp"
+      }
+    ],
+    "poster": [],
+    "lqip": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAAAwAgCdASoQABAAA4BaJZQCsAD0kDKO1eZOAAD+9gtewGNzEmfBm4ekXqGKbtmJlzrtHwelARaw3vgUNxz3AyPZ+xHA+S9hCnznW7sDWB6AAAAA",
+    "dominantColor": "#b4a8b2"
+  },
+  {
+    "id": "merch-monarch-swell-tank-womens-powder-navy-gold",
+    "title": "Monarch Swell Tank (Women's) (Powder / Navy + Gold)",
+    "artist": null,
+    "artistInferred": false,
+    "project": null,
+    "source": "owner-upload",
+    "license": "owned",
+    "publishApproved": true,
+    "alt": "Monarch Swell Tank (Women's) in Powder / Navy + Gold, front",
+    "tags": [
+      "merch",
+      "apparel",
+      "front"
+    ],
+    "collaborators": [],
+    "artists": [],
+    "featured": false,
+    "type": "merch-design",
+    "width": 1200,
+    "height": 1200,
+    "orientation": "square",
+    "previews": [
+      {
+        "format": "webp",
+        "width": 160,
+        "height": 160,
+        "src": "/media/merch-monarch-swell-tank-womens/powder-navy-gold-160.webp"
+      },
+      {
+        "format": "avif",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-monarch-swell-tank-womens/powder-navy-gold-480.avif"
+      },
+      {
+        "format": "webp",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-monarch-swell-tank-womens/powder-navy-gold-480.webp"
+      },
+      {
+        "format": "avif",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-monarch-swell-tank-womens/powder-navy-gold-960.avif"
+      },
+      {
+        "format": "webp",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-monarch-swell-tank-womens/powder-navy-gold-960.webp"
+      },
+      {
+        "format": "avif",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-monarch-swell-tank-womens/powder-navy-gold-1200.avif"
+      },
+      {
+        "format": "webp",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-monarch-swell-tank-womens/powder-navy-gold-1200.webp"
+      }
+    ],
+    "poster": [],
+    "lqip": "data:image/webp;base64,UklGRj4AAABXRUJQVlA4IDIAAAAwAQCdASoQABAAA4BaJZwAA3AA/vF9L/k38lfP9cw3uDjXj56De4uAx1FzdIohjwAAAA==",
+    "dominantColor": "#e5e4e8"
+  },
+  {
+    "id": "merch-monarch-swell-tank-womens-orchid-navy-gold",
+    "title": "Monarch Swell Tank (Women's) (Orchid / Navy + Gold)",
+    "artist": null,
+    "artistInferred": false,
+    "project": null,
+    "source": "owner-upload",
+    "license": "owned",
+    "publishApproved": true,
+    "alt": "Monarch Swell Tank (Women's) in Orchid / Navy + Gold, front",
+    "tags": [
+      "merch",
+      "apparel",
+      "front"
+    ],
+    "collaborators": [],
+    "artists": [],
+    "featured": false,
+    "type": "merch-design",
+    "width": 1200,
+    "height": 1200,
+    "orientation": "square",
+    "previews": [
+      {
+        "format": "webp",
+        "width": 160,
+        "height": 160,
+        "src": "/media/merch-monarch-swell-tank-womens/orchid-navy-gold-160.webp"
+      },
+      {
+        "format": "avif",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-monarch-swell-tank-womens/orchid-navy-gold-480.avif"
+      },
+      {
+        "format": "webp",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-monarch-swell-tank-womens/orchid-navy-gold-480.webp"
+      },
+      {
+        "format": "avif",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-monarch-swell-tank-womens/orchid-navy-gold-960.avif"
+      },
+      {
+        "format": "webp",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-monarch-swell-tank-womens/orchid-navy-gold-960.webp"
+      },
+      {
+        "format": "avif",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-monarch-swell-tank-womens/orchid-navy-gold-1200.avif"
+      },
+      {
+        "format": "webp",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-monarch-swell-tank-womens/orchid-navy-gold-1200.webp"
+      }
+    ],
+    "poster": [],
+    "lqip": "data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAABwAQCdASoQABAAA4BaJZwCdAFAAAD+8X0v+Tfpbs/rlcV7bZeT1Emv95j+0WRXzbcocAAA",
+    "dominantColor": "#ebe3e7"
+  },
+  {
+    "id": "merch-monarch-swell-tank-womens-white-navy-gold",
+    "title": "Monarch Swell Tank (Women's) (White / Navy + Gold)",
+    "artist": null,
+    "artistInferred": false,
+    "project": null,
+    "source": "owner-upload",
+    "license": "owned",
+    "publishApproved": true,
+    "alt": "Monarch Swell Tank (Women's) in White / Navy + Gold, front",
+    "tags": [
+      "merch",
+      "apparel",
+      "front"
+    ],
+    "collaborators": [],
+    "artists": [],
+    "featured": false,
+    "type": "merch-design",
+    "width": 1200,
+    "height": 1200,
+    "orientation": "square",
+    "previews": [
+      {
+        "format": "webp",
+        "width": 160,
+        "height": 160,
+        "src": "/media/merch-monarch-swell-tank-womens/white-navy-gold-160.webp"
+      },
+      {
+        "format": "avif",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-monarch-swell-tank-womens/white-navy-gold-480.avif"
+      },
+      {
+        "format": "webp",
+        "width": 480,
+        "height": 480,
+        "src": "/media/merch-monarch-swell-tank-womens/white-navy-gold-480.webp"
+      },
+      {
+        "format": "avif",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-monarch-swell-tank-womens/white-navy-gold-960.avif"
+      },
+      {
+        "format": "webp",
+        "width": 960,
+        "height": 960,
+        "src": "/media/merch-monarch-swell-tank-womens/white-navy-gold-960.webp"
+      },
+      {
+        "format": "avif",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-monarch-swell-tank-womens/white-navy-gold-1200.avif"
+      },
+      {
+        "format": "webp",
+        "width": 1200,
+        "height": 1200,
+        "src": "/media/merch-monarch-swell-tank-womens/white-navy-gold-1200.webp"
+      }
+    ],
+    "poster": [],
+    "lqip": "data:image/webp;base64,UklGRjYAAABXRUJQVlA4ICoAAABQAQCdASoQABAAA4BaJZwABDOAAP7y0EaqBK/Sz3yjhr1dl3FNSEfgAAA=",
+    "dominantColor": "#f1eeea"
   }
 ]

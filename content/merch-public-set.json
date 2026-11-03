@@ -52,6 +52,13 @@
       "products": [
         "melt-wave-tee"
       ]
+    },
+    {
+      "slot": "tank",
+      "products": [
+        "monarch-swell-tank",
+        "monarch-swell-tank-womens"
+      ]
     }
   ]
 }
