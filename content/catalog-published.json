@@ -1,7 +1,7 @@
 {
  "schema": "fm-catalog-published/1",
  "release": 1,
- "exportedAt": "2026-11-03T07:10:00.000Z",
+ "exportedAt": "2026-11-10T05:31:00.000Z",
  "merch": {
   "make-art-with-friends-tee": {
    "price_cents": null,
@@ -103,13 +103,6 @@
     "flo-blue-plum-cream": {},
     "true-navy-cream-coral": {},
     "white-plum-coral": {}
-   }
-  },
-  "melt-wave-tee": {
-   "price_cents": null,
-   "sale": null,
-   "colorways": {
-    "black": {}
    }
   },
   "monarch-swell-tank": {
