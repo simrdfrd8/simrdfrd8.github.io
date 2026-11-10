@@ -15,7 +15,7 @@ export const merchSlug = (p: Pick<Product, "id">) => p.id.replace(/^merch-/, "")
 /** Gallery data for a merch product: visible colorways (each with its resolved view set) + extra photos. */
 export function merchGallery(product: Product) {
   const asset = getAsset(product.assetId);
-  const resolved = resolveViews(product.colorways, product.heroColorway, (id) => !!getAsset(id), product.category);
+  const resolved = resolveViews(product.colorways, product.heroColorway, (id) => !!getAsset(id), product.category, product.leadWithBack === true);
   const colorways = product.colorways.flatMap((c, i) => {
     const a = getAsset(c.assetId);
     if (!a) return [];

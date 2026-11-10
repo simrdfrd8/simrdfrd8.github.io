@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { merchProducts } from "@/lib/catalog";
+import { getAsset, merchProducts } from "@/lib/catalog";
 import { MerchProductGallery } from "@/components/MerchProductGallery";
 import { ComingSoonTag } from "@/components/SwipeCarousel";
 import { MediaImage } from "@/components/MediaImage";
 import { merchGallery, merchSlug } from "@/components/Merch";
 import { CloserLook } from "@/components/CloserLook";
 import { closerLookFor } from "@/lib/closerLook";
+import { siteUrl } from "@/lib/env";
 import { MerchPrice } from "@/components/price/MerchPrice";
 
 export const dynamicParams = false;
@@ -22,7 +23,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const p = find((await params).slug);
   if (!p) return {};
   // off the curated shop line: the page still resolves for old links but stays out of search
-  return { title: p.title, description: p.summary, alternates: { canonical: `/shop/merch/${merchSlug(p)}` }, ...(p.shopListed ? {} : { robots: { index: false, follow: true } }) };
+  const img = getAsset(p.assetId)?.previews.filter((x) => x.format === "webp").sort((a, b) => b.width - a.width)[0]?.src;
+  const og = img ? new URL(img, siteUrl()).href : undefined;
+  return {
+    title: p.title,
+    description: p.summary,
+    alternates: { canonical: `/shop/merch/${merchSlug(p)}` },
+    ...(p.shopListed ? {} : { robots: { index: false, follow: true } }),
+    ...(og ? { openGraph: { title: p.title, description: p.summary, url: `/shop/merch/${merchSlug(p)}`, images: [{ url: og }] }, twitter: { card: "summary_large_image", title: p.title, description: p.summary, images: [og] } } : {}),
+  };
 }
 
 /** Merch product page: full-bleed swipe gallery of every colorway (swiping selects the colorway). Display-only: no price, no cart. */

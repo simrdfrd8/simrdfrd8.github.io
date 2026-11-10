@@ -1,7 +1,7 @@
 /**
  * Merch v2 views: each colorway can carry front, back, model-front and model-back images.
  * - With `models`: exactly front, back, then ONE model's front + back, picked by the product category (pickModel).
- * - The thumbnail / swatch is always the front.
+ * - The thumbnail is the first view (the front flat, unless the product sets leadWithBack).
  * - Back is per colorway only (a back shot of another colour would be misleading).
  * - Model shots fall back to the hero colorway's when a colorway has none (model photos are usually shot in one colour).
  * Pure function so it can be unit tested without the catalog.
@@ -63,13 +63,20 @@ export function heroColorwayOf<T extends ColorwayRef>(colorways: T[], heroSlug?:
   return colorways.find((c) => c.slug === heroSlug) ?? colorways.find((c) => c.modelFrontAssetId || c.modelBackAssetId) ?? colorways[0];
 }
 
-export function resolveViews(colorways: ColorwayRef[], heroSlug: string | undefined, exists: (id: string) => boolean = () => true, category: MerchCategory = "men"): ResolvedView[][] {
+export function resolveViews(colorways: ColorwayRef[], heroSlug: string | undefined, exists: (id: string) => boolean = () => true, category: MerchCategory = "men", leadWithBack = false): ResolvedView[][] {
   const hero = heroColorwayOf(colorways, heroSlug);
   return colorways.map((c) => {
     const ok = (id?: string): id is string => !!id && exists(id);
     const out: ResolvedView[] = [];
-    if (ok(c.assetId)) out.push({ kind: "front", assetId: c.assetId, label: VIEW_LABEL.front, fromHero: false });
-    if (ok(c.backAssetId)) out.push({ kind: "back", assetId: c.backAssetId, label: VIEW_LABEL.back, fromHero: false });
+    const front = ok(c.assetId) ? { kind: "front" as const, assetId: c.assetId, label: VIEW_LABEL.front, fromHero: false } : null;
+    const back = ok(c.backAssetId) ? { kind: "back" as const, assetId: c.backAssetId, label: VIEW_LABEL.back, fromHero: false } : null;
+    if (leadWithBack) {
+      if (back) out.push(back);
+      if (front) out.push(front);
+    } else {
+      if (front) out.push(front);
+      if (back) out.push(back);
+    }
     if (c.models?.length) {
       // uniform 4-image set: front, back, then one model's front + back. Older single-model fields, extras and the rest of the cast are not shown.
       const m = pickModel(c.models, category);

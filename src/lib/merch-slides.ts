@@ -2,7 +2,7 @@
  * Slide lists for the merch swipe galleries. Generic over the asset type so the logic is unit tested without the catalog
  * (tests/unit/carousel.test.ts).
  *
- *  - Card (shop grid): the hero colorway's views in order (front flat first = the thumbnail, back, model front, model back),
+ *  - Card (shop grid): the hero colorway's views in order (first view = the thumbnail; usually the front flat, or the back when leadWithBack is set),
  *    then every other colorway's front. Extra on-model shots (more people) stay on the product page.
  *  - Product page: every colorway's views in order, then extra photos. Model shots borrowed from the hero colorway
  *    (fromHero) are skipped for the other colorways, so the same photo never repeats. Each slide knows its colorway, so

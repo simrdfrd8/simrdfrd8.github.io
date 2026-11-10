@@ -17,7 +17,7 @@ const FLAT_ONLY_IDS = [
   "merch-hotdo-g-tee-g-dog", "merch-hotdo-g-womens-boxy-tee-g-dog", "merch-triangle-surfer-tee", "merch-never-ending-set-ribbon-tank", "merch-never-ending-set-ribbon-womens-tank",
   "merch-melt-wave-tee-inverse", "merch-paddle-back-round-tank", "merch-paddle-back-round-womens-tank", "merch-last-one-i-swear-tank", "merch-last-one-i-swear-womens-tank", "merch-triangle-surfer-pocket-tee",
   // owner picks, Nov 2, 2026, 10:36 PM PT (Island Dusk: concept art; Melt Wave Mirror: v10 flats only)
-  "merch-here-comes-another-one-tank", "merch-here-comes-another-one-womens-tank", "merch-lighthouse-point-tank", "merch-lighthouse-point-womens-tank", "merch-island-dusk-hoodie", "merch-melt-wave-tee", "merch-monarch-swell-tank", "merch-monarch-swell-tank-womens",
+  "merch-here-comes-another-one-tank", "merch-here-comes-another-one-womens-tank", "merch-lighthouse-point-tank", "merch-lighthouse-point-womens-tank", "merch-island-dusk-hoodie", "merch-melt-wave-tee", "merch-i-love-creating-tee", "merch-monarch-swell-tank", "merch-monarch-swell-tank-womens",
 ];
 const WOMENS_IDS = [...WOMENS_BOXY_IDS, ...FLAT_ONLY_IDS.filter((id) => /womens/.test(id))];
 /** Shop grid order without the public filter (production build sets MERCH_PUBLIC_SET=1, which also drops Heartbeat Triangle and no thanks). */
@@ -25,7 +25,7 @@ const LAUNCH_IDS = [
   "merch-hotdo-g-tee-g-dog", "merch-hotdo-g-womens-boxy-tee-g-dog", "merch-make-art-with-friends-tee", "merch-make-art-with-friends-womens-boxy-tee", "merch-feelings-notice-tee", "merch-feelings-notice-womens-boxy-tee",
   "merch-triangle-surfer-tee", "merch-never-ending-set-ribbon-tank", "merch-never-ending-set-ribbon-womens-tank", "merch-melt-wave-tee-inverse", "merch-paddle-back-round-tank", "merch-paddle-back-round-womens-tank",
   "merch-last-one-i-swear-tank", "merch-last-one-i-swear-womens-tank", "merch-triangle-surfer-pocket-tee",
-  "merch-here-comes-another-one-tank", "merch-here-comes-another-one-womens-tank", "merch-lighthouse-point-tank", "merch-lighthouse-point-womens-tank", "merch-island-dusk-hoodie", "merch-melt-wave-tee", "merch-monarch-swell-tank", "merch-monarch-swell-tank-womens",
+  "merch-here-comes-another-one-tank", "merch-here-comes-another-one-womens-tank", "merch-lighthouse-point-tank", "merch-lighthouse-point-womens-tank", "merch-island-dusk-hoodie", "merch-i-love-creating-tee", "merch-monarch-swell-tank", "merch-monarch-swell-tank-womens", "merch-melt-wave-tee",
   "merch-heartbeat-triangle-tee", "merch-no-thanks-tee",
 ];
 const ALL_MERCH = [...V2_IDS, ...TANK_IDS, ...WOMENS_BOXY_IDS, ...FLAT_ONLY_IDS];
@@ -437,6 +437,21 @@ describe("merch final cast", () => {
       expect(p.checkoutProvider, id).toBe("none");
       expect(p.category, id).toBe(/womens/.test(id) ? "women" : "men");
       if (/womens/.test(id)) expect(p.sizes, id).toEqual(/tank/.test(id) ? ["XS", "S", "M", "L", "XL"] : ["S", "M", "L", "XL", "2XL"]);
+      if (id === "merch-i-love-creating-tee") {
+        expect(p.sizes, id).toEqual(["S", "M", "L", "XL", "2XL"]);
+        expect(p.sizes, id).not.toEqual(expect.arrayContaining(["YS", "YXL", "2T", "3T", "4T"]));
+        expect(p.title).toBe("I Love Creating Tee");
+        expect(p.leadWithBack).toBe(true);
+        expect(p.assetId).toBe("merch-i-love-creating-tee-black-cream-coral-back");
+        expect(p.heroColorway).toBe("black-cream-coral");
+        expect(p.summary).toBe("I love creating, written in a thin even line and stacked in three rows. A small outline triangle stands in for one letter.");
+        const dirty = /f+u+c+k|f\*+c*k|fcking|f△ck|\bifl\b|iflc|iflcreating|iflscience|apliiq|laura|mandy|shopify|youth|toddler|baby/i;
+        expect(JSON.stringify(p)).not.toMatch(dirty);
+        const views = resolveViews(p.colorways, p.heroColorway, (x) => byId.has(x), p.category, p.leadWithBack === true);
+        expect(views[0].map((v) => v.kind)).toEqual(["back", "front"]);
+        expect(views[0][0].assetId).toBe("merch-i-love-creating-tee-black-cream-coral-back");
+        expect(byId.get(p.assetId || "")?.alt ?? "").toMatch(/, back$/);
+      }
       for (const c of p.colorways) {
         expect(c.models, `${id}/${c.slug}`).toBeUndefined();
         expect(c.modelFrontAssetId ?? c.modelBackAssetId, `${id}/${c.slug}`).toBeUndefined();

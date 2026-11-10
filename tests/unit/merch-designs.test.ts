@@ -51,8 +51,9 @@ describe("All tab: one card per design with a Men / Women cut selector (no Unise
       ["here-comes-another-one", { men: "merch-here-comes-another-one-tank", women: "merch-here-comes-another-one-womens-tank" }],
       ["lighthouse-point", { men: "merch-lighthouse-point-tank", women: "merch-lighthouse-point-womens-tank" }],
       ["island-dusk", { men: "merch-island-dusk-hoodie" }],
-      ["melt-wave-mirror", { men: "merch-melt-wave-tee" }],
+      ["i-love-creating", { men: "merch-i-love-creating-tee" }],
       ["monarch-swell", { men: "merch-monarch-swell-tank", women: "merch-monarch-swell-tank-womens" }],
+      ["melt-wave-mirror", { men: "merch-melt-wave-tee" }],
       ["heartbeat-triangle", { men: "merch-heartbeat-triangle-tee" }],
       ["no-thanks", { men: "merch-no-thanks-tee" }],
     ]);

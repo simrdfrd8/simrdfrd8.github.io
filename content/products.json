@@ -2158,7 +2158,7 @@
     "inquireOnly": true,
     "galleryAssetIds": [],
     "featured": false,
-    "order": 22,
+    "order": 25,
     "listed": true,
     "shopListed": true,
     "colorways": [
@@ -2303,6 +2303,60 @@
     "details": [
       "Front: \"WINTER GROVE / SANTA CRUZ · CALIF.\" under the art.",
       "Original artwork inspired by the California coast. Not affiliated with any park, attraction or brand."
+    ]
+  },
+  {
+    "id": "merch-i-love-creating-tee",
+    "title": "I Love Creating Tee",
+    "assetId": "merch-i-love-creating-tee-black-cream-coral-back",
+    "artist": null,
+    "brand": null,
+    "type": "merch",
+    "price": null,
+    "currency": "USD",
+    "payWhatYouWant": false,
+    "priceApproved": false,
+    "status": "upcoming",
+    "category": "men",
+    "design": "i-love-creating",
+    "checkoutProvider": "none",
+    "checkoutUrl": null,
+    "licenseTerms": null,
+    "summary": "I love creating, written in a thin even line and stacked in three rows. A small outline triangle stands in for one letter.",
+    "includes": [],
+    "inquireOnly": true,
+    "galleryAssetIds": [],
+    "featured": false,
+    "order": 22,
+    "listed": true,
+    "shopListed": true,
+    "colorways": [
+      {
+        "name": "Black / Cream + Coral",
+        "slug": "black-cream-coral",
+        "swatch": "#1B1B1C",
+        "ink": "#F8E8D2",
+        "assetId": "merch-i-love-creating-tee-black-cream-coral",
+        "backAssetId": "merch-i-love-creating-tee-black-cream-coral-back"
+      },
+      {
+        "name": "Ivory / Plum + Rust",
+        "slug": "ivory-plum-rust",
+        "swatch": "#FFF4D9",
+        "ink": "#2B1E35",
+        "assetId": "merch-i-love-creating-tee-ivory-plum-rust",
+        "backAssetId": "merch-i-love-creating-tee-ivory-plum-rust-back"
+      }
+    ],
+    "lifestyleAssetIds": [],
+    "heroColorway": "black-cream-coral",
+    "leadWithBack": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL"
     ]
   }
 ]
