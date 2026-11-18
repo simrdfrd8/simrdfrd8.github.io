@@ -1,5 +1,5 @@
 import { Wordmark } from "./Wordmark";
-import { primaryNav, secondaryNav } from "@/lib/brand";
+import { secondaryNav, visiblePrimaryNav } from "@/lib/brand";
 import { NavLinks, MobileMenu } from "./NavClient";
 import { ButtonLink, Heart } from "./ui";
 
@@ -11,12 +11,12 @@ export function SiteHeader() {
       <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between gap-3 px-4 min-[360px]:px-5 sm:gap-6 sm:px-8 lg:px-12">
         <Wordmark />
         <nav aria-label="Primary" className="hidden items-center lg:gap-1 md:flex">
-          <NavLinks items={[...primaryNav]} />
+          <NavLinks items={[...visiblePrimaryNav()]} />
           <ButtonLink href="/support" size="sm" variant="accent" className="ml-1 lg:ml-3">
             <Heart /> Support
           </ButtonLink>
         </nav>
-        <MobileMenu primary={[...primaryNav]} secondary={[...secondaryNav]} />
+        <MobileMenu primary={[...visiblePrimaryNav()]} secondary={[...secondaryNav]} />
       </div>
     </header>
   );

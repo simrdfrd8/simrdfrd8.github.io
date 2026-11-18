@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/check-no-wav.mjs",
+    "prebuild": "node scripts/write-visibility-gates.mjs && node scripts/check-no-wav.mjs",
     "build": "next build",
     "serve": "npx --yes serve@14 out -l 3200",
     "lint": "eslint .",
@@ -13,7 +13,7 @@
     "test:e2e": "playwright test",
     "check:masters": "node scripts/check-no-wav.mjs",
     "stage:r2": "node scripts/stage-r2.mjs",
-    "postbuild": "node scripts/prune-admin-only-media.mjs && node scripts/check-beats-public.mjs"
+    "postbuild": "node scripts/prune-admin-only-media.mjs && node scripts/check-beats-public.mjs && node scripts/prune-hidden-public.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",

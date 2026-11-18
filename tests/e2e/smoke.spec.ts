@@ -1,4 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
+import { MUSIC_COMING_SOON, publicMusicVisible, publicSurfMapVisible } from "../../src/lib/public-visibility";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 
@@ -10,6 +11,8 @@ const MEDIA_BASE = (process.env.NEXT_PUBLIC_MEDIA_BASE ?? "http://localhost:3201
 const CHECKOUT_LIVE = process.env.NEXT_PUBLIC_CHECKOUT_LIVE === "1";
 /** Same switch the export was built with (MERCH_PUBLIC_SET=1 → only the published merch, content/catalog-published.json, is built). */
 const PUBLIC_SET = process.env.MERCH_PUBLIC_SET === "1";
+const MUSIC = publicMusicVisible();
+const MAP = publicSurfMapVisible();
 
 const ROUTES = [
   "/", "/music", "/artists", "/artists/flavorful-croissants", "/artists/not-daf", "/artists/720m", "/artists/andrew-bigs", "/artists/ricky",
@@ -66,10 +69,10 @@ for (const route of ROUTES) {
   });
 }
 
-const NAV = ["Artists", "Merch", "Beats", "Contact", "Music"];
+const NAV = MUSIC ? ["Artists", "Merch", "Beats", "Contact", "Music"] : ["Artists", "Merch", "Contact"];
 const NAV_HREF: Record<string, RegExp> = { Artists: /\/artists\/?$/, Merch: /\/shop\/merch\/?$/, Beats: /\/shop\/?$/, Contact: /\/contact\/?$/, Music: /\/music\/?$/ };
 
-test("nav is exactly Artists, Merch, Beats, Contact, Music and support is one tap away", async ({ page, isMobile }) => {
+test(`nav is exactly ${NAV.join(", ")} and support is one tap away`, async ({ page, isMobile }) => {
   await page.goto("/");
   if (isMobile) {
     await expect(page.getByRole("link", { name: "Support" }).last()).toBeVisible();
@@ -92,11 +95,13 @@ test("nav is exactly Artists, Merch, Beats, Contact, Music and support is one ta
     await page.goto("/shop/merch/");
     await expect(nav.locator('[aria-current="page"]')).toHaveText(["Merch"]);
     await page.goto("/shop/");
-    await expect(nav.locator('[aria-current="page"]')).toHaveText(["Beats"]);
+    if (MUSIC) await expect(nav.locator('[aria-current="page"]')).toHaveText(["Beats"]);
+    else await expect(nav.locator('[aria-current="page"]')).toHaveCount(0);
   }
 });
 
 test("music: self-hosted songs on the shared list player from R2, no iframes, no autoplay", async ({ page }) => {
+  test.skip(!MUSIC, "public music is hidden pending review (publicMusicVisible=false)");
   await page.goto("/music/");
   await expect(page.locator("iframe")).toHaveCount(0);
   const songs = page.locator('[data-track-list="music-songs"] [data-track-row]');
@@ -129,12 +134,16 @@ test("checkout is off: buy buttons read 'Coming soon' and nothing links to Payhi
   }
   await page.goto("/shop/");
   const btn = page.locator('#all [data-checkout="coming-soon"]:visible').first();
-  await expect(btn).toHaveText("Coming soon");
-  await expect(btn).toBeDisabled();
+  // While the beat store is hidden, /shop/ may have no coming-soon buy buttons (merch is display-only).
+  if (MUSIC || (await btn.count())) {
+    await expect(btn).toHaveText("Coming soon");
+    await expect(btn).toBeDisabled();
+  }
   await expect(page.locator('[data-checkout="test-mode"]')).toHaveCount(0);
 });
 
 test("checkout is live: MP3 + WAV lease buttons open each beat's Payhip product; Stems + Exclusive stay 'Coming soon'", async ({ page }) => {
+  test.skip(!MUSIC, "public music is hidden pending review (publicMusicVisible=false)");
   test.skip(!CHECKOUT_LIVE, "build has checkout switched off");
   const expected = new Map<string, string>(
     (JSON.parse(readFileSync(path.join(__dirname, "../../content/beats.json"), "utf8")) as { id: string; payhipUrl?: string }[]).map((b) => [b.id, b.payhipUrl ?? ""]),
@@ -174,10 +183,16 @@ test("robots allows crawlers in the public build and sitemap lists artists", asy
   const robots = await (await request.get("/robots.txt")).text();
   expect(robots).toContain("Allow: /");
   expect(robots).not.toMatch(/Disallow|\/api/i);
-  expect(await (await request.get("/sitemap.xml")).text()).toContain("/artists/not-daf/");
+  const sitemap = await (await request.get("/sitemap.xml")).text();
+  expect(sitemap).toContain("/artists/not-daf/");
+  if (!MUSIC) {
+    expect(sitemap).not.toMatch(/\/music\/?<\/loc>/);
+    expect(sitemap).not.toMatch(/\/music\/songs\/?<\/loc>/);
+  }
 });
 
 test("productions lanes: DJs, Rappers, Producers with one primary CTA", async ({ page }) => {
+  test.skip(!MUSIC, "public music is hidden pending review (publicMusicVisible=false)");
   await page.goto("/artists/flavorful-croissants");
   const tabs = page.getByRole("tablist", { name: "Productions by audience" });
   await expect(tabs.getByRole("tab")).toHaveText([/For DJs/, /For Rappers/, /For Producers/]);
@@ -220,12 +235,19 @@ test("homepage is simple: mark + one line, three plain categories to the artists
   await expect(page.locator("header [data-wordmark] img").first()).toHaveAttribute("src", "/brand/logo/svg/logo-text.svg");
   await expect(page.locator("[data-hero-mark] img")).toHaveAttribute("src", "/brand/logo/svg/logo-cream.svg");
   expect(await page.locator("[data-cat-toggle] img").evaluateAll((els) => els.map((e) => e.getAttribute("src")))).toEqual(["/brand/logo/svg/logo-coral-hiphop.svg", "/brand/logo/svg/logo-acid-edm.svg", "/brand/logo/svg/logo-violet-prod.svg"]);
-  await expect(page.locator("a[data-home-beats]")).toHaveAttribute("href", /\/music\/?#buy-beats/);
   await expect(page.locator("a[data-home-merch]")).toHaveAttribute("href", /\/shop\/merch\/?$/);
-  // Merch comes before Beats, matching the nav (Artists, Merch, Beats, Contact, Music)
-  expect(await page.locator("#shop a").evaluateAll((els) => els.map((e) => (e.hasAttribute("data-home-merch") ? "merch" : e.hasAttribute("data-home-beats") ? "beats" : e.hasAttribute("data-home-producers") ? "producers" : "?")))).toEqual(["merch", "beats", "producers"]);
-  const [merchBox, beatsBox] = [(await page.locator("a[data-home-merch]").boundingBox())!, (await page.locator("a[data-home-beats]").boundingBox())!];
-  expect(merchBox.y < beatsBox.y - 1 || (Math.abs(merchBox.y - beatsBox.y) <= 1 && merchBox.x < beatsBox.x)).toBe(true);
+  await expect(page.locator("a[data-home-producers]")).toHaveAttribute("href", /\/shop\/sample-packs\/?$/);
+  if (MUSIC) {
+    await expect(page.locator("a[data-home-beats]")).toHaveAttribute("href", /\/music\/?#buy-beats/);
+    expect(await page.locator("#shop a").evaluateAll((els) => els.map((e) => (e.hasAttribute("data-home-merch") ? "merch" : e.hasAttribute("data-home-beats") ? "beats" : e.hasAttribute("data-home-producers") ? "producers" : "?")))).toEqual(["merch", "beats", "producers"]);
+    const [merchBox, beatsBox] = [(await page.locator("a[data-home-merch]").boundingBox())!, (await page.locator("a[data-home-beats]").boundingBox())!];
+    expect(merchBox.y < beatsBox.y - 1 || (Math.abs(merchBox.y - beatsBox.y) <= 1 && merchBox.x < beatsBox.x)).toBe(true);
+  } else {
+    await expect(page.locator("a[data-home-beats]")).toHaveCount(0);
+    expect(await page.locator("#shop a").evaluateAll((els) => els.map((e) => (e.hasAttribute("data-home-merch") ? "merch" : e.hasAttribute("data-home-producers") ? "producers" : "?")))).toEqual(["merch", "producers"]);
+  }
+  if (MAP) await expect(page.locator("[data-home-surf-map]")).toBeVisible();
+  else await expect(page.locator("[data-home-surf-map], #surf-map")).toHaveCount(0);
   // brand film v6 (approved): poster first, nothing loads until click, then the R2 file sized for the screen
   const slot = page.locator("[data-film-slot]");
   await expect(slot).toHaveAttribute("data-film-state", "poster");
@@ -292,6 +314,7 @@ test("720M page: bio verbatim and an accessible Look-closer zoom (tap, keyboard)
 });
 
 test("music page order: Songs, FC × 720M, Latest, Most played, Buy beats", async ({ page }) => {
+  test.skip(!MUSIC, "public music is hidden pending review (publicMusicVisible=false)");
   await page.goto("/music");
   const ids = await page.locator("main section[id]").evaluateAll((els) => els.map((e) => e.id));
   expect(ids.slice(0, 5)).toEqual(["songs", "fc-x-720m", "latest", "most-played", "buy-beats"]);
@@ -321,6 +344,7 @@ test("music page order: Songs, FC × 720M, Latest, Most played, Buy beats", asyn
 });
 
 test("buy beats: one minimal list, global player, licenses, no WAV anywhere", async ({ page, isMobile }) => {
+  test.skip(!MUSIC, "public music is hidden pending review (publicMusicVisible=false)");
   const requested: string[] = [];
   page.on("request", (r) => requested.push(r.url()));
   await page.goto("/music/");
@@ -360,6 +384,7 @@ test("buy beats: one minimal list, global player, licenses, no WAV anywhere", as
 });
 
 test("beat list: search, sort, show more", async ({ page }) => {
+  test.skip(!MUSIC, "public music is hidden pending review (publicMusicVisible=false)");
   await page.goto("/music/");
   const list = page.locator('[data-track-list="music-beats"]');
   const rows = list.locator("[data-track-row]");
@@ -377,6 +402,7 @@ test("beat list: search, sort, show more", async ({ page }) => {
 });
 
 test("shop For Rappers shows only the real beats", async ({ page }) => {
+  test.skip(!MUSIC, "public music is hidden pending review (publicMusicVisible=false)");
   await page.goto("/shop?lane=rapper#lanes");
   const panel = page.getByRole("tabpanel");
   const titles = panel.locator("[data-track-row] .tl-title");
@@ -437,6 +463,7 @@ test("license page: comparison table matches the contracts, each tier links to i
 });
 
 test("beat tiers link to their agreements", async ({ page }) => {
+  test.skip(!MUSIC, "public music is hidden pending review (publicMusicVisible=false)");
   await page.goto("/music/");
   await page.locator("#buy-beats [data-beat-card=deserts]").getByRole("button", { name: /Buy \/ License/ }).click();
   const dialog = page.getByRole("dialog");
@@ -472,6 +499,7 @@ test("only Mixing / recording and Collab open ricky@; every artist page defaults
 });
 
 test("beat audio loads from the external media base, never from the site", async ({ page }) => {
+  test.skip(!MUSIC, "public music is hidden pending review (publicMusicVisible=false)");
   await page.goto("/music/");
   await page.locator("#buy-beats [data-beat-card=deserts] [data-row-play]").click();
   const audio = page.locator("audio[data-global-player]");
@@ -795,6 +823,7 @@ test("All tab: one card per design with a Men / Women cut selector (no Unisex); 
 });
 
 test("global player: plays down the list, active row, keyboard, survives route changes", async ({ page }) => {
+  test.skip(!MUSIC, "public music is hidden pending review (publicMusicVisible=false)");
   await page.goto("/music/");
   const list = page.locator('[data-track-list="music-songs"]');
   await list.locator("[data-row-play]").first().click();
@@ -872,6 +901,7 @@ test("Dan Perales: Comedy is one of his categories, next to Hip-Hop", async ({ p
 });
 
 test("music: hereiam and Fuck You carry a plain Pop Punk label and play in the shared player", async ({ page }) => {
+  test.skip(!MUSIC, "public music is hidden pending review (publicMusicVisible=false)");
   await page.goto("/music/");
   const list = page.locator('[data-track-list="music-songs"]');
   const here = list.locator('[data-track-row="song-hereiam"]');
@@ -890,6 +920,7 @@ test("music: hereiam and Fuck You carry a plain Pop Punk label and play in the s
 });
 
 test("songs: the three 720M songs live on 720M's page, not Flavorful Croissants', and are never listed twice", async ({ page }) => {
+  test.skip(!MUSIC, "public music is hidden pending review (publicMusicVisible=false)");
   await page.goto("/artists/720m/");
   await expect(page.locator('[data-track-list="720m-songs"] [data-track-row]')).toHaveCount(3);
   await page.goto("/artists/flavorful-croissants/");
@@ -940,5 +971,42 @@ test("closer look on the merch shop and a product page", async ({ page }) => {
       await expect.poll(() => img.evaluate((el) => (el as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
     }
     await expect(block).not.toContainText(/DTG|\$\d/);
+  }
+});
+
+test("hidden music routes are a short placeholder, with no players, Payhip, or song lists", async ({ page }) => {
+  test.skip(MUSIC, "public music is visible");
+  for (const route of ["/music/", "/music/songs/"]) {
+    const res = await page.goto(route);
+    expect(res?.status()).toBe(200);
+    await expect(page.locator("h1")).toHaveText(/^(Music|Songs)$/);
+    await expect(page.locator("main")).toContainText(MUSIC_COMING_SOON);
+    await expect(page.locator("[data-track-list], [data-beat-card], #buy-beats, #songs, #fc-x-720m, #latest, #most-played")).toHaveCount(0);
+    await expect(page.locator("audio:not([data-global-player])")).toHaveCount(0);
+    const global = page.locator("audio[data-global-player]");
+    if (await global.count()) {
+      expect(await global.evaluate((a: HTMLAudioElement) => a.paused && !a.autoplay && !/\.mp3(\?|$)/i.test(a.currentSrc || a.src))).toBe(true);
+    }
+    const html = await page.content();
+    expect(html).not.toMatch(/payhip\.com|\.mp3\b/i);
+  }
+});
+
+test("shop has no beat lanes or Payhip links while public music is hidden", async ({ page }) => {
+  test.skip(MUSIC, "public music is visible");
+  await page.goto("/shop/");
+  await expect(page.locator("h1")).toHaveText("Shop");
+  await expect(page.locator("#lanes, [data-beat-card], [data-lane]")).toHaveCount(0);
+  const html = await page.content();
+  expect(html).not.toMatch(/payhip\.com|\.mp3\b/i);
+});
+
+test("surf map tiles and home section are gone while the map is hidden", async ({ page, request }) => {
+  test.skip(MAP, "public surf map is visible");
+  await page.goto("/");
+  await expect(page.locator("[data-home-surf-map], #surf-map, [data-surf-map]")).toHaveCount(0);
+  for (const path of ["/surf-map/v5.1/poster.webp", "/surf-map/v5.1/map.dzi", "/map/", "/surf-map/"]) {
+    const res = await request.get(path);
+    expect(res.status(), path).toBeGreaterThanOrEqual(400);
   }
 });

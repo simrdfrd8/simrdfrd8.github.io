@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Wordmark } from "./Wordmark";
 import { FriendsRow } from "./FriendsRow";
 import { catalog } from "@/lib/catalog";
-import { primaryNav, secondaryNav } from "@/lib/brand";
+import { secondaryNav, visiblePrimaryNav } from "@/lib/brand";
 import { isPreview } from "@/lib/env";
 import { platformLabel } from "@/lib/format";
 
@@ -30,7 +30,7 @@ export function SiteFooter() {
             </p>
           )}
         </div>
-        <FooterCol title="Explore" items={[...primaryNav]} />
+        <FooterCol title="Explore" items={[...visiblePrimaryNav()]} />
         <FooterCol title="Work with us" items={[...secondaryNav]} />
         <div>
           <h2 className="kicker mb-4 text-muted">Listen & follow</h2>

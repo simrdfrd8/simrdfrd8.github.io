@@ -1,7 +1,10 @@
 import { expect, test } from "@playwright/test";
+import { publicMusicVisible } from "../../src/lib/public-visibility";
+const MUSIC = publicMusicVisible();
 
 /** Producers card (home, under Beats) → the sample pack library. No prices, no checkout until sales are approved. */
 test("home: Producers card sits under Beats and links to the sample pack library", async ({ page }) => {
+  test.skip(!MUSIC, "public music is hidden; Producers sits beside Merch instead");
   await page.goto("/");
   const merch = page.locator("#shop a[data-home-merch]");
   const beats = page.locator("#shop a[data-home-beats]");
@@ -22,6 +25,25 @@ test("home: Producers card sits under Beats and links to the sample pack library
     expect(Math.abs(m.y + m.height - (p.y + p.height))).toBeLessThanOrEqual(1);
   } else {
     expect(m.y).toBeLessThan(b.y);
+  }
+  await producers.click();
+  await expect(page).toHaveURL(/\/shop\/sample-packs\/$/);
+  await expect(page.locator("h1")).toHaveText("Sample packs");
+});
+
+test("home: Producers card sits beside Merch when beats are hidden", async ({ page }) => {
+  test.skip(MUSIC, "public music is visible");
+  await page.goto("/");
+  const merch = page.locator("#shop a[data-home-merch]");
+  const producers = page.locator("#shop a[data-home-producers]");
+  await expect(page.locator("#shop a[data-home-beats]")).toHaveCount(0);
+  await expect(producers).toHaveAttribute("href", /\/shop\/sample-packs\/?$/);
+  const [m, pbox] = [(await merch.boundingBox())!, (await producers.boundingBox())!];
+  if ((page.viewportSize()?.width ?? 1280) >= 768) {
+    expect(m.x).toBeLessThan(pbox.x);
+    expect(Math.abs(m.y - pbox.y)).toBeLessThanOrEqual(1);
+  } else {
+    expect(m.y).toBeLessThan(pbox.y);
   }
   await producers.click();
   await expect(page).toHaveURL(/\/shop\/sample-packs\/$/);
@@ -55,10 +77,11 @@ test("sample pack library renders, coming soon, with no prices or checkout", asy
   // no autoplay, no horizontal overflow
   expect(await page.evaluate(() => [...document.querySelectorAll("audio,video")].filter((m) => !(m as HTMLMediaElement).paused).length)).toBe(0);
   expect(await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)).toBeLessThanOrEqual(0);
-  // nav unchanged (Artists, Merch, Beats, Contact, Music); the library sits under Beats (/shop), so Beats is current
   const primary = page.locator('nav[aria-label="Primary"] a');
-  await expect(primary.filter({ hasText: /^(Artists|Merch|Beats|Contact|Music)$/ })).toHaveText(["Artists", "Merch", "Beats", "Contact", "Music"]);
-  if (await primary.first().isVisible()) await expect(page.locator('nav[aria-label="Primary"] a[aria-current="page"]')).toHaveText("Beats");
+  const nav = MUSIC ? ["Artists", "Merch", "Beats", "Contact", "Music"] : ["Artists", "Merch", "Contact"];
+  await expect(primary.filter({ hasText: /^(Artists|Merch|Beats|Contact|Music)$/ })).toHaveText(nav);
+  if (MUSIC && (await primary.first().isVisible())) await expect(page.locator('nav[aria-label="Primary"] a[aria-current="page"]')).toHaveText("Beats");
+  if (!MUSIC && (await primary.first().isVisible())) await expect(page.locator('nav[aria-label="Primary"] a[aria-current="page"]')).toHaveCount(0);
   expect(errors).toEqual([]);
 });
 

@@ -17,8 +17,12 @@ import { JsonLd, releaseLd, trackLd } from "@/lib/jsonld";
 import { Productions } from "@/components/Productions";
 import { CHECKOUT_LIVE } from "@/lib/env";
 import { SongList, SONG_SOUNDCLOUD_URLS } from "@/components/SongList";
+import { MusicComingSoon } from "@/components/MusicComingSoon";
+import { MUSIC_COMING_SOON, publicMusicVisible } from "@/lib/public-visibility";
 
-export const metadata: Metadata = { title: "Music", description: "Play Flavorful Croissants in full, free, and lease beats. Also on Spotify and SoundCloud.", alternates: { canonical: "/music" } };
+export const metadata: Metadata = publicMusicVisible()
+  ? { title: "Music", description: "Play Flavorful Croissants in full, free, and lease beats. Also on Spotify and SoundCloud.", alternates: { canonical: "/music" } }
+  : { title: "Music", description: MUSIC_COMING_SOON, alternates: { canonical: "/music" } };
 
 /** ISR: the "Latest on SoundCloud" list refreshes from public SoundCloud data at most every 6 hours. */
 export const revalidate = 21600;
@@ -26,6 +30,7 @@ export const revalidate = 21600;
 const FC_SPOTIFY = "7HVJPuRrvPJmyt0s5Rnvb0";
 
 export default async function MusicPage() {
+  if (!publicMusicVisible()) return <MusicComingSoon title="Music" />;
   const fetched = await getLatest();
   const latest = { ...fetched, tracks: fetched.tracks.filter((t) => !SONG_SOUNDCLOUD_URLS.has(t.url)) };
   // First section: the owner's SoundCloud "Release" playlist (720M collabs only). The FANNYPACK-folder

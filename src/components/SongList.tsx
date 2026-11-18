@@ -2,6 +2,7 @@ import songs from "../../content/songs.json";
 import { mediaUrl } from "@/lib/env";
 import { artistName, creditLine } from "@/lib/catalog";
 import { TrackList, type TrackRow } from "./player/TrackList";
+import { publicMusicVisible } from "@/lib/public-visibility";
 
 /** artists = co-credited ("720M × Flavorful Croissants"); featuring = "ft." credit; genre = small plain label on the row. */
 type Song = { id: string; title: string; artist: string; artists?: string[]; featuring?: string[]; genre?: string; src: string; soundcloudUrl?: string; durationSec?: number };
@@ -16,6 +17,7 @@ const credit = (s: Song) => {
 
 /** Released, self-hosted full-length songs on the shared list + global player. No autoplay. */
 export function songsFor(artist?: string, only?: string[]): TrackRow[] {
+  if (!publicMusicVisible()) return [];
   return (songs.songs as Song[])
     .filter((s) => (!artist || s.artist === artist) && (!only || only.includes(s.id)))
     .map((s) => ({ id: s.id, title: s.title, src: mediaUrl(s.src), durationSec: s.durationSec, audience: "listener", subtitle: credit(s), badge: s.genre }));

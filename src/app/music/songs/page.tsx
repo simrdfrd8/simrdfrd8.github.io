@@ -6,12 +6,16 @@ import { SongList, songsFor } from "@/components/SongList";
 import { SpotifyEmbed } from "@/components/SpotifyEmbed";
 import { ButtonLink, Section } from "@/components/ui";
 import { publishedReleaseIds, publishedSongIds, songBuyable, songsArtistOrder } from "@/lib/music-visibility";
+import { MusicComingSoon } from "@/components/MusicComingSoon";
+import { MUSIC_COMING_SOON, publicMusicVisible } from "@/lib/public-visibility";
 
-export const metadata: Metadata = {
-  title: "Songs",
-  description: "Songs by artist: play the self-hosted songs in full, free, and find every release on Spotify and SoundCloud.",
-  alternates: { canonical: "/music/songs" },
-};
+export const metadata: Metadata = publicMusicVisible()
+  ? {
+      title: "Songs",
+      description: "Songs by artist: play the self-hosted songs in full, free, and find every release on Spotify and SoundCloud.",
+      alternates: { canonical: "/music/songs" },
+    }
+  : { title: "Songs", description: MUSIC_COMING_SOON, alternates: { canonical: "/music/songs" } };
 
 /**
  * /music/songs/: songs by artist, then releases (albums & EPs, singles), then more on SoundCloud. Only what the published music
@@ -19,6 +23,7 @@ export const metadata: Metadata = {
  * Every artist is listed on their own. Song and album downloads stay "Coming soon" until music rights are cleared.
  */
 export default function SongsPage() {
+  if (!publicMusicVisible()) return <MusicComingSoon title="Songs" />;
   const songIds = publishedSongIds();
   const relIds = publishedReleaseIds();
   const releases = getReleases().filter((r) => relIds.has(r.id));

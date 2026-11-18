@@ -35,6 +35,7 @@ import {
   type Asset,
 } from "./schema";
 import { isPreview } from "@/lib/env";
+import { publicMusicVisible } from "@/lib/public-visibility";
 import { getSiteMode } from "../env";
 import { isAssetVisible, sortByOrder, visibleProducts, visibleReleases, visibleTracks } from "./filters";
 import { isPubliclyVisible, withPublicSetListing, withPublishedColorways } from "../merch-visibility";
@@ -73,7 +74,7 @@ export const catalog = {
  * published music snapshot (content/music-published.json), in its order; off by default (all beats, featured first).
  */
 export const getBeats = (audience?: Beat["audience"]) =>
-  applyBeatFilter(catalog.beats.filter((b) => b.status !== "draft" && (isPreview() || b.publishApproved) && (!audience || b.audience === audience)).sort((a, b) => Number(b.featured) - Number(a.featured) || a.order - b.order));
+  publicMusicVisible() ? applyBeatFilter(catalog.beats.filter((b) => b.status !== "draft" && (isPreview() || b.publishApproved) && (!audience || b.audience === audience)).sort((a, b) => Number(b.featured) - Number(a.featured) || a.order - b.order)) : [];
 
 export const getCollection = (id: string) => catalog.collections.collections.find((c) => c.id === id);
 /** Tracks tagged with a collection, in the song order from collections.json. */
@@ -156,7 +157,7 @@ export const brandApparelAssets = (brand: string) =>
     .filter((id, i, all): id is string => !!id && all.indexOf(id) === i)
     .map((id) => getAsset(id))
     .filter((a) => a !== undefined);
-export const getTracks = () => visibleTracks(catalog.soundcloud, mode);
+export const getTracks = () => (publicMusicVisible() ? visibleTracks(catalog.soundcloud, mode) : []);
 export const getReleases = () => visibleReleases(catalog.releases, mode);
 export const getProduct = (id: string) => getProducts().find((p) => p.id === id);
 export const supportProduct = () => getProducts().find((p) => p.type === "support");

@@ -6,12 +6,13 @@ import { listedArtists, CATEGORIES } from "@/lib/catalog";
 import { isPreview } from "@/lib/env";
 import { BrandFilm, type FilmSource } from "@/components/BrandFilm";
 import { CategoryFold } from "@/components/CategoryFold";
-import { SurfMapZoom } from "@/components/SurfMapZoom";
 import film from "../../content/film.json";
+import { publicMusicVisible } from "@/lib/public-visibility";
+import { HomeSurfMapSection } from "@/components/HomeSurfMapGate";
 
 /**
  * Landing page, kept extremely simple: mark + one line, three plain categories that fold open to their artists,
- * one path to merch and beats (Merch first, matching the nav), the zoomable San Diego surf map (right after Merch, before the film), and the brand film.
+ * one path to merch (and beats when public music is visible); the zoomable San Diego surf map only when publicSurfMapVisible is on; and the brand film.
  */
 const ROLE: Record<string, string> = { "hip-hop": "Rapper", edm: "DJ", production: "Producer" };
 
@@ -82,15 +83,16 @@ export default function Home() {
       </section>
 
       <section id="shop" aria-label="Shop" className="px-5 pb-16 sm:px-8">
-        {/* Merch on the left; the music side stacks Beats over Producers (phones: Merch, Beats, Producers). */}
+        {/* Merch on the left; when music is public, Beats stacks over Producers. When hidden, Merch and Producers sit side by side with no filler. */}
         <div className="mx-auto grid max-w-[1120px] gap-4 md:grid-cols-2">
-          <Link href="/shop/merch" className="group flex items-center justify-between gap-6 border border-line bg-raised p-6 transition-colors hover:border-logo md:row-span-2 md:p-8" data-home-merch>
+          <Link href="/shop/merch" className={`group flex items-center justify-between gap-6 border border-line bg-raised p-6 transition-colors hover:border-logo md:p-8${publicMusicVisible() ? " md:row-span-2" : ""}`} data-home-merch>
             <span>
               <b className="brand-h block text-2xl tracking-[2px]">Merch</b>
               <span className="text-cream-dim">Designed in-house. Coming soon.</span>
             </span>
             <span aria-hidden="true" className="text-2xl text-logo transition-transform group-hover:translate-x-1">→</span>
           </Link>
+          {publicMusicVisible() && (
           <Link href="/music#buy-beats" className="shade-prod group flex items-center justify-between gap-6 border border-line bg-raised p-6 transition-colors hover:border-[var(--shade)] md:p-8" data-home-beats>
             <span>
               <b className="brand-h block text-2xl tracking-[2px]">Beats</b>
@@ -98,6 +100,7 @@ export default function Home() {
             </span>
             <span aria-hidden="true" className="text-2xl text-[var(--shade-text)] transition-transform group-hover:translate-x-1">→</span>
           </Link>
+          )}
           <Link href="/shop/sample-packs" className="shade-prod group flex items-center justify-between gap-6 border border-line bg-raised p-6 transition-colors hover:border-[var(--shade)] md:p-8" data-home-producers>
             <span>
               <b className="brand-h block text-2xl tracking-[2px]">Producers</b>
@@ -108,16 +111,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="surf-map" aria-labelledby="surf-map-title" className="px-5 pb-20 sm:px-8" data-home-surf-map>
-        <div className="mx-auto grid max-w-[1120px] items-center gap-8 md:grid-cols-[1fr_420px] md:gap-10">
-          <div className="text-center md:text-left">
-            <p className="text-xs font-bold tracking-[2px] text-muted uppercase">Map</p>
-            <h2 id="surf-map-title" className="brand-h mt-3 text-[clamp(2rem,6vw,44px)] tracking-[2px]">San Diego surf map</h2>
-            <p className="mt-4 text-cream-dim">Tap or click the map, then pinch or scroll to zoom in and look around.</p>
-          </div>
-          <SurfMapZoom alt="Illustrated map of the San Diego coastline and its surf spots" />
-        </div>
-      </section>
+      <HomeSurfMapSection />
 
       <section id="films" aria-label="Film" className="px-5 pb-20 sm:px-8">
         <div className="mx-auto grid max-w-[1120px] items-center gap-10 md:grid-cols-[1fr_360px]">
