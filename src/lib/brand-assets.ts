@@ -53,7 +53,7 @@ export const artistThumbImage = (slug: string) => {
   return (id ? brandImage(id) : null) ?? artistCardImages(slug)[0] ?? null;
 };
 
-/** Two-letter monogram for artists without approved art ("Not Däf" → "ND"). */
+/** Two-letter monogram for artists without approved art ("Not DAF" → "ND"). */
 export const monogram = (name: string) =>
   name
     .split(/\s+/)

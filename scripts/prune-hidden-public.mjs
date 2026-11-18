@@ -77,6 +77,12 @@ if (!flags.publicFilmVisible) {
   leak(/\/media\/film\//i, "film media path");
 }
 
+
+if (Array.isArray(flags.publicArtistSlugs) && !flags.publicArtistSlugs.includes("baylingual-entertainment")) {
+  const redir = path.join(OUT, "artists/baylingual");
+  if (fs.existsSync(redir)) fs.rmSync(redir, { recursive: true, force: true });
+}
+
 if (errors.length) {
   console.error("prune-hidden-public failed:\n" + errors.slice(0, 40).join("\n"));
   process.exit(1);

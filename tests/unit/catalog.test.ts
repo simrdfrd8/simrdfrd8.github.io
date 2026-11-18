@@ -115,14 +115,14 @@ describe("content catalog", () => {
     expect(validateCatalog(raw())).toEqual([]);
   });
 
-  it("has every identity, with unique slugs and the Not Däf / 720M spellings", () => {
+  it("has every identity, with unique slugs and the Not DAF / 720M spellings", () => {
     const artists = ArtistsFile.parse(load("artists"));
     expect(artists.map((a) => a.slug).sort()).toEqual(["720m", "andrew-bigs", "baylingual-entertainment", "dan-perales", "flavorful-croissants", "not-daf"]);
     // the two label runners live in content/artists-label.json
     const label = ArtistsFile.parse(load("artists-label"));
     expect(label).toHaveLength(2);
     expect(new Set([...artists, ...label].map((a) => a.slug)).size).toBe(artists.length + label.length);
-    expect(artists.find((a) => a.slug === "not-daf")?.name).toBe("Not Däf");
+    expect(artists.find((a) => a.slug === "not-daf")?.name).toBe("Not DAF");
     expect(artists.find((a) => a.slug === "720m")?.name).toBe("720M");
   });
 

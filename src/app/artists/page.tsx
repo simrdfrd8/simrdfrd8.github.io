@@ -12,7 +12,7 @@ export default function ArtistsPage() {
         <div className="mx-auto max-w-[1440px]">
           <p className="kicker text-muted">Roster</p>
           <h1 className="display mt-3 text-[clamp(4rem,12vw,9rem)]">Artists</h1>
-          <p className="mt-4 max-w-xl text-lg text-cream-dim">A small roster, made with friends. Five artists, three shades, one table.</p>
+          <p className="mt-4 max-w-xl text-lg text-cream-dim">A small roster, made with friends.</p>
         </div>
       </section>
       <Section>

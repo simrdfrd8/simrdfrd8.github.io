@@ -363,7 +363,7 @@ function CoverRelease({ release }: { release: Release }) {
   );
 }
 
-/** Not Däf's visual signature: the triangle crew, as a quiet drifting field behind the hero. */
+/** Not DAF's visual signature: the triangle crew, as a quiet drifting field behind the hero. */
 function leadSplit(list: SoundCloudTrack[], kind: "playlist") {
   const lead = list.find((t) => t.kind === kind);
   return { lead, items: list.filter((t) => t !== lead && t.kind === "track") };

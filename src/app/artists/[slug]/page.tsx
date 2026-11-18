@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { catalog, getArtist } from "@/lib/catalog";
+import { publicArtistVisible } from "@/lib/public-visibility";
 import { ArtistPage } from "@/components/ArtistPage";
 import { Artist720mIntro } from "@/components/brand/Artist720m";
 
 export const dynamicParams = false;
 export function generateStaticParams() {
-  return catalog.artists.map((a) => ({ slug: a.slug }));
+  return catalog.artists.filter((a) => publicArtistVisible(a.slug)).map((a) => ({ slug: a.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -17,6 +18,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const artist = getArtist((await params).slug);
-  if (!artist) notFound();
+  if (!artist || !publicArtistVisible(artist.slug)) notFound();
   return <ArtistPage artist={artist} intro={artist.slug === "720m" ? <Artist720mIntro artist={artist} /> : undefined} />;
 }

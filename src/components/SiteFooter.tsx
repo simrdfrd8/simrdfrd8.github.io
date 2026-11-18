@@ -4,6 +4,7 @@ import { FriendsRow } from "./FriendsRow";
 import { catalog } from "@/lib/catalog";
 import { visiblePrimaryNav, visibleSecondaryNav } from "@/lib/brand";
 import { isPreview } from "@/lib/env";
+import { publicArtistVisible } from "@/lib/public-visibility";
 import { platformLabel } from "@/lib/format";
 
 /** Site-wide footer: Brandy's "Make art with friends." block + Friends row (site-footer.css), plus the site's link columns. */
@@ -51,6 +52,7 @@ export function SiteFooter() {
             Flavorful Music, a Baylingue LLC company. San Diego, CA. Contact:{" "}
             <a href="mailto:hallo@flavorfulmusic.com" className="underline underline-offset-4 hover:text-cream">hallo@flavorfulmusic.com</a>
           </p>
+          {publicArtistVisible("baylingual-entertainment") && (
           <p>
             Sister brand:{" "}
             <Link href="/artists/baylingual-entertainment" className="underline underline-offset-4 hover:text-cream">
@@ -58,6 +60,7 @@ export function SiteFooter() {
             </Link>
             .
           </p>
+          )}
           <p>© 2026 Flavorful Music, a Baylingue LLC company. All rights reserved.</p>
         </div>
         {isPreview() && <p className="kicker self-end text-gold">Local preview build</p>}

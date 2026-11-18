@@ -5,7 +5,7 @@ import { PageHeader } from "@/components/PageHeader";
 import { MediaGallery } from "@/components/MediaGallery";
 import { VideoPlayer } from "@/components/VideoPlayer";
 import { ButtonLink, Section, Arrow } from "@/components/ui";
-import { publicFilmVisible } from "@/lib/public-visibility";
+import { publicArtistVisible, publicFilmVisible } from "@/lib/public-visibility";
 
 export const metadata: Metadata = { title: "Art & Video", description: "Music videos, animation stills and artwork from Flavorful Music and Baylingual Entertainment. Prints and digital art.", alternates: { canonical: "/art" } };
 
@@ -38,7 +38,7 @@ export default function ArtPage() {
       </Section>
       )}
       <Section id="gallery" kicker="Visual art" title="Gallery" tone="raised">
-        <MediaGallery items={items} artists={catalog.artists.map((a) => ({ slug: a.slug, name: a.name }))} />
+        <MediaGallery items={items} artists={catalog.artists.filter((a) => publicArtistVisible(a.slug)).map((a) => ({ slug: a.slug, name: a.name }))} />
       </Section>
     </>
   );

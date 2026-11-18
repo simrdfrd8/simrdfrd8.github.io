@@ -35,7 +35,7 @@ import {
   type Asset,
 } from "./schema";
 import { isPreview } from "@/lib/env";
-import { publicMusicVisible } from "@/lib/public-visibility";
+import { publicArtistVisible, publicMusicVisible } from "@/lib/public-visibility";
 import { getSiteMode } from "../env";
 import { isAssetVisible, sortByOrder, visibleProducts, visibleReleases, visibleTracks } from "./filters";
 import { isPubliclyVisible, withPublicSetListing, withPublishedColorways } from "../merch-visibility";
@@ -126,9 +126,9 @@ export const assetHasArtist = (a: { artist: string | null; artists?: string[] },
 
 const catRank = (a: { category?: string }) => { const i = CATEGORIES.findIndex((c) => c.id === a.category); return i === -1 ? CATEGORIES.length : i; };
 /** The roster: listed identities, grouped by shade (Hip-Hop · EDM · Production), then by order. */
-export const listedArtists = () => catalog.artists.filter((a) => a.listed).sort((a, b) => catRank(a) - catRank(b) || a.order - b.order);
+export const listedArtists = () => catalog.artists.filter((a) => a.listed && publicArtistVisible(a.slug)).sort((a, b) => catRank(a) - catRank(b) || a.order - b.order);
 export const categoryOf = (id?: string) => CATEGORIES.find((c) => c.id === id);
-export const childArtists = (slug: string) => catalog.artists.filter((a) => a.parentArtist === slug).sort((a, b) => a.order - b.order);
+export const childArtists = (slug: string) => catalog.artists.filter((a) => a.parentArtist === slug && publicArtistVisible(a.slug)).sort((a, b) => a.order - b.order);
 /** Every listed merch product (each has a product page). */
 export const merchProducts = () => getProducts().filter((p) => p.type === "merch");
 /** Merch shown in the shop grids (the curated line): shopListed !== false, in `order`. */
