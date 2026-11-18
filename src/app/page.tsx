@@ -3,24 +3,20 @@ import Link from "next/link";
 import { brandLogo } from "@/lib/brand-assets";
 import { artistThumbImage, monogram } from "@/lib/brand-assets";
 import { listedArtists, CATEGORIES } from "@/lib/catalog";
-import { isPreview } from "@/lib/env";
-import { BrandFilm, type FilmSource } from "@/components/BrandFilm";
 import { CategoryFold } from "@/components/CategoryFold";
-import film from "../../content/film.json";
 import { publicMusicVisible } from "@/lib/public-visibility";
 import { HomeSurfMapSection } from "@/components/HomeSurfMapGate";
+import { HomeFilmSection } from "@/components/HomeFilmGate";
 
 /**
  * Landing page, kept extremely simple: mark + one line, three plain categories that fold open to their artists,
- * one path to merch (and beats when public music is visible); the zoomable San Diego surf map only when publicSurfMapVisible is on; and the brand film.
+ * one path to merch (and beats when public music is visible); the zoomable San Diego surf map only when publicSurfMapVisible is on; the brand film only when publicFilmVisible is on.
  */
 const ROLE: Record<string, string> = { "hip-hop": "Rapper", edm: "DJ", production: "Producer" };
 
 export default function Home() {
   const heroMark = brandLogo("cream");
   const artists = listedArtists();
-  // Film plays once approved (content/film.json); the private preview may stage unapproved cuts.
-  const filmSources = film.approved || isPreview() ? (film as { sources?: FilmSource[] }).sources : undefined;
 
   return (
     <>
@@ -113,15 +109,7 @@ export default function Home() {
 
       <HomeSurfMapSection />
 
-      <section id="films" aria-label="Film" className="px-5 pb-20 sm:px-8">
-        <div className="mx-auto grid max-w-[1120px] items-center gap-10 md:grid-cols-[1fr_360px]">
-          <div className="text-center md:text-left">
-            <p className="text-xs font-bold tracking-[2px] text-muted uppercase">Film</p>
-            <h2 className="brand-h mt-3 text-[clamp(2rem,6vw,44px)] tracking-[2px]">Make art with friends.</h2>
-          </div>
-          <BrandFilm sources={filmSources} poster={film.poster} title={film.title} />
-        </div>
-      </section>
+      <HomeFilmSection />
     </>
   );
 }

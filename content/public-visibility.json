@@ -1,5 +1,6 @@
 {
   "publicMusicVisible": false,
   "publicSurfMapVisible": false,
-  "_note": "Build-time switches. false = hide public beats/songs (and the surf map) so Ricky can review and reorder what is posted. Flip back to true and rebuild to restore. Sources stay in the repo; deployed output is pruned. Authorized Nov 18, 2026 (t248u, t249u)."
+  "publicFilmVisible": false,
+  "_note": "Build-time switches. false = hide that public surface so Ricky can review what is posted. Flip back to true and rebuild to restore. Sources stay in the repo; deployed output is pruned. Authorized Nov 18, 2026 (t248u, t249u, t250u)."
 }

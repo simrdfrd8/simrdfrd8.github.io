@@ -1,5 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
-import { MUSIC_COMING_SOON, publicMusicVisible, publicSurfMapVisible } from "../../src/lib/public-visibility";
+import { MUSIC_COMING_SOON, VIDEO_COMING_SOON, publicFilmVisible, publicMusicVisible, publicSurfMapVisible } from "../../src/lib/public-visibility";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 
@@ -13,6 +13,7 @@ const CHECKOUT_LIVE = process.env.NEXT_PUBLIC_CHECKOUT_LIVE === "1";
 const PUBLIC_SET = process.env.MERCH_PUBLIC_SET === "1";
 const MUSIC = publicMusicVisible();
 const MAP = publicSurfMapVisible();
+const FILM = publicFilmVisible();
 
 const ROUTES = [
   "/", "/music", "/artists", "/artists/flavorful-croissants", "/artists/not-daf", "/artists/720m", "/artists/andrew-bigs", "/artists/ricky",
@@ -189,6 +190,7 @@ test("robots allows crawlers in the public build and sitemap lists artists", asy
     expect(sitemap).not.toMatch(/\/music\/?<\/loc>/);
     expect(sitemap).not.toMatch(/\/music\/songs\/?<\/loc>/);
   }
+  if (!FILM) expect(sitemap).not.toMatch(/\/video\/?<\/loc>/);
 });
 
 test("productions lanes: DJs, Rappers, Producers with one primary CTA", async ({ page }) => {
@@ -248,20 +250,26 @@ test("homepage is simple: mark + one line, three plain categories to the artists
   }
   if (MAP) await expect(page.locator("[data-home-surf-map]")).toBeVisible();
   else await expect(page.locator("[data-home-surf-map], #surf-map")).toHaveCount(0);
-  // brand film v6 (approved): poster first, nothing loads until click, then the R2 file sized for the screen
-  const slot = page.locator("[data-film-slot]");
-  await expect(slot).toHaveAttribute("data-film-state", "poster");
-  const box = (await slot.boundingBox())!;
-  expect(Math.abs(box.width / box.height - 9 / 16)).toBeLessThan(0.02);
-  await expect(page.locator("video")).toHaveCount(0);
-  await slot.scrollIntoViewIfNeeded();
-  await page.locator("[data-film-play]").click();
-  const v = page.locator("video[data-brand-film]");
-  const narrow = (page.viewportSize()?.width ?? 1280) < 768;
-  await expect(v).toHaveAttribute("src", `https://pub-ddb33632c8d449e28748481ed9cad826.r2.dev/media/film/brand-film-v6-${narrow ? 720 : 1080}.mp4`);
-  await expect(v).toHaveAttribute("preload", "none");
-  expect(await v.evaluate((e: HTMLVideoElement) => [e.controls, e.autoplay, e.playsInline, e.muted])).toEqual([true, false, true, true]);
-  expect(await page.content()).not.toMatch(/preview-only|brand-film-v[1-5]\b/);
+  if (FILM) {
+    // brand film v6 (approved): poster first, nothing loads until click, then the R2 file sized for the screen
+    const slot = page.locator("[data-film-slot]");
+    await expect(slot).toHaveAttribute("data-film-state", "poster");
+    const box = (await slot.boundingBox())!;
+    expect(Math.abs(box.width / box.height - 9 / 16)).toBeLessThan(0.02);
+    await expect(page.locator("video")).toHaveCount(0);
+    await slot.scrollIntoViewIfNeeded();
+    await page.locator("[data-film-play]").click();
+    const v = page.locator("video[data-brand-film]");
+    const narrow = (page.viewportSize()?.width ?? 1280) < 768;
+    await expect(v).toHaveAttribute("src", `https://pub-ddb33632c8d449e28748481ed9cad826.r2.dev/media/film/brand-film-v6-${narrow ? 720 : 1080}.mp4`);
+    await expect(v).toHaveAttribute("preload", "none");
+    expect(await v.evaluate((e: HTMLVideoElement) => [e.controls, e.autoplay, e.playsInline, e.muted])).toEqual([true, false, true, true]);
+    expect(await page.content()).not.toMatch(/preview-only|brand-film-v[1-5]\b/);
+  } else {
+    await expect(page.locator("[data-film-slot], #films, [data-brand-film], [data-film-play]")).toHaveCount(0);
+    const html = await page.content();
+    expect(html).not.toMatch(/brand-film-v6-\d+\.mp4|brand-film-poster|\/media\/film\//i);
+  }
   await expect(page.locator("main")).not.toContainText(/persona|same person|\[(link|photo)\]/i);
   await expect(page.locator("body")).not.toContainText(BANNED);
   expect(await page.locator('meta[name="description"], meta[property="og:description"]').evaluateAll((m) => m.map((x) => x.getAttribute("content")).join(" "))).not.toMatch(BANNED);
@@ -1008,5 +1016,23 @@ test("surf map tiles and home section are gone while the map is hidden", async (
   for (const path of ["/surf-map/v5.1/poster.webp", "/surf-map/v5.1/map.dzi", "/map/", "/surf-map/"]) {
     const res = await request.get(path);
     expect(res.status(), path).toBeGreaterThanOrEqual(400);
+  }
+});
+
+test("brand film is hidden: no home player, no Video nav, poster and site film URLs 404", async ({ page, request }) => {
+  test.skip(FILM, "public film is visible");
+  await page.goto("/");
+  await expect(page.locator("[data-film-slot], #films, video[data-brand-film]")).toHaveCount(0);
+  await expect(page.locator('footer[data-site-footer] a[href="/video"], footer[data-site-footer] a[href="/video/"]')).toHaveCount(0);
+  const html = await page.content();
+  expect(html).not.toMatch(/brand-film-v6-\d+\.mp4|brand-film-poster|\/media\/film\//i);
+  const res = await page.goto("/video/");
+  expect(res?.status()).toBe(200);
+  await expect(page.locator("h1")).toHaveText("Video");
+  await expect(page.locator("[data-videos-soon]")).toHaveText(VIDEO_COMING_SOON);
+  await expect(page.locator("video, [data-film-slot]")).toHaveCount(0);
+  for (const path of ["/media/film/brand-film-poster-9x16.webp", "/media/film/brand-film-v6-720.mp4", "/media/film/brand-film-v6-1080.mp4"]) {
+    const r = await request.get(path);
+    expect(r.status(), path).toBeGreaterThanOrEqual(400);
   }
 });

@@ -35,6 +35,14 @@ if (!flags.publicMusicVisible) {
   }
 }
 
+if (!flags.publicFilmVisible) {
+  const filmDir = path.join(OUT, "media/film");
+  if (fs.existsSync(filmDir)) fs.rmSync(filmDir, { recursive: true, force: true });
+  for (const f of walk(OUT)) {
+    if (/brand-film/i.test(path.basename(f))) fs.rmSync(f);
+  }
+}
+
 if (!fs.existsSync(OUT)) {
   console.error("prune-hidden-public: out/ is missing");
   process.exit(1);
@@ -63,10 +71,16 @@ if (!flags.publicSurfMapVisible) {
   leak(/surf-map\/v5\.1\//, "surf-map tile path");
 }
 
+if (!flags.publicFilmVisible) {
+  if (fs.existsSync(path.join(OUT, "media/film"))) errors.push("out/media/film still present");
+  leak(/brand-film-v6-\d+\.mp4|brand-film-poster|brand-film-v[1-6]/i, "brand film asset");
+  leak(/\/media\/film\//i, "film media path");
+}
+
 if (errors.length) {
   console.error("prune-hidden-public failed:\n" + errors.slice(0, 40).join("\n"));
   process.exit(1);
 }
 console.log(
-  `prune-hidden-public: ok (music ${flags.publicMusicVisible ? "on" : "off"}, map ${flags.publicSurfMapVisible ? "on" : "off"})`,
+  `prune-hidden-public: ok (music ${flags.publicMusicVisible ? "on" : "off"}, map ${flags.publicSurfMapVisible ? "on" : "off"}, film ${flags.publicFilmVisible ? "on" : "off"})`,
 );

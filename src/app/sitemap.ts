@@ -4,10 +4,14 @@ export const dynamic = "force-static";
 import { catalog } from "@/lib/catalog";
 import { siteUrl } from "@/lib/env";
 import { AGREEMENTS } from "@/lib/licenses";
-import { publicMusicVisible } from "@/lib/public-visibility";
+import { publicFilmVisible, publicMusicVisible } from "@/lib/public-visibility";
 
 const ALL_ROUTES = ["/", "/music", "/music/songs", "/artists", "/art", "/video", "/shop", "/shop/merch", "/shop/sample-packs", "/services", "/support", "/contact", "/licensing", "/licensing/beat-lease"];
-const ROUTES = publicMusicVisible() ? ALL_ROUTES : ALL_ROUTES.filter((p) => p !== "/music" && p !== "/music/songs");
+const ROUTES = ALL_ROUTES.filter((p) => {
+  if (!publicMusicVisible() && (p === "/music" || p === "/music/songs")) return false;
+  if (!publicFilmVisible() && p === "/video") return false;
+  return true;
+});
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = siteUrl();

@@ -1,4 +1,4 @@
-import { publicMusicVisible } from "@/lib/public-visibility";
+import { publicFilmVisible, publicMusicVisible } from "@/lib/public-visibility";
 /** Nav order: Artists · Merch · Beats · Contact · Music (the wordmark is Home; Support stays one tap away). Beats = the beat store at /shop. */
 export const primaryNav = [
   { label: "Artists", href: "/artists" },
@@ -37,3 +37,7 @@ export const FRIENDS: Friend[] = [
 /** Primary nav as shown in the header and footer. Music and Beats drop out while public music is hidden. */
 export const visiblePrimaryNav = () =>
   publicMusicVisible() ? primaryNav : primaryNav.filter((i) => i.href !== "/music" && i.href !== "/shop");
+
+/** Footer / mobile "Work with us" nav. The Video item drops out while the brand film is hidden. */
+export const visibleSecondaryNav = () =>
+  publicFilmVisible() ? secondaryNav : secondaryNav.filter((i) => i.href !== "/video");

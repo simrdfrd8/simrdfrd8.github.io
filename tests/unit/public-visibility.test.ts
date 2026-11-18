@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { publicMusicVisible, publicSurfMapVisible, MUSIC_COMING_SOON } from "@/lib/public-visibility";
+import { publicMusicVisible, publicSurfMapVisible, publicFilmVisible, MUSIC_COMING_SOON, VIDEO_COMING_SOON } from "@/lib/public-visibility";
 import { getBeats, getTracks } from "@/lib/catalog";
-import { visiblePrimaryNav, primaryNav } from "@/lib/brand";
+import { visiblePrimaryNav, visibleSecondaryNav, primaryNav, secondaryNav } from "@/lib/brand";
 
 describe("public visibility flags", () => {
   it("exposes a short placeholder line for hidden music routes", () => {
@@ -20,9 +20,19 @@ describe("public visibility flags", () => {
     expect(visiblePrimaryNav().map((i) => i.label)).toEqual(["Artists", "Merch", "Contact"]);
   });
 
-  it("defaults both public switches off while the catalog is under review", () => {
+  it("hides the Video footer item when the brand film is off", () => {
+    if (publicFilmVisible()) {
+      expect(visibleSecondaryNav().map((i) => i.label)).toEqual(secondaryNav.map((i) => i.label));
+      return;
+    }
+    expect(visibleSecondaryNav().some((i) => i.href === "/video")).toBe(false);
+    expect(VIDEO_COMING_SOON).toBe("Videos coming soon.");
+  });
+
+  it("defaults the public switches off while those surfaces are under review", () => {
     // Flip content/public-visibility.json to restore. This assertion documents the current review state.
     expect(publicMusicVisible()).toBe(false);
     expect(publicSurfMapVisible()).toBe(false);
+    expect(publicFilmVisible()).toBe(false);
   });
 });

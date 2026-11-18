@@ -1,5 +1,5 @@
 import { Wordmark } from "./Wordmark";
-import { secondaryNav, visiblePrimaryNav } from "@/lib/brand";
+import { visiblePrimaryNav, visibleSecondaryNav } from "@/lib/brand";
 import { NavLinks, MobileMenu } from "./NavClient";
 import { ButtonLink, Heart } from "./ui";
 
@@ -16,7 +16,7 @@ export function SiteHeader() {
             <Heart /> Support
           </ButtonLink>
         </nav>
-        <MobileMenu primary={[...visiblePrimaryNav()]} secondary={[...secondaryNav]} />
+        <MobileMenu primary={[...visiblePrimaryNav()]} secondary={[...visibleSecondaryNav()]} />
       </div>
     </header>
   );

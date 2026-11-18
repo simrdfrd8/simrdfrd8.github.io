@@ -3,10 +3,15 @@ import { visibleAssets } from "@/lib/catalog";
 import { PageHeader } from "@/components/PageHeader";
 import { VideoPlayer } from "@/components/VideoPlayer";
 import { ButtonLink, Section } from "@/components/ui";
+import { VideoComingSoon } from "@/components/VideoComingSoon";
+import { VIDEO_COMING_SOON, publicFilmVisible } from "@/lib/public-visibility";
 
-export const metadata: Metadata = { title: "Video", description: "Music videos and animation from Flavorful Music and Baylingual Entertainment.", alternates: { canonical: "/video" } };
+export const metadata: Metadata = publicFilmVisible()
+  ? { title: "Video", description: "Music videos and animation from Flavorful Music and Baylingual Entertainment.", alternates: { canonical: "/video" } }
+  : { title: "Video", description: VIDEO_COMING_SOON, alternates: { canonical: "/video" } };
 
 export default function VideoPage() {
+  if (!publicFilmVisible()) return <VideoComingSoon />;
   const videos = visibleAssets().filter((a) => a.type === "video").sort((a, b) => Number(b.featured) - Number(a.featured));
   const landscape = videos.filter((v) => v.orientation !== "portrait");
   const portrait = videos.filter((v) => v.orientation === "portrait");

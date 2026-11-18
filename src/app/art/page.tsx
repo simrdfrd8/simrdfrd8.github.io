@@ -5,6 +5,7 @@ import { PageHeader } from "@/components/PageHeader";
 import { MediaGallery } from "@/components/MediaGallery";
 import { VideoPlayer } from "@/components/VideoPlayer";
 import { ButtonLink, Section, Arrow } from "@/components/ui";
+import { publicFilmVisible } from "@/lib/public-visibility";
 
 export const metadata: Metadata = { title: "Art & Video", description: "Music videos, animation stills and artwork from Flavorful Music and Baylingual Entertainment. Prints and digital art.", alternates: { canonical: "/art" } };
 
@@ -23,7 +24,7 @@ export default function ArtPage() {
         The triangle crew, music videos and stills. Tap any piece to see it big, or take one home as a print.
       </PageHeader>
       {videos.length > 0 && (
-      <Section id="videos" kicker="Music videos" title="Watch" action={<ButtonLink href="/video" variant="secondary">All videos <Arrow /></ButtonLink>}>
+      <Section id="videos" kicker="Music videos" title="Watch" action={publicFilmVisible() ? <ButtonLink href="/video" variant="secondary">All videos <Arrow /></ButtonLink> : undefined}>
         <ul className="no-scrollbar relative -mx-5 flex snap-x snap-mandatory gap-6 overflow-x-auto px-5 pb-4 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 lg:grid-cols-4">
           {videos.filter((v) => v.orientation === "portrait").map((v) => (
             <li key={v.id} className="w-[78vw] shrink-0 snap-center sm:w-auto">
