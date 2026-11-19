@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Artist } from "@/lib/catalog/schema";
 import { getAsset } from "@/lib/catalog";
 import { MediaImage } from "./MediaImage";
-import { artistRosterImage, hasMarks, monogram } from "@/lib/brand-assets";
+import { artistRosterImage, artistTriangleMark, hasMarks, monogram } from "@/lib/brand-assets";
 import { Arrow } from "./ui";
 
 export function ArtistCard({ artist, index, label }: { artist: Artist; index?: number; label?: string }) {
@@ -31,11 +31,16 @@ export function ArtistCard({ artist, index, label }: { artist: Artist; index?: n
           />
         </picture>
       ) : !hero ? (
-        <span className="absolute inset-0 flex items-center justify-center bg-[#17121C] pb-[42%] sm:pb-[28%]" data-roster-monogram aria-hidden="true">
+        <span className="absolute inset-0 flex items-center justify-center bg-[#17121C] pb-[42%] sm:pb-[28%]" data-roster-mark aria-hidden="true">
           <span className="absolute inset-0 bg-[radial-gradient(circle_at_50%_38%,color-mix(in_srgb,var(--accent)_16%,transparent),transparent_62%)]" />
-          <span className="relative flex aspect-square w-[46%] sm:w-[58%] items-center justify-center rounded-full border-2 border-[var(--accent)]">
-            <span className="display text-[clamp(2.25rem,9vw,6.5rem)] leading-none text-[var(--accent)]">{monogram(artist.shortName ?? artist.name)}</span>
-          </span>
+          {artistTriangleMark(artist.category) ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={artistTriangleMark(artist.category)!} alt="" width={489} height={473} className="relative h-auto w-[46%] sm:w-[58%]" data-triangle-mark />
+          ) : (
+            <span className="relative flex aspect-square w-[46%] sm:w-[58%] items-center justify-center rounded-full border-2 border-[var(--accent)]">
+              <span className="display text-[clamp(2.25rem,9vw,6.5rem)] leading-none text-[var(--accent)]">{monogram(artist.shortName ?? artist.name)}</span>
+            </span>
+          )}
         </span>
       ) : null}
       {hero && <MediaImage asset={hero} sizes="(min-width: 1024px) 25vw, 50vw" className="absolute inset-0" imgClassName="transition-transform duration-700 group-hover:scale-105" showMark={false} />}

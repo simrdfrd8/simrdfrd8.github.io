@@ -111,6 +111,36 @@
     "credits": []
   },
   {
+    "id": "dp-theme-of-ookie",
+    "title": "Theme of Ookie",
+    "artist": "dan-perales",
+    "type": "single",
+    "year": 2025,
+    "spotify": {
+      "kind": "track",
+      "id": "3Og1szZCc1Oa6A6aydeOrp"
+    },
+    "artworkAssetId": "cover-theme-of-ookie",
+    "featured": false,
+    "order": 9,
+    "verified": true,
+    "productIds": [],
+    "description": "Track found on Dan Perales' verified Spotify and Apple Music artist pages (checked 2026-11-15). Official cover from Apple Music / iTunes artwork.",
+    "explicit": true,
+    "externalUrls": [
+      {
+        "platform": "spotify",
+        "url": "https://open.spotify.com/track/3Og1szZCc1Oa6A6aydeOrp"
+      },
+      {
+        "platform": "apple-music",
+        "url": "https://music.apple.com/us/album/theme-of-ookie-single/1840728221"
+      }
+    ],
+    "series": "The Psychadelic Shorty",
+    "credits": []
+  },
+  {
     "id": "dp-cayo",
     "title": "Cayo",
     "artist": "dan-perales",
@@ -130,6 +160,10 @@
       {
         "platform": "spotify",
         "url": "https://open.spotify.com/track/2jtGVVHtFTve2L9Yq2e0hV"
+      },
+      {
+        "platform": "apple-music",
+        "url": "https://music.apple.com/us/album/cayo-feat-anthony-del-sol-single/1852012313"
       }
     ],
     "series": "The Psychadelic Shorty",
@@ -142,7 +176,8 @@
         "id": "ant-delsol",
         "role": "featuring"
       }
-    ]
+    ],
+    "year": 2025
   },
   {
     "id": "dp-gentefication",
@@ -164,6 +199,10 @@
       {
         "platform": "spotify",
         "url": "https://open.spotify.com/track/5roQeaChoQqmvmlws2nRuL"
+      },
+      {
+        "platform": "apple-music",
+        "url": "https://music.apple.com/us/album/gent%C3%A9fication-single/1852498290"
       }
     ],
     "series": "The Psychadelic Shorty",
@@ -171,6 +210,46 @@
       {
         "id": "ali-huaskatley",
         "role": "producer"
+      }
+    ],
+    "year": 2025
+  },
+  {
+    "id": "dp-sonrisa",
+    "title": "Sonrisa",
+    "artist": "dan-perales",
+    "type": "single",
+    "year": 2026,
+    "spotify": {
+      "kind": "track",
+      "id": "038AJyAfnA87YH5snYYey2"
+    },
+    "artworkAssetId": "cover-sonrisa",
+    "featured": false,
+    "order": 12,
+    "verified": true,
+    "productIds": [],
+    "description": "Track found on Dan Perales' verified Spotify and Apple Music artist pages (checked 2026-11-15). Official cover from Apple Music / iTunes artwork; DJ Eternal is credited as a feature on that cover.",
+    "explicit": true,
+    "externalUrls": [
+      {
+        "platform": "spotify",
+        "url": "https://open.spotify.com/track/038AJyAfnA87YH5snYYey2"
+      },
+      {
+        "platform": "apple-music",
+        "url": "https://music.apple.com/us/album/sonrisa-single/1852353484"
+      }
+    ],
+    "series": "The Psychadelic Shorty",
+    "credits": [
+      {
+        "id": "ali",
+        "role": "producer"
+      },
+      {
+        "id": "dj-eternal",
+        "role": "featuring"
       }
     ]
   },
@@ -185,7 +264,7 @@
     },
     "artworkAssetId": "cover-bajo-la-pluma",
     "featured": false,
-    "order": 12,
+    "order": 13,
     "verified": true,
     "productIds": [],
     "description": "Track found on Dan Perales' verified Spotify artist page (oEmbed title match, checked 2026-10-20). Cover and credits supplied by the owner.",
@@ -194,6 +273,10 @@
       {
         "platform": "spotify",
         "url": "https://open.spotify.com/track/0ttCxhs7XA9ds49sOViVjb"
+      },
+      {
+        "platform": "apple-music",
+        "url": "https://music.apple.com/us/album/bajo-la-pluma-single/1891563408"
       }
     ],
     "series": "The Psychadelic Shorty",
@@ -201,6 +284,50 @@
       {
         "id": "ali-huaskatley",
         "role": "producer"
+      }
+    ],
+    "year": 2026
+  },
+  {
+    "id": "dp-sin-gas",
+    "title": "SIn Gas",
+    "artist": "dan-perales",
+    "type": "single",
+    "year": 2026,
+    "spotify": {
+      "kind": "track",
+      "id": "0JuCFNaM875p1VgKZttOjg"
+    },
+    "artworkAssetId": "cover-sin-gas",
+    "featured": false,
+    "order": 14,
+    "verified": true,
+    "productIds": [],
+    "description": "Track found on Dan Perales' verified Spotify and Apple Music artist pages (checked 2026-11-15). Official cover from Apple Music / iTunes artwork. Title and features as listed on those DSPs.",
+    "explicit": true,
+    "externalUrls": [
+      {
+        "platform": "spotify",
+        "url": "https://open.spotify.com/track/0JuCFNaM875p1VgKZttOjg"
+      },
+      {
+        "platform": "apple-music",
+        "url": "https://music.apple.com/us/album/sin-gas-feat-miguel-kultura-mercedes-bralo-single/1896374052"
+      }
+    ],
+    "series": "The Psychadelic Shorty",
+    "credits": [
+      {
+        "id": "ali",
+        "role": "producer"
+      },
+      {
+        "id": "miguel-kultura",
+        "role": "featuring"
+      },
+      {
+        "id": "mercedes-bralo",
+        "role": "featuring"
       }
     ]
   }

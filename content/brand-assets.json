@@ -165,10 +165,6 @@
     "andrew-bigs": [
       "andrew-bigs-roster"
     ],
-    "dan-perales": [
-      "dan-perales-card",
-      "dan-perales-card-alt"
-    ],
     "flavorful-croissants": [
       "flavorful-croissants-card"
     ],
@@ -178,7 +174,6 @@
   },
   "roster": {
     "720m": "720m-roster",
-    "dan-perales": "dan-perales-card-alt",
     "andrew-bigs": "andrew-bigs-roster",
     "flavorful-croissants": "flavorful-croissants-card",
     "not-daf": "not-daf-card"

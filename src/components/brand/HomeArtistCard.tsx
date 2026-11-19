@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { artistCardImages } from "@/lib/brand-assets";
+import { artistCardImages, artistTriangleMark } from "@/lib/brand-assets";
 import clsx from "clsx";
 import type { Artist } from "@/lib/catalog/schema";
 import { categoryOf, getAsset } from "@/lib/catalog";
@@ -18,7 +18,7 @@ export function HomeArtistCard({ artist, wide }: { artist: Artist; wide?: boolea
   const spotify = artist.links.find((l) => l.platform === "spotify" && l.verified);
   const soundcloud = artist.links.find((l) => l.platform === "soundcloud" && l.verified);
   const cta =
-    artist.slug === "720m"
+    artist.slug === "720m" || artist.slug === "dan-perales"
       ? { href: page, label: `Meet ${artist.name} →`, external: false }
       : spotify && artist.slug !== "flavorful-croissants"
         ? { href: spotify.url, label: "Listen on Spotify →", external: true }
@@ -44,10 +44,15 @@ export function HomeArtistCard({ artist, wide }: { artist: Artist; wide?: boolea
             <span className="absolute inset-x-0 bottom-0 z-[3] h-0.5 bg-[var(--shade)]" />
           </>
         ) : (
-          <span className="brand-art-stripes absolute inset-0 bg-[linear-gradient(135deg,var(--shade-deep)_0%,#1b1620_85%)]">
-            <span className="brand-h absolute bottom-3 left-4 text-5xl text-[var(--shade)] opacity-30" aria-hidden="true">
-              {artist.shortName ?? artist.name}
-            </span>
+          <span className="brand-art-stripes absolute inset-0 flex items-center justify-center bg-[linear-gradient(135deg,var(--shade-deep)_0%,#1b1620_85%)]" data-roster-mark>
+            {artistTriangleMark(artist.category) ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={artistTriangleMark(artist.category)!} alt="" width={489} height={473} className="h-auto w-[46%]" data-triangle-mark />
+            ) : (
+              <span className="brand-h absolute bottom-3 left-4 text-5xl text-[var(--shade)] opacity-30" aria-hidden="true">
+                {artist.shortName ?? artist.name}
+              </span>
+            )}
           </span>
         )}
       </Link>

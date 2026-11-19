@@ -130,7 +130,7 @@ export function ArtistPage({ artist, intro }: { artist: Artist; intro?: React.Re
         ? [{ id: "soundcloud", kicker: artist.slug === "720m" ? "720M × Flavorful Croissants" : "On SoundCloud", title: "Listen", ...leadSplit(byFeatured(tracks), "playlist") }]
         : [];
   const videos = visibleAssets().filter((a) => a.type === "video" && assetHasArtist(a, artist.slug) && a.id !== artist.heroAssetId && !a.tags.includes("merch"));
-  const art = visibleAssets().filter((a) => a.artist === artist.slug && ["artwork", "illustration", "photo"].includes(a.type) && a.id !== artist.heroAssetId && !a.tags.includes("merch"));
+  const art = visibleAssets().filter((a) => a.artist === artist.slug && ["artwork", "illustration", "photo"].includes(a.type) && a.id !== artist.heroAssetId && !a.tags.includes("merch") && !(artist.slug === "dan-perales" && a.tags.includes("portrait")));
   const products = getProducts().filter((p) => p.artist === artist.slug && p.type !== "support" && p.type !== "merch");
   const merch = shopMerchProducts().filter((p) => p.brand === artist.slug);
   const apparel = brandApparelAssets(artist.slug);
@@ -177,7 +177,7 @@ export function ArtistPage({ artist, intro }: { artist: Artist; intro?: React.Re
       )}
 
       {(spotifyArtist || releases.length > 0) && (
-        <Section id="releases" kicker="On Spotify" title="Releases">
+        <Section id="releases" kicker="Listen" title="Releases">
           {spotifyArtist && (
             <div className="mb-8">
               <SpotifyEmbed kind="artist" id={spotifyArtist} title={`${artist.name} on Spotify`} compact={false} />
@@ -344,10 +344,15 @@ export function ArtistPage({ artist, intro }: { artist: Artist; intro?: React.Re
   return page;
 }
 
-/** A single with owner-supplied cover art, credits from collaborators.json and the official Spotify player. */
+/** A single with official or owner-supplied cover art, credits from collaborators.json, and outbound listen links. */
 function CoverRelease({ release }: { release: Release }) {
   const cover = getAsset(release.artworkAssetId);
   const role = { producer: "prod.", featuring: "feat.", collaborator: "with" } as const;
+  const spotifyUrl = release.spotify ? `https://open.spotify.com/${release.spotify.kind}/${release.spotify.id}` : null;
+  const links = [
+    ...(spotifyUrl ? [{ platform: "spotify", url: spotifyUrl }] : []),
+    ...release.externalUrls.filter((u) => u.platform !== "spotify"),
+  ];
   return (
     <article className="flex flex-col gap-4" data-release={release.id}>
       {cover && <MediaImage asset={cover} sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" className="aspect-square overflow-hidden rounded-2xl ring-1 ring-line" />}
@@ -358,17 +363,25 @@ function CoverRelease({ release }: { release: Release }) {
           <p className="mt-1 text-sm text-cream-dim">{release.credits.map((c) => `${role[c.role]} ${getCollaborator(c.id)?.name ?? c.id}`).join(" · ")}</p>
         )}
       </div>
-      {release.spotify && <SpotifyEmbed kind={release.spotify.kind} id={release.spotify.id} title={`${release.title} on Spotify`} />}
+      {links.length > 0 && (
+        <p className="flex flex-wrap gap-x-4 gap-y-2">
+          {links.map((l) => (
+            <a key={l.url} href={l.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm font-semibold text-cream-dim underline decoration-line-strong underline-offset-4 hover:text-cream">
+              {l.platform === "spotify" ? "Spotify" : l.platform === "apple-music" ? "Apple Music" : l.platform === "bandcamp" ? "Bandcamp" : platformLabel(l.platform)} ↗
+            </a>
+          ))}
+        </p>
+      )}
     </article>
   );
 }
 
-/** Not DAF's visual signature: the triangle crew, as a quiet drifting field behind the hero. */
 function leadSplit(list: SoundCloudTrack[], kind: "playlist") {
   const lead = list.find((t) => t.kind === kind);
   return { lead, items: list.filter((t) => t !== lead && t.kind === "track") };
 }
 
+/** Not DAF's visual signature: the triangle crew, as a quiet drifting field behind the hero. */
 function TriangleField() {
   const crew = ["#FF7A59", "#F8E8D2", "#B6FF3B", "#8C7CFF", "#B6FF3B", "#FF7A59", "#8C7CFF"];
   const tris = Array.from({ length: 14 }, (_, i) => ({

@@ -216,7 +216,7 @@ export const AssetSchema = z.object({
   type: z.enum(["artwork", "photo", "cover", "illustration", "video", "audio", "merch-design", "graphic"]),
   artist: slug.nullable().default(null),
   project: z.string().nullable().default(null),
-  source: z.enum(["soundcloud", "instagram", "placeholder", "owner-upload"]),
+  source: z.enum(["soundcloud", "instagram", "placeholder", "owner-upload", "apple-music"]),
   sourcePath: z.string().optional(),
   provenance: z.string().optional(),
   license: z.enum(["owned", "unverified", "third-party"]),

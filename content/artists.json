@@ -56,21 +56,21 @@
   {
     "slug": "dan-perales",
     "name": "Dan Perales",
-    "role": "Rapper · Comedian",
-    "tagline": "Hip-hop from \"Cayo\" to \"Bajo La Pluma\".",
+    "role": "Hip-hop",
+    "tagline": "Six singles from The Psychadelic Shorty, out now.",
     "bio": [
-      "Dan Perales raps on the Hip-Hop side of the crew. Start with \"Cayo\" (feat. Ant Del$ol), \"Gentéfication\", and \"Bajo La Pluma\"."
+      "Dan Perales raps on the Hip-hop side of the crew. “An Experience From San Jose, Ca - Kazakhstan.” — the project line on The Psychadelic Shorty site.",
+      "Six singles from The Psychadelic Shorty are out now on Spotify, Apple Music, and Bandcamp.",
+      "“A whole lot of time and thought was lopped throughout the years to finally hear the voice in the back of my head so loud. Thank God I found a producer who has music bouncing in his head - as mush mine does.” — Dan P, album notes for The Psychadelic Shorty: Vol 1."
     ],
     "bioStatus": "draft",
     "accent": "#FF7A59",
     "accentInk": "#17121C",
     "genres": [
-      "Hip-Hop",
-      "Comedy"
+      "Hip-Hop"
     ],
     "disciplines": [
-      "Rap",
-      "Comedy"
+      "Rap"
     ],
     "links": [
       {
@@ -78,18 +78,28 @@
         "url": "https://open.spotify.com/artist/7d0UBhFGUmCcg19sesZtEx",
         "label": "Dan Perales on Spotify",
         "verified": true
+      },
+      {
+        "platform": "apple-music",
+        "url": "https://music.apple.com/us/artist/dan-perales/1840482764",
+        "label": "Dan Perales on Apple Music",
+        "verified": true
+      },
+      {
+        "platform": "bandcamp",
+        "url": "https://baylingual.bandcamp.com/album/the-psychadelic-shorty-vol-1",
+        "label": "The Psychadelic Shorty: Vol 1 on Bandcamp",
+        "verified": true
       }
     ],
-    "heroAssetId": "photo-dan-poncho",
     "order": 2,
     "bookable": true,
     "bookingNote": "Features, shows and collaborations.",
     "serviceSlugs": [],
     "layout": "standard",
-    "portraitAssetId": "photo-dan-poncho",
     "category": "hip-hop",
-    "cardRole": "Rapper · Comedian",
-    "cardBlurb": "Dan Perales raps on the Hip-Hop side of the crew. Start with \"Cayo\" (feat. Ant Del$ol), \"Gentéfication\", and \"Bajo La Pluma\"."
+    "cardRole": "Hip-hop",
+    "cardBlurb": "Dan Perales raps on the Hip-hop side of the crew. Six singles from The Psychadelic Shorty are out now."
   },
   {
     "slug": "andrew-bigs",

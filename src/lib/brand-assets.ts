@@ -30,6 +30,12 @@ export const brandLogo = (key: keyof typeof brandJson.logos) => {
   return pub(rel) ? `/brand/${rel}` : null;
 };
 
+/** Shade triangle mark for roster tiles that should not use a real-face photo. */
+export const artistTriangleMark = (category?: string | null) => {
+  const key = category === "hip-hop" || category === "edm" || category === "production" ? category : "cream";
+  return brandLogo(key) ?? brandLogo("cream");
+};
+
 export const art720m = () => ({
   portrait: brandImage("720m-portrait"),
   collageWide: brandImage("720m-collage-wide"),

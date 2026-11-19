@@ -2,10 +2,11 @@
   "publicMusicVisible": false,
   "publicSurfMapVisible": false,
   "publicFilmVisible": false,
-  "_note": "Build-time switches. false = hide that public surface. publicArtistSlugs is the public Artists roster (restore by adding slugs back). Sources stay in the repo; deployed output is pruned. Authorized Nov 18, 2026 (t248u\u2013t252u).",
+  "_note": "Build-time switches. false = hide that public surface. publicArtistSlugs is the public Artists roster (restore by adding slugs back). Sources stay in the repo; deployed output is pruned. Authorized Nov 18, 2026 (t248u–t253u).",
   "publicArtistSlugs": [
     "flavorful-croissants",
     "720m",
-    "not-daf"
+    "not-daf",
+    "dan-perales"
   ]
 }

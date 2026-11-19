@@ -61,10 +61,18 @@ describe("brand (Bruise) roster", () => {
     ]);
     const dan = artists.find((a) => a.slug === "dan-perales")!;
     expect(dan.category).toBe("hip-hop");
-    // Owner, 2026-10-21: Dan Perales is also a comedian. Comedy is one of his categories, next to Hip-Hop (not a site category).
-    expect(dan.genres).toEqual(["Hip-Hop", "Comedy"]);
-    expect(dan.disciplines).toContain("Comedy");
-    expect(dan.role).toBe("Rapper · Comedian");
+    // t253u: showcase Dan as a hip-hop artist; drop the comedian claim from public copy.
+    expect(dan.genres).toEqual(["Hip-Hop"]);
+    expect(dan.disciplines).not.toContain("Comedy");
+    expect(dan.role).toBe("Hip-hop");
+    expect(dan.cardRole).toBe("Hip-hop");
+    expect(dan.bio.join(" ")).toContain("San Jose, Ca - Kazakhstan");
+    expect(dan.bio.join(" ")).toContain("Dan P");
+    expect(dan.bio.join(" ")).toContain("Psychadelic Shorty");
+    expect(dan.bio.join(" ").toLowerCase()).not.toMatch(/comedian|comedy|persona|same person/);
+    expect([dan.role, dan.cardRole, dan.cardBlurb, ...dan.bio].join(" ").toLowerCase()).not.toContain("ookie");
+    expect(dan.heroAssetId).toBeUndefined();
+    expect(dan.portraitAssetId).toBeUndefined();
     const ab = artists.find((a) => a.slug === "andrew-bigs")!;
     expect(ab.links.map((l) => l.url)).toEqual([
       "https://open.spotify.com/artist/53hggKXepZN14WR83U8g2T",

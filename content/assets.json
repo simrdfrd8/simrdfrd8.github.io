@@ -19578,5 +19578,197 @@
     "poster": [],
     "lqip": "data:image/webp;base64,UklGRjAAAABXRUJQVlA4ICQAAABwAQCdASoQABAAA4BaJYwCdAF1AAD+8tjhev/EGqUQxNvAAAA=",
     "dominantColor": "#f5f0e0"
+  },
+  {
+    "id": "cover-theme-of-ookie",
+    "title": "Theme of Ookie",
+    "artist": "dan-perales",
+    "artistInferred": false,
+    "project": "The Psychadelic Shorty",
+    "source": "apple-music",
+    "license": "third-party",
+    "publishApproved": true,
+    "alt": "Cover art for Theme of Ookie by Dan Perales",
+    "description": "Theme of Ookie · Dan Perales",
+    "tags": [
+      "cover",
+      "The Psychadelic Shorty"
+    ],
+    "collaborators": [],
+    "artists": [],
+    "featured": false,
+    "type": "cover",
+    "width": 1500,
+    "height": 1500,
+    "orientation": "square",
+    "previews": [
+      {
+        "format": "avif",
+        "width": 480,
+        "height": 480,
+        "src": "/media/cover-theme-of-ookie/480.avif"
+      },
+      {
+        "format": "webp",
+        "width": 480,
+        "height": 480,
+        "src": "/media/cover-theme-of-ookie/480.webp"
+      },
+      {
+        "format": "avif",
+        "width": 960,
+        "height": 960,
+        "src": "/media/cover-theme-of-ookie/960.avif"
+      },
+      {
+        "format": "webp",
+        "width": 960,
+        "height": 960,
+        "src": "/media/cover-theme-of-ookie/960.webp"
+      },
+      {
+        "format": "avif",
+        "width": 1500,
+        "height": 1500,
+        "src": "/media/cover-theme-of-ookie/1500.avif"
+      },
+      {
+        "format": "webp",
+        "width": 1500,
+        "height": 1500,
+        "src": "/media/cover-theme-of-ookie/1500.webp"
+      }
+    ],
+    "poster": [],
+    "lqip": "data:image/webp;base64,UklGRoAAAABXRUJQVlA4IHQAAABwAgCdASoQABAAA4BaJbACdAYsjdyaqg9B9o1IAPuU7Oi7OArPLFf5BO6nqfxEObfkbCCWB3oh1BRzR6ytHLmRmtYPPjg8+6mlujdQGBOJA8Zu9eQpC3ONx0PCqz1PUpI1cXt88TaSYiI9dfbd10wlrG3AAA==",
+    "dominantColor": "#d83868"
+  },
+  {
+    "id": "cover-sonrisa",
+    "title": "Sonrisa",
+    "artist": "dan-perales",
+    "artistInferred": false,
+    "project": "The Psychadelic Shorty",
+    "source": "apple-music",
+    "license": "third-party",
+    "publishApproved": true,
+    "alt": "Cover art for Sonrisa by Dan Perales",
+    "description": "Sonrisa · Dan Perales · Ali · feat. DJ Eternal",
+    "tags": [
+      "cover",
+      "The Psychadelic Shorty"
+    ],
+    "collaborators": [],
+    "artists": [],
+    "featured": false,
+    "type": "cover",
+    "width": 1500,
+    "height": 1500,
+    "orientation": "square",
+    "previews": [
+      {
+        "format": "avif",
+        "width": 480,
+        "height": 480,
+        "src": "/media/cover-sonrisa/480.avif"
+      },
+      {
+        "format": "webp",
+        "width": 480,
+        "height": 480,
+        "src": "/media/cover-sonrisa/480.webp"
+      },
+      {
+        "format": "avif",
+        "width": 960,
+        "height": 960,
+        "src": "/media/cover-sonrisa/960.avif"
+      },
+      {
+        "format": "webp",
+        "width": 960,
+        "height": 960,
+        "src": "/media/cover-sonrisa/960.webp"
+      },
+      {
+        "format": "avif",
+        "width": 1500,
+        "height": 1500,
+        "src": "/media/cover-sonrisa/1500.avif"
+      },
+      {
+        "format": "webp",
+        "width": 1500,
+        "height": 1500,
+        "src": "/media/cover-sonrisa/1500.webp"
+      }
+    ],
+    "poster": [],
+    "lqip": "data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAABwAgCdASoQABAAA4BaJbACdDBKwagl4OzhF+KAAPkHcvruZTxDHqE2I3BQI6TyIR11gIf7NEJl7Dw/sbBWfV3JjgoKDeHNNEfFsJlXbyMke+Zr6w1sSsVjbnWwLlHC27YBkPJIcAQZZ+gAAAA=",
+    "dominantColor": "#386888"
+  },
+  {
+    "id": "cover-sin-gas",
+    "title": "SIn Gas",
+    "artist": "dan-perales",
+    "artistInferred": false,
+    "project": "The Psychadelic Shorty",
+    "source": "apple-music",
+    "license": "third-party",
+    "publishApproved": true,
+    "alt": "Cover art for SIn Gas by Dan Perales",
+    "description": "SIn Gas · Dan Perales · Ali · feat. Miguel Kultura & Mercedes Bralo",
+    "tags": [
+      "cover",
+      "The Psychadelic Shorty"
+    ],
+    "collaborators": [],
+    "artists": [],
+    "featured": false,
+    "type": "cover",
+    "width": 1500,
+    "height": 1500,
+    "orientation": "square",
+    "previews": [
+      {
+        "format": "avif",
+        "width": 480,
+        "height": 480,
+        "src": "/media/cover-sin-gas/480.avif"
+      },
+      {
+        "format": "webp",
+        "width": 480,
+        "height": 480,
+        "src": "/media/cover-sin-gas/480.webp"
+      },
+      {
+        "format": "avif",
+        "width": 960,
+        "height": 960,
+        "src": "/media/cover-sin-gas/960.avif"
+      },
+      {
+        "format": "webp",
+        "width": 960,
+        "height": 960,
+        "src": "/media/cover-sin-gas/960.webp"
+      },
+      {
+        "format": "avif",
+        "width": 1500,
+        "height": 1500,
+        "src": "/media/cover-sin-gas/1500.avif"
+      },
+      {
+        "format": "webp",
+        "width": 1500,
+        "height": 1500,
+        "src": "/media/cover-sin-gas/1500.webp"
+      }
+    ],
+    "poster": [],
+    "lqip": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAAAwAgCdASoQABAAA4BaJagCdAYtzR8OI9j4AAD+FX0OdsNSWC1ZU02fpXRDjZmxQciMzhWcQJwv97b/yXz0jJToHc4V6uhKcCR5AUPsxpaFJI+kLeSK31AA",
+    "dominantColor": "#f8f8f8"
   }
 ]

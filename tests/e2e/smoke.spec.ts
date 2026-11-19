@@ -16,7 +16,7 @@ const MAP = publicSurfMapVisible();
 const FILM = publicFilmVisible();
 
 const ROUTES = [
-  "/", "/music", "/artists", "/artists/flavorful-croissants", "/artists/not-daf", "/artists/720m", "/artists/ricky", "/video", "/art", "/shop", "/shop/merch", "/services", "/support", "/contact", "/licensing", "/licensing/beat-lease", "/licensing/mp3-lease", "/licensing/wav-lease", "/licensing/stems-lease", "/licensing/exclusive-rights",
+  "/", "/music", "/artists", "/artists/flavorful-croissants", "/artists/not-daf", "/artists/720m", "/artists/dan-perales", "/artists/ricky", "/video", "/art", "/shop", "/shop/merch", "/services", "/support", "/contact", "/licensing", "/licensing/beat-lease", "/licensing/mp3-lease", "/licensing/wav-lease", "/licensing/stems-lease", "/licensing/exclusive-rights",
 ];
 
 function watchErrors(page: Page) {
@@ -218,7 +218,7 @@ test("Baylingual apparel is hidden from the public build (the 14 approved design
 });
 
 test("hierarchy: Baylingual Entertainment sits under Dan Perales", async ({ page }) => {
-  test.skip(!publicArtistVisible("dan-perales"), "Dan Perales and Baylingual Entertainment are off the public roster");
+  test.skip(!publicArtistVisible("baylingual-entertainment"), "Baylingual Entertainment stays off the public roster");
   await page.goto("/artists/dan-perales");
   const presents = page.locator("#presents");
   await expect(presents.getByRole("link", { name: /Baylingual Entertainment/ })).toBeVisible();
@@ -234,7 +234,7 @@ test("homepage is simple: mark + one line, three plain categories to the artists
   await expect(page.locator("h1")).toHaveText("Make art with friends.");
   await expect(page.locator("main header p").first()).toHaveText("A San Diego artist collective disguised as a record label: hip-hop, EDM and production.");
   await expect(page.locator("[data-shade] [data-cat-label]")).toHaveText(["Hip-Hop", "EDM", "Production"]);
-  expect(await page.locator("[data-artist-card]").evaluateAll((els) => els.map((e) => e.getAttribute("data-artist-card")))).toEqual(["720m", "not-daf", "flavorful-croissants"]);
+  expect(await page.locator("[data-artist-card]").evaluateAll((els) => els.map((e) => e.getAttribute("data-artist-card")))).toEqual(["720m", "dan-perales", "not-daf", "flavorful-croissants"]);
   await expect(page.locator('[data-artist-card="not-daf"] img')).toHaveAttribute("src", /not-daf\/nd-thumb-1x1/);
   await expect(page.locator("header [data-wordmark] img").first()).toHaveAttribute("src", "/brand/logo/svg/logo-text.svg");
   await expect(page.locator("[data-hero-mark] img")).toHaveAttribute("src", "/brand/logo/svg/logo-cream.svg");
@@ -546,7 +546,7 @@ test("Flavorful Croissants uses the approved collage only (no private gallery, n
 test("artist titles never break mid-word and fit the viewport", async ({ page }) => {
   for (const w of [320, 390]) {
     await page.setViewportSize({ width: w, height: 800 });
-    for (const slug of ["flavorful-croissants", "720m", "not-daf", "ricky"]) {
+    for (const slug of ["flavorful-croissants", "720m", "not-daf", "dan-perales", "ricky"]) {
       await page.goto(`/artists/${slug}/`);
       const h1 = page.locator("h1").first();
       const r = await h1.evaluate((el) => {
@@ -860,14 +860,14 @@ test("global player: plays down the list, active row, keyboard, survives route c
 test("home categories fold: closed by default, a click rolls the artists out, a second click folds them", async ({ page, request }) => {
   // The artist links are in the static HTML (crawlable) even while folded
   const html = await (await request.get("/")).text();
-  for (const slug of ["720m", "not-daf", "flavorful-croissants"]) expect(html).toMatch(new RegExp(`href="/artists/${slug}/?"`));
-  for (const slug of ["dan-perales", "andrew-bigs", "baylingual-entertainment"]) expect(html).not.toMatch(new RegExp(`href="/artists/${slug}/?"`));
+  for (const slug of ["720m", "dan-perales", "not-daf", "flavorful-croissants"]) expect(html).toMatch(new RegExp(`href="/artists/${slug}/?"`));
+  for (const slug of ["andrew-bigs", "baylingual-entertainment"]) expect(html).not.toMatch(new RegExp(`href="/artists/${slug}/?"`));
   expect(html.match(/aria-expanded="false"/g)?.length).toBeGreaterThanOrEqual(3);
 
   await page.goto("/");
   const toggles = page.locator("[data-cat-toggle]");
   await expect(toggles).toHaveCount(3);
-  await expect(page.locator("[data-cat-count]")).toHaveText(["1", "1", "1"]);
+  await expect(page.locator("[data-cat-count]")).toHaveText(["2", "1", "1"]);
   for (const id of ["hip-hop", "edm", "production"]) {
     const t = page.locator(`[data-cat-toggle="${id}"]`);
     await expect(t).toHaveAttribute("aria-expanded", "false");
@@ -882,7 +882,7 @@ test("home categories fold: closed by default, a click rolls the artists out, a 
   await hh.click();
   await expect(hh).toHaveAttribute("aria-expanded", "true");
   await expect(hhPanel.getByRole("link", { name: /720M/ })).toBeVisible();
-  await expect(hhPanel.getByRole("link", { name: /Dan Perales/ })).toHaveCount(0);
+  await expect(hhPanel.getByRole("link", { name: /Dan Perales/ })).toBeVisible();
   await expect(hhPanel.getByRole("link", { name: /Andrew Big/ })).toHaveCount(0);
   // several can be open at once
   await page.locator('[data-cat-toggle="edm"]').click();
@@ -908,15 +908,36 @@ test("home categories fold: closed by default, a click rolls the artists out, a 
   await expect(page.locator('[data-cat-toggle="hip-hop"]')).toHaveAttribute("aria-expanded", "false");
 });
 
-test("Dan Perales: Comedy is one of his categories, next to Hip-Hop", async ({ page }) => {
-  test.skip(!publicArtistVisible("dan-perales"), "Dan Perales is listed as a friend, not a public artist");
-  await page.goto("/artists/dan-perales");
-  await expect(page.locator("#about dl")).toContainText("Hip-Hop · Comedy");
-  await expect(page.locator("#about dl")).toContainText("Rap · Comedy");
+test("Dan Perales is a public hip-hop artist: bio, triangle mark, listen link-outs, no face or comedian claim", async ({ page }) => {
+  expect((await page.goto("/artists/dan-perales/"))?.status()).toBe(200);
+  await expect(page.locator("h1").first()).toHaveText("Dan Perales");
+  await expect(page.locator("main")).toContainText("Hip-hop");
+  await expect(page.locator("main")).toContainText("San Jose, Ca - Kazakhstan");
+  await expect(page.locator("main")).toContainText("Dan P");
+  await expect(page.locator("main")).toContainText("Psychadelic Shorty");
+  await expect(page.locator("main")).not.toContainText(/comedian|comedy|persona|same person/i);
+  await expect(page.locator("img[data-portrait], [data-roster-photo], img[src*='poncho'], img[src*='dan-perales-card']")).toHaveCount(0);
+  await expect(page.locator('main a[href="https://open.spotify.com/artist/7d0UBhFGUmCcg19sesZtEx"]').first()).toBeVisible();
+  await expect(page.locator('main a[href="https://music.apple.com/us/artist/dan-perales/1840482764"]')).toBeVisible();
+  await expect(page.locator('main a[href="https://baylingual.bandcamp.com/album/the-psychadelic-shorty-vol-1"]')).toBeVisible();
+  for (const id of ["dp-theme-of-ookie", "dp-cayo", "dp-gentefication", "dp-sonrisa", "dp-bajo-la-pluma", "dp-sin-gas"]) {
+    await expect(page.locator(`[data-release="${id}"]`)).toBeVisible();
+  }
+  await expect(page.locator('[data-release="dp-theme-of-ookie"]')).toContainText("Theme of Ookie");
+  await expect(page.locator('[data-release="dp-cayo"]')).toContainText("The Psychadelic Shorty");
+  await expect(page.locator('[data-release="dp-cayo"] a[href="https://open.spotify.com/track/2jtGVVHtFTve2L9Yq2e0hV"]')).toBeVisible();
+  await expect(page.locator('[data-release="dp-cayo"] a[href="https://music.apple.com/us/album/cayo-feat-anthony-del-sol-single/1852012313"]')).toBeVisible();
+  await expect(page.locator('[data-release] iframe')).toHaveCount(0);
   await page.goto("/");
-  await expect(page.locator('[data-shade="hip-hop"] [data-artist-card="dan-perales"]')).toContainText(/Rapper · Comedian/i);
+  await expect(page.locator('[data-shade="hip-hop"] [data-artist-card="dan-perales"]')).toContainText(/Hip-hop/i);
+  await expect(page.locator('[data-shade="hip-hop"] [data-artist-card="dan-perales"]')).not.toContainText(/comedian|comedy/i);
+  await expect(page.locator('[data-shade="hip-hop"] [data-artist-card="dan-perales"] [data-card-photo], [data-shade="hip-hop"] [data-artist-card="dan-perales"] img[src*="poncho"]')).toHaveCount(0);
   await expect(page.locator('[data-shade="hip-hop"] [data-artist-card="720m"]')).toContainText(/^720M\s*Rapper/i);
   await expect(page.locator("[data-shade] [data-cat-label]")).toHaveText(["Hip-Hop", "EDM", "Production"]);
+  const friends = page.locator("footer[data-site-footer]").getByRole("navigation", { name: "Friends" });
+  await expect(friends.locator(".fr-name")).toHaveText(["James Eagle", "Dan Perales", "Andrew Biggs"]);
+  await expect(friends.locator("a.fr-link[href='https://open.spotify.com/artist/7d0UBhFGUmCcg19sesZtEx']")).toBeVisible();
+  await expect(friends.getByRole("link", { name: /^Dan Perales$/ })).toHaveCount(0);
 });
 
 test("music: hereiam and Fuck You carry a plain Pop Punk label and play in the shared player", async ({ page }) => {
@@ -1048,16 +1069,22 @@ test("brand film is hidden: no home player, no Video nav, poster and site film U
   }
 });
 
-test("hidden artist pages 404, and the public roster is Flavorful Croissants, 720M, and Not DAF", async ({ page, request }) => {
+test("public roster is Flavorful Croissants, 720M, Not DAF, and Dan Perales; hidden artist pages still 404", async ({ page, request }) => {
   await page.goto("/artists/");
   const blob = (await page.locator("main").innerText()) + (await page.content());
   expect(blob).toContain("Not DAF");
   expect(blob).not.toMatch(/Not Däf|Not Daf(?!f)/);
+  expect(blob).toContain("Dan Perales");
+  expect(blob).not.toMatch(/comedian|Comedian/);
   await expect(page.locator('a[href="/artists/flavorful-croissants/"], a[href="/artists/flavorful-croissants"]')).toHaveCount(1);
   await expect(page.locator('a[href="/artists/720m/"], a[href="/artists/720m"]')).toHaveCount(1);
   await expect(page.locator('a[href="/artists/not-daf/"], a[href="/artists/not-daf"]')).toHaveCount(1);
-  await expect(page.locator('a[href="/artists/dan-perales/"], a[href="/artists/andrew-bigs/"], a[href="/artists/baylingual-entertainment/"]')).toHaveCount(0);
-  for (const path of ["/artists/dan-perales/", "/artists/andrew-bigs/", "/artists/baylingual-entertainment/"]) {
+  await expect(page.locator('a[href="/artists/dan-perales/"], a[href="/artists/dan-perales"]')).toHaveCount(1);
+  await expect(page.locator('a[href="/artists/andrew-bigs/"], a[href="/artists/baylingual-entertainment/"]')).toHaveCount(0);
+  await expect(page.locator('[href="/artists/dan-perales/"], [href="/artists/dan-perales"]').locator("[data-roster-photo], img[src*='poncho']")).toHaveCount(0);
+  const danRes = await request.get("/artists/dan-perales/");
+  expect(danRes.status()).toBe(200);
+  for (const path of ["/artists/andrew-bigs/", "/artists/baylingual-entertainment/"]) {
     const res = await request.get(path);
     expect(res.status(), path).toBeGreaterThanOrEqual(400);
   }
