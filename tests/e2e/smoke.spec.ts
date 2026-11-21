@@ -550,6 +550,7 @@ test("Flavorful Croissants page offers the curated public beats in allowlist ord
     { id: "goodsleepix", title: "goodsleepix", payhip: "https://payhip.com/b/PeC0A" },
     { id: "aba-aku", title: "aba aku", payhip: "https://payhip.com/b/Aygnc" },
     { id: "blue-like-the-winds", title: "Blue like the winds", payhip: "https://payhip.com/b/I1M4p" },
+    { id: "takeashowerdude", title: "takeashowerdude", payhip: "https://payhip.com/b/1JX0z" },
   ];
   await expect(page.locator("[data-artist-beats] [data-beat]")).toHaveCount(expected.length);
   expect(await page.locator("[data-artist-beats] [data-beat]").evaluateAll((els) => els.map((e) => e.getAttribute("data-beat")))).toEqual(expected.map((b) => b.id));
@@ -565,9 +566,9 @@ test("Flavorful Croissants page offers the curated public beats in allowlist ord
   await expect(page.locator("[data-beat-lease]")).toContainText("WAV Lease $25");
   await expect(page.locator("[data-beat-lease] a[href*='licensing/beat-lease']")).toBeVisible();
   const html = await page.content();
-  expect(html).not.toMatch(/payhip\.com\/b\/(?!PeC0A|Aygnc|I1M4p)/);
-  expect(html).not.toMatch(/media\/beat-(?!goodsleepix|aba-aku|blue-like-the-winds)[a-z0-9-]+\/audio\.mp3/);
-  expect(html).not.toMatch(/aba-aku-ft-ricky|media\/flavorful-croissants\/[^"' ]+\.mp3/);
+  expect(html).not.toMatch(/payhip\.com\/b\/(?!PeC0A|Aygnc|I1M4p|1JX0z)/);
+  expect(html).not.toMatch(/media\/beat-(?!goodsleepix|aba-aku|blue-like-the-winds|takeashowerdude)[a-z0-9-]+\/audio\.mp3/);
+  expect(html).not.toMatch(/aba-aku-ft-ricky|takeashowerdude-x-ricky|media\/flavorful-croissants\/[^"' ]+\.mp3/);
   expect(html).not.toMatch(/\.wav\b/i);
   await expect(page.locator("[data-artist-beats] [data-checkout], [data-artist-beats] [data-checkout=coming-soon]")).toHaveCount(0);
 });

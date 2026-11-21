@@ -41,12 +41,10 @@ describe("published music snapshot (content/music-published.json)", () => {
     const needles = privateBeatNeedles(snap, beats);
     expect(needles.some((n: { beat: string; needle: string }) => n.needle === "media/beat-name-of-water/")).toBe(true);
     expect(needles.some((n: { beat: string; needle: string }) => n.beat === "deserts")).toBe(false);
-    expect(needles.some((n: { beat: string; needle: string }) => n.beat === "goodsleepix")).toBe(true);
-    expect(needles.some((n: { beat: string; needle: string }) => n.beat === "aba-aku")).toBe(true);
-    expect(needles.some((n: { beat: string; needle: string }) => n.beat === "blue-like-the-winds")).toBe(true);
-    const curated = privateBeatNeedles(snap, beats, ["goodsleepix", "aba-aku", "blue-like-the-winds"]);
-    expect(curated.some((n: { beat: string; needle: string }) => ["goodsleepix", "aba-aku", "blue-like-the-winds"].includes(n.beat))).toBe(false);
-    expect(curated.some((n: { beat: string; needle: string }) => ["payhip.com/b/PeC0A", "payhip.com/b/Aygnc", "payhip.com/b/I1M4p"].includes(n.needle))).toBe(false);
+    for (const id of ["goodsleepix", "aba-aku", "blue-like-the-winds", "takeashowerdude"]) expect(needles.some((n: { beat: string; needle: string }) => n.beat === id)).toBe(true);
+    const curated = privateBeatNeedles(snap, beats, ["goodsleepix", "aba-aku", "blue-like-the-winds", "takeashowerdude"]);
+    expect(curated.some((n: { beat: string; needle: string }) => ["goodsleepix", "aba-aku", "blue-like-the-winds", "takeashowerdude"].includes(n.beat))).toBe(false);
+    expect(curated.some((n: { beat: string; needle: string }) => ["payhip.com/b/PeC0A", "payhip.com/b/Aygnc", "payhip.com/b/I1M4p", "payhip.com/b/1JX0z"].includes(n.needle))).toBe(false);
   });
 });
 
