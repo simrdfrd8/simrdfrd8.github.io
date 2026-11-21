@@ -41,6 +41,10 @@ describe("published music snapshot (content/music-published.json)", () => {
     const needles = privateBeatNeedles(snap, beats);
     expect(needles.some((n: { beat: string; needle: string }) => n.needle === "media/beat-name-of-water/")).toBe(true);
     expect(needles.some((n: { beat: string; needle: string }) => n.beat === "deserts")).toBe(false);
+    expect(needles.some((n: { beat: string; needle: string }) => n.beat === "goodsleepix")).toBe(true);
+    const curated = privateBeatNeedles(snap, beats, ["goodsleepix"]);
+    expect(curated.some((n: { beat: string; needle: string }) => n.beat === "goodsleepix")).toBe(false);
+    expect(curated.some((n: { beat: string; needle: string }) => n.needle === "payhip.com/b/PeC0A")).toBe(false);
   });
 });
 

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { publicMusicVisible, publicSurfMapVisible, publicFilmVisible, publicArtistVisible, publicArtistSlugs, MUSIC_COMING_SOON, VIDEO_COMING_SOON } from "@/lib/public-visibility";
-import { getBeats, getTracks, listedArtists } from "@/lib/catalog";
+import { publicMusicVisible, publicSurfMapVisible, publicFilmVisible, publicArtistVisible, publicArtistSlugs, publicBeatSlugs, publicBeatVisible, MUSIC_COMING_SOON, VIDEO_COMING_SOON } from "@/lib/public-visibility";
+import { getBeats, getTracks, listedArtists, listedPublicBeats } from "@/lib/catalog";
 import { visiblePrimaryNav, visibleSecondaryNav, primaryNav, secondaryNav } from "@/lib/brand";
 
 describe("public visibility flags", () => {
@@ -49,5 +49,20 @@ describe("public visibility flags", () => {
     expect(publicMusicVisible()).toBe(false);
     expect(publicSurfMapVisible()).toBe(false);
     expect(publicFilmVisible()).toBe(false);
+  });
+
+  it("allowlists only goodsleepix as a public beat on Flavorful Croissants' page", () => {
+    expect(publicBeatSlugs()).toEqual(["goodsleepix"]);
+    expect(publicBeatVisible("goodsleepix")).toBe(true);
+    expect(publicBeatVisible("deserts")).toBe(false);
+    expect(getBeats()).toEqual([]);
+    const listed = listedPublicBeats();
+    expect(listed.map((b) => b.id)).toEqual(["goodsleepix"]);
+    expect(listed[0].artist).toBe("flavorful-croissants");
+    expect(listed[0].payhipUrl).toBe("https://payhip.com/b/PeC0A");
+    expect(listed[0].audio?.src).toBe("/media/beat-goodsleepix/audio.mp3");
+    expect(listed[0].audio?.src).not.toMatch(/\.wav$/i);
+    expect(listedPublicBeats("flavorful-croissants").map((b) => b.id)).toEqual(["goodsleepix"]);
+    expect(listedPublicBeats("720m")).toEqual([]);
   });
 });

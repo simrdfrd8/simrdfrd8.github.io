@@ -35,7 +35,7 @@ import {
   type Asset,
 } from "./schema";
 import { isPreview } from "@/lib/env";
-import { publicArtistVisible, publicMusicVisible } from "@/lib/public-visibility";
+import { publicArtistVisible, publicBeatSlugs, publicMusicVisible } from "@/lib/public-visibility";
 import { getSiteMode } from "../env";
 import { isAssetVisible, sortByOrder, visibleProducts, visibleReleases, visibleTracks } from "./filters";
 import { isPubliclyVisible, withPublicSetListing, withPublishedColorways } from "../merch-visibility";
@@ -75,6 +75,20 @@ export const catalog = {
  */
 export const getBeats = (audience?: Beat["audience"]) =>
   publicMusicVisible() ? applyBeatFilter(catalog.beats.filter((b) => b.status !== "draft" && (isPreview() || b.publishApproved) && (!audience || b.audience === audience)).sort((a, b) => Number(b.featured) - Number(a.featured) || a.order - b.order)) : [];
+
+/**
+ * Curated beats for artist pages from publicBeats, in allowlist order.
+ * Independent of publicMusicVisible, so /music/ can stay hidden while a short list is for sale on an artist page.
+ */
+export const listedPublicBeats = (artist?: string) => {
+  const byId = new Map(catalog.beats.map((b) => [b.id, b] as const));
+  return publicBeatSlugs().flatMap((id) => {
+    const b = byId.get(id);
+    if (!b || b.status === "draft" || (!isPreview() && !b.publishApproved)) return [];
+    if (artist && b.artist !== artist) return [];
+    return [b];
+  });
+};
 
 export const getCollection = (id: string) => catalog.collections.collections.find((c) => c.id === id);
 /** Tracks tagged with a collection, in the song order from collections.json. */

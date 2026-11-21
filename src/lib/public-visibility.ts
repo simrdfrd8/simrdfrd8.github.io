@@ -13,6 +13,8 @@ export type PublicVisibility = {
   publicSurfMapVisible: boolean;
   publicFilmVisible: boolean;
   publicArtistSlugs?: string[];
+  /** Curated beats shown on artist pages while the rest of the music catalog stays hidden. */
+  publicBeats?: string[];
 };
 
 export const publicMusicVisible = () => flags.publicMusicVisible === true;
@@ -35,3 +37,8 @@ export const publicArtistVisible = (slug: string) => {
   if (LABEL_ARTIST_SLUGS.has(slug)) return true;
   return slugs.includes(slug);
 };
+
+/** Curated public beat ids, in list order. Empty when the key is omitted. */
+export const publicBeatSlugs = (): string[] => (Array.isArray(flags.publicBeats) ? flags.publicBeats : []);
+
+export const publicBeatVisible = (id: string) => publicBeatSlugs().includes(id);

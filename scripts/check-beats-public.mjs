@@ -41,8 +41,8 @@ export function checkMusicSnapshot(snap, beats, templates) {
   return out;
 }
 
-export function privateBeatNeedles(snap, beats) {
-  const pub = new Set(snap.beats.map((b) => b.id));
+export function privateBeatNeedles(snap, beats, publicBeats = []) {
+  const pub = new Set([...(snap.beats ?? []).map((b) => b.id), ...publicBeats]);
   return beats.filter((b) => !pub.has(b.id)).flatMap((b) => {
     const key = b.payhipUrl?.match(/payhip\.com\/b\/([A-Za-z0-9]+)/)?.[1];
     return [...(key ? [{ beat: b.id, needle: `payhip.com/b/${key}` }] : []), { beat: b.id, needle: `media/beat-${b.id}/` }];
@@ -62,10 +62,11 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     console.log("[beats-public] BEATS_PUBLIC_SET is off: all beats ship (no change)");
     process.exit(0);
   }
-  const snap = read("content/music-published.json"), beats = read("content/beats.json"), templates = read("content/product-templates.json");
+  const snap = read("content/music-published.json"), beats = read("content/beats.json"), templates = read("content/product-templates.json"), flags = read("content/public-visibility.json");
+  const publicBeats = Array.isArray(flags.publicBeats) ? flags.publicBeats : [];
   const problems = checkMusicSnapshot(snap, beats, templates);
   if (problems.length) { console.error("[beats-public] snapshot problems:\n  " + problems.join("\n  ")); process.exit(1); }
-  const needles = privateBeatNeedles(snap, beats);
+  const needles = privateBeatNeedles(snap, beats, publicBeats);
   const hits = [];
   const OUT = path.join(ROOT, "out");
   for (const f of walk(OUT)) {
@@ -74,5 +75,5 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     for (const n of needles) if (t.includes(n.needle)) hits.push(`${path.relative(OUT, f)}: ${n.needle}`);
   }
   if (hits.length) { console.error(`[beats-public] private beats still in out/ (${hits.length}):\n  ` + hits.slice(0, 20).join("\n  ")); process.exit(1); }
-  console.log(`[beats-public] ok: ${snap.beats.length} public beats, ${beats.length - snap.beats.length} private beats not in out/`);
+  console.log(`[beats-public] ok: ${snap.beats.length} published snapshot beats, ${publicBeats.length} curated publicBeats, ${needles.length} private needles clean`);
 }

@@ -543,6 +543,28 @@ test("Flavorful Croissants uses the approved collage only (no private gallery, n
   await expect(page.locator('a[href="/artists/flavorful-croissants/"] img')).toHaveAttribute("src", /fc-collage-card-4x5/);
 });
 
+test("Flavorful Croissants page offers goodsleepix as the only public beat", async ({ page }) => {
+  const res = await page.goto("/artists/flavorful-croissants/");
+  expect(res?.status()).toBe(200);
+  const beat = page.locator("[data-beat=goodsleepix]");
+  await expect(beat).toBeVisible();
+  await expect(beat).toContainText("goodsleepix");
+  await expect(beat.getByRole("button", { name: /play goodsleepix/i })).toBeVisible();
+  const buy = beat.locator("a[data-beat-buy=goodsleepix]");
+  await expect(buy).toHaveAttribute("href", "https://payhip.com/b/PeC0A");
+  await expect(buy).toContainText(/from \$10/);
+  await expect(page.locator("[data-beat-lease]")).toContainText("Flavorful Music Beat Lease License (v1.0)");
+  await expect(page.locator("[data-beat-lease]")).toContainText("MP3 Lease $10");
+  await expect(page.locator("[data-beat-lease]")).toContainText("WAV Lease $25");
+  await expect(page.locator("[data-beat-lease] a[href*='licensing/beat-lease']")).toBeVisible();
+  await expect(page.locator("[data-artist-beats] [data-beat]")).toHaveCount(1);
+  const html = await page.content();
+  expect(html).not.toMatch(/payhip\.com\/b\/(?!PeC0A)/);
+  expect(html).not.toMatch(/media\/beat-(?!goodsleepix)[a-z0-9-]+\/audio\.mp3/);
+  expect(html).not.toMatch(/\.wav\b/i);
+  await expect(page.locator("[data-artist-beats] [data-checkout], [data-artist-beats] [data-checkout=coming-soon]")).toHaveCount(0);
+});
+
 test("artist titles never break mid-word and fit the viewport", async ({ page }) => {
   for (const w of [320, 390]) {
     await page.setViewportSize({ width: w, height: 800 });
