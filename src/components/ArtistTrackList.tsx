@@ -31,6 +31,9 @@ export function ArtistTrackList({ tracks }: { tracks: Public720mTrack[] }) {
                   {track.credit}
                   {meta ? <span className="tabular-nums"> · {meta}</span> : null}
                 </p>
+                {track.producedBy ? (
+                  <p className="mt-0.5 text-xs text-muted">Produced by {track.producedBy}</p>
+                ) : null}
                 {scEmbed && track.soundcloudUrl ? (
                   <>
                     <iframe

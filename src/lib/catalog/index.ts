@@ -90,6 +90,7 @@ export type Public720mTrack = {
   durationSec?: number;
   soundcloudUrl?: string;
   scId?: number;
+  producedBy?: string;
 };
 
 /** Curated vocal tracks for the 720M artist page from public720mTracks, in allowlist order. Independent of publicMusicVisible. */

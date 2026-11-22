@@ -598,6 +598,7 @@ test("720M page offers the curated vocal tracks in allowlist order, play-only", 
     { id: "aftrthat", title: "aftrthat", credit, src: true },
     { id: "bay-area", title: "Bay Area", credit, src: true },
     { id: "da-amo", title: "Da Amo", credit, src: true },
+    { id: "ride", title: "Ride", credit, src: true, producedBy: "Flavorful Croissants" },
   ];
   await expect(page.locator("[data-artist-tracks] [data-track]")).toHaveCount(expected.length);
   expect(await page.locator("[data-artist-tracks] [data-track]").evaluateAll((els) => els.map((e) => e.getAttribute("data-track")))).toEqual(expected.map((t) => t.id));
@@ -605,6 +606,11 @@ test("720M page offers the curated vocal tracks in allowlist order, play-only", 
     const row = page.locator(`[data-track=${t.id}]`);
     await expect(row).toContainText(t.title);
     await expect(row).toContainText(t.credit);
+    if ("producedBy" in t && t.producedBy) {
+      await expect(row).toContainText(`Produced by ${t.producedBy}`);
+    } else {
+      await expect(row).not.toContainText("Produced by");
+    }
     await expect(row.locator("[data-beat-buy]")).toHaveCount(0);
     if (t.src) {
       await expect(row.getByRole("button", { name: new RegExp(`play ${t.title}`, "i") })).toBeVisible();

@@ -71,6 +71,14 @@
       "credit": "720M × Flavorful Croissants",
       "src": "/media/720m-da-amo/audio.mp3",
       "durationSec": 234
+    },
+    {
+      "id": "ride",
+      "title": "Ride",
+      "credit": "720M × Flavorful Croissants",
+      "producedBy": "Flavorful Croissants",
+      "src": "/media/720m-ride/audio.mp3",
+      "durationSec": 208
     }
   ]
 }
