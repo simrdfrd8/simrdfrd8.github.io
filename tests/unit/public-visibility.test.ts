@@ -52,19 +52,20 @@ describe("public visibility flags", () => {
   });
 
   it("allowlists the curated Flavorful Croissants public beats in order", () => {
-    expect(publicBeatSlugs()).toEqual(["goodsleepix", "aba-aku", "blue-like-the-winds", "takeashowerdude"]);
+    expect(publicBeatSlugs()).toEqual(["goodsleepix", "aba-aku", "blue-like-the-winds", "takeashowerdude", "aftrthat"]);
     expect(publicBeatVisible("goodsleepix")).toBe(true);
     expect(publicBeatVisible("takeashowerdude")).toBe(true);
+    expect(publicBeatVisible("aftrthat")).toBe(true);
     expect(publicBeatVisible("deserts")).toBe(false);
     expect(getBeats()).toEqual([]);
     const listed = listedPublicBeats();
-    expect(listed.map((b) => b.id)).toEqual(["goodsleepix", "aba-aku", "blue-like-the-winds", "takeashowerdude"]);
-    expect(listed.map((b) => b.title)).toEqual(["goodsleepix", "aba aku", "Blue like the winds", "takeashowerdude"]);
+    expect(listed.map((b) => b.id)).toEqual(["goodsleepix", "aba-aku", "blue-like-the-winds", "takeashowerdude", "aftrthat"]);
+    expect(listed.map((b) => b.title)).toEqual(["goodsleepix", "aba aku", "Blue like the winds", "takeashowerdude", "aftrthat"]);
     expect(listed.every((b) => b.artist === "flavorful-croissants")).toBe(true);
-    expect(listed.map((b) => b.payhipUrl)).toEqual(["https://payhip.com/b/PeC0A", "https://payhip.com/b/Aygnc", "https://payhip.com/b/I1M4p", "https://payhip.com/b/1JX0z"]);
-    expect(listed.map((b) => b.audio?.src)).toEqual(["/media/beat-goodsleepix/audio.mp3", "/media/beat-aba-aku/audio.mp3", "/media/beat-blue-like-the-winds/audio.mp3", "/media/beat-takeashowerdude/audio.mp3"]);
+    expect(listed.map((b) => b.payhipUrl)).toEqual(["https://payhip.com/b/PeC0A", "https://payhip.com/b/Aygnc", "https://payhip.com/b/I1M4p", "https://payhip.com/b/1JX0z", "https://payhip.com/b/eQsP8"]);
+    expect(listed.map((b) => b.audio?.src)).toEqual(["/media/beat-goodsleepix/audio.mp3", "/media/beat-aba-aku/audio.mp3", "/media/beat-blue-like-the-winds/audio.mp3", "/media/beat-takeashowerdude/audio.mp3", "/media/beat-aftrthat/audio.mp3"]);
     expect(listed.map((b) => b.audio?.src).join(" ")).not.toMatch(/\.wav|flavorful-croissants\//i);
-    expect(listedPublicBeats("flavorful-croissants").map((b) => b.id)).toEqual(["goodsleepix", "aba-aku", "blue-like-the-winds", "takeashowerdude"]);
+    expect(listedPublicBeats("flavorful-croissants").map((b) => b.id)).toEqual(["goodsleepix", "aba-aku", "blue-like-the-winds", "takeashowerdude", "aftrthat"]);
     expect(listedPublicBeats("720m")).toEqual([]);
   });
 
