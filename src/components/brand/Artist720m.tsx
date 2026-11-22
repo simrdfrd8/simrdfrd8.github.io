@@ -2,10 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Artist } from "@/lib/catalog/schema";
 import { art720m } from "@/lib/brand-assets";
-import { LookCloser } from "./LookCloser";
 import { ShadeBar } from "./BrandButton";
 
-/** 720M artist page intro: ported from Brandy's preview/artists/720m.html (hero, bio, collage, Look closer). */
+/** 720M artist page intro: hero, bio, and collage. */
 export function Artist720mIntro({ artist }: { artist: Artist }) {
   const img = art720m();
   const sc = artist.links.find((l) => l.platform === "soundcloud" && l.verified);
@@ -31,7 +30,7 @@ export function Artist720mIntro({ artist }: { artist: Artist }) {
 
       {/* Bio */}
       <section className="px-5 pt-7 pb-[60px] sm:px-8 md:pt-12 md:pb-[88px]" id="about">
-        <div className="mx-auto grid max-w-[1120px] items-start gap-7 md:grid-cols-[1.3fr_1fr] md:gap-14">
+        <div className="mx-auto max-w-[1120px]">
           <div>
             <p className="eyebrow">About</p>
             <h2 className="brand-h mt-2 mb-5 text-[28px] tracking-[3px] md:text-[34px]">{artist.tagline}</h2>
@@ -40,7 +39,6 @@ export function Artist720mIntro({ artist }: { artist: Artist }) {
                 {p}
               </p>
             ))}
-            {artist.madeWith && <p className="mb-[18px] text-lg text-cream-dim">{artist.madeWith}</p>}
             <div className="mt-[26px] flex flex-wrap gap-3">
               <Link href="#soundcloud" className="border-2 border-hiphop bg-hiphop px-[26px] py-3.5 text-[13px] font-extrabold tracking-[2px] text-ink uppercase hover:brightness-110">
                 Listen
@@ -57,14 +55,6 @@ export function Artist720mIntro({ artist }: { artist: Artist }) {
               )}
             </div>
           </div>
-          <ul className="border-t-4 border-hiphop bg-raised" aria-label="Tracks">
-            {artist.highlights.map((h) => (
-              <li key={h.label} className="border-b border-line px-[22px] py-4 text-[15px] text-cream-dim last:border-b-0">
-                <b className="mb-0.5 block text-[11px] font-semibold tracking-[2px] text-muted uppercase">{h.label}</b>
-                <span className="font-semibold text-cream">{h.value}</span>
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
 
@@ -81,20 +71,6 @@ export function Artist720mIntro({ artist }: { artist: Artist }) {
           <figcaption className="mx-auto max-w-[1120px] px-5 pt-3 text-xs tracking-[2px] text-muted uppercase before:mr-2.5 before:inline-block before:h-0.5 before:w-[22px] before:bg-hiphop before:align-middle before:content-[''] sm:px-8">Art by Flavorful Croissants</figcaption>
         </figure>
       )}
-
-      {/* Look closer */}
-      <section className="border-t border-line bg-surface px-5 py-[60px] sm:px-8 md:py-[88px]" id="look-closer">
-        <div className="mx-auto grid max-w-[1120px] items-center gap-7 md:grid-cols-[1fr_2.4fr] md:gap-12">
-          <div>
-            <p className="eyebrow">Detail</p>
-            <h2 className="brand-h mt-2 mb-3 text-[28px] tracking-[3px]">Look closer.</h2>
-            <p className="text-sm text-muted">Hover, or tap, to look into the lenses.</p>
-          </div>
-          <div className="-mx-5 sm:mx-0">
-            <LookCloser image={img.lens} alt={img.lens?.alt ?? "Close-up of 720M's sunglasses and what they reflect"} />
-          </div>
-        </div>
-      </section>
 
       <div className="border-t border-line px-5 py-10 sm:px-8">
         <div className="mx-auto flex max-w-[1120px] items-center gap-6">

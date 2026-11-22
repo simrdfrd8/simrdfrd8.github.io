@@ -309,7 +309,7 @@ test("site-wide footer: Make art with friends + Friends row", async ({ page }) =
   }
 });
 
-test("720M page: bio verbatim and an accessible Look-closer zoom (tap, keyboard)", async ({ page, isMobile }) => {
+test("720M page: bio verbatim, with credits box and Look closer removed", async ({ page }) => {
   await page.goto("/artists/720m");
   await expect(page.locator("h1")).toHaveText("720M");
   await expect(page.locator("#about h2")).toHaveText("Laughter and grief, in rhythm and rhyme.");
@@ -319,25 +319,14 @@ test("720M page: bio verbatim and an accessible Look-closer zoom (tap, keyboard)
   await expect(page.locator("img[data-portrait]")).toHaveCount(1);
   await expect(page.locator("[data-collage] img")).toHaveAttribute("src", "/brand/720m/720m-collage-wide.jpg");
   await expect(page.locator("[data-collage] source").first()).toHaveAttribute("srcset", /720m-collage-square-1200\.webp 1200w/);
-  await expect(page.locator("[data-loupe] img")).toHaveAttribute("srcset", /720m-lens-detail-1\.5x\.jpg 975w, \/brand\/720m\/720m-lens-detail-3x\.jpg 1950w/);
-  await expect(page.locator("[data-loupe] [data-placeholder]")).toHaveCount(0);
   await expect(page.locator("main")).not.toContainText(/photo credit|confirm legal/i);
-  const loupe = page.getByRole("button", { name: /Look closer/ });
-  await loupe.scrollIntoViewIfNeeded();
-  await expect(loupe).toHaveAttribute("aria-pressed", "false");
-  if (isMobile) {
-    await loupe.tap();
-    await expect(loupe).toHaveAttribute("aria-pressed", "true");
-    await loupe.tap();
-    await expect(loupe).toHaveAttribute("aria-pressed", "false");
-  }
-  await loupe.focus();
-  await page.keyboard.press("Enter");
-  await expect(loupe).toHaveAttribute("aria-pressed", "true");
-  await page.keyboard.press("Escape");
-  await expect(loupe).toHaveAttribute("aria-pressed", "false");
-  const box = await loupe.boundingBox();
-  expect(box!.width).toBeGreaterThan(page.viewportSize()!.width * (isMobile ? 0.95 : 0.4));
+  await expect(page.locator("#about").getByRole("link", { name: /^Listen$/i })).toBeVisible();
+  await expect(page.locator("#about").getByRole("link", { name: /^SoundCloud$/i })).toBeVisible();
+  await expect(page.locator("[data-artist-tracks] [data-track]")).toHaveCount(11);
+  await expect(page.locator("#about")).not.toContainText(/Made with friends|Ambient Night|Levis|with James Eagle/i);
+  await expect(page.locator("#look-closer, [data-loupe]")).toHaveCount(0);
+  await expect(page.getByRole("button", { name: /Look closer/i })).toHaveCount(0);
+  await expect(page.locator("main")).not.toContainText(/Look closer|Hover, or tap, to look into the lenses/i);
 });
 
 test("music page order: Songs, FC × 720M, Latest, Most played, Buy beats", async ({ page }) => {
