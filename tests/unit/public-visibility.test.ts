@@ -70,15 +70,16 @@ describe("public visibility flags", () => {
   });
 
   it("allowlists the curated 720M vocal tracks in order, play-only", () => {
-    expect(public720mTrackSlugs()).toEqual(["blindspot", "mellow-life", "bakin", "pandaspk", "sugar-hi", "fannypack", "loudassprofecyz", "aftrthat", "bay-area", "da-amo", "ride"]);
+    expect(public720mTrackSlugs()).toEqual(["blindspot", "mellow-life", "bakin", "pandaspk", "sugar-hi", "fannypack", "loudassprofecyz", "aftrthat", "bay-area", "da-amo", "ride", "srzydd"]);
     expect(public720mTrackVisible("blindspot")).toBe(true);
     expect(public720mTrackVisible("pandaspk")).toBe(true);
     expect(public720mTrackVisible("loudassprofecyz")).toBe(true);
     expect(public720mTrackVisible("da-amo")).toBe(true);
     expect(public720mTrackVisible("ride")).toBe(true);
+    expect(public720mTrackVisible("srzydd")).toBe(true);
     const listed = listedPublic720mTracks();
-    expect(listed.map((t) => t.id)).toEqual(["blindspot", "mellow-life", "bakin", "pandaspk", "sugar-hi", "fannypack", "loudassprofecyz", "aftrthat", "bay-area", "da-amo", "ride"]);
-    expect(listed.map((t) => t.title)).toEqual(["Blindspot", "Mellow Life", "bakin", "pandaspk", "sugar hi", "FANNYPACK", "loudassprofecyz", "aftrthat", "Bay Area", "Da Amo", "Ride"]);
+    expect(listed.map((t) => t.id)).toEqual(["blindspot", "mellow-life", "bakin", "pandaspk", "sugar-hi", "fannypack", "loudassprofecyz", "aftrthat", "bay-area", "da-amo", "ride", "srzydd"]);
+    expect(listed.map((t) => t.title)).toEqual(["Blindspot", "Mellow Life", "bakin", "pandaspk", "sugar hi", "FANNYPACK", "loudassprofecyz", "aftrthat", "Bay Area", "Da Amo", "Ride", "srzydd"]);
     expect(listed.every((t) => t.credit === "720M × Flavorful Croissants")).toBe(true);
     const byId = Object.fromEntries(listed.map((t) => [t.id, t]));
     expect(listed.filter((t) => t.id !== "loudassprofecyz").map((t) => t.src)).toEqual([
@@ -92,6 +93,7 @@ describe("public visibility flags", () => {
       "/media/720m-bay-area/audio.mp3",
       "/media/720m-da-amo/audio.mp3",
       "/media/720m-ride/audio.mp3",
+      "/media/720m-srzydd/audio.mp3",
     ]);
     expect(byId.loudassprofecyz.src).toBeUndefined();
     expect(byId.loudassprofecyz.soundcloudUrl).toBe("https://soundcloud.com/user-536995429/loudassprofecyz-x-ricky");
@@ -100,7 +102,8 @@ describe("public visibility flags", () => {
     expect(listed.every((t) => !("payhipUrl" in t))).toBe(true);
     expect(listedPublic720mTracks("720m").map((t) => t.id)).toEqual(listed.map((t) => t.id));
     expect(byId.ride.producedBy).toBe("Flavorful Croissants");
-    expect(listed.filter((t) => t.id !== "ride").every((t) => !("producedBy" in t))).toBe(true);
+    expect(byId.srzydd.producedBy).toBe("Flavorful Croissants");
+    expect(listed.filter((t) => t.id !== "ride" && t.id !== "srzydd").every((t) => !("producedBy" in t))).toBe(true);
     expect(listedPublic720mTracks("flavorful-croissants")).toEqual([]);
     expect(getBeats()).toEqual([]);
   });

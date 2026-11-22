@@ -322,7 +322,7 @@ test("720M page: bio verbatim, with credits box and Look closer removed", async 
   await expect(page.locator("main")).not.toContainText(/photo credit|confirm legal/i);
   await expect(page.locator("#about").getByRole("link", { name: /^Listen$/i })).toBeVisible();
   await expect(page.locator("#about").getByRole("link", { name: /^SoundCloud$/i })).toBeVisible();
-  await expect(page.locator("[data-artist-tracks] [data-track]")).toHaveCount(11);
+  await expect(page.locator("[data-artist-tracks] [data-track]")).toHaveCount(12);
   await expect(page.locator("#about")).not.toContainText(/Made with friends|Ambient Night|Levis|with James Eagle/i);
   await expect(page.locator("#look-closer, [data-loupe]")).toHaveCount(0);
   await expect(page.getByRole("button", { name: /Look closer/i })).toHaveCount(0);
@@ -590,6 +590,7 @@ test("720M page offers the curated vocal tracks in allowlist order, play-only", 
     { id: "bay-area", title: "Bay Area", credit, src: true },
     { id: "da-amo", title: "Da Amo", credit, src: true },
     { id: "ride", title: "Ride", credit, src: true, producedBy: "Flavorful Croissants" },
+    { id: "srzydd", title: "srzydd", credit, src: true, producedBy: "Flavorful Croissants" },
   ];
   await expect(page.locator("[data-artist-tracks] [data-track]")).toHaveCount(expected.length);
   expect(await page.locator("[data-artist-tracks] [data-track]").evaluateAll((els) => els.map((e) => e.getAttribute("data-track")))).toEqual(expected.map((t) => t.id));
