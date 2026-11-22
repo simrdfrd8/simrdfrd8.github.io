@@ -70,30 +70,32 @@ describe("public visibility flags", () => {
   });
 
   it("allowlists the curated 720M vocal tracks in order, play-only", () => {
-    expect(public720mTrackSlugs()).toEqual(["blindspot", "mellow-life", "bakin", "pandaspk", "sugar-hi", "fannypack", "loudassprofecyz", "aftrthat", "bay-area", "da-amo", "ride", "srzydd"]);
+    expect(public720mTrackSlugs()).toEqual(["stayathomesaturday", "srzydd", "ride", "da-amo", "bay-area", "aftrthat", "loudassprofecyz", "fannypack", "sugar-hi", "pandaspk", "bakin", "mellow-life", "blindspot"]);
     expect(public720mTrackVisible("blindspot")).toBe(true);
     expect(public720mTrackVisible("pandaspk")).toBe(true);
     expect(public720mTrackVisible("loudassprofecyz")).toBe(true);
     expect(public720mTrackVisible("da-amo")).toBe(true);
     expect(public720mTrackVisible("ride")).toBe(true);
     expect(public720mTrackVisible("srzydd")).toBe(true);
+    expect(public720mTrackVisible("stayathomesaturday")).toBe(true);
     const listed = listedPublic720mTracks();
-    expect(listed.map((t) => t.id)).toEqual(["blindspot", "mellow-life", "bakin", "pandaspk", "sugar-hi", "fannypack", "loudassprofecyz", "aftrthat", "bay-area", "da-amo", "ride", "srzydd"]);
-    expect(listed.map((t) => t.title)).toEqual(["Blindspot", "Mellow Life", "bakin", "pandaspk", "sugar hi", "FANNYPACK", "loudassprofecyz", "aftrthat", "Bay Area", "Da Amo", "Ride", "srzydd"]);
+    expect(listed.map((t) => t.id)).toEqual(["stayathomesaturday", "srzydd", "ride", "da-amo", "bay-area", "aftrthat", "loudassprofecyz", "fannypack", "sugar-hi", "pandaspk", "bakin", "mellow-life", "blindspot"]);
+    expect(listed.map((t) => t.title)).toEqual(["stayathomesaturday", "srzydd", "Ride", "Da Amo", "Bay Area", "aftrthat", "loudassprofecyz", "FANNYPACK", "sugar hi", "pandaspk", "bakin", "Mellow Life", "Blindspot"]);
     expect(listed.every((t) => t.credit === "720M × Flavorful Croissants")).toBe(true);
     const byId = Object.fromEntries(listed.map((t) => [t.id, t]));
     expect(listed.filter((t) => t.id !== "loudassprofecyz").map((t) => t.src)).toEqual([
-      "/media/720m-blindspot/audio.mp3",
-      "/media/720m-mellow-life/audio.mp3",
-      "/media/720m-bakin/audio.mp3",
-      "/media/720m-pandaspk/audio.mp3",
-      "/media/720m-sugar-hi/audio.mp3",
-      "/media/720m-fannypack/audio.mp3",
-      "/media/720m-aftrthat/audio.mp3",
-      "/media/720m-bay-area/audio.mp3",
-      "/media/720m-da-amo/audio.mp3",
-      "/media/720m-ride/audio.mp3",
+      "/media/720m-stayathomesaturday/audio.mp3",
       "/media/720m-srzydd/audio.mp3",
+      "/media/720m-ride/audio.mp3",
+      "/media/720m-da-amo/audio.mp3",
+      "/media/720m-bay-area/audio.mp3",
+      "/media/720m-aftrthat/audio.mp3",
+      "/media/720m-fannypack/audio.mp3",
+      "/media/720m-sugar-hi/audio.mp3",
+      "/media/720m-pandaspk/audio.mp3",
+      "/media/720m-bakin/audio.mp3",
+      "/media/720m-mellow-life/audio.mp3",
+      "/media/720m-blindspot/audio.mp3",
     ]);
     expect(byId.loudassprofecyz.src).toBeUndefined();
     expect(byId.loudassprofecyz.soundcloudUrl).toBe("https://soundcloud.com/user-536995429/loudassprofecyz-x-ricky");

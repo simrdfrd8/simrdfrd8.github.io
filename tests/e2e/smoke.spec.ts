@@ -322,7 +322,7 @@ test("720M page: bio verbatim, with credits box and Look closer removed", async 
   await expect(page.locator("main")).not.toContainText(/photo credit|confirm legal/i);
   await expect(page.locator("#about").getByRole("link", { name: /^Listen$/i })).toBeVisible();
   await expect(page.locator("#about").getByRole("link", { name: /^SoundCloud$/i })).toBeVisible();
-  await expect(page.locator("[data-artist-tracks] [data-track]")).toHaveCount(12);
+  await expect(page.locator("[data-artist-tracks] [data-track]")).toHaveCount(13);
   await expect(page.locator("#about")).not.toContainText(/Made with friends|Ambient Night|Levis|with James Eagle/i);
   await expect(page.locator("#look-closer, [data-loupe]")).toHaveCount(0);
   await expect(page.getByRole("button", { name: /Look closer/i })).toHaveCount(0);
@@ -579,18 +579,19 @@ test("720M page offers the curated vocal tracks in allowlist order, play-only", 
   expect(res?.status()).toBe(200);
   const credit = "720M × Flavorful Croissants";
   const expected = [
-    { id: "blindspot", title: "Blindspot", credit, src: true },
-    { id: "mellow-life", title: "Mellow Life", credit, src: true },
-    { id: "bakin", title: "bakin", credit, src: true },
-    { id: "pandaspk", title: "pandaspk", credit, src: true },
-    { id: "sugar-hi", title: "sugar hi", credit, src: true },
-    { id: "fannypack", title: "FANNYPACK", credit, src: true },
-    { id: "loudassprofecyz", title: "loudassprofecyz", credit, src: false },
-    { id: "aftrthat", title: "aftrthat", credit, src: true },
-    { id: "bay-area", title: "Bay Area", credit, src: true },
-    { id: "da-amo", title: "Da Amo", credit, src: true },
-    { id: "ride", title: "Ride", credit, src: true, producedBy: "Flavorful Croissants" },
+    { id: "stayathomesaturday", title: "stayathomesaturday", credit, src: true },
     { id: "srzydd", title: "srzydd", credit, src: true, producedBy: "Flavorful Croissants" },
+    { id: "ride", title: "Ride", credit, src: true, producedBy: "Flavorful Croissants" },
+    { id: "da-amo", title: "Da Amo", credit, src: true },
+    { id: "bay-area", title: "Bay Area", credit, src: true },
+    { id: "aftrthat", title: "aftrthat", credit, src: true },
+    { id: "loudassprofecyz", title: "loudassprofecyz", credit, src: false },
+    { id: "fannypack", title: "FANNYPACK", credit, src: true },
+    { id: "sugar-hi", title: "sugar hi", credit, src: true },
+    { id: "pandaspk", title: "pandaspk", credit, src: true },
+    { id: "bakin", title: "bakin", credit, src: true },
+    { id: "mellow-life", title: "Mellow Life", credit, src: true },
+    { id: "blindspot", title: "Blindspot", credit, src: true },
   ];
   await expect(page.locator("[data-artist-tracks] [data-track]")).toHaveCount(expected.length);
   expect(await page.locator("[data-artist-tracks] [data-track]").evaluateAll((els) => els.map((e) => e.getAttribute("data-track")))).toEqual(expected.map((t) => t.id));
