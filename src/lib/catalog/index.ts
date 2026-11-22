@@ -12,6 +12,7 @@ import templatesJson from "@content/product-templates.json";
 import collectionsJson from "@content/collections.json";
 import beatsJson from "@content/beats.json";
 import packsJson from "@content/sample-packs.json";
+import tracks720mJson from "@content/720m-public-tracks.json";
 import {
   ArtistsFile,
   CATEGORIES,
@@ -35,7 +36,7 @@ import {
   type Asset,
 } from "./schema";
 import { isPreview } from "@/lib/env";
-import { publicArtistVisible, publicBeatSlugs, publicMusicVisible } from "@/lib/public-visibility";
+import { publicArtistVisible, publicBeatSlugs, public720mTrackSlugs, publicMusicVisible } from "@/lib/public-visibility";
 import { getSiteMode } from "../env";
 import { isAssetVisible, sortByOrder, visibleProducts, visibleReleases, visibleTracks } from "./filters";
 import { isPubliclyVisible, withPublicSetListing, withPublishedColorways } from "../merch-visibility";
@@ -80,6 +81,25 @@ export const getBeats = (audience?: Beat["audience"]) =>
  * Curated beats for artist pages from publicBeats, in allowlist order.
  * Independent of publicMusicVisible, so /music/ can stay hidden while a short list is for sale on an artist page.
  */
+
+export type Public720mTrack = {
+  id: string;
+  title: string;
+  credit: string;
+  src: string;
+  durationSec: number;
+};
+
+/** Curated vocal tracks for the 720M artist page from public720mTracks, in allowlist order. Independent of publicMusicVisible. */
+export const listedPublic720mTracks = (artist?: string) => {
+  if (artist && artist !== "720m") return [];
+  const byId = new Map(((tracks720mJson as { tracks: Public720mTrack[] }).tracks ?? []).map((t) => [t.id, t] as const));
+  return public720mTrackSlugs().flatMap((id) => {
+    const t = byId.get(id);
+    return t ? [t] : [];
+  });
+};
+
 export const listedPublicBeats = (artist?: string) => {
   const byId = new Map(catalog.beats.map((b) => [b.id, b] as const));
   return publicBeatSlugs().flatMap((id) => {

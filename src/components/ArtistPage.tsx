@@ -1,7 +1,7 @@
 import { SongList, songsFor } from "./SongList";
 import Link from "next/link";
 import type { Artist } from "@/lib/catalog/schema";
-import { catalog, getAsset, getProducts, getReleases, getTracks, getSamplePacks, visibleAssets, creditLine, assetHasArtist, childArtists, getArtist, getCollaborator, shopMerchProducts, brandApparelAssets, listedPublicBeats } from "@/lib/catalog";
+import { catalog, getAsset, getProducts, getReleases, getTracks, getSamplePacks, visibleAssets, creditLine, assetHasArtist, childArtists, getArtist, getCollaborator, shopMerchProducts, brandApparelAssets, listedPublicBeats, listedPublic720mTracks } from "@/lib/catalog";
 import type { SoundCloudTrack } from "@/lib/catalog/schema";
 import { VideoPlayer } from "./VideoPlayer";
 import { MediaImage } from "./MediaImage";
@@ -21,6 +21,7 @@ import type { Release } from "@/lib/catalog/schema";
 import Image from "next/image";
 import { artistPortrait, hasMarks } from "@/lib/brand-assets";
 import { ArtistBeatList } from "./ArtistBeatList";
+import { ArtistTrackList } from "./ArtistTrackList";
 
 export function ArtistHero({ artist }: { artist: Artist }) {
   const hero = getAsset(artist.heroAssetId);
@@ -140,7 +141,8 @@ export function ArtistPage({ artist, intro }: { artist: Artist; intro?: React.Re
   const services = catalog.services.filter((s) => artist.serviceSlugs.includes(s.slug));
   const spotifyArtist = artist.links.find((l) => l.platform === "spotify" && l.verified)?.url.match(/artist\/([A-Za-z0-9]{22})/)?.[1];
   const beats = listedPublicBeats(artist.slug);
-  const empty = !releases.length && !tracks.length && !videos.length && !art.length && !products.length && !spotifyArtist && !beats.length;
+  const vocalTracks = listedPublic720mTracks(artist.slug);
+  const empty = !releases.length && !tracks.length && !videos.length && !art.length && !products.length && !spotifyArtist && !beats.length && !vocalTracks.length;
   const rich = artist.layout === "rich";
   const portrait = artistPortrait(artist.slug);
 
@@ -170,6 +172,12 @@ export function ArtistPage({ artist, intro }: { artist: Artist; intro?: React.Re
         </div>
       </Section>
         </>
+      )}
+
+      {vocalTracks.length > 0 && (
+        <Section id="tracks" kicker="Tracks" title="Tracks">
+          <ArtistTrackList tracks={vocalTracks} />
+        </Section>
       )}
 
       {beats.length > 0 && (

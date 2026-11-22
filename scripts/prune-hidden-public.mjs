@@ -10,8 +10,13 @@ const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..")
 const flags = JSON.parse(fs.readFileSync(path.join(ROOT, "content/public-visibility.json"), "utf8"));
 const beats = JSON.parse(fs.readFileSync(path.join(ROOT, "content/beats.json"), "utf8"));
 const publicBeats = Array.isArray(flags.publicBeats) ? flags.publicBeats : [];
+const public720mTracks = Array.isArray(flags.public720mTracks) ? flags.public720mTracks : [];
 const allowedBeat = new Set(publicBeats);
-const allowedMp3Rel = new Set(publicBeats.map((id) => `media/beat-${id}/audio.mp3`));
+const allowed720m = new Set(public720mTracks);
+const allowedMp3Rel = new Set([
+  ...publicBeats.map((id) => `media/beat-${id}/audio.mp3`),
+  ...public720mTracks.map((id) => `media/720m-${id}/audio.mp3`),
+]);
 const allowedPayhip = new Set(
   beats.filter((b) => allowedBeat.has(b.id) && b.payhipUrl).map((b) => String(b.payhipUrl).replace(/\/$/, "")),
 );
@@ -74,15 +79,17 @@ if (!flags.publicMusicVisible) {
     return urls.length > 0 && urls.every((u) => allowedPayhip.has(u));
   });
   leak(/\.mp3\b/i, ".mp3", (t) => {
-    const refs = [...t.matchAll(/media\/beat-([a-z0-9-]+)\/audio\.mp3|media\/flavorful-croissants\/[^"' \s]+\.mp3/gi)];
+    const refs = [...t.matchAll(/media\/beat-([a-z0-9-]+)\/audio\.mp3|media\/720m-([a-z0-9-]+)\/audio\.mp3|media\/flavorful-croissants\/[^"' \s]+\.mp3/gi)];
     if (!refs.length) return false;
-    return refs.every((m) => m[1] && allowedBeat.has(m[1]));
+    return refs.every((m) => (m[1] && allowedBeat.has(m[1])) || (m[2] && allowed720m.has(m[2])));
   });
-  leak(/\/media\/beat-[^"' \n]+\/audio\.mp3|media\/flavorful-croissants\/[^"' \n]+\.mp3/i, "preview audio path", (t) => {
-    const refs = [...t.matchAll(/media\/beat-([a-z0-9-]+)\/audio\.mp3/gi)];
+  leak(/\/media\/beat-[^"' \n]+\/audio\.mp3|media\/720m-[^"' \n]+\/audio\.mp3|media\/flavorful-croissants\/[^"' \n]+\.mp3/i, "preview audio path", (t) => {
+    const beats = [...t.matchAll(/media\/beat-([a-z0-9-]+)\/audio\.mp3/gi)];
+    const vocals = [...t.matchAll(/media\/720m-([a-z0-9-]+)\/audio\.mp3/gi)];
     const songs = [...t.matchAll(/media\/flavorful-croissants\/[^"' \s]+\.mp3/gi)];
     if (songs.length) return false;
-    return refs.length > 0 && refs.every((m) => allowedBeat.has(m[1]));
+    if (!beats.length && !vocals.length) return false;
+    return beats.every((m) => allowedBeat.has(m[1])) && vocals.every((m) => allowed720m.has(m[1]));
   });
 }
 
@@ -109,5 +116,5 @@ if (errors.length) {
   process.exit(1);
 }
 console.log(
-  `prune-hidden-public: ok (music ${flags.publicMusicVisible ? "on" : "off"}, publicBeats ${publicBeats.join(",") || "none"}, map ${flags.publicSurfMapVisible ? "on" : "off"}, film ${flags.publicFilmVisible ? "on" : "off"})`,
+  `prune-hidden-public: ok (music ${flags.publicMusicVisible ? "on" : "off"}, publicBeats ${publicBeats.join(",") || "none"}, public720mTracks ${public720mTracks.join(",") || "none"}, map ${flags.publicSurfMapVisible ? "on" : "off"}, film ${flags.publicFilmVisible ? "on" : "off"})`,
 );

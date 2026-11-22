@@ -15,6 +15,8 @@ export type PublicVisibility = {
   publicArtistSlugs?: string[];
   /** Curated beats shown on artist pages while the rest of the music catalog stays hidden. */
   publicBeats?: string[];
+  /** Curated vocal tracks shown on 720M's page while the rest of the music catalog stays hidden. */
+  public720mTracks?: string[];
 };
 
 export const publicMusicVisible = () => flags.publicMusicVisible === true;
@@ -42,3 +44,8 @@ export const publicArtistVisible = (slug: string) => {
 export const publicBeatSlugs = (): string[] => (Array.isArray(flags.publicBeats) ? flags.publicBeats : []);
 
 export const publicBeatVisible = (id: string) => publicBeatSlugs().includes(id);
+
+/** Curated public 720M vocal track ids, in list order. Empty when the key is omitted. */
+export const public720mTrackSlugs = (): string[] => (Array.isArray(flags.public720mTracks) ? flags.public720mTracks : []);
+
+export const public720mTrackVisible = (id: string) => public720mTrackSlugs().includes(id);

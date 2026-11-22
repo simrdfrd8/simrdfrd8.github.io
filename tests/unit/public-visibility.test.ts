@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { publicMusicVisible, publicSurfMapVisible, publicFilmVisible, publicArtistVisible, publicArtistSlugs, publicBeatSlugs, publicBeatVisible, MUSIC_COMING_SOON, VIDEO_COMING_SOON } from "@/lib/public-visibility";
-import { getBeats, getTracks, listedArtists, listedPublicBeats } from "@/lib/catalog";
+import { publicMusicVisible, publicSurfMapVisible, publicFilmVisible, publicArtistVisible, publicArtistSlugs, publicBeatSlugs, publicBeatVisible, public720mTrackSlugs, public720mTrackVisible, MUSIC_COMING_SOON, VIDEO_COMING_SOON } from "@/lib/public-visibility";
+import { getBeats, getTracks, listedArtists, listedPublicBeats, listedPublic720mTracks } from "@/lib/catalog";
 import { visiblePrimaryNav, visibleSecondaryNav, primaryNav, secondaryNav } from "@/lib/brand";
 
 describe("public visibility flags", () => {
@@ -67,6 +67,33 @@ describe("public visibility flags", () => {
     expect(listed.map((b) => b.audio?.src).join(" ")).not.toMatch(/\.wav|flavorful-croissants\//i);
     expect(listedPublicBeats("flavorful-croissants").map((b) => b.id)).toEqual(["goodsleepix", "aba-aku", "blue-like-the-winds", "takeashowerdude", "aftrthat"]);
     expect(listedPublicBeats("720m")).toEqual([]);
+  });
+
+  it("allowlists the curated 720M vocal tracks in order, play-only", () => {
+    expect(public720mTrackSlugs()).toEqual(["blindspot", "mellow-life", "bakin", "sugar-hi", "fannypack", "aftrthat", "bay-area", "da-amo"]);
+    expect(public720mTrackVisible("blindspot")).toBe(true);
+    expect(public720mTrackVisible("da-amo")).toBe(true);
+    expect(public720mTrackVisible("pandaspk")).toBe(false);
+    expect(public720mTrackVisible("loudassprofecyz")).toBe(false);
+    const listed = listedPublic720mTracks();
+    expect(listed.map((t) => t.id)).toEqual(["blindspot", "mellow-life", "bakin", "sugar-hi", "fannypack", "aftrthat", "bay-area", "da-amo"]);
+    expect(listed.map((t) => t.title)).toEqual(["Blindspot", "Mellow Life", "bakin", "sugar hi", "FANNYPACK", "aftrthat", "Bay Area", "Da Amo"]);
+    expect(listed.map((t) => t.credit)).toEqual(["720M", "720M", "720M", "720M", "720M × Flavorful Croissants", "720M", "720M", "720M"]);
+    expect(listed.map((t) => t.src)).toEqual([
+      "/media/720m-blindspot/audio.mp3",
+      "/media/720m-mellow-life/audio.mp3",
+      "/media/720m-bakin/audio.mp3",
+      "/media/720m-sugar-hi/audio.mp3",
+      "/media/720m-fannypack/audio.mp3",
+      "/media/720m-aftrthat/audio.mp3",
+      "/media/720m-bay-area/audio.mp3",
+      "/media/720m-da-amo/audio.mp3",
+    ]);
+    expect(listed.map((t) => t.src).join(" ")).not.toMatch(/\.wav|beat-|flavorful-croissants\//i);
+    expect(listed.every((t) => !("payhipUrl" in t))).toBe(true);
+    expect(listedPublic720mTracks("720m").map((t) => t.id)).toEqual(listed.map((t) => t.id));
+    expect(listedPublic720mTracks("flavorful-croissants")).toEqual([]);
+    expect(getBeats()).toEqual([]);
   });
 
 });

@@ -2,7 +2,7 @@
   "publicMusicVisible": false,
   "publicSurfMapVisible": false,
   "publicFilmVisible": false,
-  "_note": "Build-time switches. false = hide that public surface. publicArtistSlugs is the public Artists roster (restore by adding slugs back). publicBeats is the curated public beat list on artist pages while publicMusicVisible is false (restore or grow by editing the array). Sources stay in the repo; deployed output is pruned. Authorized Nov 18\u201320, 2026 (t248u\u2013t260u).",
+  "_note": "Build-time switches. false = hide that public surface. publicArtistSlugs is the public Artists roster (restore by adding slugs back). publicBeats is the curated public beat list on artist pages while publicMusicVisible is false (restore or grow by editing the array). Sources stay in the repo; deployed output is pruned. Authorized Nov 18\u201320, 2026 (t248u\u2013t261u). public720mTracks is the curated vocal track list on 720M's page (restore or grow by editing the array).",
   "publicArtistSlugs": [
     "flavorful-croissants",
     "720m",
@@ -15,5 +15,15 @@
     "blue-like-the-winds",
     "takeashowerdude",
     "aftrthat"
+  ],
+  "public720mTracks": [
+    "blindspot",
+    "mellow-life",
+    "bakin",
+    "sugar-hi",
+    "fannypack",
+    "aftrthat",
+    "bay-area",
+    "da-amo"
   ]
 }
