@@ -57,7 +57,7 @@ describe("brand (Bruise) roster", () => {
     const artists = ArtistsFile.parse(load("artists"));
     const m = artists.find((a) => a.slug === "720m")!;
     expect(m.bio).toEqual([
-      "720M explores themes of laughter and grief in rhythm and rhyme. An avid freestyle nut, 720M taps into the eternal wave and shares what he finds on record. He writes poetry as a form of therapy and lives in sunny San Diego where he makes art, surfs, and walks his furry friend Swami.",
+      "An avid freestyle nut, 720M taps into the eternal wave and shares what he finds on record. He writes poetry as a form of therapy and lives in sunny San Diego where he makes art, surfs, and walks his furry friend Swami.",
     ]);
     const dan = artists.find((a) => a.slug === "dan-perales")!;
     expect(dan.category).toBe("hip-hop");

@@ -312,7 +312,9 @@ test("site-wide footer: Make art with friends + Friends row", async ({ page }) =
 test("720M page: bio verbatim and an accessible Look-closer zoom (tap, keyboard)", async ({ page, isMobile }) => {
   await page.goto("/artists/720m");
   await expect(page.locator("h1")).toHaveText("720M");
-  await expect(page.locator("[data-bio]")).toHaveText(/^720M explores themes of laughter and grief in rhythm and rhyme\. An avid freestyle nut/);
+  await expect(page.locator("#about h2")).toHaveText("Laughter and grief, in rhythm and rhyme.");
+  await expect(page.locator("[data-bio]")).toHaveText(/^An avid freestyle nut, 720M taps into the eternal wave/);
+  await expect(page.locator("[data-bio]")).not.toHaveText(/720M explores themes of laughter and grief in rhythm and rhyme/);
   await expect(page.locator("main")).not.toContainText(/same 720M|RICKAYYY/);
   await expect(page.locator("img[data-portrait]")).toHaveCount(1);
   await expect(page.locator("[data-collage] img")).toHaveAttribute("src", "/brand/720m/720m-collage-wide.jpg");
