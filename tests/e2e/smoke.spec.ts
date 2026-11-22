@@ -57,8 +57,17 @@ for (const route of ROUTES) {
       expect(src).not.toMatch(/auto_?play=(true|1)/i);
     }
 
-    // Embeds are lazy: SoundCloud only after click; Spotify iframes lazy-loaded
-    expect(await page.locator('iframe[src*="w.soundcloud.com"]').count()).toBe(0);
+    // Embeds are lazy: SoundCloud only after click, except the official loudassprofecyz widget on 720M (t262u).
+    const scIframes = page.locator('iframe[src*="w.soundcloud.com"]');
+    if (/\/artists\/720m\/?$/.test(new URL(page.url()).pathname)) {
+      await expect(scIframes).toHaveCount(1);
+      const scSrc = (await scIframes.first().getAttribute("src")) ?? "";
+      expect(scSrc).toMatch(/w\.soundcloud\.com\/player/);
+      expect(scSrc).toMatch(/api\.soundcloud\.com(?:\/|%2F)tracks(?:\/|%2F)2177915880/);
+      expect(scSrc).not.toMatch(/auto_?play=(true|1)/i);
+    } else {
+      await expect(scIframes).toHaveCount(0);
+    }
     for (const l of await page.locator('iframe[src*="open.spotify.com"]').evaluateAll((els) => els.map((e) => e.getAttribute("loading")))) expect(l).toBe("lazy");
 
     // Layout: no horizontal overflow
@@ -577,15 +586,18 @@ test("Flavorful Croissants page offers the curated public beats in allowlist ord
 test("720M page offers the curated vocal tracks in allowlist order, play-only", async ({ page }) => {
   const res = await page.goto("/artists/720m/");
   expect(res?.status()).toBe(200);
+  const credit = "720M × Flavorful Croissants";
   const expected = [
-    { id: "blindspot", title: "Blindspot", credit: "720M" },
-    { id: "mellow-life", title: "Mellow Life", credit: "720M" },
-    { id: "bakin", title: "bakin", credit: "720M" },
-    { id: "sugar-hi", title: "sugar hi", credit: "720M" },
-    { id: "fannypack", title: "FANNYPACK", credit: "720M × Flavorful Croissants" },
-    { id: "aftrthat", title: "aftrthat", credit: "720M" },
-    { id: "bay-area", title: "Bay Area", credit: "720M" },
-    { id: "da-amo", title: "Da Amo", credit: "720M" },
+    { id: "blindspot", title: "Blindspot", credit, src: true },
+    { id: "mellow-life", title: "Mellow Life", credit, src: true },
+    { id: "bakin", title: "bakin", credit, src: true },
+    { id: "pandaspk", title: "pandaspk", credit, src: true },
+    { id: "sugar-hi", title: "sugar hi", credit, src: true },
+    { id: "fannypack", title: "FANNYPACK", credit, src: true },
+    { id: "loudassprofecyz", title: "loudassprofecyz", credit, src: false },
+    { id: "aftrthat", title: "aftrthat", credit, src: true },
+    { id: "bay-area", title: "Bay Area", credit, src: true },
+    { id: "da-amo", title: "Da Amo", credit, src: true },
   ];
   await expect(page.locator("[data-artist-tracks] [data-track]")).toHaveCount(expected.length);
   expect(await page.locator("[data-artist-tracks] [data-track]").evaluateAll((els) => els.map((e) => e.getAttribute("data-track")))).toEqual(expected.map((t) => t.id));
@@ -593,16 +605,25 @@ test("720M page offers the curated vocal tracks in allowlist order, play-only", 
     const row = page.locator(`[data-track=${t.id}]`);
     await expect(row).toContainText(t.title);
     await expect(row).toContainText(t.credit);
-    await expect(row.getByRole("button", { name: new RegExp(`play ${t.title}`, "i") })).toBeVisible();
     await expect(row.locator("[data-beat-buy]")).toHaveCount(0);
+    if (t.src) {
+      await expect(row.getByRole("button", { name: new RegExp(`play ${t.title}`, "i") })).toBeVisible();
+      await expect(row.locator("iframe")).toHaveCount(0);
+    } else {
+      await expect(row.getByRole("button", { name: new RegExp(`play ${t.title}`, "i") })).toHaveCount(0);
+      const iframe = row.locator('iframe[data-embed="soundcloud"]');
+      await expect(iframe).toHaveCount(1);
+      await expect(iframe).toHaveAttribute("src", /w\.soundcloud\.com\/player\/.*2177915880/);
+      await expect(iframe).toHaveAttribute("src", /auto_play=false/);
+    }
   }
   const html = await page.content();
   expect(html).not.toMatch(/payhip\.com\/b\//);
   expect(html).not.toMatch(/media\/beat-[a-z0-9-]+\/audio\.mp3/);
   expect(html).not.toMatch(/media\/flavorful-croissants\/[^"' ]+\.mp3/);
   expect(html).not.toMatch(/\.wav\b/i);
-  expect(html).not.toMatch(/pandaspk|loudassprofecyz|loudassprofecyx/i);
-  for (const t of expected) {
+  expect(html).not.toMatch(/media\/720m-loudassprofecyz/);
+  for (const t of expected.filter((x) => x.src)) {
     expect(html).toContain(`media/720m-${t.id}/audio.mp3`);
   }
   await expect(page.locator("[data-artist-tracks] [data-checkout], [data-artist-tracks] [data-checkout=coming-soon]")).toHaveCount(0);
