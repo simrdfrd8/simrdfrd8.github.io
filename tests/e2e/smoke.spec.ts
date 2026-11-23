@@ -1023,21 +1023,50 @@ test("Dan Perales is a public hip-hop artist: 720M-style page, bio, listen link-
   await expect(page.locator("[data-collage]")).toHaveCount(1);
   await expect(page.locator("#about h2")).toHaveText("Six singles from The Psychadelic Shorty, out now.");
   await expect(page.locator("#about [data-bio]")).toHaveCount(3);
-  await expect(page.locator("#about").getByRole("link", { name: /^Listen$/i })).toHaveAttribute("href", /#releases$/);
+  await expect(page.locator("#about").getByRole("link", { name: /^Listen$/i })).toHaveAttribute("href", /#tracks$/);
   await expect(page.locator("#about").getByRole("link", { name: /^Spotify$/i })).toBeVisible();
   await expect(page.locator("main")).not.toContainText(/Made with friends|Look closer|Hover, or tap, to look into the lenses/i);
-  await expect(page.locator("#look-closer, [data-loupe], [data-artist-tracks]")).toHaveCount(0);
+  await expect(page.locator("#look-closer, [data-loupe]")).toHaveCount(0);
   await expect(page.locator('main a[href="https://open.spotify.com/artist/7d0UBhFGUmCcg19sesZtEx"]').first()).toBeVisible();
   await expect(page.locator('main a[href="https://music.apple.com/us/artist/dan-perales/1840482764"]')).toBeVisible();
   await expect(page.locator('main a[href="https://baylingual.bandcamp.com/album/the-psychadelic-shorty-vol-1"]')).toBeVisible();
+  const singles = page.locator("[data-artist-tracks=dan-perales] [data-release]");
+  await expect(singles).toHaveCount(6);
+  await expect(singles).toHaveText([/SIn Gas/, /Bajo La Pluma/, /Sonrisa/, /Gentéfication/, /Cayo/, /Theme of Ookie/]);
+  // Newest first; bio, then the list, then the photo band.
+  expect(
+    await page.evaluate(() => {
+      const about = document.querySelector("#about");
+      const tracks = document.querySelector("#tracks");
+      const collage = document.querySelector("[data-collage]");
+      if (!about || !tracks || !collage) return false;
+      const after = Node.DOCUMENT_POSITION_FOLLOWING;
+      return Boolean((about.compareDocumentPosition(tracks) & after) && (tracks.compareDocumentPosition(collage) & after));
+    }),
+  ).toBe(true);
+  await expect(page.locator("#tracks-title")).toHaveText("Singles");
+  await expect(page.locator("#tracks")).toContainText("The Psychadelic Shorty");
   for (const id of ["dp-theme-of-ookie", "dp-cayo", "dp-gentefication", "dp-sonrisa", "dp-bajo-la-pluma", "dp-sin-gas"]) {
-    await expect(page.locator(`[data-release="${id}"]`)).toBeVisible();
+    const row = page.locator(`[data-release="${id}"]`);
+    await expect(row).toBeVisible();
+    await expect(row).toContainText("Dan Perales");
+    await expect(row.locator("img")).toHaveCount(1);
+    const embed = row.locator('iframe[data-embed="spotify"]');
+    await expect(embed).toHaveCount(1);
+    await expect(embed).toHaveAttribute("loading", "lazy");
+    const src = (await embed.getAttribute("src")) ?? "";
+    expect(src).toMatch(/^https:\/\/open\.spotify\.com\/embed\/track\//);
+    expect(src).not.toMatch(/auto_?play=(true|1)/i);
+    await expect(row.locator("audio, video, [data-play]")).toHaveCount(0);
   }
   await expect(page.locator('[data-release="dp-theme-of-ookie"]')).toContainText("Theme of Ookie");
-  await expect(page.locator('[data-release="dp-cayo"]')).toContainText("The Psychadelic Shorty");
+  await expect(page.locator('[data-release="dp-cayo"]')).toContainText("Cayo");
+  await expect(page.locator('[data-release="dp-cayo"]')).toContainText("prod.");
   await expect(page.locator('[data-release="dp-cayo"] a[href="https://open.spotify.com/track/2jtGVVHtFTve2L9Yq2e0hV"]')).toBeVisible();
   await expect(page.locator('[data-release="dp-cayo"] a[href="https://music.apple.com/us/album/cayo-feat-anthony-del-sol-single/1852012313"]')).toBeVisible();
-  await expect(page.locator('[data-release] iframe')).toHaveCount(0);
+  await expect(page.locator("[data-artist-tracks=dan-perales] iframe[data-embed=spotify]")).toHaveCount(6);
+  // No per-single Bandcamp URLs in the catalog; the album link stays on the intro buttons.
+  await expect(page.locator("[data-artist-tracks=dan-perales] a[href*='bandcamp.com']")).toHaveCount(0);
   await page.goto("/");
   await expect(page.locator('[data-shade="hip-hop"] [data-artist-card="dan-perales"]')).toContainText(/Hip-hop/i);
   await expect(page.locator('[data-shade="hip-hop"] [data-artist-card="dan-perales"]')).not.toContainText(/comedian|comedy/i);

@@ -192,7 +192,7 @@ export function ArtistPage({ artist, intro }: { artist: Artist; intro?: React.Re
         </Section>
       )}
 
-      {(spotifyArtist || releases.length > 0) && (
+      {(spotifyArtist || releases.length > 0) && artist.slug !== "dan-perales" && (
         <Section id="releases" kicker="Listen" title="Releases">
           {spotifyArtist && (
             <div className="mb-8">

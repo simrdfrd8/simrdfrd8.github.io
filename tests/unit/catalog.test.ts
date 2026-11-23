@@ -5,6 +5,7 @@ import { validateCatalog } from "@/lib/catalog/validate";
 import { visibleProducts, isAssetVisible } from "@/lib/catalog/filters";
 import { AssetsFile, ProductsFile, SoundCloudFile, ArtistsFile, ProductTemplatesSchema, SamplePacksFile, BeatsFile, CATEGORIES } from "@/lib/catalog/schema";
 import { resolveViews, heroColorwayOf, blankBackViews, pickModel, type ColorwayRef } from "@/lib/merch";
+import { listedDanPeralesSingles } from "@/lib/catalog";
 
 const V2_IDS = ["merch-feelings-notice-tee", "merch-heartbeat-triangle-tee", "merch-heartbeat-croissant-pocket-tee", "merch-taco-slu-t-pocket-tee", "merch-no-thanks-tee", "merch-taco-slu-t-pixel-patch-tee", "merch-redwood-lif-e-heartbeat-tee", "merch-redwood-lif-e-grove-tee", "merch-make-art-with-friends-tee"];
 const TANK_IDS = ["merch-santa-cruz-sun-tank", "merch-santa-cruz-redwoods-tank", "merch-santa-cruz-sunset-tank"];
@@ -80,6 +81,26 @@ describe("brand (Bruise) roster", () => {
       "https://www.andrewbigs.com/bigs",
       "https://www.instagram.com/heisandrewbigs/",
     ]);
+  });
+});
+
+
+describe("Dan Perales Psychadelic Shorty singles", () => {
+  it("lists the six singles newest first, playable only via official store links", () => {
+    const listed = listedDanPeralesSingles();
+    expect(listed.map((r) => r.id)).toEqual([
+      "dp-sin-gas",
+      "dp-bajo-la-pluma",
+      "dp-sonrisa",
+      "dp-gentefication",
+      "dp-cayo",
+      "dp-theme-of-ookie",
+    ]);
+    expect(listed.every((r) => r.artist === "dan-perales" && r.series === "The Psychadelic Shorty")).toBe(true);
+    expect(listed.every((r) => r.spotify?.kind === "track" && r.spotify.id)).toBe(true);
+    expect(listed.every((r) => r.externalUrls.some((u) => u.platform === "apple-music"))).toBe(true);
+    expect(listed.every((r) => r.externalUrls.some((u) => u.platform === "bandcamp"))).toBe(false);
+    expect(listed.every((r) => !("src" in r) && r.artworkAssetId)).toBe(true);
   });
 });
 

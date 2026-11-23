@@ -196,6 +196,13 @@ export const brandApparelAssets = (brand: string) =>
     .filter((a) => a !== undefined);
 export const getTracks = () => (publicMusicVisible() ? visibleTracks(catalog.soundcloud, mode) : []);
 export const getReleases = () => visibleReleases(catalog.releases, mode);
+
+/** Dan Perales's Psychadelic Shorty singles, newest first (year, then catalog order). */
+export const listedDanPeralesSingles = () =>
+  getReleases()
+    .filter((r) => r.artist === "dan-perales")
+    .slice()
+    .sort((a, b) => (b.year ?? 0) - (a.year ?? 0) || b.order - a.order);
 export const getProduct = (id: string) => getProducts().find((p) => p.id === id);
 export const supportProduct = () => getProducts().find((p) => p.type === "support");
 

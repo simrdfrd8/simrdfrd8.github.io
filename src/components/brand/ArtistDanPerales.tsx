@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Artist } from "@/lib/catalog/schema";
 import { artDanPerales } from "@/lib/brand-assets";
+import { ArtistDanPeralesTrackList } from "../ArtistDanPeralesTrackList";
+import { Section } from "../ui";
 import { ShadeBar } from "./BrandButton";
 
 const LINK_LABEL: Record<string, string> = {
@@ -46,7 +48,7 @@ export function ArtistDanPeralesIntro({ artist }: { artist: Artist }) {
               </p>
             ))}
             <div className="mt-[26px] flex flex-wrap gap-3">
-              <Link href="#releases" className="border-2 border-hiphop bg-hiphop px-[26px] py-3.5 text-[13px] font-extrabold tracking-[2px] text-ink uppercase hover:brightness-110">
+              <Link href="#tracks" className="border-2 border-hiphop bg-hiphop px-[26px] py-3.5 text-[13px] font-extrabold tracking-[2px] text-ink uppercase hover:brightness-110">
                 Listen
               </Link>
               {listenLinks.map((l) => (
@@ -58,6 +60,10 @@ export function ArtistDanPeralesIntro({ artist }: { artist: Artist }) {
           </div>
         </div>
       </section>
+
+      <Section id="tracks" kicker="The Psychadelic Shorty" title="Singles" className="scroll-mt-20">
+        <ArtistDanPeralesTrackList />
+      </Section>
 
       {collage && (
         <figure className="overflow-hidden bg-ink" aria-label="Photographs of Dan Perales" data-collage>
