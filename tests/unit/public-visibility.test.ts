@@ -81,8 +81,9 @@ describe("public visibility flags", () => {
     const listed = listedPublic720mTracks();
     expect(listed.map((t) => t.id)).toEqual(["stayathomesaturday", "srzydd", "ride", "da-amo", "bay-area", "aftrthat", "loudassprofecyz", "fannypack", "sugar-hi", "pandaspk", "bakin", "mellow-life", "blindspot"]);
     expect(listed.map((t) => t.title)).toEqual(["stayathomesaturday", "srzydd", "Ride", "Da Amo", "Bay Area", "aftrthat", "loudassprofecyz", "FANNYPACK", "sugar hi", "pandaspk", "bakin", "Mellow Life", "Blindspot"]);
-    expect(listed.every((t) => t.credit === "720M × Flavorful Croissants")).toBe(true);
     const byId = Object.fromEntries(listed.map((t) => [t.id, t]));
+    expect(listed.filter((t) => t.id !== "pandaspk").every((t) => t.credit === "720M × Flavorful Croissants")).toBe(true);
+    expect(byId.pandaspk.credit).toBe("720M × Dan Perales");
     expect(listed.filter((t) => t.id !== "loudassprofecyz").map((t) => t.src)).toEqual([
       "/media/720m-stayathomesaturday/audio.mp3",
       "/media/720m-srzydd/audio.mp3",
@@ -103,9 +104,7 @@ describe("public visibility flags", () => {
     expect(listed.map((t) => t.src ?? "").join(" ")).not.toMatch(/\.wav|beat-|flavorful-croissants\//i);
     expect(listed.every((t) => !("payhipUrl" in t))).toBe(true);
     expect(listedPublic720mTracks("720m").map((t) => t.id)).toEqual(listed.map((t) => t.id));
-    expect(byId.ride.producedBy).toBe("Flavorful Croissants");
-    expect(byId.srzydd.producedBy).toBe("Flavorful Croissants");
-    expect(listed.filter((t) => t.id !== "ride" && t.id !== "srzydd").every((t) => !("producedBy" in t))).toBe(true);
+    expect(listed.every((t) => t.producedBy === "Flavorful Croissants")).toBe(true);
     expect(listedPublic720mTracks("flavorful-croissants")).toEqual([]);
     expect(getBeats()).toEqual([]);
   });

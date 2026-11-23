@@ -5,6 +5,7 @@
       "id": "stayathomesaturday",
       "title": "stayathomesaturday",
       "credit": "720M × Flavorful Croissants",
+      "producedBy": "Flavorful Croissants",
       "src": "/media/720m-stayathomesaturday/audio.mp3",
       "durationSec": 186
     },
@@ -28,6 +29,7 @@
       "id": "da-amo",
       "title": "Da Amo",
       "credit": "720M × Flavorful Croissants",
+      "producedBy": "Flavorful Croissants",
       "src": "/media/720m-da-amo/audio.mp3",
       "durationSec": 234
     },
@@ -35,6 +37,7 @@
       "id": "bay-area",
       "title": "Bay Area",
       "credit": "720M × Flavorful Croissants",
+      "producedBy": "Flavorful Croissants",
       "src": "/media/720m-bay-area/audio.mp3",
       "durationSec": 169
     },
@@ -42,6 +45,7 @@
       "id": "aftrthat",
       "title": "aftrthat",
       "credit": "720M × Flavorful Croissants",
+      "producedBy": "Flavorful Croissants",
       "src": "/media/720m-aftrthat/audio.mp3",
       "durationSec": 220
     },
@@ -49,6 +53,7 @@
       "id": "loudassprofecyz",
       "title": "loudassprofecyz",
       "credit": "720M × Flavorful Croissants",
+      "producedBy": "Flavorful Croissants",
       "soundcloudUrl": "https://soundcloud.com/user-536995429/loudassprofecyz-x-ricky",
       "scId": 2177915880,
       "durationSec": 170
@@ -57,6 +62,7 @@
       "id": "fannypack",
       "title": "FANNYPACK",
       "credit": "720M × Flavorful Croissants",
+      "producedBy": "Flavorful Croissants",
       "src": "/media/720m-fannypack/audio.mp3",
       "durationSec": 175
     },
@@ -64,13 +70,15 @@
       "id": "sugar-hi",
       "title": "sugar hi",
       "credit": "720M × Flavorful Croissants",
+      "producedBy": "Flavorful Croissants",
       "src": "/media/720m-sugar-hi/audio.mp3",
       "durationSec": 170
     },
     {
       "id": "pandaspk",
       "title": "pandaspk",
-      "credit": "720M × Flavorful Croissants",
+      "credit": "720M × Dan Perales",
+      "producedBy": "Flavorful Croissants",
       "src": "/media/720m-pandaspk/audio.mp3",
       "durationSec": 215
     },
@@ -78,6 +86,7 @@
       "id": "bakin",
       "title": "bakin",
       "credit": "720M × Flavorful Croissants",
+      "producedBy": "Flavorful Croissants",
       "src": "/media/720m-bakin/audio.mp3",
       "durationSec": 203
     },
@@ -85,6 +94,7 @@
       "id": "mellow-life",
       "title": "Mellow Life",
       "credit": "720M × Flavorful Croissants",
+      "producedBy": "Flavorful Croissants",
       "src": "/media/720m-mellow-life/audio.mp3",
       "durationSec": 172
     },
@@ -92,6 +102,7 @@
       "id": "blindspot",
       "title": "Blindspot",
       "credit": "720M × Flavorful Croissants",
+      "producedBy": "Flavorful Croissants",
       "src": "/media/720m-blindspot/audio.mp3",
       "durationSec": 145
     }

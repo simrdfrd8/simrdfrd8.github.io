@@ -43,6 +43,17 @@ export const trackLd = (t: SoundCloudTrack, artist: string) => ({
   genre: t.genre,
 });
 
+/** Curated 720M vocal tracks: byArtist matches the on-page credit; producer when a Produced-by line is shown. */
+export const public720mTrackLd = (t: { title: string; credit: string; producedBy?: string; durationSec?: number; soundcloudUrl?: string }) => ({
+  "@context": "https://schema.org",
+  "@type": "MusicRecording",
+  name: t.title,
+  byArtist: { "@type": "MusicGroup", name: t.credit },
+  ...(t.producedBy ? { producer: { "@type": "MusicGroup", name: t.producedBy } } : {}),
+  ...(t.soundcloudUrl ? { url: t.soundcloudUrl } : {}),
+  duration: t.durationSec ? `PT${Math.floor(t.durationSec / 60)}M${t.durationSec % 60}S` : undefined,
+});
+
 /** Offers are only emitted for approved prices so search engines never see illustrative ones. */
 export const productLd = (p: Product, image?: string) => ({
   "@context": "https://schema.org",

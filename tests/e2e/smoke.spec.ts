@@ -578,20 +578,21 @@ test("720M page offers the curated vocal tracks in allowlist order, play-only", 
   const res = await page.goto("/artists/720m/");
   expect(res?.status()).toBe(200);
   const credit = "720M × Flavorful Croissants";
+  const producedBy = "Flavorful Croissants";
   const expected = [
-    { id: "stayathomesaturday", title: "stayathomesaturday", credit, src: true },
-    { id: "srzydd", title: "srzydd", credit, src: true, producedBy: "Flavorful Croissants" },
-    { id: "ride", title: "Ride", credit, src: true, producedBy: "Flavorful Croissants" },
-    { id: "da-amo", title: "Da Amo", credit, src: true },
-    { id: "bay-area", title: "Bay Area", credit, src: true },
-    { id: "aftrthat", title: "aftrthat", credit, src: true },
-    { id: "loudassprofecyz", title: "loudassprofecyz", credit, src: false },
-    { id: "fannypack", title: "FANNYPACK", credit, src: true },
-    { id: "sugar-hi", title: "sugar hi", credit, src: true },
-    { id: "pandaspk", title: "pandaspk", credit, src: true },
-    { id: "bakin", title: "bakin", credit, src: true },
-    { id: "mellow-life", title: "Mellow Life", credit, src: true },
-    { id: "blindspot", title: "Blindspot", credit, src: true },
+    { id: "stayathomesaturday", title: "stayathomesaturday", credit, src: true, producedBy },
+    { id: "srzydd", title: "srzydd", credit, src: true, producedBy },
+    { id: "ride", title: "Ride", credit, src: true, producedBy },
+    { id: "da-amo", title: "Da Amo", credit, src: true, producedBy },
+    { id: "bay-area", title: "Bay Area", credit, src: true, producedBy },
+    { id: "aftrthat", title: "aftrthat", credit, src: true, producedBy },
+    { id: "loudassprofecyz", title: "loudassprofecyz", credit, src: false, producedBy },
+    { id: "fannypack", title: "FANNYPACK", credit, src: true, producedBy },
+    { id: "sugar-hi", title: "sugar hi", credit, src: true, producedBy },
+    { id: "pandaspk", title: "pandaspk", credit: "720M × Dan Perales", src: true, producedBy },
+    { id: "bakin", title: "bakin", credit, src: true, producedBy },
+    { id: "mellow-life", title: "Mellow Life", credit, src: true, producedBy },
+    { id: "blindspot", title: "Blindspot", credit, src: true, producedBy },
   ];
   await expect(page.locator("[data-artist-tracks] [data-track]")).toHaveCount(expected.length);
   expect(await page.locator("[data-artist-tracks] [data-track]").evaluateAll((els) => els.map((e) => e.getAttribute("data-track")))).toEqual(expected.map((t) => t.id));
@@ -615,6 +616,22 @@ test("720M page offers the curated vocal tracks in allowlist order, play-only", 
       await expect(iframe).toHaveAttribute("src", /w\.soundcloud\.com\/player\/.*2177915880/);
       await expect(iframe).toHaveAttribute("src", /auto_play=false/);
     }
+  }
+  const recordings = await page.locator('script[type="application/ld+json"]').evaluateAll((nodes) =>
+    nodes.flatMap((n) => {
+      try {
+        const data = JSON.parse(n.textContent || "null");
+        return (Array.isArray(data) ? data : [data]).filter((x) => x && x["@type"] === "MusicRecording");
+      } catch {
+        return [];
+      }
+    }),
+  );
+  expect(recordings.map((r) => r.name)).toEqual(expected.map((t) => t.title));
+  for (const t of expected) {
+    const rec = recordings.find((r) => r.name === t.title);
+    expect(rec?.byArtist?.name, t.id).toBe(t.credit);
+    expect(rec?.producer?.name, t.id).toBe(t.producedBy);
   }
   const html = await page.content();
   expect(html).not.toMatch(/payhip\.com\/b\//);

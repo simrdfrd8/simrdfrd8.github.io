@@ -1,6 +1,7 @@
 import type { Public720mTrack } from "@/lib/catalog";
 import { mediaUrl } from "@/lib/env";
 import { formatDuration } from "@/lib/format";
+import { JsonLd, public720mTrackLd } from "@/lib/jsonld";
 import { PlayButton } from "./player/PlayButton";
 
 const SC_WIDGET = (scId: number) =>
@@ -62,6 +63,7 @@ export function ArtistTrackList({ tracks }: { tracks: Public720mTrack[] }) {
           );
         })}
       </ol>
+      {tracks.length > 0 ? <JsonLd data={tracks.map(public720mTrackLd)} /> : null}
     </div>
   );
 }
