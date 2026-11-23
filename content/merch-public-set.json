@@ -1,5 +1,5 @@
 {
-  "note": "Merch that public visitors and customer accounts see, one slot per design, in shop order. Owner-approved Nov 2, 2026; the owner set six designs aside the same night (kept in the admin catalog), picked four more (Nov 2, 2026, 10:36 PM PT) plus Monarch Swell Tank, then on Nov 10, 2026 set one of those Nov 2 picks aside and put I Love Creating Tee in that slot, so nine designs show. Each slot lists product slugs (the id without 'merch-'): the Men listing first, then the Women listing when that cut exists. Every colourway of a listed product stays public (the filter works per product, never per colour). The source of truth is content/catalog-published.json; this list mirrors it.",
+  "note": "Merch that public visitors and customer accounts see, one slot per design, in shop order. Owner-approved Nov 2, 2026; the owner set six designs aside the same night (kept in the admin catalog), picked four more (Nov 2, 2026, 10:36 PM PT) plus Monarch Swell Tank, then on Nov 10, 2026 set one of those Nov 2 picks aside and put I Love Creating Tee in that slot, then on Nov 23, 2026 set Here Comes Another One Tank (Men/Women) and I Love Creating Tee aside (kept in the admin catalog), so seven designs show. Each slot lists product slugs (the id without 'merch-'): the Men listing first, then the Women listing when that cut exists. Every colourway of a listed product stays public (the filter works per product, never per colour). The source of truth is content/catalog-published.json; this list mirrors it.",
   "slots": [
     {
       "slot": "shirt",
@@ -30,13 +30,6 @@
     {
       "slot": "tank",
       "products": [
-        "here-comes-another-one-tank",
-        "here-comes-another-one-womens-tank"
-      ]
-    },
-    {
-      "slot": "tank",
-      "products": [
         "lighthouse-point-tank",
         "lighthouse-point-womens-tank"
       ]
@@ -45,12 +38,6 @@
       "slot": "hoodie",
       "products": [
         "island-dusk-hoodie"
-      ]
-    },
-    {
-      "slot": "shirt",
-      "products": [
-        "i-love-creating-tee"
       ]
     },
     {

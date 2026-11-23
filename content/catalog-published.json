@@ -1,7 +1,7 @@
 {
  "schema": "fm-catalog-published/1",
  "release": 1,
- "exportedAt": "2026-11-10T05:50:00.000Z",
+ "exportedAt": "2026-11-23T20:45:00.000Z",
  "merch": {
   "make-art-with-friends-tee": {
    "price_cents": null,
@@ -58,24 +58,6 @@
     "bay-plum-taco-red": {}
    }
   },
-  "here-comes-another-one-tank": {
-   "price_cents": null,
-   "sale": null,
-   "colorways": {
-    "ivory-coral-heat": {},
-    "pepper-cream": {},
-    "white-bruise-violet": {}
-   }
-  },
-  "here-comes-another-one-womens-tank": {
-   "price_cents": null,
-   "sale": null,
-   "colorways": {
-    "bone-coral-heat": {},
-    "black-cream": {},
-    "white-bruise-violet": {}
-   }
-  },
   "lighthouse-point-tank": {
    "price_cents": null,
    "sale": null,
@@ -103,14 +85,6 @@
     "flo-blue-plum-cream": {},
     "true-navy-cream-coral": {},
     "white-plum-coral": {}
-   }
-  },
-  "i-love-creating-tee": {
-   "price_cents": null,
-   "sale": null,
-   "colorways": {
-    "black-cream-coral": {},
-    "ivory-plum-rust": {}
    }
   },
   "monarch-swell-tank": {

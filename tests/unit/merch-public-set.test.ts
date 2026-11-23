@@ -10,11 +10,11 @@ const merch = products.filter((p) => p.type === "merch");
 const slugs = merch.map((p) => slugOfProductId(p.id));
 
 describe("public merch set", () => {
-  it("is at most ten design slots (nine: four kept after six were set aside, the Nov 2 picks plus Monarch Swell Tank, one Nov 2 pick later replaced), all real product slugs", () => {
+  it("is at most ten design slots (seven: after the Nov 23 set-aside of Here Comes Another One Tank and I Love Creating Tee), all real product slugs", () => {
     expect(checkPublicSet(set, slugs)).toEqual([]);
-    expect(set.slots.length).toBe(9);
+    expect(set.slots.length).toBe(7);
   });
-  it("holds the four designs left after the owner set six aside (Nov 2, 2026, 10:02 PM PT) plus his Nov 2 picks and Monarch Swell Tank, with I Love Creating Tee in the Nov 10 replacement slot, Men + Women cuts where they exist", () => {
+  it("holds the remaining public designs after the Nov 23 set-aside of Here Comes Another One Tank and I Love Creating Tee, Men + Women cuts where they exist", () => {
     expect([...publicMerchSlugs(set)]).toEqual([
       "make-art-with-friends-tee",
       "make-art-with-friends-womens-boxy-tee",
@@ -22,12 +22,9 @@ describe("public merch set", () => {
       "paddle-back-round-tank",
       "paddle-back-round-womens-tank",
       "triangle-surfer-pocket-tee",
-      "here-comes-another-one-tank",
-      "here-comes-another-one-womens-tank",
       "lighthouse-point-tank",
       "lighthouse-point-womens-tank",
       "island-dusk-hoodie",
-      "i-love-creating-tee",
       "monarch-swell-tank",
       "monarch-swell-tank-womens",
     ]);
@@ -35,7 +32,7 @@ describe("public merch set", () => {
   });
   it("plain Heartbeat Triangle, no thanks and the set-aside designs are admin-only", () => {
     const pub = publicMerchSlugs(set);
-    for (const s of ["hotdo-g-tee-g-dog", "hotdo-g-womens-boxy-tee-g-dog", "feelings-notice-tee", "feelings-notice-womens-boxy-tee", "triangle-surfer-tee", "last-one-i-swear-tank", "last-one-i-swear-womens-tank", "never-ending-set-ribbon-tank", "never-ending-set-ribbon-womens-tank", "melt-wave-tee-inverse", "melt-wave-tee", "i-love-triangles-tee", "not-def-tee", "level-headed-tank", "hotdo-g-tee-in-the-bun"]) expect(pub.has(s), s).toBe(false);
+    for (const s of ["hotdo-g-tee-g-dog", "hotdo-g-womens-boxy-tee-g-dog", "feelings-notice-tee", "feelings-notice-womens-boxy-tee", "triangle-surfer-tee", "last-one-i-swear-tank", "last-one-i-swear-womens-tank", "never-ending-set-ribbon-tank", "never-ending-set-ribbon-womens-tank", "melt-wave-tee-inverse", "melt-wave-tee", "here-comes-another-one-tank", "here-comes-another-one-womens-tank", "i-love-creating-tee", "i-love-triangles-tee", "not-def-tee", "level-headed-tank", "hotdo-g-tee-in-the-bun"]) expect(pub.has(s), s).toBe(false);
     expect(pub.has("heartbeat-triangle-tee")).toBe(false);
     expect(pub.has("no-thanks-tee")).toBe(false);
   });
@@ -75,7 +72,7 @@ describe("build-time filter", () => {
     expect(on.colorways).toEqual(tee.colorways);
     expect(withPublicSetListing(tee, false, set).shopListed).toBe(tee.shopListed);
     expect(withPublicSetListing(products.find((p) => p.id === "merch-no-thanks-tee")!, true, set)).toBe(products.find((p) => p.id === "merch-no-thanks-tee"));
-    // shop grid under the filter: 8 designs (12 listings)
+    // shop grid under the filter: 7 designs (11 listings)
     const grid = products.filter((p) => p.type === "merch" && p.listed && isPubliclyVisible(p, true, set)).map((p) => withPublicSetListing(p, true, set)).filter((p) => p.shopListed !== false);
     expect(grid.map((p) => slugOfProductId(p.id)).sort()).toEqual([...publicMerchSlugs(set)].sort());
   });

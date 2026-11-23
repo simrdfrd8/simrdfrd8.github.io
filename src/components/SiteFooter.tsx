@@ -1,13 +1,12 @@
 import Link from "next/link";
 import { Wordmark } from "./Wordmark";
-import { FriendsRow } from "./FriendsRow";
 import { catalog } from "@/lib/catalog";
 import { visiblePrimaryNav, visibleSecondaryNav } from "@/lib/brand";
 import { isPreview } from "@/lib/env";
 import { publicArtistVisible } from "@/lib/public-visibility";
 import { platformLabel } from "@/lib/format";
 
-/** Site-wide footer: Brandy's "Make art with friends." block + Friends row (site-footer.css), plus the site's link columns. */
+/** Site-wide footer: Brandy's "Make art with friends." block (site-footer.css), plus the site's link columns. */
 export function SiteFooter() {
   const { site } = catalog;
   return (
@@ -19,9 +18,6 @@ export function SiteFooter() {
           <p className="mt-2 text-xs font-semibold tracking-[2px] uppercase">
             <span className="hl-hh">Hip-Hop</span> <span className="text-muted">·</span> <span className="hl-prod">Production</span> <span className="text-muted">·</span> <span className="hl-edm">Audio Engineering</span>
           </p>
-          <div className="mt-5">
-            <FriendsRow />
-          </div>
           {site.email && (
             <p className="mt-6">
               <span className="kicker block text-muted">Business</span>

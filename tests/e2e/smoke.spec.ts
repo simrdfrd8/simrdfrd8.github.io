@@ -286,26 +286,15 @@ test("homepage is simple: mark + one line, three plain categories to the artists
   expect(await page.locator('meta[name="description"], meta[property="og:description"]').evaluateAll((m) => m.map((x) => x.getAttribute("content")).join(" "))).not.toMatch(BANNED);
 });
 
-test("site-wide footer: Make art with friends + Friends row", async ({ page }) => {
+test("site-wide footer: Make art with friends, no Friends row", async ({ page }) => {
   for (const route of ["/", "/music", "/artists/720m"]) {
     await page.goto(route);
     const footer = page.locator("footer[data-site-footer]");
     await expect(footer).toContainText("Make art with friends.");
     await expect(footer.locator("[data-label-line]")).toHaveText("Flavorful Music, a Baylingue LLC company. San Diego, CA. Contact: hallo@flavorfulmusic.com");
-    const friends = footer.getByRole("navigation", { name: "Friends" });
-    await expect(friends.locator(".fr-name")).toHaveText(["James Eagle", "Dan Perales", "Andrew Biggs"]);
-    const ext = friends.locator("a.fr-link");
-    for (const a of await ext.all()) {
-      await expect(a).toHaveAttribute("target", "_blank");
-      await expect(a).toHaveAttribute("rel", /noopener/);
-    }
-    expect(await ext.evaluateAll((as) => as.map((a) => a.getAttribute("href")))).toEqual([
-      "https://open.spotify.com/artist/3wwS8vlx9xmeH9fRrVjAgc",
-      "https://www.instagram.com/jamesb0p/",
-      "https://open.spotify.com/artist/7d0UBhFGUmCcg19sesZtEx",
-    ]);
-    await expect(friends.locator(".fr-name", { hasText: "Andrew Biggs" })).toBeVisible();
-    await expect(friends.getByRole("link", { name: /Andrew Biggs/ })).toHaveCount(0);
+    await expect(footer.getByRole("navigation", { name: "Friends" })).toHaveCount(0);
+    await expect(footer.locator("[data-friends], .friends-row, .fr-name")).toHaveCount(0);
+    await expect(footer).not.toContainText(/James Eagle|Andrew Biggs/);
   }
 });
 
@@ -671,11 +660,11 @@ test("artist titles never break mid-word and fit the viewport", async ({ page })
   await expect(page.locator("main, body").first()).toContainText("Production · Audio Engineering & hip-hop");
 });
 
-/** The public set (owner, Nov 2, 2026: six designs set aside at 10:02 PM PT, four left; four picks added at 10:36 PM PT; one of those picks set aside Nov 10, 2026), in shop order; without the public filter every listed piece shows. */
+/** The public set (owner, Nov 2–10, 2026 history, plus Nov 23, 2026: Here Comes Another One Tank and I Love Creating Tee set aside), in shop order; without the public filter every listed piece shows. */
 const MENS = PUBLIC_SET
-  ? ["merch-make-art-with-friends-tee", "merch-heartbeat-croissant-pocket-tee", "merch-paddle-back-round-tank", "merch-triangle-surfer-pocket-tee", "merch-here-comes-another-one-tank", "merch-lighthouse-point-tank", "merch-island-dusk-hoodie", "merch-i-love-creating-tee", "merch-monarch-swell-tank"]
+  ? ["merch-make-art-with-friends-tee", "merch-heartbeat-croissant-pocket-tee", "merch-paddle-back-round-tank", "merch-triangle-surfer-pocket-tee", "merch-lighthouse-point-tank", "merch-island-dusk-hoodie", "merch-monarch-swell-tank"]
   : ["merch-hotdo-g-tee-g-dog", "merch-make-art-with-friends-tee", "merch-feelings-notice-tee", "merch-triangle-surfer-tee", "merch-never-ending-set-ribbon-tank", "merch-melt-wave-tee-inverse", "merch-paddle-back-round-tank", "merch-last-one-i-swear-tank", "merch-triangle-surfer-pocket-tee", "merch-here-comes-another-one-tank", "merch-lighthouse-point-tank", "merch-island-dusk-hoodie", "merch-i-love-creating-tee", "merch-melt-wave-tee", "merch-monarch-swell-tank", "merch-heartbeat-triangle-tee", "merch-no-thanks-tee"];
-const WOMENS = PUBLIC_SET ? ["merch-make-art-with-friends-womens-boxy-tee", "merch-paddle-back-round-womens-tank", "merch-here-comes-another-one-womens-tank", "merch-lighthouse-point-womens-tank", "merch-monarch-swell-tank-womens"] : ["merch-hotdo-g-womens-boxy-tee-g-dog", "merch-make-art-with-friends-womens-boxy-tee", "merch-feelings-notice-womens-boxy-tee", "merch-never-ending-set-ribbon-womens-tank", "merch-paddle-back-round-womens-tank", "merch-last-one-i-swear-womens-tank", "merch-here-comes-another-one-womens-tank", "merch-lighthouse-point-womens-tank", "merch-monarch-swell-tank-womens"];
+const WOMENS = PUBLIC_SET ? ["merch-make-art-with-friends-womens-boxy-tee", "merch-paddle-back-round-womens-tank", "merch-lighthouse-point-womens-tank", "merch-monarch-swell-tank-womens"] : ["merch-hotdo-g-womens-boxy-tee-g-dog", "merch-make-art-with-friends-womens-boxy-tee", "merch-feelings-notice-womens-boxy-tee", "merch-never-ending-set-ribbon-womens-tank", "merch-paddle-back-round-womens-tank", "merch-last-one-i-swear-womens-tank", "merch-here-comes-another-one-womens-tank", "merch-lighthouse-point-womens-tank", "merch-monarch-swell-tank-womens"];
 /** Grid (DOM) order follows each product's `order`. */
 const ORDER = [
   "merch-hotdo-g-tee-g-dog", "merch-hotdo-g-womens-boxy-tee-g-dog", "merch-make-art-with-friends-tee", "merch-make-art-with-friends-womens-boxy-tee", "merch-feelings-notice-tee", "merch-feelings-notice-womens-boxy-tee",
@@ -687,7 +676,7 @@ const LAUNCH = ORDER.filter((id) => MENS.includes(id) || WOMENS.includes(id));
 const MERCH_COUNT = LAUNCH.length;
 /** All tab: one card per design, in shop order. Owner, 2026-10-22: "only m/f ... No unisex category visible" (unisex-fit cuts list as Men). */
 const DESIGNS = PUBLIC_SET
-  ? ["make-art-with-friends", "heartbeat-croissant-pocket", "paddle-back-round", "triangle-surfer-pocket", "here-comes-another-one", "lighthouse-point", "island-dusk", "i-love-creating", "monarch-swell"]
+  ? ["make-art-with-friends", "heartbeat-croissant-pocket", "paddle-back-round", "triangle-surfer-pocket", "lighthouse-point", "island-dusk", "monarch-swell"]
   : ["hotdo-g-g-dog", "make-art-with-friends", "feelings-notice", "triangle-surfer", "never-ending-set", "melt-wave-inverse", "paddle-back-round", "last-one-i-swear", "triangle-surfer-pocket", "here-comes-another-one", "lighthouse-point", "island-dusk", "i-love-creating", "monarch-swell", "melt-wave-mirror", "heartbeat-triangle", "no-thanks"];
 const WITH_WOMENS = ["hotdo-g-g-dog", "make-art-with-friends", "feelings-notice", "never-ending-set", "paddle-back-round", "last-one-i-swear", "here-comes-another-one", "lighthouse-point", "monarch-swell"];
 
@@ -698,14 +687,18 @@ test("merch store lists every piece as a swipe card, display-only, no prices or 
   expect(await cards.evaluateAll((els) => els.map((e) => e.getAttribute("data-product")))).toEqual(LAUNCH);
   await expect(page.locator("[data-card-carousel]")).toHaveCount(MERCH_COUNT);
   const hot = page.locator('[data-product="merch-hotdo-g-tee-g-dog"]');
-  await expect(hot).toHaveCount(1);
-  await expect(hot.locator("h3")).toHaveText("HOTDO G Tee (G Dog)");
-  await expect(hot).toContainText("Is it a Hotdo? Is it a g? Yes. This time the awkward space is the hot dog itself, tucked in its bun");
-  // hero views (front, back flats; no model shots) + the other 2 colorways' fronts; the front flat is the thumbnail
-  await expect(hot.locator("[data-slide]")).toHaveCount(4);
-  await expect(hot.locator("[data-slide='0'] img")).toHaveAttribute("src", /merch-hotdo-g-tee-g-dog\/black-white-\d/);
-  // no text buttons to browse: no swatches / view toggles on the card
-  await expect(hot.locator("[role=radio], [data-merch-views], [data-extra-photo]")).toHaveCount(0);
+  if (PUBLIC_SET) {
+    await expect(hot).toHaveCount(0);
+  } else {
+    await expect(hot).toHaveCount(1);
+    await expect(hot.locator("h3")).toHaveText("HOTDO G Tee (G Dog)");
+    await expect(hot).toContainText("Is it a Hotdo? Is it a g? Yes. This time the awkward space is the hot dog itself, tucked in its bun");
+    // hero views (front, back flats; no model shots) + the other 2 colorways' fronts; the front flat is the thumbnail
+    await expect(hot.locator("[data-slide]")).toHaveCount(4);
+    await expect(hot.locator("[data-slide='0'] img")).toHaveAttribute("src", /merch-hotdo-g-tee-g-dog\/black-white-\d/);
+    // no text buttons to browse: no swatches / view toggles on the card
+    await expect(hot.locator("[role=radio], [data-merch-views], [data-extra-photo]")).toHaveCount(0);
+  }
   for (const gone of ["merch-heartbeat-triangle-pocket-tee", "merch-taco-slu-t-tee", "merch-taco-slu-t-taqueria-tee"]) await expect(page.locator(`[data-product="${gone}"]`)).toHaveCount(0);
   await expect(page.locator('[data-brand="baylingual-entertainment"]')).toHaveCount(0);
   await expect(page.locator("main [data-checkout]")).toHaveCount(0);
@@ -718,17 +711,17 @@ test("merch store lists every piece as a swipe card, display-only, no prices or 
   await expect(page.locator('#all [data-merch="inquire-only"]:visible')).toHaveCount(MERCH_COUNT);
 });
 
-test("public-set build (MERCH_PUBLIC_SET=1): only the 5 public designs; admin-only pages, images and Closer look renders are not in the export", async ({ page, request }) => {
+test("public-set build (MERCH_PUBLIC_SET=1): only the 7 public designs; admin-only pages, images and Closer look renders are not in the export", async ({ page, request }) => {
   test.skip(!PUBLIC_SET, "only for a MERCH_PUBLIC_SET=1 build");
   await page.goto("/shop/merch");
   expect(await page.locator("[data-merch-design]").evaluateAll((els) => els.map((e) => e.getAttribute("data-merch-design")))).toEqual(DESIGNS);
   await expect(page.locator('[data-merch-design="heartbeat-croissant-pocket"] [data-cut-option]')).toHaveText(["Men"]);
-  for (const slug of ["heartbeat-triangle-tee", "no-thanks-tee", "santa-cruz-sun-tank", "taco-slu-t-pocket-tee"]) {
+  for (const slug of ["heartbeat-triangle-tee", "no-thanks-tee", "santa-cruz-sun-tank", "taco-slu-t-pocket-tee", "here-comes-another-one-tank", "here-comes-another-one-womens-tank", "i-love-creating-tee"]) {
     expect((await request.get(`/shop/merch/${slug}/`)).status(), slug).toBe(404);
   }
-  for (const f of ["/media/closer-look/print-heartbeat-triangle-tee-960.webp", "/media/merch-no-thanks-tee/graphite-cream-160.webp"]) expect((await request.get(f)).status(), f).toBe(404);
+  for (const f of ["/media/closer-look/print-heartbeat-triangle-tee-960.webp", "/media/merch-no-thanks-tee/graphite-cream-160.webp", "/media/merch-here-comes-another-one-tank/ivory-coral-heat-160.webp", "/media/merch-i-love-creating-tee/black-cream-coral-160.webp"]) expect((await request.get(f)).status(), f).toBe(404);
   const html = await page.content();
-  expect(html).not.toMatch(/heartbeat-triangle-tee|no-thanks-tee|grape-black/);
+  expect(html).not.toMatch(/heartbeat-triangle-tee|no-thanks-tee|grape-black|here-comes-another-one|i-love-creating/);
 });
 
 test("merch categories: All plus a tab per category in use; linkable with ?category=; works at 390 and 1280", async ({ page }) => {
@@ -1114,10 +1107,10 @@ test("Dan Perales is a public hip-hop artist: 720M-style page, bio, listen link-
   await expect(page.locator('[data-shade="hip-hop"] [data-artist-card="dan-perales"] [data-card-monogram]')).toHaveCount(0);
   await expect(page.locator('[data-shade="hip-hop"] [data-artist-card="720m"]')).toContainText(/^720M\s*Rapper/i);
   await expect(page.locator("[data-shade] [data-cat-label]")).toHaveText(["Hip-Hop", "Production", "Audio Engineering"]);
-  const friends = page.locator("footer[data-site-footer]").getByRole("navigation", { name: "Friends" });
-  await expect(friends.locator(".fr-name")).toHaveText(["James Eagle", "Dan Perales", "Andrew Biggs"]);
-  await expect(friends.locator("a.fr-link[href='https://open.spotify.com/artist/7d0UBhFGUmCcg19sesZtEx']")).toBeVisible();
-  await expect(friends.getByRole("link", { name: /^Dan Perales$/ })).toHaveCount(0);
+  const footer = page.locator("footer[data-site-footer]");
+  await expect(footer.getByRole("navigation", { name: "Friends" })).toHaveCount(0);
+  await expect(footer.locator("[data-friends], .friends-row, .fr-name")).toHaveCount(0);
+  await expect(footer).not.toContainText(/James Eagle|Andrew Biggs/);
 });
 
 test("music: hereiam and Fuck You carry a plain Pop Punk label and play in the shared player", async ({ page }) => {
