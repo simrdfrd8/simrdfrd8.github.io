@@ -201,19 +201,19 @@
     },
     {
       "id": "ricky-roster",
-      "stem": "ricky/ricky-roster-4x5",
+      "stem": "ricky/ricky-selfie-roster-4x5",
       "width": 800,
       "height": 1000,
       "approved": true,
-      "alt": "A person seen from behind at a large mixing console in a studio, with monitors and a computer screen above."
+      "alt": "Ricky smiling in a red beanie and a gray fleece."
     },
     {
       "id": "ricky-thumb",
-      "stem": "ricky/ricky-thumb-1x1",
+      "stem": "ricky/ricky-selfie-thumb-1x1",
       "width": 400,
       "height": 400,
       "approved": true,
-      "alt": "A person seen from behind at a large mixing console in a studio, with monitors and a computer screen above."
+      "alt": "Ricky smiling in a red beanie and a gray fleece."
     }
   ],
   "logos": {

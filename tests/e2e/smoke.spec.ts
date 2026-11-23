@@ -1105,7 +1105,7 @@ test("Dan Perales is a public hip-hop artist: 720M-style page, bio, listen link-
   await expect(page.locator('[data-shade="hip-hop"] [data-artist-card="dan-perales"] [data-card-photo]')).toHaveAttribute("src", /dan-perales\/dan-perales-thumb-1x1/);
   await expect(page.locator('[data-shade="hip-hop"] [data-artist-card="dan-perales"] img[src*="poncho"]')).toHaveCount(0);
   await expect(page.locator('[data-shade="hip-hop"] [data-artist-card="dan-perales"] [data-card-monogram]')).toHaveCount(0);
-  await expect(page.locator('[data-shade="edm"] [data-artist-card="ricky"] [data-card-photo]')).toHaveAttribute("src", /ricky\/ricky-thumb-1x1/);
+  await expect(page.locator('[data-shade="edm"] [data-artist-card="ricky"] [data-card-photo]')).toHaveAttribute("src", /ricky\/ricky-selfie-thumb-1x1/);
   await expect(page.locator('[data-shade="edm"] [data-artist-card="ricky"] [data-card-monogram]')).toHaveCount(0);
   await expect(page.locator('[data-shade="edm"] [data-artist-card="ricky"]')).toContainText(/Audio production/i);
   await expect(page.locator('[data-shade="hip-hop"] [data-artist-card="720m"]')).toContainText(/^720M\s*Rapper/i);
@@ -1271,7 +1271,7 @@ test("public roster is Flavorful Croissants, 720M, Not DAF, Dan Perales, and Ric
   await expect(page.locator('a[href="/artists/andrew-bigs/"], a[href="/artists/baylingual-entertainment/"]')).toHaveCount(0);
   await expect(page.locator('[href="/artists/dan-perales/"], [href="/artists/dan-perales"]').locator("[data-roster-photo]")).toHaveAttribute("src", /dan-perales\/dan-perales-card-4x5/);
   await expect(page.locator('[href="/artists/dan-perales/"], [href="/artists/dan-perales"]').locator("img[src*='poncho']")).toHaveCount(0);
-  await expect(page.locator('[href="/artists/ricky/"], [href="/artists/ricky"]').locator("[data-roster-photo]")).toHaveAttribute("src", /ricky\/ricky-roster-4x5/);
+  await expect(page.locator('[href="/artists/ricky/"], [href="/artists/ricky"]').locator("[data-roster-photo]")).toHaveAttribute("src", /ricky\/ricky-selfie-roster-4x5/);
   const danRes = await request.get("/artists/dan-perales/");
   expect(danRes.status()).toBe(200);
   for (const path of ["/artists/andrew-bigs/", "/artists/baylingual-entertainment/"]) {
