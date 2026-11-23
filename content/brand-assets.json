@@ -187,6 +187,33 @@
       "height": 400,
       "approved": true,
       "alt": "Andrew Bigs"
+    },
+    {
+      "id": "ricky-portrait",
+      "stem": "ricky/ricky-studio-console",
+      "web": "ricky/ricky-studio-console-web",
+      "width": 1229,
+      "height": 668,
+      "webWidth": 960,
+      "approved": true,
+      "focus": "50% 72%",
+      "alt": "A person seen from behind at a large mixing console in a studio, with monitors and a computer screen above."
+    },
+    {
+      "id": "ricky-roster",
+      "stem": "ricky/ricky-roster-4x5",
+      "width": 800,
+      "height": 1000,
+      "approved": true,
+      "alt": "A person seen from behind at a large mixing console in a studio, with monitors and a computer screen above."
+    },
+    {
+      "id": "ricky-thumb",
+      "stem": "ricky/ricky-thumb-1x1",
+      "width": 400,
+      "height": 400,
+      "approved": true,
+      "alt": "A person seen from behind at a large mixing console in a studio, with monitors and a computer screen above."
     }
   ],
   "logos": {
@@ -211,6 +238,9 @@
     ],
     "dan-perales": [
       "dan-perales-card"
+    ],
+    "ricky": [
+      "ricky-roster"
     ]
   },
   "roster": {
@@ -218,13 +248,15 @@
     "andrew-bigs": "andrew-bigs-roster",
     "flavorful-croissants": "flavorful-croissants-card",
     "not-daf": "not-daf-card",
-    "dan-perales": "dan-perales-card"
+    "dan-perales": "dan-perales-card",
+    "ricky": "ricky-roster"
   },
   "thumbs": {
     "flavorful-croissants": "flavorful-croissants-thumb",
     "not-daf": "not-daf-thumb",
     "720m": "720m-thumb",
     "andrew-bigs": "andrew-bigs-thumb",
-    "dan-perales": "dan-perales-thumb"
+    "dan-perales": "dan-perales-thumb",
+    "ricky": "ricky-thumb"
   }
 }

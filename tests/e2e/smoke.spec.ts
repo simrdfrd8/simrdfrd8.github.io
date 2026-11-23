@@ -1105,6 +1105,9 @@ test("Dan Perales is a public hip-hop artist: 720M-style page, bio, listen link-
   await expect(page.locator('[data-shade="hip-hop"] [data-artist-card="dan-perales"] [data-card-photo]')).toHaveAttribute("src", /dan-perales\/dan-perales-thumb-1x1/);
   await expect(page.locator('[data-shade="hip-hop"] [data-artist-card="dan-perales"] img[src*="poncho"]')).toHaveCount(0);
   await expect(page.locator('[data-shade="hip-hop"] [data-artist-card="dan-perales"] [data-card-monogram]')).toHaveCount(0);
+  await expect(page.locator('[data-shade="edm"] [data-artist-card="ricky"] [data-card-photo]')).toHaveAttribute("src", /ricky\/ricky-thumb-1x1/);
+  await expect(page.locator('[data-shade="edm"] [data-artist-card="ricky"] [data-card-monogram]')).toHaveCount(0);
+  await expect(page.locator('[data-shade="edm"] [data-artist-card="ricky"]')).toContainText(/Audio production/i);
   await expect(page.locator('[data-shade="hip-hop"] [data-artist-card="720m"]')).toContainText(/^720M\s*Rapper/i);
   await expect(page.locator("[data-shade] [data-cat-label]")).toHaveText(["Hip-Hop", "Production", "Audio Engineering"]);
   const footer = page.locator("footer[data-site-footer]");
@@ -1242,6 +1245,15 @@ test("brand film is hidden: no home player, no Video nav, poster and site film U
   }
 });
 
+test("Ricky's page uses the studio photo as the hero and labels his work Audio production", async ({ page }) => {
+  expect((await page.goto("/artists/ricky/"))?.status()).toBe(200);
+  await expect(page.locator("h1").first()).toHaveText("Ricky");
+  await expect(page.locator("[data-hero] [data-portrait]")).toHaveAttribute("src", /ricky\/ricky-studio-console/);
+  await expect(page.locator("[data-hero]")).toContainText("Audio production");
+  await expect(page.locator("footer[data-site-footer]")).toContainText("Audio Engineering");
+  await expect(page.locator("main")).toContainText("Portfolio and credits coming soon.");
+});
+
 test("public roster is Flavorful Croissants, 720M, Not DAF, Dan Perales, and Ricky; hidden artist pages still 404", async ({ page, request }) => {
   await page.goto("/artists/");
   const blob = (await page.locator("main").innerText()) + (await page.content());
@@ -1259,7 +1271,7 @@ test("public roster is Flavorful Croissants, 720M, Not DAF, Dan Perales, and Ric
   await expect(page.locator('a[href="/artists/andrew-bigs/"], a[href="/artists/baylingual-entertainment/"]')).toHaveCount(0);
   await expect(page.locator('[href="/artists/dan-perales/"], [href="/artists/dan-perales"]').locator("[data-roster-photo]")).toHaveAttribute("src", /dan-perales\/dan-perales-card-4x5/);
   await expect(page.locator('[href="/artists/dan-perales/"], [href="/artists/dan-perales"]').locator("img[src*='poncho']")).toHaveCount(0);
-  await expect(page.locator('[href="/artists/ricky/"], [href="/artists/ricky"]').locator("[data-roster-photo]")).toHaveCount(0);
+  await expect(page.locator('[href="/artists/ricky/"], [href="/artists/ricky"]').locator("[data-roster-photo]")).toHaveAttribute("src", /ricky\/ricky-roster-4x5/);
   const danRes = await request.get("/artists/dan-perales/");
   expect(danRes.status()).toBe(200);
   for (const path of ["/artists/andrew-bigs/", "/artists/baylingual-entertainment/"]) {
