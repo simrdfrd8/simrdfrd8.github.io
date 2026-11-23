@@ -1011,7 +1011,7 @@ test("home categories fold: closed by default, a click rolls the artists out, a 
   await expect(page.locator('[data-cat-toggle="hip-hop"]')).toHaveAttribute("aria-expanded", "false");
 });
 
-test("Dan Perales is a public hip-hop artist: 720M-style page, bio, listen link-outs, no comedian claim", async ({ page }) => {
+test("Dan Perales is a public hip-hop artist: 720M-style page, bio, listen link-outs, no comedian claim", async ({ page, isMobile }) => {
   expect((await page.goto("/artists/dan-perales/"))?.status()).toBe(200);
   await expect(page.locator("h1").first()).toHaveText("Dan Perales");
   await expect(page.locator("main")).toContainText("Hip-hop");
@@ -1032,7 +1032,14 @@ test("Dan Perales is a public hip-hop artist: 720M-style page, bio, listen link-
   await expect(page.locator('main a[href="https://baylingual.bandcamp.com/album/the-psychadelic-shorty-vol-1"]')).toBeVisible();
   const singles = page.locator("[data-artist-tracks=dan-perales] [data-release]");
   await expect(singles).toHaveCount(6);
-  await expect(singles).toHaveText([/SIn Gas/, /Bajo La Pluma/, /Sonrisa/, /Gentéfication/, /Cayo/, /Theme of Ookie/]);
+  expect(await singles.evaluateAll((els) => els.map((el) => el.getAttribute("data-release")))).toEqual([
+    "dp-sin-gas",
+    "dp-bajo-la-pluma",
+    "dp-sonrisa",
+    "dp-gentefication",
+    "dp-cayo",
+    "dp-theme-of-ookie",
+  ]);
   // Newest first; bio, then the list, then the photo band.
   expect(
     await page.evaluate(() => {
@@ -1045,28 +1052,47 @@ test("Dan Perales is a public hip-hop artist: 720M-style page, bio, listen link-
     }),
   ).toBe(true);
   await expect(page.locator("#tracks-title")).toHaveText("Singles");
-  await expect(page.locator("#tracks")).toContainText("The Psychadelic Shorty");
-  for (const id of ["dp-theme-of-ookie", "dp-cayo", "dp-gentefication", "dp-sonrisa", "dp-bajo-la-pluma", "dp-sin-gas"]) {
+  await expect(page.locator("#tracks .kicker")).toHaveText("The Psychadelic Shorty");
+  const titles: Record<string, string> = {
+    "dp-sin-gas": "SIn Gas",
+    "dp-bajo-la-pluma": "Bajo La Pluma",
+    "dp-sonrisa": "Sonrisa",
+    "dp-gentefication": "Gentéfication",
+    "dp-cayo": "Cayo",
+    "dp-theme-of-ookie": "Theme of Ookie",
+  };
+  for (const id of Object.keys(titles)) {
     const row = page.locator(`[data-release="${id}"]`);
     await expect(row).toBeVisible();
-    await expect(row).toContainText("Dan Perales");
-    await expect(row.locator("img")).toHaveCount(1);
     const embed = row.locator('iframe[data-embed="spotify"]');
     await expect(embed).toHaveCount(1);
+    await expect(embed).toHaveAttribute("title", `${titles[id]} on Spotify`);
     await expect(embed).toHaveAttribute("loading", "lazy");
     const src = (await embed.getAttribute("src")) ?? "";
     expect(src).toMatch(/^https:\/\/open\.spotify\.com\/embed\/track\//);
     expect(src).not.toMatch(/auto_?play=(true|1)/i);
-    await expect(row.locator("audio, video, [data-play]")).toHaveCount(0);
+    await expect(row.locator("audio, video, [data-play], img, a")).toHaveCount(0);
   }
-  await expect(page.locator('[data-release="dp-theme-of-ookie"]')).toContainText("Theme of Ookie");
-  await expect(page.locator('[data-release="dp-cayo"]')).toContainText("Cayo");
-  await expect(page.locator('[data-release="dp-cayo"]')).toContainText("prod.");
-  await expect(page.locator('[data-release="dp-cayo"] a[href="https://open.spotify.com/track/2jtGVVHtFTve2L9Yq2e0hV"]')).toBeVisible();
-  await expect(page.locator('[data-release="dp-cayo"] a[href="https://music.apple.com/us/album/cayo-feat-anthony-del-sol-single/1852012313"]')).toBeVisible();
   await expect(page.locator("[data-artist-tracks=dan-perales] iframe[data-embed=spotify]")).toHaveCount(6);
-  // No per-single Bandcamp URLs in the catalog; the album link stays on the intro buttons.
-  await expect(page.locator("[data-artist-tracks=dan-perales] a[href*='bandcamp.com']")).toHaveCount(0);
+  // List is embeds only: no leftover title/credit/store-link chrome, no per-single Bandcamp.
+  await expect(page.locator("[data-artist-tracks=dan-perales] a")).toHaveCount(0);
+  await expect(page.locator("[data-artist-tracks=dan-perales]")).not.toContainText("Apple Music");
+  await expect(page.locator("[data-artist-tracks=dan-perales]")).not.toContainText("prod.");
+  // On phones, the last embed's play control (right side of the widget) stays clear of the floating Support heart.
+  if (isMobile) {
+    const last = page.locator('[data-release="dp-theme-of-ookie"] iframe[data-embed="spotify"]');
+    await last.scrollIntoViewIfNeeded();
+    const overlapsHeart = await page.evaluate(() => {
+      const iframe = document.querySelector('[data-release="dp-theme-of-ookie"] iframe[data-embed="spotify"]');
+      const heart = document.querySelector("[data-mobile-support]");
+      if (!iframe || !heart) return true;
+      const r = iframe.getBoundingClientRect();
+      const h = heart.getBoundingClientRect();
+      const play = { left: r.right - 52, right: r.right, top: r.top, bottom: r.bottom };
+      return !(play.right <= h.left || play.left >= h.right || play.bottom <= h.top || play.top >= h.bottom);
+    });
+    expect(overlapsHeart).toBe(false);
+  }
   await page.goto("/");
   await expect(page.locator('[data-shade="hip-hop"] [data-artist-card="dan-perales"]')).toContainText(/Hip-hop/i);
   await expect(page.locator('[data-shade="hip-hop"] [data-artist-card="dan-perales"]')).not.toContainText(/comedian|comedy/i);
