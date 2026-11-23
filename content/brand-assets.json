@@ -57,6 +57,36 @@
       "alt": "Dan Perales in a rainbow crochet poncho"
     },
     {
+      "id": "dan-perales-portrait",
+      "stem": "dan-perales/dan-perales-portrait",
+      "web": "dan-perales/dan-perales-portrait-web",
+      "width": 1500,
+      "height": 2000,
+      "webWidth": 1200,
+      "approved": true,
+      "alt": "Dan Perales in a straw fedora, black-and-white portrait"
+    },
+    {
+      "id": "dan-perales-collage-wide",
+      "stem": "dan-perales/dan-perales-collage-wide",
+      "web": "dan-perales/dan-perales-collage-wide-1200",
+      "width": 2400,
+      "height": 1000,
+      "webWidth": 1200,
+      "approved": true,
+      "alt": "Photographs of Dan Perales: a black-and-white fedora portrait beside a color photograph in a rainbow crochet poncho"
+    },
+    {
+      "id": "dan-perales-collage-square",
+      "stem": "dan-perales/dan-perales-collage-square",
+      "web": "dan-perales/dan-perales-collage-square-1200",
+      "width": 2048,
+      "height": 2048,
+      "webWidth": 1200,
+      "approved": true,
+      "alt": "Dan Perales wearing a rainbow crochet poncho"
+    },
+    {
       "id": "flavorful-croissants-card",
       "stem": "flavorful-croissants/fc-collage-card-4x5",
       "width": 800,

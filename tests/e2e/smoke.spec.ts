@@ -1011,7 +1011,7 @@ test("home categories fold: closed by default, a click rolls the artists out, a 
   await expect(page.locator('[data-cat-toggle="hip-hop"]')).toHaveAttribute("aria-expanded", "false");
 });
 
-test("Dan Perales is a public hip-hop artist: bio, triangle mark, listen link-outs, no face or comedian claim", async ({ page }) => {
+test("Dan Perales is a public hip-hop artist: 720M-style page, bio, listen link-outs, no comedian claim", async ({ page }) => {
   expect((await page.goto("/artists/dan-perales/"))?.status()).toBe(200);
   await expect(page.locator("h1").first()).toHaveText("Dan Perales");
   await expect(page.locator("main")).toContainText("Hip-hop");
@@ -1019,7 +1019,14 @@ test("Dan Perales is a public hip-hop artist: bio, triangle mark, listen link-ou
   await expect(page.locator("main")).toContainText("Dan P");
   await expect(page.locator("main")).toContainText("Psychadelic Shorty");
   await expect(page.locator("main")).not.toContainText(/comedian|comedy|persona|same person/i);
-  await expect(page.locator("img[data-portrait], [data-roster-photo], img[src*='poncho'], img[src*='dan-perales-card']")).toHaveCount(0);
+  await expect(page.locator("[data-artist-page=dan-perales] img[data-portrait]")).toHaveCount(1);
+  await expect(page.locator("[data-collage]")).toHaveCount(1);
+  await expect(page.locator("#about h2")).toHaveText("Six singles from The Psychadelic Shorty, out now.");
+  await expect(page.locator("#about [data-bio]")).toHaveCount(3);
+  await expect(page.locator("#about").getByRole("link", { name: /^Listen$/i })).toHaveAttribute("href", /#releases$/);
+  await expect(page.locator("#about").getByRole("link", { name: /^Spotify$/i })).toBeVisible();
+  await expect(page.locator("main")).not.toContainText(/Made with friends|Look closer|Hover, or tap, to look into the lenses/i);
+  await expect(page.locator("#look-closer, [data-loupe], [data-artist-tracks]")).toHaveCount(0);
   await expect(page.locator('main a[href="https://open.spotify.com/artist/7d0UBhFGUmCcg19sesZtEx"]').first()).toBeVisible();
   await expect(page.locator('main a[href="https://music.apple.com/us/artist/dan-perales/1840482764"]')).toBeVisible();
   await expect(page.locator('main a[href="https://baylingual.bandcamp.com/album/the-psychadelic-shorty-vol-1"]')).toBeVisible();

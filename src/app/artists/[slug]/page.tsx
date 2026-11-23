@@ -4,6 +4,7 @@ import { catalog, getArtist } from "@/lib/catalog";
 import { publicArtistVisible } from "@/lib/public-visibility";
 import { ArtistPage } from "@/components/ArtistPage";
 import { Artist720mIntro } from "@/components/brand/Artist720m";
+import { ArtistDanPeralesIntro } from "@/components/brand/ArtistDanPerales";
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -19,5 +20,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const artist = getArtist((await params).slug);
   if (!artist || !publicArtistVisible(artist.slug)) notFound();
-  return <ArtistPage artist={artist} intro={artist.slug === "720m" ? <Artist720mIntro artist={artist} /> : undefined} />;
+  const intro = artist.slug === "720m" ? <Artist720mIntro artist={artist} /> : artist.slug === "dan-perales" ? <ArtistDanPeralesIntro artist={artist} /> : undefined;
+  return <ArtistPage artist={artist} intro={intro} />;
 }

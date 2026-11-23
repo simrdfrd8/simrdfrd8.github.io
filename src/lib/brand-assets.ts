@@ -43,6 +43,12 @@ export const art720m = () => ({
   lens: brandImage("720m-lens"),
 });
 
+export const artDanPerales = () => ({
+  portrait: brandImage("dan-perales-portrait"),
+  collageWide: brandImage("dan-perales-collage-wide"),
+  collageSquare: brandImage("dan-perales-collage-square"),
+});
+
 /** Full-bleed artist-page hero portrait (`<slug>-portrait` in the manifest), same pattern as the 720M page. */
 export const artistPortrait = (slug: string) => brandImage(`${slug}-portrait`);
 
