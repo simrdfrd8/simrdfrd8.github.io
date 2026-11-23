@@ -87,6 +87,14 @@
       "alt": "Dan Perales wearing a rainbow crochet poncho"
     },
     {
+      "id": "dan-perales-thumb",
+      "stem": "dan-perales/dan-perales-thumb-1x1",
+      "width": 400,
+      "height": 400,
+      "approved": true,
+      "alt": "Dan Perales in a straw fedora, black-and-white portrait"
+    },
+    {
       "id": "flavorful-croissants-card",
       "stem": "flavorful-croissants/fc-collage-card-4x5",
       "width": 800,
@@ -200,18 +208,23 @@
     ],
     "not-daf": [
       "not-daf-card"
+    ],
+    "dan-perales": [
+      "dan-perales-card"
     ]
   },
   "roster": {
     "720m": "720m-roster",
     "andrew-bigs": "andrew-bigs-roster",
     "flavorful-croissants": "flavorful-croissants-card",
-    "not-daf": "not-daf-card"
+    "not-daf": "not-daf-card",
+    "dan-perales": "dan-perales-card"
   },
   "thumbs": {
     "flavorful-croissants": "flavorful-croissants-thumb",
     "not-daf": "not-daf-thumb",
     "720m": "720m-thumb",
-    "andrew-bigs": "andrew-bigs-thumb"
+    "andrew-bigs": "andrew-bigs-thumb",
+    "dan-perales": "dan-perales-thumb"
   }
 }

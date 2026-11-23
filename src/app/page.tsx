@@ -12,7 +12,7 @@ import { HomeFilmSection } from "@/components/HomeFilmGate";
  * Landing page, kept extremely simple: mark + one line, three plain categories that fold open to their artists,
  * one path to merch (and beats when public music is visible); the zoomable San Diego surf map only when publicSurfMapVisible is on; the brand film only when publicFilmVisible is on.
  */
-const ROLE: Record<string, string> = { "hip-hop": "Rapper", edm: "DJ", production: "Producer" };
+const ROLE: Record<string, string> = { "hip-hop": "Rapper", edm: "Audio Engineering", production: "Producer" };
 
 export default function Home() {
   const heroMark = brandLogo("cream");

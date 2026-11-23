@@ -161,7 +161,7 @@
       "Booking club nights, private events and livestreams now."
     ],
     "bioStatus": "draft",
-    "accent": "#B6FF3B",
+    "accent": "#8C7CFF",
     "accentInk": "#17121C",
     "genres": [
       "EDM"
@@ -179,7 +179,7 @@
       }
     ],
     "featured": true,
-    "order": 4,
+    "order": 6,
     "bookable": true,
     "bookingNote": "Club nights, private events, livestreams, guest mixes.",
     "events": [],
@@ -216,7 +216,7 @@
       }
     ],
     "motif": "triangles",
-    "category": "edm",
+    "category": "production",
     "cardRole": "DJ",
     "cardBlurb": "The crew's DJ. Not DAF's videos \"Grey Palace\" and \"Effortless System\" introduce a world of triangle-headed characters."
   },

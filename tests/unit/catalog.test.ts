@@ -40,18 +40,18 @@ const raw = () => ({
 });
 
 describe("brand (Bruise) roster", () => {
-  it("lists five artists in shade order Hip-Hop · EDM · Production with the Bruise colours", () => {
+  it("lists five artists.json artists in shade order Hip-Hop · Production with the Bruise colours", () => {
     const artists = ArtistsFile.parse(load("artists"));
     const rank = { "hip-hop": 0, edm: 1, production: 2 } as const;
     const listed = artists.filter((a) => a.listed).sort((a, b) => rank[a.category!] - rank[b.category!] || a.order - b.order);
-    expect(listed.map((a) => a.slug)).toEqual(["720m", "dan-perales", "andrew-bigs", "not-daf", "flavorful-croissants"]);
-    expect(listed.map((a) => a.category)).toEqual(["hip-hop", "hip-hop", "hip-hop", "edm", "production"]);
+    expect(listed.map((a) => a.slug)).toEqual(["720m", "dan-perales", "andrew-bigs", "flavorful-croissants", "not-daf"]);
+    expect(listed.map((a) => a.category)).toEqual(["hip-hop", "hip-hop", "hip-hop", "production", "production"]);
     const colour = { "hip-hop": "#FF7A59", edm: "#B6FF3B", production: "#8C7CFF" };
     for (const a of listed) expect(a.accent.toUpperCase()).toBe(colour[a.category!]);
     // no adjectives before the categories in any public copy
     const pub = ["artists", "site", "products", "services"].map((n) => JSON.stringify(load(n))).join("\n");
     expect(pub).not.toMatch(BANNED_WORDS);
-    expect(CATEGORIES.map((c) => [c.label, c.color])).toEqual([["Hip-Hop", "#FF7A59"], ["EDM", "#B6FF3B"], ["Production", "#8C7CFF"]]);
+    expect(CATEGORIES.map((c) => [c.label, c.color])).toEqual([["Hip-Hop", "#FF7A59"], ["Audio Engineering", "#B6FF3B"], ["Production", "#8C7CFF"]]);
   });
 
   it("uses 720M's official bio verbatim and keeps Dan Perales in Hip-Hop (not comedy)", () => {

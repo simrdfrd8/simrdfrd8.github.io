@@ -29,9 +29,9 @@ describe("public visibility flags", () => {
     expect(VIDEO_COMING_SOON).toBe("Videos coming soon.");
   });
 
-  it("limits the public Artists roster to Flavorful Croissants, 720M, Not DAF, and Dan Perales", () => {
+  it("limits the public Artists roster to Flavorful Croissants, 720M, Not DAF, Dan Perales, and Ricky", () => {
     const slugs = publicArtistSlugs();
-    expect(slugs).toEqual(["flavorful-croissants", "720m", "not-daf", "dan-perales"]);
+    expect(slugs).toEqual(["flavorful-croissants", "720m", "not-daf", "dan-perales", "ricky"]);
     expect(publicArtistVisible("flavorful-croissants")).toBe(true);
     expect(publicArtistVisible("720m")).toBe(true);
     expect(publicArtistVisible("not-daf")).toBe(true);
@@ -40,7 +40,7 @@ describe("public visibility flags", () => {
     expect(publicArtistVisible("baylingual-entertainment")).toBe(false);
     expect(publicArtistVisible("ricky")).toBe(true);
     expect(publicArtistVisible("ookie")).toBe(true);
-    expect(listedArtists().map((a) => a.slug)).toEqual(["720m", "dan-perales", "not-daf", "flavorful-croissants"]);
+    expect(listedArtists().map((a) => a.slug)).toEqual(["720m", "dan-perales", "ricky", "flavorful-croissants", "not-daf"]);
     expect(listedArtists().find((a) => a.slug === "not-daf")?.name).toBe("Not DAF");
   });
 

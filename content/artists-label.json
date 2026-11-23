@@ -2,7 +2,7 @@
   {
     "slug": "ricky",
     "name": "Ricky",
-    "role": "Runs Flavorful Music · engineer",
+    "role": "Audio Engineering",
     "tagline": "Runs Flavorful Music with Ookie. Behind the board: recording, mixing and mastering.",
     "bio": [
       "Ricky runs Flavorful Music with Ookie and engineers the crew's records. Book a recording, mixing or mastering session.",
@@ -19,7 +19,7 @@
     ],
     "links": [],
     "featured": true,
-    "order": 20,
+    "order": 4,
     "bookable": true,
     "bookingNote": "Mixing, engineering, toplines and features.",
     "serviceSlugs": [
@@ -34,7 +34,9 @@
         "value": "Mixing · Mastering · Recording"
       }
     ],
-    "listed": false
+    "category": "edm",
+    "cardRole": "Audio Engineering",
+    "listed": true
   },
   {
     "slug": "ookie",
