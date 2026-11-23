@@ -83,7 +83,7 @@ describe("public visibility flags", () => {
     expect(listed.map((t) => t.id)).toEqual(["findthehab", "stayathomesaturday", "srzydd", "ride", "da-amo", "bay-area", "aftrthat", "loudassprofecyz", "fannypack", "sugar-hi", "pandaspk", "bakin", "mellow-life", "blindspot"]);
     expect(listed.map((t) => t.title)).toEqual(["findthehab", "stayathomesaturday", "srzydd", "Ride", "Da Amo", "Bay Area", "aftrthat", "loudassprofecyz", "FANNYPACK", "sugar hi", "pandaspk", "bakin", "Mellow Life", "Blindspot"]);
     const byId = Object.fromEntries(listed.map((t) => [t.id, t]));
-    expect(listed.filter((t) => t.id !== "pandaspk").every((t) => t.credit === "720M × Flavorful Croissants")).toBe(true);
+    expect(listed.filter((t) => t.id !== "pandaspk").every((t) => t.credit === "720M")).toBe(true);
     expect(byId.pandaspk.credit).toBe("720M × Dan Perales");
     expect(listed.filter((t) => t.id !== "loudassprofecyz").map((t) => t.src)).toEqual([
       "/media/720m-findthehab/audio.mp3",

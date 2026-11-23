@@ -322,7 +322,7 @@ test("720M page: bio verbatim, with credits box and Look closer removed", async 
   await expect(page.locator("main")).not.toContainText(/photo credit|confirm legal/i);
   await expect(page.locator("#about").getByRole("link", { name: /^Listen$/i })).toBeVisible();
   await expect(page.locator("#about").getByRole("link", { name: /^SoundCloud$/i })).toBeVisible();
-  await expect(page.locator("[data-artist-tracks] [data-track]")).toHaveCount(13);
+  await expect(page.locator("[data-artist-tracks] [data-track]")).toHaveCount(14);
   await expect(page.locator("#about")).not.toContainText(/Made with friends|Ambient Night|Levis|with James Eagle/i);
   await expect(page.locator("#look-closer, [data-loupe]")).toHaveCount(0);
   await expect(page.getByRole("button", { name: /Look closer/i })).toHaveCount(0);
@@ -577,7 +577,7 @@ test("Flavorful Croissants page offers the curated public beats in allowlist ord
 test("720M page offers the curated vocal tracks in allowlist order, play-only", async ({ page }) => {
   const res = await page.goto("/artists/720m/");
   expect(res?.status()).toBe(200);
-  const credit = "720M × Flavorful Croissants";
+  const credit = "720M";
   const producedBy = "Flavorful Croissants";
   const expected = [
     { id: "findthehab", title: "findthehab", credit, src: true, producedBy },
@@ -601,6 +601,9 @@ test("720M page offers the curated vocal tracks in allowlist order, play-only", 
     const row = page.locator(`[data-track=${t.id}]`);
     await expect(row).toContainText(t.title);
     await expect(row).toContainText(t.credit);
+    if (t.id !== "pandaspk") {
+      await expect(row).not.toContainText("× Flavorful Croissants");
+    }
     if ("producedBy" in t && t.producedBy) {
       await expect(row).toContainText(`Produced by ${t.producedBy}`);
     } else {
