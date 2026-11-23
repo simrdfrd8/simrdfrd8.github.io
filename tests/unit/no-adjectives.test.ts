@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import path from "node:path";
 
-/** Owner rule: no adjectives before the categories (EDM, hip-hop and production). The banned words must not appear anywhere in content/ or src/. */
+/** Owner rule: no adjectives before the categories (hip-hop, production and audio engineering). The banned words must not appear anywhere in content/ or src/. */
 // spelled in pieces so the guard itself doesn't trip the repo leak scan
 const BANNED = new RegExp(["heart" + "felt", "ed" + "gy", "under" + "neath it all", "dis" + "torted"].join("|"), "i");
 const ROOT = path.join(__dirname, "../..");

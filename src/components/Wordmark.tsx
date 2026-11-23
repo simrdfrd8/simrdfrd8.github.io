@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { TriangleMark } from "./ui";
 import { brandLogo } from "@/lib/brand-assets";
 
-/** Brandy's nav logo: the label mark (logo-text.svg) + FLAVORFUL MUSIC + the three shade dots (Hip-Hop · EDM · Production). */
+/** Brandy's nav logo: the label mark (logo-text.svg) + FLAVORFUL MUSIC + the three shade dots (Hip-Hop · Production · Audio Engineering). */
 export function Wordmark({ className, size = "md" }: { className?: string; size?: "md" | "lg" }) {
   const logo = brandLogo("text");
   const lg = size === "lg";
@@ -19,8 +19,8 @@ export function Wordmark({ className, size = "md" }: { className?: string; size?
         Flavorful Music
         <span aria-hidden="true" className="ml-1.5 inline-flex gap-[3px]">
           <i className="h-2 w-2 rounded-full bg-hiphop" />
-          <i className="h-2 w-2 rounded-full bg-edm" />
           <i className="h-2 w-2 rounded-full bg-prod" />
+          <i className="h-2 w-2 rounded-full bg-edm" />
         </span>
       </span>
     </Link>

@@ -59,7 +59,7 @@ export const ArtistSchema = z.object({
   parentArtist: slug.optional(),
   /** "rich" pages render every optional section (discography, mixes, events, booking). */
   layout: z.enum(["standard", "rich"]).default("standard"),
-  /** Brand shade (Bruise palette): Hip-Hop · Audio Engineering (id edm, acid green) · Production, in that order. Unset = not a showcased artist. */
+  /** Brand shade (Bruise palette): Hip-Hop · Production · Audio Engineering (id edm, acid green), in that order. Unset = not a showcased artist. */
   category: z.enum(["hip-hop", "edm", "production"]).optional(),
   /** false = keeps its page but is left out of the roster (e.g. the people who run the label). */
   listed: z.boolean().default(true),
@@ -74,8 +74,8 @@ export const ArtistSchema = z.object({
 
 export const CATEGORIES = [
   { id: "hip-hop", label: "Hip-Hop", color: "#FF7A59", shade: "shade-hiphop" },
-  { id: "edm", label: "Audio Engineering", color: "#B6FF3B", shade: "shade-edm" },
   { id: "production", label: "Production", color: "#8C7CFF", shade: "shade-prod" },
+  { id: "edm", label: "Audio Engineering", color: "#B6FF3B", shade: "shade-edm" },
 ] as const;
 export type CategoryId = (typeof CATEGORIES)[number]["id"];
 

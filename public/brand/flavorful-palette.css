@@ -1,5 +1,5 @@
 /* Flavorful Music: Color tokens v3, palette #8 "Bruise" (final structure, Oct 20, 2026).
-   Three shades, in order: Hip-Hop · EDM · Production. Cream #F8E8D2 is the neutral logo color only (not a shade).
+   Three shades, in order: Hip-Hop · Production · Audio Engineering. Cream #F8E8D2 is the neutral logo color only (not a shade).
    Ratios are WCAG 2.x contrast. "base" = --fm-base #17121C. The retired Ink & Voltage tokens are in flavorful-palette-ink-voltage-retired.css */
 :root {
   /* ---- Neutral base (plum-black) ---- */
@@ -21,7 +21,7 @@
   --fm-hiphop-deep:  #683631; /* strong bg; text 8.36. Raw accent is only 3.79 on it, so use -text */
   --fm-hiphop-on:    #17121C; /* text on accent fill: 7.18 */
 
-  /* ---- 2 · EDM: Acid Bloom ---- */
+  /* ---- 3 · Audio Engineering (id edm): Acid Bloom ---- */
   --fm-edm:          #B6FF3B; /* 15.23 base · 13.94 surface · 12.68 raised · 10.81 tint */
   --fm-edm-text:     #B6FF3B; /* passes everywhere; 5.38 on deep */
   --fm-edm-hover:    #C8FF6C; /* 15.77 base */
@@ -30,7 +30,7 @@
   --fm-edm-deep:     #4F6527; /* strong bg; text 5.60 */
   --fm-edm-on:       #17121C; /* text on accent fill: 15.23 */
 
-  /* ---- 3 · Production: Bruise Violet ---- */
+  /* ---- 2 · Production: Bruise Violet ---- */
   --fm-prod:         #8C7CFF; /* 5.65 base · 5.17 surface · 4.71 raised · 4.71 tint (AA, thin margin) */
   --fm-prod-text:    #A99DFF; /* preferred for small text: 7.86 base · 6.54 raised · 6.54 tint · 4.53 deep */
   --fm-prod-hover:   #A99DFF;

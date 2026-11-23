@@ -162,7 +162,7 @@ export const assetCredit = (a: { artist: string | null; artists?: string[] }) =>
 export const assetHasArtist = (a: { artist: string | null; artists?: string[] }, slug: string) => a.artist === slug || (a.artists ?? []).includes(slug);
 
 const catRank = (a: { category?: string }) => { const i = CATEGORIES.findIndex((c) => c.id === a.category); return i === -1 ? CATEGORIES.length : i; };
-/** The roster: listed identities, grouped by shade (Hip-Hop · EDM · Production), then by order. */
+/** The roster: listed identities, grouped by shade (Hip-Hop · Production · Audio Engineering), then by order. */
 export const listedArtists = () => catalog.artists.filter((a) => a.listed && publicArtistVisible(a.slug)).sort((a, b) => catRank(a) - catRank(b) || a.order - b.order);
 export const categoryOf = (id?: string) => CATEGORIES.find((c) => c.id === id);
 export const childArtists = (slug: string) => catalog.artists.filter((a) => a.parentArtist === slug && publicArtistVisible(a.slug)).sort((a, b) => a.order - b.order);

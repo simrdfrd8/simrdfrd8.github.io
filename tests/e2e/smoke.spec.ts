@@ -241,23 +241,23 @@ test("hierarchy: Baylingual Entertainment sits under Dan Perales", async ({ page
 test("homepage is simple: mark + one line, three plain categories to the artists, merch then beats, brand film", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator("h1")).toHaveText("Make art with friends.");
-  await expect(page.locator("main header p").first()).toHaveText("A San Diego artist collective disguised as a record label: hip-hop, EDM and production.");
-  await expect(page.locator("[data-shade] [data-cat-label]")).toHaveText(["Hip-Hop", "Audio Engineering", "Production"]);
-  expect(await page.locator("[data-artist-card]").evaluateAll((els) => els.map((e) => e.getAttribute("data-artist-card")))).toEqual(["720m", "dan-perales", "ricky", "flavorful-croissants", "not-daf"]);
+  await expect(page.locator("main header p").first()).toHaveText("A San Diego artist collective disguised as a record label: hip-hop, production and audio engineering.");
+  await expect(page.locator("[data-shade] [data-cat-label]")).toHaveText(["Hip-Hop", "Production", "Audio Engineering"]);
+  expect(await page.locator("[data-artist-card]").evaluateAll((els) => els.map((e) => e.getAttribute("data-artist-card")))).toEqual(["720m", "dan-perales", "flavorful-croissants", "not-daf", "ricky"]);
   await expect(page.locator('[data-artist-card="not-daf"] img')).toHaveAttribute("src", /not-daf\/nd-thumb-1x1/);
   await expect(page.locator("header [data-wordmark] img").first()).toHaveAttribute("src", "/brand/logo/svg/logo-text.svg");
   await expect(page.locator("[data-hero-mark] img")).toHaveAttribute("src", "/brand/logo/svg/logo-cream.svg");
-  expect(await page.locator("[data-cat-toggle] img").evaluateAll((els) => els.map((e) => e.getAttribute("src")))).toEqual(["/brand/logo/svg/logo-coral-hiphop.svg", "/brand/logo/svg/logo-acid-edm.svg", "/brand/logo/svg/logo-violet-prod.svg"]);
+  expect(await page.locator("[data-cat-toggle] img").evaluateAll((els) => els.map((e) => e.getAttribute("src")))).toEqual(["/brand/logo/svg/logo-coral-hiphop.svg", "/brand/logo/svg/logo-violet-prod.svg", "/brand/logo/svg/logo-acid-edm.svg"]);
   await expect(page.locator("a[data-home-merch]")).toHaveAttribute("href", /\/shop\/merch\/?$/);
-  await expect(page.locator("a[data-home-producers]")).toHaveAttribute("href", /\/shop\/sample-packs\/?$/);
+  await expect(page.locator("a[data-home-producers]")).toHaveCount(0);
   if (MUSIC) {
     await expect(page.locator("a[data-home-beats]")).toHaveAttribute("href", /\/music\/?#buy-beats/);
-    expect(await page.locator("#shop a").evaluateAll((els) => els.map((e) => (e.hasAttribute("data-home-merch") ? "merch" : e.hasAttribute("data-home-beats") ? "beats" : e.hasAttribute("data-home-producers") ? "producers" : "?")))).toEqual(["merch", "beats", "producers"]);
+    expect(await page.locator("#shop a").evaluateAll((els) => els.map((e) => (e.hasAttribute("data-home-merch") ? "merch" : e.hasAttribute("data-home-beats") ? "beats" : e.hasAttribute("data-home-producers") ? "producers" : "?")))).toEqual(["merch", "beats"]);
     const [merchBox, beatsBox] = [(await page.locator("a[data-home-merch]").boundingBox())!, (await page.locator("a[data-home-beats]").boundingBox())!];
     expect(merchBox.y < beatsBox.y - 1 || (Math.abs(merchBox.y - beatsBox.y) <= 1 && merchBox.x < beatsBox.x)).toBe(true);
   } else {
     await expect(page.locator("a[data-home-beats]")).toHaveCount(0);
-    expect(await page.locator("#shop a").evaluateAll((els) => els.map((e) => (e.hasAttribute("data-home-merch") ? "merch" : e.hasAttribute("data-home-producers") ? "producers" : "?")))).toEqual(["merch", "producers"]);
+    expect(await page.locator("#shop a").evaluateAll((els) => els.map((e) => (e.hasAttribute("data-home-merch") ? "merch" : e.hasAttribute("data-home-beats") ? "beats" : e.hasAttribute("data-home-producers") ? "producers" : "?")))).toEqual(["merch"]);
   }
   if (MAP) await expect(page.locator("[data-home-surf-map]")).toBeVisible();
   else await expect(page.locator("[data-home-surf-map], #surf-map")).toHaveCount(0);
@@ -580,6 +580,7 @@ test("720M page offers the curated vocal tracks in allowlist order, play-only", 
   const credit = "720M × Flavorful Croissants";
   const producedBy = "Flavorful Croissants";
   const expected = [
+    { id: "findthehab", title: "findthehab", credit, src: true, producedBy },
     { id: "stayathomesaturday", title: "stayathomesaturday", credit, src: true, producedBy },
     { id: "srzydd", title: "srzydd", credit, src: true, producedBy },
     { id: "ride", title: "Ride", credit, src: true, producedBy },
@@ -664,7 +665,7 @@ test("artist titles never break mid-word and fit the viewport", async ({ page })
     }
   }
   await page.goto("/artists/flavorful-croissants/");
-  await expect(page.locator("main, body").first()).toContainText("Production · EDM & hip-hop");
+  await expect(page.locator("main, body").first()).toContainText("Production · Audio Engineering & hip-hop");
 });
 
 /** The public set (owner, Nov 2, 2026: six designs set aside at 10:02 PM PT, four left; four picks added at 10:36 PM PT; one of those picks set aside Nov 10, 2026), in shop order; without the public filter every listed piece shows. */
@@ -970,8 +971,8 @@ test("home categories fold: closed by default, a click rolls the artists out, a 
   await page.goto("/");
   const toggles = page.locator("[data-cat-toggle]");
   await expect(toggles).toHaveCount(3);
-  await expect(page.locator("[data-cat-count]")).toHaveText(["2", "1", "2"]);
-  for (const id of ["hip-hop", "edm", "production"]) {
+  await expect(page.locator("[data-cat-count]")).toHaveText(["2", "2", "1"]);
+  for (const id of ["hip-hop", "production", "edm"]) {
     const t = page.locator(`[data-cat-toggle="${id}"]`);
     await expect(t).toHaveAttribute("aria-expanded", "false");
     const panel = page.locator(`#${await t.getAttribute("aria-controls")}`);
@@ -1109,7 +1110,7 @@ test("Dan Perales is a public hip-hop artist: 720M-style page, bio, listen link-
   await expect(page.locator('[data-shade="hip-hop"] [data-artist-card="dan-perales"] img[src*="poncho"]')).toHaveCount(0);
   await expect(page.locator('[data-shade="hip-hop"] [data-artist-card="dan-perales"] [data-card-monogram]')).toHaveCount(0);
   await expect(page.locator('[data-shade="hip-hop"] [data-artist-card="720m"]')).toContainText(/^720M\s*Rapper/i);
-  await expect(page.locator("[data-shade] [data-cat-label]")).toHaveText(["Hip-Hop", "Audio Engineering", "Production"]);
+  await expect(page.locator("[data-shade] [data-cat-label]")).toHaveText(["Hip-Hop", "Production", "Audio Engineering"]);
   const friends = page.locator("footer[data-site-footer]").getByRole("navigation", { name: "Friends" });
   await expect(friends.locator(".fr-name")).toHaveText(["James Eagle", "Dan Perales", "Andrew Biggs"]);
   await expect(friends.locator("a.fr-link[href='https://open.spotify.com/artist/7d0UBhFGUmCcg19sesZtEx']")).toBeVisible();

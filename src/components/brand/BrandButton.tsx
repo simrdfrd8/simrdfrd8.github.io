@@ -23,8 +23,8 @@ export function ShadeBar({ className }: { className?: string }) {
   return (
     <div className={clsx("flex h-1.5 w-60", className)} aria-hidden="true">
       <i className="flex-1 bg-hiphop" />
-      <i className="flex-1 bg-edm" />
       <i className="flex-1 bg-prod" />
+      <i className="flex-1 bg-edm" />
     </div>
   );
 }

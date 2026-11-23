@@ -153,10 +153,10 @@
   {
     "slug": "not-daf",
     "name": "Not DAF",
-    "role": "DJ · EDM · animated videos",
+    "role": "DJ · Audio Engineering · animated videos",
     "tagline": "A new DJ project from the workshop. The triangle crew is in charge of the visuals.",
     "bio": [
-      "Not DAF is a new DJ project from the Flavorful Music workshop: EDM sets with a producer's ear. Sets, mixes and dates are on the way.",
+      "Not DAF is a new DJ project from the Flavorful Music workshop: audio engineering sets with a producer's ear. Sets, mixes and dates are on the way.",
       "The colourful triangle-headed crew is Not DAF's visual signature. They dance through the Grey Palace and Effortless System videos, from a sunset beach to a neon club and a comic-book city.",
       "Booking club nights, private events and livestreams now."
     ],
@@ -164,7 +164,7 @@
     "accent": "#8C7CFF",
     "accentInk": "#17121C",
     "genres": [
-      "EDM"
+      "Audio Engineering"
     ],
     "disciplines": [
       "DJ sets",
@@ -223,10 +223,10 @@
   {
     "slug": "flavorful-croissants",
     "name": "Flavorful Croissants",
-    "role": "Production · EDM & hip-hop",
+    "role": "Production · Audio Engineering & hip-hop",
     "tagline": "Welcome to the workshop.",
     "bio": [
-      "Flavorful Croissants is the producer at the centre of Flavorful Music: beat tapes, hip-hop, EDM sketches and songs made with friends out of a San Diego workshop.",
+      "Flavorful Croissants is the producer at the centre of Flavorful Music: beat tapes, hip-hop, audio engineering sketches and songs made with friends out of a San Diego workshop.",
       "The catalogue runs from the 2019 album Introduction to Not Being a Jackass and the DJ Premier-tipped beat tape Feelings that Collected Dust Vol. I to solo techno sketches and a long run of collaborations with 720M, including the single getdownix.",
       "Singer, rapper, songwriter, producer and audio-engineering student, drawn to foley, storytelling and psychoacoustics. Make art with friends till I die."
     ],
@@ -235,7 +235,7 @@
     "accentInk": "#17121C",
     "genres": [
       "Hip-hop",
-      "EDM",
+      "Audio Engineering",
       "Instrumental",
       "Singer-songwriter"
     ],

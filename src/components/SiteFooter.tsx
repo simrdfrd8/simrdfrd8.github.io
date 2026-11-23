@@ -17,7 +17,7 @@ export function SiteFooter() {
           <Wordmark size="lg" />
           <p className="brand-h mt-8 text-[22px] tracking-[3px] text-cream">Make art with friends.</p>
           <p className="mt-2 text-xs font-semibold tracking-[2px] uppercase">
-            <span className="hl-hh">Hip-Hop</span> <span className="text-muted">·</span> <span className="hl-edm">EDM</span> <span className="text-muted">·</span> <span className="hl-prod">Production</span>
+            <span className="hl-hh">Hip-Hop</span> <span className="text-muted">·</span> <span className="hl-prod">Production</span> <span className="text-muted">·</span> <span className="hl-edm">Audio Engineering</span>
           </p>
           <div className="mt-5">
             <FriendsRow />

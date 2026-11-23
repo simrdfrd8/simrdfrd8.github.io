@@ -2,7 +2,7 @@
   "publicMusicVisible": false,
   "publicSurfMapVisible": false,
   "publicFilmVisible": false,
-  "_note": "Build-time switches. false = hide that public surface. publicArtistSlugs is the public Artists roster (restore by adding slugs back). publicBeats is the curated public beat list on artist pages while publicMusicVisible is false (restore or grow by editing the array). Sources stay in the repo; deployed output is pruned. Authorized Nov 18\u201323, 2026 (t248u\u2013t274u). public720mTracks is the curated vocal track list on 720M's page (restore or grow by editing the array).",
+  "_note": "Build-time switches. false = hide that public surface. publicArtistSlugs is the public Artists roster (restore by adding slugs back). publicBeats is the curated public beat list on artist pages while publicMusicVisible is false (restore or grow by editing the array). Sources stay in the repo; deployed output is pruned. Authorized Nov 18–23, 2026 (t248u–t278u). public720mTracks is the curated vocal track list on 720M's page (restore or grow by editing the array).",
   "publicArtistSlugs": [
     "flavorful-croissants",
     "720m",
@@ -18,6 +18,7 @@
     "aftrthat"
   ],
   "public720mTracks": [
+    "findthehab",
     "stayathomesaturday",
     "srzydd",
     "ride",

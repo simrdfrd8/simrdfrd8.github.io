@@ -3,7 +3,7 @@ import { listedArtists } from "@/lib/catalog";
 import { ArtistCard } from "@/components/ArtistCard";
 import { Section } from "@/components/ui";
 
-export const metadata: Metadata = { title: "Artists", description: "The Flavorful Music roster: EDM, hip-hop and production. A small roster, made with friends.", alternates: { canonical: "/artists" } };
+export const metadata: Metadata = { title: "Artists", description: "The Flavorful Music roster: hip-hop, production and audio engineering. A small roster, made with friends.", alternates: { canonical: "/artists" } };
 
 export default function ArtistsPage() {
   return (

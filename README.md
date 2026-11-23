@@ -1,7 +1,7 @@
 # Flavorful Music
 
 Source for [flavorfulmusic.com](https://flavorfulmusic.com): a San Diego artist collective disguised as a record label.
-EDM, hip-hop and production. Make art with friends.
+Hip-hop, production and audio engineering. Make art with friends.
 
 Next.js 15 (App Router, TypeScript, Tailwind CSS 4), exported as a static site and hosted on GitHub Pages.
 

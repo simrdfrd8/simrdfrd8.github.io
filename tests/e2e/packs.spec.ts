@@ -2,52 +2,17 @@ import { expect, test } from "@playwright/test";
 import { publicMusicVisible } from "../../src/lib/public-visibility";
 const MUSIC = publicMusicVisible();
 
-/** Producers card (home, under Beats) → the sample pack library. No prices, no checkout until sales are approved. */
-test("home: Producers card sits under Beats and links to the sample pack library", async ({ page }) => {
-  test.skip(!MUSIC, "public music is hidden; Producers sits beside Merch instead");
+/** The Producers / sample-packs card is off the public home page (t278u). Sample packs stay at /shop/sample-packs/. */
+test("home: the Producers card is off the public home page; Merch stays", async ({ page }) => {
   await page.goto("/");
-  const merch = page.locator("#shop a[data-home-merch]");
-  const beats = page.locator("#shop a[data-home-beats]");
-  const producers = page.locator("#shop a[data-home-producers]");
-  await expect(producers).toHaveAttribute("href", /\/shop\/sample-packs\/?$/);
-  await expect(producers.locator("b")).toHaveText("Producers");
-  await expect(producers).toContainText("Sample packs & Foley sounds. For beatmakers, post-production, and video game sound designers.");
-  await expect(producers).not.toContainText("$");
-  const [m, b, p] = [(await merch.boundingBox())!, (await beats.boundingBox())!, (await producers.boundingBox())!];
-  // directly under Beats: same column, below it
-  expect(Math.abs(p.x - b.x)).toBeLessThanOrEqual(1);
-  expect(Math.abs(p.width - b.width)).toBeLessThanOrEqual(1);
-  expect(p.y).toBeGreaterThan(b.y + b.height - 1);
-  if ((page.viewportSize()?.width ?? 1280) >= 768) {
-    // desktop: Merch spans the left column, as tall as Beats + Producers
-    expect(m.x).toBeLessThan(b.x);
-    expect(Math.abs(m.y - b.y)).toBeLessThanOrEqual(1);
-    expect(Math.abs(m.y + m.height - (p.y + p.height))).toBeLessThanOrEqual(1);
+  await expect(page.locator("#shop a[data-home-producers]")).toHaveCount(0);
+  await expect(page.locator("main")).not.toContainText("Sample packs & Foley sounds");
+  await expect(page.locator("#shop a[data-home-merch]")).toHaveAttribute("href", /\/shop\/merch\/?$/);
+  if (MUSIC) {
+    await expect(page.locator("#shop a[data-home-beats]")).toBeVisible();
   } else {
-    expect(m.y).toBeLessThan(b.y);
+    await expect(page.locator("#shop a[data-home-beats]")).toHaveCount(0);
   }
-  await producers.click();
-  await expect(page).toHaveURL(/\/shop\/sample-packs\/$/);
-  await expect(page.locator("h1")).toHaveText("Sample packs");
-});
-
-test("home: Producers card sits beside Merch when beats are hidden", async ({ page }) => {
-  test.skip(MUSIC, "public music is visible");
-  await page.goto("/");
-  const merch = page.locator("#shop a[data-home-merch]");
-  const producers = page.locator("#shop a[data-home-producers]");
-  await expect(page.locator("#shop a[data-home-beats]")).toHaveCount(0);
-  await expect(producers).toHaveAttribute("href", /\/shop\/sample-packs\/?$/);
-  const [m, pbox] = [(await merch.boundingBox())!, (await producers.boundingBox())!];
-  if ((page.viewportSize()?.width ?? 1280) >= 768) {
-    expect(m.x).toBeLessThan(pbox.x);
-    expect(Math.abs(m.y - pbox.y)).toBeLessThanOrEqual(1);
-  } else {
-    expect(m.y).toBeLessThan(pbox.y);
-  }
-  await producers.click();
-  await expect(page).toHaveURL(/\/shop\/sample-packs\/$/);
-  await expect(page.locator("h1")).toHaveText("Sample packs");
 });
 
 test("sample pack library renders, coming soon, with no prices or checkout", async ({ page }) => {

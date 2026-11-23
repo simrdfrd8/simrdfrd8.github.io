@@ -18,7 +18,7 @@ export default function OG() {
           <span>Flavorful</span>
           <span style={{ color: "#FF7A59" }}>Music</span>
         </div>
-        <div style={{ fontSize: 34, color: "#9E99A3" }}>Make art with friends. Hip-Hop · EDM · Production</div>
+        <div style={{ fontSize: 34, color: "#9E99A3" }}>Make art with friends. Hip-Hop · Production · Audio Engineering</div>
       </div>
     ),
     size,

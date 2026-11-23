@@ -25,7 +25,7 @@ export default function Home() {
           {heroMark && <Image src={heroMark} alt="Flavorful Music label mark: a winking croissant on a lightning triangle" width={489} height={473} unoptimized priority className="h-auto w-[140px] md:w-[180px]" />}
           <h1 className="brand-h mt-8 text-[clamp(2.6rem,9vw,64px)] tracking-[2px]">Make art with friends.</h1>
           <p className="mt-5 text-lg text-cream-dim md:text-xl">
-            A San Diego artist collective disguised as a record label: <span className="hl-hh">hip-hop</span>, <span className="hl-edm">EDM</span> and <span className="hl-prod">production</span>.
+            A San Diego artist collective disguised as a record label: <span className="hl-hh">hip-hop</span>, <span className="hl-prod">production</span> and <span className="hl-edm">audio engineering</span>.
           </p>
         </div>
       </header>
@@ -79,9 +79,9 @@ export default function Home() {
       </section>
 
       <section id="shop" aria-label="Shop" className="px-5 pb-16 sm:px-8">
-        {/* Merch on the left; when music is public, Beats stacks over Producers. When hidden, Merch and Producers sit side by side with no filler. */}
-        <div className="mx-auto grid max-w-[1120px] gap-4 md:grid-cols-2">
-          <Link href="/shop/merch" className={`group flex items-center justify-between gap-6 border border-line bg-raised p-6 transition-colors hover:border-logo md:p-8${publicMusicVisible() ? " md:row-span-2" : ""}`} data-home-merch>
+        {/* Merch; when music is public, Beats sits beside it. The Producers / sample-packs card is off the public home page. */}
+        <div className={`mx-auto grid max-w-[1120px] gap-4${publicMusicVisible() ? " md:grid-cols-2" : ""}`}>
+          <Link href="/shop/merch" className="group flex items-center justify-between gap-6 border border-line bg-raised p-6 transition-colors hover:border-logo md:p-8" data-home-merch>
             <span>
               <b className="brand-h block text-2xl tracking-[2px]">Merch</b>
               <span className="text-cream-dim">Designed in-house. Coming soon.</span>
@@ -97,13 +97,6 @@ export default function Home() {
             <span aria-hidden="true" className="text-2xl text-[var(--shade-text)] transition-transform group-hover:translate-x-1">→</span>
           </Link>
           )}
-          <Link href="/shop/sample-packs" className="shade-prod group flex items-center justify-between gap-6 border border-line bg-raised p-6 transition-colors hover:border-[var(--shade)] md:p-8" data-home-producers>
-            <span>
-              <b className="brand-h block text-2xl tracking-[2px]">Producers</b>
-              <span className="text-cream-dim">Sample packs &amp; Foley sounds. For beatmakers, post-production, and video game sound designers. Coming soon.</span>
-            </span>
-            <span aria-hidden="true" className="text-2xl text-[var(--shade-text)] transition-transform group-hover:translate-x-1">→</span>
-          </Link>
         </div>
       </section>
 
